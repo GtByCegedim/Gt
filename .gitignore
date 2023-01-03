@@ -1,0 +1,13 @@
+# Compiled files
+*.class
+*.o
+*.exe
+
+# Dependency files
+node_modules
+
+# Vue.js files
+dist
+
+# Sensitive files
+.env
