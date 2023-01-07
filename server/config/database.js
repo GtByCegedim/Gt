@@ -9,9 +9,17 @@ sequelize
   .authenticate()
   .then(() => {
     console.log('Connection to the database has been established successfully.');
+
+    // Create the tables for the models
+    return sequelize.sync();
+  })
+  .then(() => {
+    console.log('Tables created successfully.');
   })
   .catch((error) => {
-    console.error('Unable to connect to the database:', error);
+    console.error('Error creating tables:', error);
   });
+
+
 
 module.exports = sequelize;

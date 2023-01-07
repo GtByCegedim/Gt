@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const  sequelize  = require('../config/databse')
+const  sequelize  = require('../config/database')
 const relationships = require('./index');
 
 const Role = sequelize.define('role', {
