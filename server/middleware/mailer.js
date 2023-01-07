@@ -3,15 +3,12 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config()
 const Storage = require('local-storage')
 
-
 const main = (method,user)=> {
-
     const token = jwt.sign({email:user.email},process.env.SECRET_TOCKEN)
     let subject = ''
     let html = ''
-    
-        
-    if(method=='AddEmployée'){
+           
+    if(method=='AddEmployé'){
         subject = ' Tack your email and password '
         html = `<div style='height: 150px; width: 100%;'>
         <h4> 👋 Bonjour Voila votre données Bienvenu ! </h4>
@@ -34,7 +31,7 @@ const main = (method,user)=> {
     })
 
     let info ={
-        from: '"Marhaba ✨" <wlahlali343@gmail.com>',
+        from: '"GT ✨" <wlahlali343@gmail.com>',
         to: user.email,
         subject: subject,
         html:html,
