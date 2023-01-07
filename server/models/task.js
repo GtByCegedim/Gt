@@ -15,11 +15,7 @@ const Task = sequelize.define('task', {
   deadline: {
     type: Sequelize.DATE,
     allowNull: false
-  },
-  dateTypeId: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
+  }
 });
 
 module.exports = Task;

@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
-
 const  sequelize  = require('../config/database')
-const relationships = require('./index');
+
 
 
 const DateType = sequelize.define('dateType', {

@@ -6,6 +6,7 @@ const express = require('express');
 const globalError = require('./middleware/errorMiddleware')
 
 // Import database connection
+const {  DateType, Notification,Task,User, Role, Policy,  Subtask, TaskStatus } = require('./models');
 const sequelize = require('./config/database');
 
 // Set up Express app
