@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
+const  sequelize  = require('../config/database')
 
-const  sequelize  = require('../config/databse')
-const relationships = require('./index');
 
 const Notification = sequelize.define('notification', {
   title: {

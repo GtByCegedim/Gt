@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
-const  sequelize  = require('../config/databse')
-const relationships = require('./index');
+const  sequelize  = require('../config/database')
+ 
 
 const Subtask = sequelize.define('Subtask', {
   id: {
