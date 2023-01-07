@@ -1,11 +1,12 @@
+const DateType = require('./dateType');
+const Notification = require('./notification');
 const User = require('./user');
 const Role = require('./role');
 const Policy = require('./policy');
 const Task = require('./task');
 const Subtask = require('./subtask');
 const TaskStatus = require('./taskStatus');
-const DateType = require('./dateType');
-const Notification = require('./notification');
+
 
 // Many-to-many relationship between User and Role
 User.belongsToMany(Role, { through: 'user_roles' });
@@ -35,14 +36,16 @@ DateType.hasMany(Subtask, { foreignKey: 'dateTypeId' });
 User.belongsToMany(Notification, { through: 'user_notifications' });
 Notification.belongsToMany(User, { through: 'user_notifications' });
 
+
 module.exports = {
+  DateType,
+  Notification,
   User,
   Role,
   Policy,
   Task,
   Subtask,
-  TaskStatus,
-  DateType,
-  Notification,
+  TaskStatus
+  
 };
 

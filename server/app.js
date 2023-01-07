@@ -6,19 +6,8 @@ const express = require('express');
 const globalError = require('./middleware/errorMiddleware')
 
 // Import database connection
-const sequelize = require('./config/databse');
-
-const {
-    User,
-    Role,
-    Policy,
-    Task,
-    Subtask,
-    TaskStatus,
-    DateType,
-    Notification,
-  } = require('./models/index');
-
+const {  DateType, Notification,Task,User, Role, Policy,  Subtask, TaskStatus } = require('./models');
+const sequelize = require('./config/database');
 
 // Set up Express app
 const app = express();
@@ -34,7 +23,7 @@ const server= app.listen(process.env.PORT, () => {
 // Handle errors outside express
 process.on("unhandledRejection",(err)=> {
   console.error(`UnhandledRejection Errors : ${err.name} | ${err.message}`);
-  server.close(()=> {
+  app.close(()=> {
       console.error('Shutting down....')
       process.exit(1)
   })

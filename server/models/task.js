@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const  sequelize  = require('../config/databse')
+const  sequelize  = require('../config/database')
 
 
 const Task = sequelize.define('task', {
@@ -15,11 +15,7 @@ const Task = sequelize.define('task', {
   deadline: {
     type: Sequelize.DATE,
     allowNull: false
-  },
-  dateTypeId: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
+  }
 });
 
 module.exports = Task;
