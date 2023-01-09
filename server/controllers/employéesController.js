@@ -66,5 +66,12 @@ const AddEmployé = async (req, res, next) => {
 
 
 
+const updateUser = async(req,res,next)=>{
+  const {
+    body
+  } = req;
+  const {user_id} =req.params
+  
+}
 
 module.exports = AddEmployé
