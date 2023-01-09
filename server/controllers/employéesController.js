@@ -18,15 +18,17 @@ const AddEmployé = async (req, res, next) => {
   const {
     body
   } = req;
-  if (!body.lastName || !body.email || !body.firstName) return next(new ErrorResponse('Fill all filled', 401));
-  else {
+  if (!body.lastName || !body.email || !body.firstName) {
+    return next(new ErrorResponse('Fill all filled', 401));
+  } else {
     const findUser = await User.findOne({
       where: {
         email: body.email
       }
     })
-    if (findUser) return next(new ErrorResponse('il ya déja un Employé avec cet email', 401));
-    else {
+    if (findUser) { 
+      return next(new ErrorResponse('il ya déja un Employé avec cet email', 401));
+    } else {
       const stockPassword = Generate_password_secure.randomPassword({
         characters: [
           Generate_password_secure.lower,
@@ -44,8 +46,9 @@ const AddEmployé = async (req, res, next) => {
         ...body,
         password: generatePassword,
       });
-      if (!creatUser) return next(new ErrorResponse('user non creer ', 401));
-      else {
+      if (!creatUser) {
+        return next(new ErrorResponse('user non creer ', 401));
+      } else {
         const role_id = role.id;
         const user_id = creatUser.id
         const role_user = await User_role.create({
