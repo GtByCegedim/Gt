@@ -6,11 +6,21 @@ const Policy = require('./policy');
 const Task = require('./task');
 const Subtask = require('./subtask');
 const TaskStatus = require('./taskStatus');
-
+const User_role = require('./user-role')
 
 // Many-to-many relationship between User and Role
-User.belongsToMany(Role, { through: 'user_roles' });
-Role.belongsToMany(User, { through: 'user_roles' });
+User.belongsToMany(Role, {
+  through: User_role,
+  as: 'Role',
+  foreignKey: 'userId',
+  otherKey: 'roleId',
+});
+Role.belongsToMany(User, {
+  through: User_role,
+  as: 'User',
+  foreignKey: 'roleId',
+  otherKey: 'userId',
+});
 
 // Many-to-many relationship between Role and Policy
 Role.belongsToMany(Policy, { through: 'role_policies' });
@@ -18,7 +28,7 @@ Policy.belongsToMany(Role, { through: 'role_policies' });
 
 // One-to-many relationship between Task and Subtask
 Task.hasMany(Subtask, { foreignKey: 'taskId' });
-Subtask.belongsTo(Task, { foreignKey: 'taskId' });
+Subtask.belongsTo(Task, { foreignKey: 'taskId' }); 
 
 // One-to-one relationship between Task and TaskStatus
 Task.hasOne(TaskStatus, { foreignKey: 'taskId' });
