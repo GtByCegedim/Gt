@@ -11,11 +11,11 @@ const main = (method,user)=> {
     if(method=='AddEmployé'){
         subject = 'recevoire votre email et mot de passe'
         html = `<div style='height: 150px; width: 100%;'>
-        <h4> 👋 Bonjour Voila votre données Bienvenu ! </h4>
+        <h3> 👋 Bonjour ${user.firstName} ${user.lastName}! </h3>
         <h5>votre email :${user.email}</h5>
         <h5>votre mot de passe :${Storage('stockPassword')}</h5>
-        <p>You are receiving this because you (or someone else) have requested the reset of the password for your account. <span style='font-weight: bold;'>MARHABA</span>,Please click on the following link, or paste this into your browser to complete the process:</p>
-        <a href="http://localhost:${3000}/path_login_frontend">Login</a> 
+        <p>Ce lien va vous deriger vers la page pour creer votre propre mot de passe:</p>
+        <a href="http://localhost:${3000}/path_login_frontend">GO</a> 
         ${Storage.clear()}
       </div>`
     }
