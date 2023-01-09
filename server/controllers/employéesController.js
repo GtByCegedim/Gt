@@ -71,7 +71,22 @@ const updateUser = async(req,res,next)=>{
     body
   } = req;
   const {user_id} =req.params
-  
+  try {
+    if (!body.lastName || !body.email || !body.firstName) {
+      return next(new ErrorResponse('Fill all filled', 401));
+    } else{
+      const update_User = await User.update({
+        lastName:body.lastName,
+        firstName:body.firstName,
+        email:body.email
+      },{
+        where: { id: user_id }
+      })
+      console.log(update_User)
+    }   
+  } catch (error) {
+      return next(new ErrorResponse(Error, 401));
+  }
 }
 
 module.exports = AddEmployé
