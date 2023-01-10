@@ -64,13 +64,21 @@ const AddEmployé = async (req, res, next) => {
   }
 };
 
+
+/**              MODIFIER UN UTULISATEUR
+ * It updates the user's information and sends an email to the user.
+ * </code>
+ * @param req - The request object.
+ * @param res - The response object.
+ * @param next - This is a function that you call when you want to pass control to the next middleware
+ * function in the stack.
+ * @returns The user object
+ */
 const updateUser = async(req,res,next)=>{
   const {
     body
   } = req;
   const user_id =req.params.id
-  console.log(body);
-
   try {
     if (!body.lastName || !body.email || !body.firstName) {
       return next(new ErrorResponse('Fill all filled', 401));
@@ -82,21 +90,41 @@ const updateUser = async(req,res,next)=>{
       },{
         where: { id: user_id }
       })
-    
-    const findUser = await User.findOne({
-      where: {id : user_id}
+      const findUser = await User.findOne({
+        where: {id : user_id}
      })
-    if(!findUser) {
-      return next(new ErrorResponse(`Aucain User avec lid ${user_id}`, 401));
-    }
-    mailer.main("UpdateUser", findUser);
-    res.json(findUser)
+      if(!findUser) {
+        return next(new ErrorResponse(`Aucain User avec lid ${user_id}`, 401));
+      }
+      mailer.main("UpdateUser", findUser);
+      res.json(findUser)
   } catch (error) {
       return next(new ErrorResponse(error, 401));
   }
 }
 
+
+const deleteUser = async(req,res,next)=>{
+  const user_id = req.params.id;
+  try {
+    const delete_User = await User.destroy({
+      where: {
+       id: user_id
+      }
+    });
+    if(delete_User) {
+      res.json({
+        message: "l'utulisateur est supprimé",
+        status:200
+      })
+    }
+  } catch (error) {
+    return next(new ErrorResponse(error, 401));
+  }
+}
+
 module.exports = {
   AddEmployé,
-  updateUser
+  updateUser,
+  deleteUser,
 }
