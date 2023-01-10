@@ -20,6 +20,17 @@ const main = (method,user)=> {
       </div>`
     }
 
+    if(method=='UpdateUser'){
+        subject = "Votre données ont etés modifier par l'admin"
+        html = `<div style='height: 150px; width: 100%;'>
+        <h3> 👋 Bonjour  </h3>
+        <h4>nouveau  nom : ${user.lastName}!<h4>
+        <h4>nouveau prenom : ${user.firstName}!<h4>
+        <h5>votre email  : ${user.email}</h5>
+        <p>Il semble que votre données ont etés non valide </p>
+                </div>`
+    }
+
     let transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
         port: 465,
