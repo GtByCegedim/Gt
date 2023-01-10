@@ -128,8 +128,21 @@ const deleteUser = async(req,res,next)=>{
   }
 }
 
+const findAllUsers = async(req,res,next)=>{
+  try {
+    const findUsers = await User.findAll()
+    if(!findUsers){
+      next(new ErrorResponse("il n'ya pas des utulisateurs", 401));
+    }else{
+      res.json(findUsers)
+    }
+  } catch (error) {
+    next(new ErrorResponse(error, 401));
+  }
+}
 module.exports = {
   AddEmployé,
   updateUser,
   deleteUser,
+  findAllUsers
 }
