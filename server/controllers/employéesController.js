@@ -7,7 +7,7 @@ const Storage = require("local-storage");
 const ErrorResponse = require('../utils/error');
 const User_role = require('../models/user-role')
 
-/**                 AJOUTER UN EMPLOYE
+/**                  AJOUTER UN EMPLOYE
  * It creates a user, then creates a role_user, then sends an email.
  * @param req - The request object.
  * @param res - The response object.
@@ -64,8 +64,7 @@ const AddEmployé = async (req, res, next) => {
   }
 };
 
-
-/**              MODIFIER UN UTULISATEUR
+/**                 MODIFIER UN UTULISATEUR
  * It updates the user's information and sends an email to the user.
  * </code>
  * @param req - The request object.
@@ -103,7 +102,13 @@ const updateUser = async(req,res,next)=>{
   }
 }
 
-
+/**                 SUPPRIMER UN UTULISATEUR
+ * It deletes a user from the database.
+ * @param req - The request object.
+ * @param res - The response object.
+ * @param next - This is a function that you call when your middleware is complete.
+ * @returns The user is deleted from the database.
+ */
 const deleteUser = async(req,res,next)=>{
   const user_id = req.params.id;
   try {
