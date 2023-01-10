@@ -58,23 +58,23 @@ const AddEmployé = async (req, res, next) => {
         if (!role_user) return next(new ErrorResponse('role_user non creer', 401));
         Storage("stockPassword", stockPassword);
         mailer.main("AddEmployé", creatUser);
-        await res.send(creatUser);
+        await res.json(creatUser);
       }
     }
   }
 };
 
-
-
 const updateUser = async(req,res,next)=>{
   const {
     body
   } = req;
-  const {user_id} =req.params
+  const user_id =req.params.id
+  console.log(body);
+
   try {
     if (!body.lastName || !body.email || !body.firstName) {
       return next(new ErrorResponse('Fill all filled', 401));
-    } else{
+    } 
       const update_User = await User.update({
         lastName:body.lastName,
         firstName:body.firstName,
@@ -82,11 +82,21 @@ const updateUser = async(req,res,next)=>{
       },{
         where: { id: user_id }
       })
-      console.log(update_User)
-    }   
+    
+    const findUser = await User.findOne({
+      where: {id : user_id}
+     })
+    if(!findUser) {
+      return next(new ErrorResponse(`Aucain User avec lid ${user_id}`, 401));
+    }
+    mailer.main("UpdateUser", findUser);
+    res.json(findUser)
   } catch (error) {
-      return next(new ErrorResponse(Error, 401));
+      return next(new ErrorResponse(error, 401));
   }
 }
 
-module.exports = AddEmployé
+module.exports = {
+  AddEmployé,
+  updateUser
+}
