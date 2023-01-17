@@ -14,7 +14,7 @@ const User_role = require('../models/user-role')
  * @param next - The next function is used to pass control to the next matching route.
  * @returns The user object.
  */
-const AddEmployé = async (req, res, next) => {
+const AddEmployee = async (req, res, next) => {
   const {
     body
   } = req;
@@ -57,7 +57,7 @@ const AddEmployé = async (req, res, next) => {
         })
         if (!role_user) return next(new ErrorResponse('role_user non creer', 401));
         Storage("stockPassword", stockPassword);
-        mailer.main("AddEmployé", creatUser);
+        mailer.main("AddEmployee", creatUser);
         await res.json(creatUser);
       }
     }
@@ -141,7 +141,7 @@ const findAllUsers = async(req,res,next)=>{
   }
 }
 module.exports = {
-  AddEmployé,
+  AddEmployee,
   updateUser,
   deleteUser,
   findAllUsers
