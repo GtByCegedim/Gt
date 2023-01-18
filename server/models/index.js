@@ -7,6 +7,8 @@ const Task = require('./task');
 const Subtask = require('./subtask');
 const TaskStatus = require('./taskStatus');
 const User_role = require('./user-role')
+const Team = require('./team')
+const Project = require('./project')
 
 // Many-to-many relationship between User and Role
 User.belongsToMany(Role, {
@@ -46,6 +48,14 @@ DateType.hasMany(Subtask, { foreignKey: 'dateTypeId' });
 User.belongsToMany(Notification, { through: 'user_notifications' });
 Notification.belongsToMany(User, { through: 'user_notifications' });
 
+Team.belongsToMany(User, { through: "UserTeam" });
+User.belongsToMany(Team, { through: "UserTeam" });
+
+Team.hasMany(Project, { foreignKey: 'teamId' });
+Project.belongsTo(Team, { foreignKey: 'teamId' });
+
+Project.belongsToMany(User, { through: "UserProject" });
+User.belongsToMany(Project, { through: "UserProject" });
 
 module.exports = {
   DateType,
@@ -55,7 +65,8 @@ module.exports = {
   Policy,
   Task,
   Subtask,
-  TaskStatus
+  TaskStatus,
+  Project
   
 };
 

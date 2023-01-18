@@ -8,13 +8,14 @@ const ErrorResponse = require('../utils/error');
 const User_role = require('../models/user-role')
 
 /**                  Add an employee
+
  * It creates a user, then creates a role_user, then sends an email.
  * @param req - The request object.
  * @param res - The response object.
  * @param next - The next function is used to pass control to the next matching route.
  * @returns The user object.
  */
-const AddEmployé = async (req, res, next) => {
+const AddEmployee = async (req, res, next) => {
   const {
     body
   } = req;
@@ -60,7 +61,6 @@ const AddEmployé = async (req, res, next) => {
       Storage("stockPassword", stockPassword);
       mailer.main("AddEmployé", creatUser);
       await res.json(creatUser);
-      
     }
   }
 };
@@ -147,7 +147,7 @@ const findAllUsers = async(req,res,next)=>{
 }
 
 module.exports = {
-  AddEmployé,
+  AddEmployee,
   updateUser,
   deleteUser,
   findAllUsers
