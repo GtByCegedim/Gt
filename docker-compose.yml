@@ -1,0 +1,15 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    environment:
+      - PORT=9090
+      - NODE_ENV=development
+      - DATABASE=GT
+      - DB_USER=postgres
+      - password=2001
+      - host=localhost
+    ports:
+      - 9090:9090
