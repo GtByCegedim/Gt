@@ -7,14 +7,15 @@ const Storage = require("local-storage");
 const ErrorResponse = require('../utils/error');
 const User_role = require('../models/user-role')
 
-/**                  AJOUTER UN EMPLOYE
+/**                  Add an employee
+
  * It creates a user, then creates a role_user, then sends an email.
  * @param req - The request object.
  * @param res - The response object.
  * @param next - The next function is used to pass control to the next matching route.
  * @returns The user object.
  */
-const AddEmployé = async (req, res, next) => {
+const AddEmployee = async (req, res, next) => {
   const {
     body
   } = req;
@@ -27,7 +28,7 @@ const AddEmployé = async (req, res, next) => {
       }
     })
     if (findUser) { 
-      return next(new ErrorResponse('il ya déja un Employé avec cet email', 401));
+      return next(new ErrorResponse('an employee with the provided email is already exist ', 401));
     } else {
       const stockPassword = Generate_password_secure.randomPassword({
         characters: [
@@ -47,19 +48,19 @@ const AddEmployé = async (req, res, next) => {
         password: generatePassword,
       });
       if (!creatUser) {
-        return next(new ErrorResponse('user non creer ', 401));
-      } else {
-        const role_id = role.id;
-        const user_id = creatUser.id
-        const role_user = await User_role.create({
-          userId: user_id,
-          roleId: role_id
-        })
-        if (!role_user) return next(new ErrorResponse('role_user non creer', 401));
-        Storage("stockPassword", stockPassword);
-        mailer.main("AddEmployé", creatUser);
-        await res.json(creatUser);
-      }
+        return next(new ErrorResponse('unexpected issue while creating user', 401));
+      } 
+      
+      const role_id = role.id;
+      const user_id = creatUser.id
+      const role_user = await User_role.create({
+        userId: user_id,
+        roleId: role_id
+      })
+      if (!role_user) return next(new ErrorResponse('unexpected issue while creating role', 401));
+      Storage("stockPassword", stockPassword);
+      mailer.main("AddEmployé", creatUser);
+      await res.json(creatUser);
     }
   }
 };
@@ -80,7 +81,7 @@ const updateUser = async(req,res,next)=>{
   const user_id =req.params.id
   try {
     if (!body.lastName || !body.email || !body.firstName) {
-      return next(new ErrorResponse('Fill all filled', 401));
+      return next(new ErrorResponse('all fields required', 400));
     } 
       const update_User = await User.update({
         lastName:body.lastName,
@@ -89,11 +90,12 @@ const updateUser = async(req,res,next)=>{
       },{
         where: { id: user_id }
       })
+      if(!update_User) return next(new ErrorResponse('unexpected error during user update'))
       const findUser = await User.findOne({
         where: {id : user_id}
      })
       if(!findUser) {
-        return next(new ErrorResponse(`Aucain User avec lid ${user_id}`, 401));
+        return next(new ErrorResponse(`No use found with the id:  ${user_id}`, 404));
       }
       mailer.main("UpdateUser", findUser);
       res.json(findUser)
@@ -119,7 +121,7 @@ const deleteUser = async(req,res,next)=>{
     });
     if(delete_User) {
       res.json({
-        message: "l'utulisateur est supprimé",
+        message: "user deleted successfully",
         status:200
       })
     }
@@ -128,20 +130,24 @@ const deleteUser = async(req,res,next)=>{
   }
 }
 
+/**                 AFFICHIER LES UTULISATEUR
+ * It's a function that finds all users in the database and returns them in a json format.
+ * @param req - The request object.
+ * @param res - The response object.
+ * @param next - This is a function that you call when your middleware is complete. It passes control
+ * to the next middleware function in line.
+ */
 const findAllUsers = async(req,res,next)=>{
   try {
     const findUsers = await User.findAll()
-    if(!findUsers){
-      next(new ErrorResponse("il n'ya pas des utulisateurs", 401));
-    }else{
-      res.json(findUsers)
-    }
+    res.json(findUsers)
   } catch (error) {
     next(new ErrorResponse(error, 401));
   }
 }
+
 module.exports = {
-  AddEmployé,
+  AddEmployee,
   updateUser,
   deleteUser,
   findAllUsers
