@@ -1,7 +1,7 @@
-const Team = require('../models/')
+const Team = require('../models/team')
 const ErrorResponse = require('../utils/error');
 
-const findAllTeams = async(req,res)=>{
+const findAllTeams = async(req,res,next)=>{
     try {
         const findAllTeam = await Team.findAll()
         if(!findAllTeam) {
@@ -12,7 +12,7 @@ const findAllTeams = async(req,res)=>{
         next(new ErrorResponse(error, 401));
     }    
 }
- 
+
 module.exports = {
 findAllTeams
 }
