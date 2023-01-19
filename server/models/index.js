@@ -66,7 +66,7 @@ module.exports = {
   Task,
   Subtask,
   TaskStatus,
-  Project
-  
+  Project,
+  Team
 };
 
