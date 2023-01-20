@@ -5,6 +5,7 @@ require('dotenv').config();
 const express = require('express');
 const globalError = require('./middleware/errorMiddleware')
 const employeRouter = require('./routes/employeRoute')
+const teamRouter = require('./routes/teamRoute')
 // Import database connection
 const {  DateType, Notification,Task,User, Role, Policy,  Subtask, TaskStatus } = require('./models');
 const sequelize = require('./config/database');
@@ -18,6 +19,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 /* A middleware that is used to route the request to the employeRouter. */
 app.use('/api/employe',employeRouter)
+app.use('/api/team',teamRouter)
 // Set up routes, middleware, etc.
 app.use(globalError);
 
