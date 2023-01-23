@@ -1,6 +1,6 @@
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
-
+const ErrorResponse = require('../utils/error')
 const authMiddleware = async(req,res,next)=>{
     let token ;
     if(req?.headers?.authorization?.startsWith("Bearer")){
@@ -14,11 +14,10 @@ const authMiddleware = async(req,res,next)=>{
                 next()
             }
         } catch (error) {
-            throw new Error ("Not Aithorized token expired, Please Login again")
+             return next(new ErrorResponse('Not Aithorized token expired, Please Login again', 401));
         }
     }else{
-        throw new Error("il y a aucune token attacher au header")
-    }
+       return   next(new ErrorResponse('il y a aucune token attacher au header', 401));    }
 }
 module.exports = {
     authMiddleware
