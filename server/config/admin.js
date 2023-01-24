@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize')
 const User = require('../models/user')
+const Role = require("../models/role")
+const UserRole = require('../models/user-role')
 const bcrypt = require('bcryptjs');
 
 const createAdmin = () => {
@@ -20,8 +22,25 @@ const createAdmin = () => {
               isAdmin: true
             })
             .then(admin => {
-              console.log('Admin user created successfully:', admin);
+              let {
+                id: userId
+              } = admin
+              Role.findOne({
+                where: {
+                  name: 'admin'
+                }
+              }).then((role) => {
+                let {
+                  id: roleId
+                } = role
+
+                UserRole.create({
+                  userId,
+                  roleId
+                }).then(() => console.log('everything created successfully'))
+              })
             })
+
             .catch(error => {
               console.error('Error creating admin user:', error);
             });
