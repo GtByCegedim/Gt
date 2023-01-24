@@ -55,11 +55,34 @@ User.belongsToMany(Team, { through: "UserTeam" });
 Team.hasMany(Project, { foreignKey: 'teamId' });
 Project.belongsTo(Team, { foreignKey: 'teamId' });
 
-Project.belongsToMany(User, { through: "UserProject" });
-User.belongsToMany(Project, { through: "UserProject" });
+/* This is a many-to-many relationship between Task and User. */
+Task.belongsToMany(User, {
+  through: Task_User,
+  as: 'User',
+  foreignKey: 'taskId',
+  otherKey: 'userId',
+});
+User.belongsToMany(Task, {
+  through: Task_User,
+  as: 'Task',
+  foreignKey: 'userId',
+  otherKey: 'taskId',
+});
 
-Task.belongsToMany(User, { through: TaskUser });
-User.belongsToMany(Task, { through: TaskUser });
+/* This is a many-to-many relationship between Project and User. */
+Project.belongsToMany(User, {
+  through: Project_User,
+  as: 'User',
+  foreignKey: 'projectId',
+  otherKey: 'userId',
+});
+Role.belongsToMany(Project, {
+  through: Project_User,
+  as: 'Project',
+  foreignKey: 'userId',
+  otherKey: 'projectId',
+});
+
 
 
 module.exports = {
