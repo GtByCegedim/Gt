@@ -19,7 +19,8 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 /* A middleware that is used to route the request to the employeRouter. */
 app.use('/api/employe',employeRouter)
-app.use('/api/team',teamRouter)
+app.use('/api/teams', teamRouter);
+
 // Set up routes, middleware, etc.
 app.use(globalError);
 
