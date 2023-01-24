@@ -1,11 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const Team = require("../models/team"); // import the Team model
-const User = require("../models/user"); // import the User model
+const Team = require("../models/team"); 
+const User = require("../models/user"); 
 const apiError = require("../utils/error");
 const mailer = require("../middleware/mailer");
 
-const createTeam = async (req, res) => {
+const createTeam = async (req, res, next) => {
   try {
     const teamLeader = req.user; // assuming the user is authenticated and the user object is stored in the request
     const { teamName, teamMembers } = req.body;
@@ -27,7 +27,33 @@ const createTeam = async (req, res) => {
       message: `Team ${teamName} has been created and invitations have been sent to the team members.`,
     });
   } catch (error) {
-    res.status(500).json({ message: "Error creating team. Please try again." });
+    console.log(error)
+    return next(new apiError('Error creating team. Please try again.', 500))
+  }
+};
+
+const acceptInvitation = async (req, res, next) => {
+  try {
+    const userId = req.params.userId;
+    const teamName = req.params.teamName;
+    // Find the user in the database
+    const user = await User.findById(userId);
+    if (!user) {
+      return next (new apiError('User not found.',404))
+    }
+
+    // Find the team in the database
+    const team = await Team.findOne({ name: teamName });
+    if (!team) {
+      return next (new apiError( "Team not found.",404))
+    }
+
+    // Add the user to the team
+    await team.addMember(user);
+
+    res.status(200).json({ message: `You have joined team ${teamName}.` });
+  } catch (error) {
+   return next (new apiError("Error accepting invitation. Please try again.",500))
   }
 };
 
@@ -46,4 +72,5 @@ const findAllTeams = async (req, res, next) => {
 module.exports = {
   createTeam,
   findAllTeams,
+  acceptInvitation
 };
