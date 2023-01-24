@@ -36,13 +36,13 @@ const main = (method,user)=> {
         port: 465,
         secure: true, // use SSL
         auth:{
-            user:'wlahlali343@gmail.com',
+            user:process.env.USER_MAILER,
             pass:process.env.MAILER,
         },
     })
 
     let info ={
-        from: '"GT ✨" <wlahlali343@gmail.com>',
+        from: `GT ✨" ${process.env.USER_MAILER}`,
         to: user.email,
         subject: subject,
         html:html,
