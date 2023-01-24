@@ -10,6 +10,3 @@ const user_role = sequelize.define('user_role', {
 });
 
 module.exports = user_role;
-
-
-;
