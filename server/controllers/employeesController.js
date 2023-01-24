@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const Generate_password_secure = require("secure-random-password");
 const Storage = require("local-storage");
 const ErrorResponse = require('../utils/error');
-const User_role = require('../models/user-role')
+const User_role = require('../models/user-role');
 
 /**                  Add an employee
 
@@ -146,9 +146,12 @@ const findAllUsers = async(req,res,next)=>{
   }
 }
 
+
+
+
 module.exports = {
   AddEmployee,
   updateUser,
   deleteUser,
-  findAllUsers
+  findAllUsers,
 }
