@@ -57,6 +57,10 @@ Project.belongsTo(Team, { foreignKey: 'teamId' });
 Project.belongsToMany(User, { through: "UserProject" });
 User.belongsToMany(Project, { through: "UserProject" });
 
+Task.belongsToMany(User, { through: TaskUser });
+User.belongsToMany(Task, { through: TaskUser });
+
+
 module.exports = {
   DateType,
   Notification,
