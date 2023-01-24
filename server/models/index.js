@@ -9,6 +9,7 @@ const TaskStatus = require('./taskStatus');
 const User_role = require('./user-role')
 const Team = require('./team')
 const Project = require('./project')
+const TaskUser = require('./taskUser')
 
 // Many-to-many relationship between User and Role
 User.belongsToMany(Role, {
