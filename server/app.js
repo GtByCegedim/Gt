@@ -5,7 +5,7 @@ require('dotenv').config();
 const express = require('express');
 const globalError = require('./middleware/errorMiddleware')
 const employeRouter = require('./routes/employeRoute')
-const teamRouter = require('./routes/teamRoute')
+const teamRouter = require('./routes/team')
 // Import database connection
 const {  DateType, Notification,Task,User, Role, Policy,  Subtask, TaskStatus } = require('./models');
 const sequelize = require('./config/database');
@@ -33,7 +33,7 @@ const server= app.listen(process.env.PORT, () => {
 // Handle errors outside express
 process.on("unhandledRejection",(err)=> {
   console.error(`UnhandledRejection Errors : ${err.name} | ${err.message}`);
-  app.close(()=> {
+  server.close(()=> {
       console.error('Shutting down....')
       process.exit(1)
   })
