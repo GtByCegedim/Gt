@@ -1,19 +1,19 @@
-const Sequelize = require('sequelize');
+  const Sequelize = require('sequelize');
 
-const  sequelize  = require('../config/database')
- 
-
-const TaskStatus = sequelize.define('taskStatus', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  status: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
+  const  sequelize  = require('../config/database')
   
-  });
 
-module.exports = TaskStatus;
+  const TaskStatus = sequelize.define('taskStatus', {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    status: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    }
+    
+    });
+
+  module.exports = TaskStatus;

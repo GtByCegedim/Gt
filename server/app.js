@@ -5,6 +5,7 @@ require('dotenv').config();
 const express = require('express');
 const globalError = require('./middleware/errorMiddleware')
 const employeRouter = require('./routes/employeRoute')
+const teamRouter = require('./routes/teamRoute')
 // Import database connection
 const {
   DateType,
@@ -34,10 +35,13 @@ app.use(express.urlencoded({
   extended: true
 }));
 /* A middleware that is used to route the request to the employeRouter. */
-app.use('/api/employe', employeRouter)
+
 // Route d'authentification: 
 const authRouter = require('./routes/authRouter')
-app.use('/api/auth', authRouter)
+app.use('/api/employe',employeRouter)
+app.use('/api/teams', teamRouter);
+
+
 // Set up routes, middleware, etc.
 app.use(globalError);
 
