@@ -20,6 +20,10 @@ const sequelize = require('./config/database');
 //Import admin's creation config
 const createAdmin = require('./config/admin')
 createAdmin()
+//Import creation Roles
+const createRole = require('./config/role')
+createRole()
+
 // Set up Express app
 const app = express();
 
@@ -44,13 +48,13 @@ const server = app.listen(process.env.PORT, () => {
 
 
 // Handle errors outside express
-process.on("unhandledRejection", (err) => {
-  console.error(`UnhandledRejection Errors : ${err.name} | ${err.message}`);
-  app.close(() => {
-    console.error('Shutting down....')
-    process.exit(1)
-  })
+// process.on("unhandledRejection", (err) => {
+//   console.error(`UnhandledRejection Errors : ${err.name} | ${err.message}`);
+//   server.close(() => {
+//     console.error('Shutting down....')
+//     process.exit(1)
+//   })
 
-})
+// })
 
 module.exports = app
