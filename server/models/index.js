@@ -61,6 +61,9 @@ User.belongsToMany(Project, { through: "UserProject" });
 Task.belongsToMany(User, { through: TaskUser });
 User.belongsToMany(Task, { through: TaskUser });
 
+Task.belongsTo(Project, { foreignKey: 'projectId' });
+Project.hasMany(Task, { foreignKey: 'projectId' });
+
 
 module.exports = {
   DateType,
