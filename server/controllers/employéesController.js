@@ -49,7 +49,7 @@ const AddEmployee = async (req, res, next) => {
       });
       if (!creatUser) {
         return next(new ErrorResponse('unexpected issue while creating user', 401));
-
+       }
       const role_id = role.id;
       
       const user_id = creatUser.id
@@ -64,7 +64,6 @@ const AddEmployee = async (req, res, next) => {
     }
   }
 };
-}
 
 /**                 MODIFIER UN UTULISATEUR
  * It updates the user's information and sends an email to the user.
