@@ -64,6 +64,7 @@ const AddEmployee = async (req, res, next) => {
     }
   }
 };
+}
 
 /**                 MODIFIER UN UTULISATEUR
  * It updates the user's information and sends an email to the user.
