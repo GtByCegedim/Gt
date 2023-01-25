@@ -64,7 +64,7 @@ const main = (method, user) => {
     })
 
   let info = {
-    from: '"GT ✨" <wlahlali343@gmail.com>',
+    from: `"GT ✨" ${process.env.USER_MAILER}`,
     to: user.email,
     subject: subject,
     html: html,
