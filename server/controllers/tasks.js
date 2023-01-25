@@ -5,6 +5,9 @@ const status = require('../models/taskStatus')
 const Subtask = require('../models/subtask')
 const DateType = require('../models/dateType')
 const TaskUser = require('../models/task_user')
+const mailer = require("../middleware/mailer");
+const Storage = require("local-storage");
+
 const ErrorResponse = require('../utils/error')
 
 const addTaskToUser = async(req,res,next) =>{
@@ -48,14 +51,20 @@ const addTaskToUser = async(req,res,next) =>{
       if(!creatUserTask) {
         return next(new ErrorResponse('no relation user with task', 401));
       }
-      res.json({
-        msg : "creted "
-      })
+      console.log(creatTask.title)
+      Storage("creatTask", creatTask.title);
+      Storage("createdAt", creatTask.createdAt);
+      mailer.main("addTask", findUserByName);
+      await res.json(findUserByName);   
      } 
   } catch (error) {
       return next(new ErrorResponse(error, 401));
   }
 }
+
+
+
+
 
 module.exports = {
   addTaskToUser
