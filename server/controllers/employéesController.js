@@ -63,7 +63,7 @@ const AddEmployee = async (req, res, next) => {
       await res.json(creatUser);
     }
   }
-};
+}};
 
 /**                 MODIFIER UN UTULISATEUR
  * It updates the user's information and sends an email to the user.
