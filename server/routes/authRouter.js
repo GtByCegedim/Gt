@@ -9,5 +9,5 @@ const {
 
 authRouter.post('/login', login);
 authRouter.post('/forgetpassword', forgetPassword)
-authRouter.post('/resetpassword', resetPassword)
+authRouter.post('/resetpassword/:token', resetPassword)
 module.exports = authRouter
