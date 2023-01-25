@@ -49,9 +49,9 @@ const AddEmployee = async (req, res, next) => {
       });
       if (!creatUser) {
         return next(new ErrorResponse('unexpected issue while creating user', 401));
-      }
 
       const role_id = role.id;
+      
       const user_id = creatUser.id
       const role_user = await User_role.create({
         userId: user_id,

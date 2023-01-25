@@ -6,6 +6,7 @@ const express = require('express');
 const globalError = require('./middleware/errorMiddleware')
 const employeRouter = require('./routes/employeRoute')
 const teamRouter = require('./routes/teamRoute')
+const taskRouter = require('./routes/task')
 // Import database connection
 const {
   DateType,
@@ -40,6 +41,7 @@ app.use(express.urlencoded({
 const authRouter = require('./routes/authRouter')
 app.use('/api/employe',employeRouter)
 app.use('/api/teams', teamRouter);
+app.use('/api/task', taskRouter);
 
 
 // Set up routes, middleware, etc.
