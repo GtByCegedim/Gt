@@ -30,6 +30,15 @@ const main = (method,user)=> {
         <p>Il semble que votre données ont etés non valide </p>
                 </div>`
     }
+    if(method=='addTask'){
+        subject = "Nouvelle tache assigné"
+        html = `<div style='height: 150px; width: 100%;'>
+        <h3 color: blue ; > 👋 Bonjour  ${user.lastName}  ${user.firstName}</h3>
+        <h4>vous avez reçu une nouvelle tache le ${Storage('createdAt')} !<h4>
+        <h4>Voila votre tache : ${Storage('creatTask')} !<h4>
+        ${Storage.clear()}
+                </div>`
+    }
 
     let transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
