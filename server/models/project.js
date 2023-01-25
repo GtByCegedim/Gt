@@ -9,12 +9,7 @@ const Project = sequelize.define("project", {
     },
     description: {
       type: Sequelize.TEXT,
-    },
-    status: {
-      type: Sequelize.ENUM("to_do", "in_progress", "done"),
-      defaultValue: "to_do",
-      allowNull: false,
-    },
+    },   
     deadline: {
       type: Sequelize.DATE,
       allowNull: true,
