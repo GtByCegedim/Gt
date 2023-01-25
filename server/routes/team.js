@@ -7,7 +7,7 @@ const { createTeam, sendInvitations, findAllTeams } = require("../controllers/te
 
 router.post('/create', createTeam);
 router.post('/invitations', sendInvitations);
-router.get('/all',findAllTeams)
+// router.get('/all',findAllTeams)
 router.use(ErrorHandler)
 
 module.exports = router;
