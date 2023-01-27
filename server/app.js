@@ -5,7 +5,7 @@ require('dotenv').config();
 const express = require('express');
 const globalError = require('./middleware/errorMiddleware')
 const employeRouter = require('./routes/employeRoute')
-const teamRouter = require('./routes/teamRoute')
+const teamRouter = require('./routes/team')
 const taskRouter = require('./routes/task')
 const authRouter = require('./routes/authRouter')
 // Import database connection
