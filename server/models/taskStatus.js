@@ -12,6 +12,7 @@
     status: {
       type: Sequelize.STRING,
       allowNull: false,
+      default:"A faire"
     }
     
     });
