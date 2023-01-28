@@ -21,17 +21,7 @@ const addTaskToUser = async (req, res, next) => {
       console.log(body.users);
       return next(new ErrorResponse('Fill all filled and users', 401));
     } else {
-      // for (let i = 0; i < body.users.length; i++) {
-      //   const findUserByName = await User.findOne({
-      //     where: {
-      //       lastName: body.users[i].lastname,
-
-      //     }
-      //   });
-      //   if (!findUserByName) {
-      //     return next(new ErrorResponse(`User  ${body.users[i].lastname} not found`, 401));
-      //   }
-      // }
+      
       body.users.map(async (user) => {
         const findUserByName = await User.findOne({
           where: {
