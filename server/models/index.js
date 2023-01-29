@@ -12,7 +12,7 @@ const Project = require('./project')
 const Task_User = require('./task_user')
 const Project_User = require('./project_user')
 const Team_User = require('./task_user')
-const TeamMembers = require('./teamMembers')
+
 
 // Many-to-many relationship between User and Role
 User.belongsToMany(Role, {
@@ -99,8 +99,9 @@ User.belongsToMany(User, {
 Task.belongsTo(Project, { foreignKey: 'projectId' });
 Project.hasMany(Task, { foreignKey: 'projectId' });
 
-Team.hasMany(TeamMembers, { foreignKey: 'teamId' });
-TeamMembers.belongsTo(Team, { foreignKey: 'teamId' });
+
+
+
 
 
 module.exports = {
@@ -113,7 +114,6 @@ module.exports = {
   Subtask,
   TaskStatus,
   Project,
-  Team,
-  TeamMembers
+  Team
 };
 

@@ -20,7 +20,7 @@ const {
   TaskStatus,
   Project,
   Team,
-  TeamMembers
+ 
 } = require('./models');
 const sequelize = require('./config/database');
 //Import admin's creation config

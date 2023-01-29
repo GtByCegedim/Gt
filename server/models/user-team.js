@@ -10,6 +10,3 @@ const user_team = sequelize.define('user_team', {
 });
 
 module.exports = user_team;
-
-
-;
