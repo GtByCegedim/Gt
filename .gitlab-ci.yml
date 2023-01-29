@@ -29,5 +29,5 @@ deploy:
   environment:
     name: production
   only:
-    - master
+    - develop
 
