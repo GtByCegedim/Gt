@@ -1,0 +1,33 @@
+image: node:18
+
+stages:
+  - build
+  - test
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+
+build:
+  stage: build
+  script:
+    - npm install
+
+test:
+  stage: test
+  script:
+    - npm run test
+  only:
+    - changes
+
+deploy:
+  stage: deploy
+  script:
+    - docker build -t myapp .
+    - docker run --env-file .env -p 3000:3000 myapp
+  environment:
+    name: production
+  only:
+    - master
+
