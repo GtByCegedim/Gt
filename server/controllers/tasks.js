@@ -7,10 +7,15 @@ const DateType = require('../models/dateType')
 const TaskUser = require('../models/task_user')
 const mailer = require("../middleware/mailer");
 const Storage = require("local-storage");
-
 const ErrorResponse = require('../utils/error')
 
-
+/**
+ * It creates a task and adds it to the users
+ * @param req - The request object.
+ * @param res - The response object.
+ * @param next - This is a function that you call when you want to pass control to the next middleware
+ * function in the stack.
+ */
 const addTaskToUser = async (req, res, next) => {
   const manager = req.user
   const {
@@ -21,7 +26,7 @@ const addTaskToUser = async (req, res, next) => {
       console.log(body.users);
       return next(new ErrorResponse('Fill all filled and users', 401));
     } else {
-      
+     /* Checking if the user exists in the database. */
       body.users.map(async (user) => {
         const findUserByName = await User.findOne({
           where: {
@@ -32,6 +37,7 @@ const addTaskToUser = async (req, res, next) => {
           return next(new ErrorResponse(`User  ${user.lastname} not found`, 401));
         }
       });
+      /* It creates a date type. */
       const addDateType = await DateType.create({
         duration: body.duration,
         unit: body.unit
@@ -42,6 +48,7 @@ const addTaskToUser = async (req, res, next) => {
       const manager_id = manager.id
       const project_id = req.params.id
       const id_dateType = addDateType.id
+      /* It creates a task and adds it to the users */
       const creatTask = await Task.create({
         title: body.title,
         description: body.description,
@@ -53,6 +60,7 @@ const addTaskToUser = async (req, res, next) => {
       if (!creatTask) {
         return next(new ErrorResponse('Task not created', 401));
       }
+     /* A loop that iterates over the users and creates a relation between the task and the users. */
       body.users.map(async (user) => {
         const name_luser = user.lastname
         const findUserByName = await User.findOne({
