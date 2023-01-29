@@ -93,9 +93,24 @@ const addTaskToUser = async (req, res, next) => {
   }
 }
 
-
-
-
+const AllTaskOfProject = async(req,res,next)=>{
+  const project_id = req.params.id
+  try {
+    const findAllTask = await Task.findAll({
+      where : {
+        projectId : project_id
+      }
+    })
+    if(!findAllTask) {
+      return next(new ErrorResponse('no task found', 404));
+    }
+    res.json(findAllTask)
+  } catch (error) {
+    
+  }
+}
 module.exports = {
-  addTaskToUser
+  addTaskToUser,
+  AllTaskOfProject
+  
 }
