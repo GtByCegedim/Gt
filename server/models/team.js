@@ -6,9 +6,9 @@ const Team = sequelize.define("team", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  members: {
-    type: Sequelize.ARRAY(Sequelize.INTEGER),
-    defaultValue: [],
+  teamLeaderId: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
   },
 });
 

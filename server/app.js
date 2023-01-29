@@ -5,19 +5,22 @@ require('dotenv').config();
 const express = require('express');
 const globalError = require('./middleware/errorMiddleware')
 const employeRouter = require('./routes/employeRoute')
-const teamRouter = require('./routes/teamRoute')
+const teamRouter = require('./routes/team')
 const taskRouter = require('./routes/task')
 const authRouter = require('./routes/authRouter')
 // Import database connection
 const {
   DateType,
   Notification,
-  Task,
   User,
   Role,
   Policy,
+  Task,
   Subtask,
-  TaskStatus
+  TaskStatus,
+  Project,
+  Team,
+  TeamMembers
 } = require('./models');
 const sequelize = require('./config/database');
 //Import admin's creation config
