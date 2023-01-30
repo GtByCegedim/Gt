@@ -93,6 +93,12 @@ const addTaskToUser = async (req, res, next) => {
   }
 }
 
+/**
+ * It finds all the tasks of a project by the project id
+ * @param req - The request object.
+ * @param res - The response object.
+ * @param next - This is a function that we call when we want to move on to the next middleware.
+ */
 const AllTaskOfProject = async(req,res,next)=>{
   const project_id = req.params.id
   try {
@@ -106,11 +112,62 @@ const AllTaskOfProject = async(req,res,next)=>{
     }
     res.json(findAllTask)
   } catch (error) {
-    
+    return next(new ErrorResponse(error, 404));
   }
+}
+
+/**
+ * It takes the lastName and firstName of a user and returns all the tasks assigned to him
+ * @param req - The request object.
+ * @param res - The response object.
+ * @param next - This is a function that you call when you're done with your middleware.
+ * @returns All the tasks assigned to a user
+ */
+const AllTaskOfUser = async(req,res,next)=>{
+  const lastName = req.body.lastName
+  const firstName = req.body.firstName
+  let taskIds = []
+  try {
+    const findUserByName = await User.findOne({
+      where: {
+        lastName : lastName,
+        firstName:firstName
+      }
+    })
+    if(!findUserByName) {
+      return next(new ErrorResponse('no User found', 404));
+    }
+    const id_user = findUserByName.id
+    const findTask = await TaskUser.findAll({
+      where : {
+        userId : id_user
+      }
+    })
+    if(!findTask) {
+      return next(new ErrorResponse('no task assigned in this User', 404));
+    }
+    findTask.forEach(task_user => {
+      taskIds.push(task_user.dataValues.taskId);
+    });
+    let allTasks = [];
+    for(let i = 0 ; i<taskIds.length;i++){
+      const findAllTask = await Task.findAll({
+        where : {
+          id : taskIds[i]
+        }
+      })
+      allTasks.push(findAllTask);
+    }
+    res.json(allTasks)
+
+  } catch (error) {
+    return next(new ErrorResponse(error, 404));
+  }
+
 }
 module.exports = {
   addTaskToUser,
-  AllTaskOfProject
+  AllTaskOfProject,
+  AllTaskOfUser
   
 }
