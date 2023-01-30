@@ -25,7 +25,7 @@ const addTaskToUser = async (req, res, next) => {
     if (!body.title || !body.description || !body.deadline || !body.duration || !body.unit || !body.users) {
       console.log(body.users);
       return next(new ErrorResponse('Fill all filled and users', 401));
-    } else {
+    } 
      /* Checking if the user exists in the database. */
       body.users.map(async (user) => {
         const findUserByName = await User.findOne({
@@ -87,7 +87,7 @@ const addTaskToUser = async (req, res, next) => {
       await res.json({
         msg: "task added to users"
       });
-    }
+    
   } catch (error) {
     return next(new ErrorResponse(error, 401));
   }
