@@ -33,7 +33,18 @@ Policy.belongsToMany(Role, { through: 'role_policies' });
 
 // One-to-many relationship between Task and Subtask
 Task.hasMany(Subtask, { foreignKey: 'taskId' });
-Subtask.belongsTo(Task, { foreignKey: 'taskId' }); 
+Subtask.belongsTo(Task, { foreignKey: 'taskId' });
+// A remplacer 
+// Task.hasMany(SubTask, {
+//   as: 'subTasks',
+//   foreignKey: 'taskId',
+//   onDelete: 'CASCADE'
+// });
+
+// SubTask.belongsTo(Task, {
+//   as: 'task',
+//   foreignKey: 'taskId'
+// });
 
 // One-to-one relationship between Task and TaskStatus
 Task.hasOne(TaskStatus, { foreignKey: 'taskId' });
