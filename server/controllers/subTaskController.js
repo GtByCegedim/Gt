@@ -77,7 +77,7 @@ const addSubTask = async (req, res, next) => {
 
 /**
  * Get all subtasks for a given task
- * @route GET /api/tasks/:id/subtasks
+ * @route GET /api/tasks/:id
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  * @param {Function} next - Express next middleware function
