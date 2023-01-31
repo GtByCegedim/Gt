@@ -200,5 +200,5 @@ module.exports = {
   addTaskToUser,
   AllTaskOfProject,
   AllTaskOfUser,
-  AllMyTask
+  AllMyTasks
 }
