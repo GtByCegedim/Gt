@@ -3,6 +3,7 @@ const Task = require("../models/task");
 const User = require("../models/user");
 const DateType = require("../models/dateType");
 const ErrorResponse = require("../utils/error");
+const Project = require("../models/project");
 
 /**
  * It creates a subtask for a task
@@ -15,7 +16,7 @@ const ErrorResponse = require("../utils/error");
 const addSubTask = async (req, res, next) => {
   const task_id = req.params.id;
   const { body } = req;
-
+  const manager_id = req.user.id
   try {
     if (
       !body.title ||
@@ -39,7 +40,14 @@ const addSubTask = async (req, res, next) => {
     if (!findUserByName) {
       return next(new ErrorResponse(`User ${body.lastname} not found`, 401));
     }
-
+    const isManeger = await Project.findOne({
+      where : {
+        manager: manager_id
+      }
+    })
+    if (!isManeger) {
+      return next(new ErrorResponse('Sory You Are Not Manager Of this Project', 401));
+    }
     const addDateType = await DateType.create({
       duration: body.duration,
       unit: body.unit
