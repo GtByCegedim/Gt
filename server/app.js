@@ -5,10 +5,11 @@ require('dotenv').config();
 const express = require('express');
 const globalError = require('./middleware/errorMiddleware')
 const employeRouter = require('./routes/employeRoute')
-const teamRouter = require('./routes/teamRoute')
+const teamRouter = require('./routes/team')
 const taskRouter = require('./routes/task')
 const authRouter = require('./routes/authRouter')
 const notifRouter = require('./routes/notifications')
+const subTaskRouter = require('./routes/subTaskRoute')
 // Import database connection
 const {
   DateType,
@@ -45,6 +46,7 @@ app.use('/api/employe', employeRouter)
 app.use('/api/teams', teamRouter);
 app.use('/api/task', taskRouter);
 app.use('/api/notifications', notifRouter)
+app.use('/api/subtask', subTaskRouter);
 
 // Set up routes, middleware, etc.
 app.use(globalError);
