@@ -67,6 +67,12 @@ const addSubTask = async (req, res, next) => {
 };
 
 
+/**
+ * It gets all the subtasks of a task by task id.
+ * @param req - The request object.
+ * @param res - The response object.
+ * @param next - This is a function that you call when your middleware is complete.
+ */
 const getSubTaskOfTask =async(req,res,next)=>{
   const task_id = req.params.id
   try {
@@ -79,7 +85,7 @@ const getSubTaskOfTask =async(req,res,next)=>{
         taskId : task_id
       }
     }) 
-    if(!getSubTask) {
+    if(getSubTask.length === 0) {
       return next(new ErrorResponse('No Subtask found', 401));
     }
     res.json({
