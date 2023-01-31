@@ -198,8 +198,9 @@ const AllMyTask = async(req,res,next)=>{
     })
 
   } catch (error) {
-    return next(new ErrorResponse(error, 404));
+    return next(new ErrorResponse("error", 404));
   }
+
 
 }
 
