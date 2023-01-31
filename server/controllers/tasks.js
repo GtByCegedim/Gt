@@ -103,34 +103,47 @@ const addTaskToUser = async (req, res, next) => {
 }
 
 /**
- * It finds all the tasks of a project by the project id
- * @param req - The request object.
- * @param res - The response object.
- * @param next - This is a function that we call when we want to move on to the next middleware.
+ * @function AllTaskOfProject
+ * @description Retrieve all tasks associated with a given project
+ * @route GET /api/v1/projects/:id/tasks
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ * @returns {Array} Array of tasks associated with the project
+ * @throws {ErrorResponse} If no tasks are found or an error occurs while querying the database
  */
-const AllTaskOfProject = async(req,res,next)=>{
-  const project_id = req.params.id
+const AllTaskOfProject = async (req, res, next) => {
   try {
-    const findAllTask = await Task.findAll({
-      where : {
-        projectId : project_id
-      }
-    })
-    if(!findAllTask) {
-      return next(new ErrorResponse('no task found', 404));
+    // Extract project ID from request parameters
+    const projectId = req.params.id;
+
+    // Query the database for tasks with a matching project ID
+    const tasks = await Task.findAll({ where: { projectId } });
+
+    // If no tasks are found, return a custom error response
+    if (!tasks.length) {
+      return next(new ErrorResponse("No tasks found for project", 404));
     }
-    res.json(findAllTask)
+
+    // Return a JSON response with the found tasks
+    return res.status(200).json(tasks);
   } catch (error) {
-    return next(new ErrorResponse(error, 404));
+    // Return a custom error response if an error occurs while querying the database
+    return next(new ErrorResponse(`Error retrieving tasks: ${error.message}`, 500));
   }
-}
+};
+
+
 
 /**
- * It takes the lastName and firstName of a user and returns all the tasks assigned to him
- * @param req - The request object.
- * @param res - The response object.
- * @param next - This is a function that you call when you're done with your middleware.
- * @returns All the tasks assigned to a user
+ * @function AllTaskOfUser
+ * @description Retrieve all tasks assigned to a user by their first and last name
+ * @route GET /api/tasks/ofuser
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ * @returns {Array} Array of tasks assigned to the user
+ * @throws {ErrorResponse} If the user is not found or an error occurs while querying the database
  */
 const AllTaskOfUser = async(req,res,next)=>{
   const lastName = req.body.lastName
@@ -175,6 +188,11 @@ const AllTaskOfUser = async(req,res,next)=>{
 
 }
 
+/**
+ * @desc Get all tasks assigned to a specific user
+ * @route GET /api/v1/tasks/mytasks
+ * @access Private
+ */
 const AllMyTasks = async (req, res, next) => {
   try {
     // Get the user ID from the request object
