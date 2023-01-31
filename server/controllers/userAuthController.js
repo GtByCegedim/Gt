@@ -18,6 +18,7 @@ const login = async (req, res, next) => {
       email
     }
   });
+  console.log(user)
   if (!user) {
     return next(new apiError('Invalid credentials', 401));
   }

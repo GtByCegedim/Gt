@@ -4,7 +4,7 @@ const router = express.Router();
 const {authMiddleware, isAdmin} = require('../middleware/authMiddleware')
 /* This is a route that is being created. The first parameter is the path, the second is the function
 that will be called when the route is hit. */
-router.post('/add/:id',authMiddleware,isAdmin,addTaskToUser);
+router.post('/add/:id',authMiddleware,addTaskToUser);
 router.get('/my',authMiddleware,AllMyTasks);
 router.get('/',AllTaskOfUser);
 router.get('/:id',AllTaskOfProject);

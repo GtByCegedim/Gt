@@ -3,8 +3,8 @@ const  {addSubTask, getSubTaskOfTask, getMySubTasks} = require('../controllers/s
 const { authMiddleware } = require('../middleware/authMiddleware');
 const router = express.Router();
 
-router.post('/:id', addSubTask)
+router.post('/:id',authMiddleware, addSubTask)
 router.get('/mysubtasks', authMiddleware,getMySubTasks)
-router.get('/allsubtasks/:id', getSubTaskOfTask)
+router.get('/allsubtasks/:id',authMiddleware, getSubTaskOfTask)
 
 module.exports = router;
