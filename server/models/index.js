@@ -11,7 +11,8 @@ const Team = require('./team')
 const Project = require('./project')
 const Task_User = require('./task_user')
 const Project_User = require('./project_user')
-const Team_User = require('./task_user')
+const Team_User = require('./task_user');
+const user_notifications = require('./user_notifications');
 
 // Many-to-many relationship between User and Role
 User.belongsToMany(Role, {
@@ -48,8 +49,8 @@ Subtask.belongsTo(DateType, { foreignKey: 'dateTypeId' });
 DateType.hasMany(Subtask, { foreignKey: 'dateTypeId' });
 
 // Many-to-many relationship between User and Notification
-User.belongsToMany(Notification, { through: 'user_notifications' });
-Notification.belongsToMany(User, { through: 'user_notifications' });
+User.belongsToMany(Notification, { through: user_notifications });
+Notification.belongsToMany(User, { through: user_notifications });
 
 /* This is a many-to-many relationship between Team and User. */
 Team.belongsToMany(User, {
@@ -109,6 +110,7 @@ module.exports = {
   Subtask,
   TaskStatus,
   Project,
-  Team
+  Team,
+  user_notifications
 };
 
