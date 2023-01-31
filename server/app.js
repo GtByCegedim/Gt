@@ -8,6 +8,7 @@ const employeRouter = require('./routes/employeRoute')
 const teamRouter = require('./routes/teamRoute')
 const taskRouter = require('./routes/task')
 const authRouter = require('./routes/authRouter')
+const notifRouter = require('./routes/notifications')
 // Import database connection
 const {
   DateType,
@@ -40,10 +41,10 @@ app.use(express.urlencoded({
 
 // Route d'authentification: 
 app.use('/api/auth', authRouter)
-app.use('/api/employe',employeRouter)
+app.use('/api/employe', employeRouter)
 app.use('/api/teams', teamRouter);
 app.use('/api/task', taskRouter);
-
+app.use('/api/notifications', notifRouter)
 
 // Set up routes, middleware, etc.
 app.use(globalError);
@@ -55,11 +56,11 @@ const server = app.listen(process.env.PORT, () => {
 
 
 // Handle errors outside express
-process.on("unhandledRejection",(err)=> {
+process.on("unhandledRejection", (err) => {
   console.error(`UnhandledRejection Errors : ${err.name} | ${err.message}`);
-  server.close(()=> {
-      console.error('Shutting down....')
-      process.exit(1)
+  server.close(() => {
+    console.error('Shutting down....')
+    process.exit(1)
   })
-  
+
 })
