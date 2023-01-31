@@ -4,41 +4,31 @@ const Team = require("../models/team");
 const User = require("../models/user"); 
 const apiError = require("../utils/error");
 const mailer = require("../middleware/mailer");
-const Team_User = require('../models/team_user')
 
-
-const createTeam = async (req, res) => {
+const createTeam = async (req, res, next) => {
   try {
-    const { teamName, teamLeaderId, userIds } = req.body;
-    const teamLeader = await User.findByPk(teamLeaderId);
-    const team = await Team.create({
-      name: teamName,
-      teamLeaderId,
-    });
+    const { name, teamLeaderId, invitedEmails } = req.body;
+    const newTeam = await Team.create({ name, teamLeaderId });
 
-    const users = await User.findAll({
+    const invitedUsers = await User.findAll({
       where: {
-        id: userIds,
-      },
+        email: invitedEmails
+      }
+    });
+    console.log(invitedUsers)
+    invitedUsers.forEach(invitedUser => {
+      mailer.sendTeamInvitation(invitedUser, req.user.firstName, newTeam.name);
     });
 
-    // associate the users with the team
-    for (const user of users) {
-      await team.addUser(user);
-      sendTeamInvitation(user, teamLeader, teamName);
-    }
-
-    return res.status(201).send({
-      message: 'Team and invitations created successfully',
+    res.status(201).json({
+      success: true,
+      data: newTeam
     });
-  } catch (error) {
-    return res.status(500).send({
-      error: error.message,
-    });
+  } catch (err) {
+    console.log(err)
+    next(err);
   }
 };
-
-
 
 const acceptInvitation = async (req, res, next) => {
   try {
