@@ -4,6 +4,14 @@ const User = require("../models/user");
 const DateType = require("../models/dateType");
 const ErrorResponse = require("../utils/error");
 
+/**
+ * It creates a subtask for a task
+ * @param req - task_id , title , description , dateType , lasname and firstname of User
+ * @param res - the response object
+ * @param next - is a function that you call to pass control to the next matching route.
+ * @returns a message
+ * @permission Only (manager)
+ */
 const addSubTask = async (req, res, next) => {
   const task_id = req.params.id;
   const { body } = req;
@@ -67,30 +75,81 @@ const addSubTask = async (req, res, next) => {
 };
 
 
-const getSubTaskOfTask =async(req,res,next)=>{
-  const task_id = req.params.id
+/**
+ * Get all subtasks for a given task
+ * @route GET /api/tasks/:id/subtasks
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ * @returns {Array} subtasks - Array of subtask objects
+ * @throws {ErrorResponse} If task or subtasks are not found
+ */
+const getSubTaskOfTask = async (req, res, next) => {
   try {
-    const getTaskById= await Task.findByPk(task_id)
-    if(!getTaskById) {
-      return next(new ErrorResponse('No task found', 401));
-    }
-    const getSubTask = await Subtask.findAll({
-      where : {
-        taskId : task_id
-      }
-    }) 
-    if(!getSubTask) {
-      return next(new ErrorResponse('No Subtask found', 401));
-    }
+    // Get task ID from request params
+    const taskId = req.params.id;
+
+    // Find the task with the given ID
+    const task = await Task.findByPk(taskId);
+    if (!task) throw new ErrorResponse('Task not found', 401);
+
+    // Find all subtasks for the task
+    const subtasks = await Subtask.findAll({
+      where: { taskId },
+    });
+    if (!subtasks.length) throw new ErrorResponse('No subtasks found', 401);
+
+    // Send success response with subtasks
     res.json({
-      message : `SubTask Of task : ${getTaskById.title}`,
-      getSubTask
-    })
+      message: `Subtasks for task: ${task.title}`,
+      subtasks,
+    });
   } catch (error) {
-    return next(new ErrorResponse(error, 401));
+    // Pass the error to the next middleware
+    next(error);
   }
-}
+};
+
+
+/**
+ * Get Sub Tasks for a user
+ * @route GET /subtasks/
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ * @returns {Array} subTasks - Array of sub tasks for the user
+ */
+const getMySubTasks = async (req, res, next) => {
+  try {
+    // Get user ID from request object
+    const userId = req.user.id;
+  
+    // Find all sub tasks for the user
+    const subTasks = await Subtask.findAll({
+      where: { user: userId },
+    });
+  
+    // Check if any sub tasks were found
+    if (!subTasks.length) {
+      return next(
+        new ErrorResponse(`No sub tasks found for user with ID: ${userId}`, 404)
+      );
+    }
+  
+    // Return sub tasks to the user
+    return res.json({
+      message: `All sub tasks for user ${req.user.lastName}`,
+      subTasks,
+    });
+  } catch (error) {
+    return next(new ErrorResponse(error, 400));
+  }
+};
+
+
+
 module.exports = {
   addSubTask,
-  getSubTaskOfTask
+  getSubTaskOfTask,
+  getMySubTasks
 };
