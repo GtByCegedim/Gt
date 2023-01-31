@@ -111,6 +111,10 @@ Task.belongsTo(Project, { foreignKey: 'projectId' });
 Project.hasMany(Task, { foreignKey: 'projectId' });
 
 
+
+
+
+
 module.exports = {
   DateType,
   Notification,

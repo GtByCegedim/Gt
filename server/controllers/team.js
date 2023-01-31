@@ -7,28 +7,26 @@ const mailer = require("../middleware/mailer");
 
 const createTeam = async (req, res, next) => {
   try {
-    const teamLeader = req.user; // assuming the user is authenticated and the user object is stored in the request
-    const { teamName, teamMembers } = req.body;
-    // Create the team in the database
-    const newTeam = await Team.create({
-      name: teamName,
-      teamLeaderId: teamLeader.id,
+    const { name, teamLeaderId, invitedEmails } = req.body;
+    const newTeam = await Team.create({ name, teamLeaderId });
+
+    const invitedUsers = await User.findAll({
+      where: {
+        email: invitedEmails
+      }
     });
-
-    // Add the team members to the team
-    await newTeam.addMembers(teamMembers);
-
-    // Send the invitation emails to the team members
-    teamMembers.forEach((member) => {
-      sendTeamInvitation(member, teamLeader.name, teamName);
+    console.log(invitedUsers)
+    invitedUsers.forEach(invitedUser => {
+      mailer.sendTeamInvitation(invitedUser, req.user.firstName, newTeam.name);
     });
 
     res.status(201).json({
-      message: `Team ${teamName} has been created and invitations have been sent to the team members.`,
+      success: true,
+      data: newTeam
     });
-  } catch (error) {
-    console.log(error)
-    return next(new apiError('Error creating team. Please try again.', 500))
+  } catch (err) {
+    console.log(err)
+    next(err);
   }
 };
 

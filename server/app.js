@@ -14,12 +14,15 @@ const subTaskRouter = require('./routes/subTaskRoute')
 const {
   DateType,
   Notification,
-  Task,
   User,
   Role,
   Policy,
+  Task,
   Subtask,
-  TaskStatus
+  TaskStatus,
+  Project,
+  Team,
+ 
 } = require('./models');
 const sequelize = require('./config/database');
 //Import admin's creation config

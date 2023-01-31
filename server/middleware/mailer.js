@@ -19,7 +19,7 @@ const main = (method, user) => {
         <h5>votre email :${user.email}</h5>
         <h5>votre mot de passe :${Storage("stockPassword")}</h5>
         <p>Ce lien va vous deriger vers la page pour creer votre propre mot de passe:</p>
-        <a href="http://localhost:${3000}/path_login_frontend">GO</a> 
+        <a href="http://localhost:${process.env.port}/path_login_frontend">GO</a> 
         ${Storage.clear()}
       </div>`;
   }
@@ -86,13 +86,13 @@ const sendTeamInvitation = (user, teamLeader, teamName) => {
     port: 465,
     secure: true, // use SSL
     auth: {
-      user: "wlahlali343@gmail.com",
+      user: process.env.USER_MAILER,
       pass: process.env.MAILER,
     },
   });
 
   let info = {
-    from: '"GT ✨" <wlahlali343@gmail.com>',
+    from: `"GT ✨" ${process.env.USER_MAILER}`,
     to: user.email,
     subject: subject,
     html: html,
