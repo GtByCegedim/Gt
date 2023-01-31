@@ -2,7 +2,17 @@ const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const User_role = require('../models/user-role')
 const Role = require("../models/role");
-const ErrorResponse = require('../utils/error')
+const ErrorResponse = require('../utils/error');
+const Project = require('../models/project');
+
+/**
+ * It checks if the request has a token, if it does, it verifies it and attaches the user to the
+ * request object.
+ * @param req - The request object.
+ * @param res - The response object.
+ * @param next - This is a function that you call when you want to pass control to the next middleware
+ * function in the stack.
+ */
 const authMiddleware = async(req,res,next)=>{
     let token ;
     if(req?.headers?.authorization?.startsWith("Bearer")){
@@ -22,7 +32,15 @@ const authMiddleware = async(req,res,next)=>{
 }
 
 
-const isAdmin = async(req,res,next)=>{
+/**
+ * It checks if the user is an admin or not.
+ * @param req - The request object.
+ * @param res - The response object.
+ * @param next - This is a function that you call when you want to pass control to the next middleware
+ * function in the stack.
+ * @returns The function isAdmin is being returned.
+ */
+const isAdmin = async(req,res,next)=> {
     const user_id = req.user.id
     try {
         if(!user_id){
@@ -51,6 +69,19 @@ const isAdmin = async(req,res,next)=>{
     } catch (error) {
         return next(new ErrorResponse(error, 401));
     }
+}
+
+
+const isManager = async(req,res,next)=>{
+const user_id = req.user.id
+try {
+    if(!user_id){
+        return next(new ErrorResponse('Not User Found, Please Login again', 401));
+        }
+    const findInProject = await Project.fin
+} catch (error) {
+    
+}
 }
 module.exports = {
     authMiddleware,
