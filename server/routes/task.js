@@ -6,7 +6,8 @@ const {authMiddleware} = require('../middleware/authMiddleware')
 that will be called when the route is hit. */
 router.post('/add/:id',authMiddleware,addTaskToUser);
 router.get('/my',authMiddleware,AllMyTask);
+router.get('/',AllTaskOfUser);
 router.get('/:id',AllTaskOfProject);
-// router.get('/',AllTaskOfUser);
+
 
 module.exports = router;
