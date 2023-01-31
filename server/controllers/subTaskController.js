@@ -4,6 +4,14 @@ const User = require("../models/user");
 const DateType = require("../models/dateType");
 const ErrorResponse = require("../utils/error");
 
+/**
+ * It creates a subtask for a task
+ * @param req - task_id , title , description , dateType , lasname and firstname of User
+ * @param res - the response object
+ * @param next - is a function that you call to pass control to the next matching route.
+ * @returns a message
+ * @permission Only (manager)
+ */
 const addSubTask = async (req, res, next) => {
   const task_id = req.params.id;
   const { body } = req;
@@ -74,29 +82,25 @@ const addSubTask = async (req, res, next) => {
  * @param next - This is a function that you call when your middleware is complete.
  * @permission (only user connected and manager and admin)
  */
-const getSubTaskOfTask =async(req,res,next)=>{
-  const task_id = req.params.id
+const getSubTaskOfTask = async (req, res, next) => {
   try {
-    const getTaskById= await Task.findByPk(task_id)
-    if(!getTaskById) {
-      return next(new ErrorResponse('No task found', 401));
-    }
-    const getSubTask = await Subtask.findAll({
-      where : {
-        taskId : task_id
-      }
-    }) 
-    if(getSubTask.length === 0) {
-      return next(new ErrorResponse('No Subtask found', 401));
-    }
+    const task_id = req.params.id
+    const task = await Task.findByPk(task_id);
+    if (!task) throw new ErrorResponse('No task found', 401);
+
+    const subtasks = await Subtask.findAll({
+      where: { taskId: task_id },
+    });
+    if (!subtasks.length) throw new ErrorResponse('No Subtask found', 401);
+
     res.json({
-      message : `SubTask Of task : ${getTaskById.title}`,
-      getSubTask
-    })
+      message: `SubTask Of task: ${task.title}`,
+      subtasks,
+    });
   } catch (error) {
-    return next(new ErrorResponse(error, 401));
+    next(error);
   }
-}
+};
 
 
 module.exports = {
