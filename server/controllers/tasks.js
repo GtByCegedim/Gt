@@ -166,9 +166,48 @@ const AllTaskOfUser = async(req,res,next)=>{
 
 }
 
+const AllMyTask = async(req,res,next)=>{
+    let taskIds = []
+  try {
+   
+    const id_user = req.user.id
+    const findTask = await TaskUser.findAll({
+      where : {
+        userId : id_user
+      }
+    })
+    console.log(req.user)
+    if(findTask.length === 0) {
+      return next(new ErrorResponse('no task assigned in this User', 404));
+    }
+    findTask.forEach(task_user => {
+      taskIds.push(task_user.dataValues.taskId);
+    });
+    let allTasks = [];
+    for(let i = 0 ; i<taskIds.length;i++){
+      const findAllTask = await Task.findAll({
+        where : {
+          id : taskIds[i]
+        }
+      })
+      allTasks.push(findAllTask);
+    }
+    res.json({
+      message : `task assigned to ${req.user.lastName}`,
+      allTasks
+    })
+
+  } catch (error) {
+    return next(new ErrorResponse(error, 404));
+  }
+
+}
+
+
 module.exports = {
   addTaskToUser,
   AllTaskOfProject,
-  AllTaskOfUser
+  AllTaskOfUser,
+  AllMyTask
   
 }
