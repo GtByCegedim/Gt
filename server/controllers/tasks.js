@@ -25,7 +25,7 @@ const addTaskToUser = async (req, res, next) => {
     if (!body.title || !body.description || !body.deadline || !body.duration || !body.unit || !body.users) {
       console.log(body.users);
       return next(new ErrorResponse('Fill all filled and users', 401));
-    } else {
+    } 
      /* Checking if the user exists in the database. */
       body.users.map(async (user) => {
         const findUserByName = await User.findOne({
@@ -87,7 +87,7 @@ const addTaskToUser = async (req, res, next) => {
       await res.json({
         msg: "task added to users"
       });
-    }
+    
   } catch (error) {
     return next(new ErrorResponse(error, 401));
   }
@@ -165,9 +165,40 @@ const AllTaskOfUser = async(req,res,next)=>{
   }
 
 }
+
+const AllMyTasks = async (req, res, next) => {
+  try {
+    // Get the user ID from the request object
+    const userId = req.user.id;
+    
+    // Find all task-user associations where the user ID matches the one from the request
+    const taskUsers = await TaskUser.findAll({ where: { userId } });
+    
+    // If there are no tasks assigned to this user, return a 404 error
+    if (!taskUsers.length) return next(new ErrorResponse('No tasks assigned to this user', 404));
+    
+    // Extract the task IDs from the task-user associations
+    const taskIds = taskUsers.map(taskUser => taskUser.taskId);
+    
+    // Find all tasks where the ID is in the extracted task IDs
+    const allTasks = await Task.findAll({ where: { id: taskIds } });
+    
+    // Return the results in a JSON response
+    return res.json({
+      message: `Tasks assigned to ${req.user.lastName}`,
+      allTasks
+    });
+  } catch (error) {
+    // If an error occurs, return a 404 error with the error message
+    return next(new ErrorResponse(error, 404));
+  }
+};
+
+
+
 module.exports = {
   addTaskToUser,
   AllTaskOfProject,
-  AllTaskOfUser
-  
+  AllTaskOfUser,
+  AllMyTasks
 }
