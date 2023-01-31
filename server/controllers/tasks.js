@@ -30,13 +30,22 @@ const addTaskToUser = async (req, res, next) => {
       body.users.map(async (user) => {
         const findUserByName = await User.findOne({
           where: {
-            lastName: user.lastname
+            lastName: user.lastname 
           }
         });
         if (!findUserByName) {
           return next(new ErrorResponse(`User  ${user.lastname} not found`, 401));
         }
       });
+      const manager_id = manager.id
+      const isManeger = await Project.findOne({
+        where : {
+          manager: manager_id
+        }
+      })
+      if (!isManeger) {
+        return next(new ErrorResponse('Sory You Are Not Manager Of this Project', 401));
+      }
       /* It creates a date type. */
       const addDateType = await DateType.create({
         duration: body.duration,
@@ -45,7 +54,7 @@ const addTaskToUser = async (req, res, next) => {
       if (!addDateType) {
         return next(new ErrorResponse('Date Type Not created ', 401));
       }
-      const manager_id = manager.id
+
       const project_id = req.params.id
       const id_dateType = addDateType.id
       /* It creates a task and adds it to the users */
