@@ -14,7 +14,6 @@ const Project_User = require('./project_user')
 const Team_User = require('./task_user');
 const user_notifications = require('./user_notifications');
 
-
 // Many-to-many relationship between User and Role
 User.belongsToMany(Role, {
   through: User_role,
@@ -35,7 +34,18 @@ Policy.belongsToMany(Role, { through: 'role_policies' });
 
 // One-to-many relationship between Task and Subtask
 Task.hasMany(Subtask, { foreignKey: 'taskId' });
-Subtask.belongsTo(Task, { foreignKey: 'taskId' }); 
+Subtask.belongsTo(Task, { foreignKey: 'taskId' });
+// A remplacer 
+// Task.hasMany(SubTask, {
+//   as: 'subTasks',
+//   foreignKey: 'taskId',
+//   onDelete: 'CASCADE'
+// });
+
+// SubTask.belongsTo(Task, {
+//   as: 'task',
+//   foreignKey: 'taskId'
+// });
 
 // One-to-one relationship between Task and TaskStatus
 Task.hasOne(TaskStatus, { foreignKey: 'taskId' });

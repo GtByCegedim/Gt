@@ -14,6 +14,10 @@ const Project = sequelize.define("project", {
       type: Sequelize.DATE,
       allowNull: true,
     },
+    manager : {
+      type: Sequelize.INTEGER,
+      allowNull: false
+    }
   });
   
   module.exports = Project;

@@ -3,6 +3,9 @@
 *.o
 *.exe
 
+# ignorer le fichier package-lock
+package-lock.json
+
 # Dependency files
 node_modules
 
