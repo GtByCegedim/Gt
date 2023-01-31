@@ -69,9 +69,10 @@ const addSubTask = async (req, res, next) => {
 
 /**
  * It gets all the subtasks of a task by task id.
- * @param req - The request object.
- * @param res - The response object.
+ * @param req - task_id .
+ * @param res - The response object(allTasks).
  * @param next - This is a function that you call when your middleware is complete.
+ * @permission (only user connected and manager and admin)
  */
 const getSubTaskOfTask =async(req,res,next)=>{
   const task_id = req.params.id
@@ -96,6 +97,8 @@ const getSubTaskOfTask =async(req,res,next)=>{
     return next(new ErrorResponse(error, 401));
   }
 }
+
+
 module.exports = {
   addSubTask,
   getSubTaskOfTask
