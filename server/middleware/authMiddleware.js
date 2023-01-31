@@ -72,18 +72,9 @@ const isAdmin = async(req,res,next)=> {
 }
 
 
-const isManager = async(req,res,next)=>{
-const user_id = req.user.id
-try {
-    if(!user_id){
-        return next(new ErrorResponse('Not User Found, Please Login again', 401));
-        }
-    const findInProject = await Project.fin
-} catch (error) {
-    
-}
-}
+
 module.exports = {
     authMiddleware,
-    isAdmin
+    isAdmin,
+    
 }
