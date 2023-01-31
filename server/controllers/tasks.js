@@ -170,7 +170,7 @@ const AllMyTasks = async (req, res, next) => {
   try {
     // Get the user ID from the request object
     const userId = req.user.id;
-    
+
     // Find all task-user associations where the user ID matches the one from the request
     const taskUsers = await TaskUser.findAll({ where: { userId } });
     
