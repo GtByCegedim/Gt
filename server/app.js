@@ -6,9 +6,11 @@ const express = require('express');
 const globalError = require('./middleware/errorMiddleware')
 const employeRouter = require('./routes/employeRoute')
 const teamRouter = require('./routes/team')
-const taskRouter = require('./routes/task')
+const taskRouter = require('./routes/task') 
 const authRouter = require('./routes/authRouter')
 const subTaskRouter = require('./routes/subTaskRoute')
+const statutouter = require('./routes/statutRoute')
+
 
 // Import database connection
 const {
@@ -19,7 +21,6 @@ const {
   Policy,
   Task,
   Subtask,
-  TaskStatus,
   Project,
   Team,
  
@@ -49,6 +50,7 @@ app.use('/api/employe',employeRouter)
 app.use('/api/teams', teamRouter);
 app.use('/api/task', taskRouter);
 app.use('/api/subtask', subTaskRouter);
+app.use('/api/status', statutouter);
 
 
 // Set up routes, middleware, etc.
