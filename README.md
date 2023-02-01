@@ -1,7 +1,7 @@
-#GTbycegdim
+# GTbycegdim
 GTbycegdim est un projet développé par les collaborateurs Wassim Lahlali, Badreddine Abourial, et Safia Maani. Il s'agit d'une application web Fullstack construite avec les technologies ExpressJs, VueJs et PostgreSql.
 
-Il existe deux environnements de travail, le premier est pour le développement et peut être démarré avec la commande npm run start:dev. Le second est pour la production et peut être démarré avec npm run start:prod.
+**Il existe deux environnements de travail, le premier est pour le développement et peut être démarré avec la commande npm run start:dev. Le second est pour la production et peut être démarré avec npm run start:prod.**
 
 Pour exécuter le projet, vous devez d'abord cloner le projet à partir de GitHub. Ensuite, allez dans les dossiers client et server pour installer toutes les dépendances nécessaires.
 
