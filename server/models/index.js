@@ -5,7 +5,6 @@ const Role = require('./role');
 const Policy = require('./policy');
 const Task = require('./task');
 const Subtask = require('./subtask');
-const TaskStatus = require('./taskStatus');
 const User_role = require('./user-role')
 const Team = require('./team')
 const Project = require('./project')
@@ -13,6 +12,9 @@ const Task_User = require('./task_user')
 const Project_User = require('./project_user')
 const Team_User = require('./task_user');
 const user_notifications = require('./user_notifications');
+const task_statut = require('./task_statut')
+const Statut = require('./status')
+
 
 // Many-to-many relationship between User and Role
 User.belongsToMany(Role, {
@@ -35,21 +37,20 @@ Policy.belongsToMany(Role, { through: 'role_policies' });
 // One-to-many relationship between Task and Subtask
 Task.hasMany(Subtask, { foreignKey: 'taskId' });
 Subtask.belongsTo(Task, { foreignKey: 'taskId' });
-// A remplacer 
-// Task.hasMany(SubTask, {
-//   as: 'subTasks',
-//   foreignKey: 'taskId',
-//   onDelete: 'CASCADE'
-// });
 
-// SubTask.belongsTo(Task, {
-//   as: 'task',
-//   foreignKey: 'taskId'
-// });
-
-// One-to-one relationship between Task and TaskStatus
-Task.hasOne(TaskStatus, { foreignKey: 'taskId' });
-TaskStatus.belongsTo(Task, { foreignKey: 'taskId' });
+// One-to-one relationship between Task and us
+Task.belongsToMany(Role, {
+  through: task_statut,
+  as: 'Statut',
+  foreignKey: 'taskId',
+  otherKey: 'statusId',
+});
+Statut.belongsToMany(User, {
+  through: task_statut,
+  as: 'Task',
+  foreignKey: 'statusId',
+  otherKey: 'taskId',
+});
 
 // One-to-many relationship between Task and DateType
 Task.belongsTo(DateType, { foreignKey: 'dateTypeId' });
@@ -123,7 +124,7 @@ module.exports = {
   Policy,
   Task,
   Subtask,
-  TaskStatus,
+  Statut,
   Project,
   Team,
   user_notifications
