@@ -1,13 +1,14 @@
 const Task = require('../models/task')
 const User = require('../models/user')
 const Project = require('../models/project')
-const status = require('../models/taskStatus')
 const Subtask = require('../models/subtask')
+const Task_statut = require('../models/task_statut')
 const DateType = require('../models/dateType')
 const TaskUser = require('../models/task_user')
 const mailer = require("../middleware/mailer");
 const Storage = require("local-storage");
 const ErrorResponse = require('../utils/error')
+const { Statut } = require('../models')
 
 /**
  * It creates a task and adds it to the users
@@ -88,6 +89,19 @@ const addTaskToUser = async (req, res, next) => {
         })
         if (!creatUserTask) {
           return next(new ErrorResponse('no relation user with task', 401));
+        }
+        const addStatus = await Statut.create({
+          status : "A faire"
+        })
+        if(!addStatus){
+          return next(new ErrorResponse('statut not aded', 401));
+        }
+        const task_status = await Task_statut.create({
+          taskId: creatTask.id,
+          statusId : addStatus.id
+        })
+        if(!task_status){
+          return next(new ErrorResponse('relation of statut not aded', 401));
         }
         Storage("creatTask", creatTask.title);
         Storage("createdAt", creatTask.createdAt);
