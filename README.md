@@ -9,14 +9,14 @@ Pour exécuter le projet, vous devez d'abord cloner le projet à partir de GitHu
 ##Environnements de travail
 Il existe deux environnements de travail :
 Développement :
-   démarré avec la commande npm run start:dev
+     démarré avec la commande npm run start:dev
 Production : 
-   démarré avec la commande npm run start:prod
+     démarré avec la commande npm run start:prod
 
 ##Exécution du projet
 1-Clonez le projet à partir de GitHub : 
 
-  git clone https://github.com/<nom_du_repo>
+    git clone https://github.com/<nom_du_repo>
 
 2-Allez dans les dossiers client et server pour installer les dépendances nécessaires
 
