@@ -30,7 +30,7 @@ Production :
   docker-compose up
 
 ###L'application sera en cours d'exécution sur http://localhost:3000
-
+.
 ##Notes
 Veuillez noter que vous devez avoir docker installé pour exécuter le projet avec docker-compose.
 Le fichier Dockerfile contient différents modes d'exécution (développement, production, test), vous pouvez décommenter celui que vous souhaitez utiliser.
