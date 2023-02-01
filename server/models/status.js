@@ -3,7 +3,7 @@
   const  sequelize  = require('../config/database')
   
 
-  const TaskStatus = sequelize.define('taskStatus', {
+  const statut = sequelize.define('statut', {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
@@ -16,5 +16,5 @@
     }
     
     });
-
-  module.exports = TaskStatus;
+    
+  module.exports = statut;
