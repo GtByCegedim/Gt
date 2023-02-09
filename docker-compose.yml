@@ -12,6 +12,8 @@ services:
       - host=localhost
     ports:
       - 9090:9090
+    volumes:
+      - ./server:/server/
   postgres:
     image: postgres
     ports:
