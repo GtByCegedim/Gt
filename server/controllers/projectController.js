@@ -85,15 +85,26 @@ exports.UpdateProject = async (req, res, next) => {
                 projectId : project_id
             }
         })
-        if(findUser){
-           console.log(findUser);
-        }
+        // if(findUser){
+        //    console.log(findUser);
+        // }
         res.json({
             message : "Project Updating",
-            
         })
     } catch (error) {
         return next(new apiError(error, 500))
 
+    }
+}
+
+exports.findALLprojects =async (req,res,next)=>{
+    try {
+        const getProjects = await Project.findAll()
+        if(!getProjects){
+            return next(new apiError("Np project found", 500))
+        }
+        res.json(getProjects)
+    } catch (error) {
+        return next(new apiError(error, 500))
     }
 }
