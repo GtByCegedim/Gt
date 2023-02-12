@@ -10,6 +10,7 @@ const taskRouter = require('./routes/task')
 const authRouter = require('./routes/authRouter')
 const subTaskRouter = require('./routes/subTaskRoute')
 const statutouter = require('./routes/statutRoute')
+const projectRoute = require('./routes/projectRoute')
 
 
 // Import database connection
@@ -51,6 +52,7 @@ app.use('/api/teams', teamRouter);
 app.use('/api/task', taskRouter);
 app.use('/api/subtask', subTaskRouter);
 app.use('/api/status', statutouter);
+app.use('/api/project', projectRoute);
 
 
 // Set up routes, middleware, etc.
