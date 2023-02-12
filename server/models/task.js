@@ -15,6 +15,15 @@ const Task = sequelize.define('task', {
   deadline: {
     type: Sequelize.DATE,
     allowNull: false
+  },
+  completed: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+    allowNull: false,
+  },
+  manager : {
+    type: Sequelize.INTEGER,
+    allowNull: false
   }
 });
 

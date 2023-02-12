@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const  sequelize  = require('../config/database')
+const sequelize = require('../config/database')
 
 
 const Project = sequelize.define("project", {
@@ -9,16 +9,15 @@ const Project = sequelize.define("project", {
     },
     description: {
       type: Sequelize.TEXT,
-    },
-    status: {
-      type: Sequelize.ENUM("to_do", "in_progress", "done"),
-      defaultValue: "to_do",
-      allowNull: false,
-    },
+    },   
     deadline: {
       type: Sequelize.DATE,
       allowNull: true,
     },
+    manager : {
+      type: Sequelize.INTEGER,
+      allowNull: false
+    }
   });
   
   module.exports = Project;

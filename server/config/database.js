@@ -13,7 +13,7 @@ sequelize
     // Create the tables for the models
     return sequelize.sync();
   })
-  .then(() => {
+  .then(async () => {
     console.log('Tables created successfully.');
   })
   .catch((error) => {

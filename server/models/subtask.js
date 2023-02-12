@@ -22,6 +22,10 @@ const Subtask = sequelize.define('Subtask', {
     defaultValue: false,
     allowNull: false,
   },
+  user : {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  }
 }, {
   timestamps: false,
 });

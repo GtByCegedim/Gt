@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const  sequelize  = require('../config/database')
 
-const user_role = sequelize.define('user_role', {
+const task_statut = sequelize.define('task_statut', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -9,4 +9,4 @@ const user_role = sequelize.define('user_role', {
   },
 });
 
-module.exports = user_role;
+module.exports = task_statut;
