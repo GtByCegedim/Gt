@@ -54,7 +54,6 @@ const acceptInvitation = async (req, res, next) => {
    return next (new apiError("Error accepting invitation. Please try again.",500))
   }
 };
-
 const findAllTeams = async (req, res, next) => {
   try {
     const findAllTeam = await Team.findAll();
@@ -66,7 +65,6 @@ const findAllTeams = async (req, res, next) => {
     next(new ErrorResponse(error, 401));
   }
 };
-
 module.exports = {
   createTeam,
   findAllTeams,
