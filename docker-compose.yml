@@ -1,15 +1,30 @@
 version: '3'
 services:
-  app:
+  backend:
     build:
-      context: .
-      dockerfile: server/Dockerfile
+      ./server
     environment:
       - PORT=9090
-      - NODE_ENV=development
+      - NODE_ENV=dev
       - DATABASE=GT
-      - DB_USER=postgres
+      - DB_USER=bader
       - password=2001
       - host=localhost
     ports:
       - 9090:9090
+    volumes:
+      - ./server:/server/
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: bader
+      POSTGRES_PASSWORD: 2001
+      POSTGRES_DB: GT
+    container_name: postgres
+  adminer:
+    image: adminer
+    ports:
+      - 7000:8080
+    container_name: adminer
