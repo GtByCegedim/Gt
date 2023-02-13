@@ -3,10 +3,11 @@ const apiError = require('../utils/error.js');
 const projctUsers = require('../models/project_user');
 const User = require('../models/user.js');
 
+/* This function is used to create a project and add it to the database */
 exports.createProject = async (req, res, next) => {
-    const manager_id = req.user.id
-    if(manager_id === null){
-        return next(new apiError("", 500))
+    const manager = req.user
+    if(!manager){
+        return next(new apiError("no manager", 500))
     }
     try {
         const {
@@ -22,6 +23,7 @@ exports.createProject = async (req, res, next) => {
         if (findProjectByName) {
             return next(new apiError("plez enter Name project again", 500))
         }
+        const manager_id = manager.id
         const project = await Project.create({
             name,
             description,
@@ -100,6 +102,7 @@ exports.UpdateProject = async (req, res, next) => {
 
     }
 }
+/* This function is used to find all projects that are not banned. */
 
 exports.findALLprojects =async (req,res,next)=>{
     try {
@@ -117,6 +120,7 @@ exports.findALLprojects =async (req,res,next)=>{
     }
 }
 
+/* The above code is a function that is used to get all the projects that are created by the manager. */
 exports.OnlyMyProjects = async (req,res,next)=>{
     const manager_id = req.user.id
     try {
@@ -135,6 +139,8 @@ exports.OnlyMyProjects = async (req,res,next)=>{
     
     }
 }
+
+/* This function is used to ban a project. */
 exports.baneProject = async(req,res,next)=>{
     const project_id = req.params.id
     const manager_id = req.user.id
@@ -163,3 +169,5 @@ exports.baneProject = async(req,res,next)=>{
         return next(new apiError(error, 500))
     }
 }
+
+
