@@ -1,6 +1,6 @@
 <script>
 import VTooltip from "v-tooltip";
-
+import { Icon } from '@iconify/vue';
 export default {
   name: "ProjectInformation",
   directives: {
@@ -25,7 +25,7 @@ export default {
           id: 3,
           name: "Project 3",
           creator: "Bob Smith",
-          members: "John Doe, Jane Doe",
+          members: "John Doe, Jane Doe, Sfia Maani",
         },
       ],
     };
@@ -80,13 +80,14 @@ export default {
                     member.split(" ")[0].charAt(0) +
                     member.split(" ")[1].charAt(0)
                   }}
+                  
                 </div>
               </template>
               <div
                 class="bg-gray-300 text-gray-700 rounded-full inline-block p-2 hover:bg-gray-400"
                 v-tooltip="'Add Member'"
               >
-                <i class="fas fa-plus"></i>
+              +
               </div>
             </td>
             <td class="p-2 border-t">
