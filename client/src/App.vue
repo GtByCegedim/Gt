@@ -1,15 +1,21 @@
-<script setup>
-import Dashboard from './components/dashboard/Dashboard.vue';
-import Projects from './components/dashboard/Projects.vue';
+<template>
+  <router-view />
+</template>
+<script>
+
+export default {
+  name: 'App',
+  components: {
+  }
+}
 </script>
 
-<template>
-   <div class="flex">
-    <div class="w-1/6  h-screen">
-  <Dashboard/>
-</div>
-    <div class="w-5/6 pl-4">
-  <Projects/>
-</div>
-  </div>
-</template>
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+</style>
