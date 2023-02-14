@@ -1,6 +1,9 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('postgres://bader:2001@postgres:5432/GT');
+const sequelize = new Sequelize(process.env.DATABASE, process.env.DB_USER, process.env.password, {
+  dialect: 'postgres',
+  logging: false,
+});
 
 sequelize
   .authenticate()
