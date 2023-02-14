@@ -27,3 +27,18 @@ services:
     ports:
       - 7000:8080
     container_name: adminer
+  frontend:
+    build:
+      ./client
+    ports:
+      - 8080:8080
+    volumes:
+      - ./client:/client/
+  keycloak:
+    image: jboss/keycloak
+    ports:
+      - 8180:8080
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+    container_name: keycloak

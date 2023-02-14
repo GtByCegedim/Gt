@@ -66,6 +66,7 @@ const options = {
 const swaggerSpec = swaggerJsDoc(options);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+
 // Route d'authentification:
 app.use("/api/auth", authRouter);
 app.use("/api/employe", employeRouter);
