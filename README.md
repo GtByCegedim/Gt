@@ -16,7 +16,7 @@ Production :
 ##Exécution du projet
 1-Clonez le projet à partir de GitHub : 
 
-    git clone https://github.com/<nom_du_repo>
+    git clone https://github.com/GtByCegedim/Gt
 
 2-Allez dans les dossiers client et server pour installer les dépendances nécessaires
 
