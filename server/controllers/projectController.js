@@ -86,14 +86,8 @@ exports.UpdateProject = async (req, res, next) => {
         if (!UpdateProject) {
             return next(new apiError("Error Updating project", 500))
         }
-        const findUser = await projctUsers.findAll({
-            where : {
-                projectId : project_id
-            }
-        })
-        // if(findUser){
-        //    console.log(findUser);
-        // }
+        console.log(findUser);
+1
         res.json({
             message : "Project Updating",
         })
