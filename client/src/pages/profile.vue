@@ -1,10 +1,11 @@
 <template>
-  <div>
-    <h3 class="text-2xl font-bold text-left py-2">Kanban Board</h3>
+  <div class="py-8">
+    <h3 class="text-2xl font-bold text-left mb-8">Kanban Board</h3>
+   
 
-    <div class="flex flex-row space-x-4">
-      <div class="w-1/3 bg-gray-100 p-4 rounded-lg">
-        <h3 class="text-2xl font-bold text-left py-2 mb-4 border-b-2 border-gray-300">
+    <div class="flex flex-row justify-center space-x-4">
+      <div class="w-1/3 bg-gray-100 rounded-lg">
+        <h3 class="text-lg font-bold text-center py-4 mb-4 border-b-2 border-gray-300">
           To Do
         </h3>
         <div class="space-y-2">
@@ -14,17 +15,17 @@
             class="p-2 bg-white shadow-md rounded-lg cursor-move"
             draggable="true"
           >
-            <h4 class="font-medium">{{ task.name }}</h4>
-            <p class="text-gray-500 text-sm">{{ task.description }}</p>
-            <div class="flex flex-row justify-between">
+            <h4 class="text-md font-medium">{{ task.name }}</h4>
+            <p class="text-gray-500 text-sm leading-tight">{{ task.description }}</p>
+            <div class="flex flex-row justify-between items-center mt-2">
               <span class="text-gray-500 text-xs">{{ task.assignedTo }}</span>
-              <span class="text-gray-500 text-xs">{{ task.timeEstimate }}</span>
+              <span class="text-gray-500 text-xs">{{ task.timeEstimate }}h</span>
             </div>
           </div>
         </div>
       </div>
-      <div class="w-1/3 bg-gray-100 p-4 rounded-lg">
-        <h3 class="text-2xl font-bold text-left py-2 mb-4 border-b-2 border-gray-300">
+      <div class="w-1/3 bg-gray-100 rounded-lg">
+        <h3 class="text-lg font-bold text-center py-4 mb-4 border-b-2 border-gray-300">
           Doing
         </h3>
         <div class="space-y-2">
@@ -34,17 +35,17 @@
             class="p-2 bg-white shadow-md rounded-lg cursor-move"
             draggable="true"
           >
-            <h4 class="font-medium">{{ task.name }}</h4>
-            <p class="text-gray-500 text-sm">{{ task.description }}</p>
-            <div class="flex flex-row justify-between">
+            <h4 class="text-md font-medium">{{ task.name }}</h4>
+            <p class="text-gray-500 text-sm leading-tight">{{ task.description }}</p>
+            <div class="flex flex-row justify-between items-center mt-2">
               <span class="text-gray-500 text-xs">{{ task.assignedTo }}</span>
-              <span class="text-gray-500 text-xs">{{ task.timeEstimate }}</span>
+              <span class="text-gray-500 text-xs">{{ task.timeEstimate }}h</span>
             </div>
           </div>
         </div>
       </div>
-      <div class="w-1/3 bg-gray-100 p-4 rounded-lg">
-        <h3 class="text-2xl font-bold text-left py-2 mb-4 border-b-2 border-gray-300">
+      <div class="w-1/3 bg-gray-100 rounded-lg">
+        <h3 class="text-lg font-bold text-center py-4 mb-4 border-b-2 border-gray-300">
           Done
         </h3>
         <div class="space-y-2">
@@ -54,11 +55,11 @@
             class="p-2 bg-white shadow-md rounded-lg cursor-move"
             draggable="true"
           >
-            <h4 class="font-medium">{{ task.name }}</h4>
-            <p class="text-gray-500 text-sm">{{ task.description }}</p>
-            <div class="flex flex-row justify-between">
+            <h4 class="text-md font-medium">{{ task.name }}</h4>
+            <p class="text-gray-500 text-sm leading-tight">{{ task.description }}</p>
+            <div class="flex flex-row justify-between items-center mt-2">
               <span class="text-gray-500 text-xs">{{ task.assignedTo }}</span>
-              <span class="text-gray-500 text-xs">{{ task.timeEstimate }}</span>
+              <span class="text-gray-500 text-xs">{{ task.timeEstimate }}h</span>
             </div>
           </div>
         </div>
@@ -68,68 +69,69 @@
 </template>
 
 
+
 <script>
 export default {
   data() {
-    return {
-      tasks: [
-        {
-          id: 1,
-          name: 'Task 1',
-          description: 'This is task 1',
-          priority: 'high',
-          assignedTo: 'John Doe',
-          timeEstimate: '2 hours',
-          status: 'to-do',
-        },
-        {
-          id: 2,
-          name: 'Task 2',
-          description: 'This is task 2',
-          priority: 'medium',
-          assignedTo: 'Jane Smith',
-          timeEstimate: '1 hour',
-          status: 'to-do',
-        },
-        {
-          id: 3,
-          name: 'Task 3',
-          description: 'This is task 3',
-          priority: 'low',
-          assignedTo: 'Bob Johnson',
-          timeEstimate: '30 minutes',
-          status: 'doing',
-        },
-        {
-          id: 4,
-          name: 'Task 4',
-          description: 'This is task 4',
-          priority: 'high',
-          assignedTo: 'Sara Lee',
-          timeEstimate: '3 hours',
-          status: 'doing',
-        },
-        {
-          id: 5,
-          name: 'Task 5',
-          description: 'This is task 5',
-          priority: 'medium',
-          assignedTo: 'David Kim',
-          timeEstimate: '2 hours',
-          status: 'done',
-        },
-        {
-          id: 6,
-          name: 'Task 6',
-          description: 'This is task 6',
-          priority: 'low',
-          assignedTo: 'Amy Chen',
-          timeEstimate: '1 hour',
-          status: 'done',
-        },
-      ],
-    };
-  },
+  return {
+    tasks: [
+      {
+        id: 1,
+        name: 'Create website wireframes',
+        description: 'Design wireframes for the new company website',
+        priority: 'high',
+        assignedTo: 'John Smith',
+        timeEstimate: '10 hours',
+        status: 'to-do',
+      },
+      {
+        id: 2,
+        name: 'Develop landing page',
+        description: 'Build a landing page for the new product launch',
+        priority: 'medium',
+        assignedTo: 'Sarah Davis',
+        timeEstimate: '6 hours',
+        status: 'to-do',
+      },
+      {
+        id: 3,
+        name: 'Update customer database',
+        description: 'Add new customer data and update existing records',
+        priority: 'low',
+        assignedTo: 'Bob Johnson',
+        timeEstimate: '2 hours',
+        status: 'doing',
+      },
+      {
+        id: 4,
+        name: 'Write blog post',
+        description: 'Create a blog post about the company culture',
+        priority: 'high',
+        assignedTo: 'Alex Rodriguez',
+        timeEstimate: '4 hours',
+        status: 'doing',
+      },
+      {
+        id: 5,
+        name: 'Schedule social media posts',
+        description: 'Create and schedule social media posts for the week',
+        priority: 'medium',
+        assignedTo: 'Emily Liu',
+        timeEstimate: '2 hours',
+        status: 'done',
+      },
+      {
+        id: 6,
+        name: 'Finalize budget report',
+        description: 'Review and finalize the quarterly budget report',
+        priority: 'low',
+        assignedTo: 'David Kim',
+        timeEstimate: '5 hours',
+        status: 'done',
+      },
+    ],
+  };
+},
   computed: {
     toDo() {
       return this.tasks.filter((task) => task.status === "to-do");
