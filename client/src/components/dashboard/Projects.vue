@@ -34,8 +34,15 @@ export default {
 </script>
 
 <template>
-  <div class="flex-1 p-6">
+  <div class="flex-1 p-6"> <div class="float-right">
+        <button
+          class="bg-white text-blue-500 hover:bg-blue-500 hover:text-white p-2 rounded"
+        >
+          Add New
+        </button>
+      </div>
     <h2 class="text-2xl font-bold mb-4">List of Projects</h2>
+    
     <div class="p-6">
       <table class="w-full text-left table-collapse">
         <thead>
@@ -51,6 +58,9 @@ export default {
             </th>
             <th class="text-sm font-medium p-2 bg-gray-100 text-gray-600">
               Members
+            </th>
+            <th class="text-sm font-medium p-2 bg-gray-100 text-gray-600">
+              Date created
             </th>
             <th class="text-sm font-medium p-2 bg-gray-100 text-gray-600">
               Actions
@@ -91,6 +101,11 @@ export default {
               </div>
             </td>
             <td class="p-2 border-t">
+              <div class="bg-purple-500 text-white p-2 rounded-lg inline-block">
+                12/23/2022
+              </div>
+            </td>
+            <td class="p-2 border-t">
               <button
                 class="bg-gray-300 text-gray-700 p-2 rounded hover:bg-gray-400"
               >
@@ -107,13 +122,7 @@ export default {
       </table>
     </div>
     <div class="mt-6">
-      <div class="float-right">
-        <button
-          class="bg-white text-blue-500 hover:bg-blue-500 hover:text-white p-2 rounded"
-        >
-          Add New
-        </button>
-      </div>
+     
     </div>
   </div>
 </template>
