@@ -2,13 +2,12 @@ import { createRouter, createWebHistory } from "vue-router";
 import dashboardApp from '../master/dashboard-app'
 import dashboardAdmin from '../admin/master/dashboardAdmin'
 import Myprojects from '../pages/project'
-import profile from '../pages/profile'
 import kanban from '../pages/kanban'
 import employee from '../admin/pages/employee'
 import home from '../admin/pages/home'
 import profileAdmin from '../admin/pages/profile'
 import AllProjects from '../admin/pages/project'
-
+import Profile from '../pages/profile'
 
 
 
@@ -18,19 +17,15 @@ const routes = [
     component: dashboardApp,
     path: '/',
     children: [
-            {
-        name: "home",
-        component: home, 
-        path: "/home",
-      },
+      
       {
         name: "Myprojects",
         component: Myprojects, 
         path: "/Myprojects",
       },
       {
-        name: "profile",
-        component: profile, 
+        name: "Profile",
+        component: Profile, 
         path: "/profile",
       },
       {
