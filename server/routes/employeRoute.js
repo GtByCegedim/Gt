@@ -13,7 +13,7 @@ const { authMiddleware } = require("../middleware/authMiddleware");
  * @swagger
  * components:
  *    schemas:
- *      Users:
+ *      Employe:
  *        type: object
  *        properties:
  *          email:
@@ -29,7 +29,6 @@ const { authMiddleware } = require("../middleware/authMiddleware");
  *            type: string
  *            description: the user last name
  *        example:
- *            id: 10,
  *            email: user@gmail.com
  *            password: $2a$10$9HaXSaWIhhS6b1GwdcexA.b0xDsqIreb8wa3xWNlA5fG5/PqWmZpu
  *            firstName: user name
@@ -43,6 +42,7 @@ const { authMiddleware } = require("../middleware/authMiddleware");
  * /api/employe/all:
  *  get:
  *    summary: Returns an object of all users informations
+ *    tags: [Employe]
  *    responses:
  *      200:
  *        description: Finds all users
@@ -51,10 +51,37 @@ const { authMiddleware } = require("../middleware/authMiddleware");
  *            schema:
  *              type: array
  *              items:
- *                $ref: '#/components/schemas/Users'
+ *                $ref: '#/components/schemas/Employe'
+ *      404:
+ *        description: No user was found
+ */
+/**
+ * @swagger
+ * /api/employe/add:
+ *  post:
+ *    summary: Returns a object of created User.
+ *    tags: [Employe]
+ *    requestBody:
+ *      required: true
+ *      content:
+ *       application/json:
+ *         schema:
+ *           $ref: '#/components/schemas/Employe'
+ *    responses:
+ *      200:
+ *        description: The User is created succesfuly.
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                $ref: '#/components/schemas/Employe'
+ *      400:
+ *        description: Fill all filled.
+ *      401:
+ *        description: Email already used.
  *
  */
-
 router.post("/add", AddEmployee);
 router.put("/update/:id", updateUser);
 router.delete("/delete/:id", authMiddleware, deleteUser);

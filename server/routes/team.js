@@ -25,12 +25,18 @@ const { authMiddleware } = require('../middleware/authMiddleware');
  *            teamLeaderId: 19
  *          
  */
-
+/**
+ * @swagger
+ * tags: 
+ *  name: Teams
+ *  description: Here we have Teams functions 
+*/
 /**
  * @swagger
  * /api/teams/all:
  *  get:
  *    summary: Returns an object of user's informations
+ *    tags: [Teams]
  *    responses:
  *      200:
  *        description: Finds all teams
@@ -40,7 +46,8 @@ const { authMiddleware } = require('../middleware/authMiddleware');
  *              type: array
  *              items: 
  *                $ref: '#/components/schemas/findAllTeams'
- * 
+ *      404:
+ *        description: No team was found
 */
 
 router.post('/create',authMiddleware, createTeam);

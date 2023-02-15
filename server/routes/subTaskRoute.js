@@ -24,12 +24,18 @@ const router = express.Router();
  *            type: integer
  *            description: the user's ID
  */
-
+/**
+ * @swagger
+ * tags: 
+ *  name: Subtask
+ *  description: Here we have Subtask functions
+*/
 /**
  * @swagger
  * /api/subtask/mysubtasks:
  *  get:
  *    summary: Returns an object of user's Subtasks
+ *    tags: [Subtask]
  *    responses:
  *      200:
  *        description: Finds a specific user's Subtasks
@@ -43,9 +49,16 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/subtask/allsubtasks/:id:
+ * /api/subtask/allsubtasks/{id}:
  *  get:
  *    summary: Returns an object of task's Subtasks
+ *    tags: [Subtask]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        type: integer
+ *        required: true
+ *        description: Numeric ID of the project to get its tasks.
  *    responses:
  *      200:
  *        description: Finds a specific task's Subtasks

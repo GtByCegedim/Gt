@@ -37,12 +37,18 @@ const { authMiddleware, isAdmin } = require("../middleware/authMiddleware");
  *            type: integer
  *            description: the task's
  */
-
+/**
+ * @swagger
+ * tags: 
+ *  name: Task
+ *  description: Here we have Task functions 
+*/
 /**
  * @swagger
  * /api/task/my:
  *  get:
  *    summary: Returns an object of a specific user's task
+ *    tags: [Task]
  *    responses:
  *      200:
  *        description: Finds all user's tasks
@@ -52,6 +58,8 @@ const { authMiddleware, isAdmin } = require("../middleware/authMiddleware");
  *              type: array
  *              items: 
  *                $ref: '#/components/schemas/Tasks'
+ *      401:
+ *        description: You are not authorized to see the tasks of this user.
 */
 
 /**
@@ -59,6 +67,7 @@ const { authMiddleware, isAdmin } = require("../middleware/authMiddleware");
  * /api/task/ofuser:
  *  get:
  *    summary: Returns an object of all users's tasks
+ *    tags: [Task]
  *    responses:
  *      200:
  *        description: Finds all tasks of all users
@@ -67,15 +76,23 @@ const { authMiddleware, isAdmin } = require("../middleware/authMiddleware");
  *            schema:
  *              type: array
  *              items: 
- *                $ref: '#/components/schemas/tasks'
- * 
+ *                $ref: '#/components/schemas/Tasks'
+ *      401:
+ *        description: You are not authorized to see the tasks of users.
 */
 
 /**
  * @swagger
- * /api/task/:id:
+ * /api/task/{id}:
  *  get:
  *    summary: Returns an object of all project's tasks
+ *    tags: [Task]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        type: integer
+ *        required: true
+ *        description: Numeric ID of the project to get its tasks.
  *    responses:
  *      200:
  *        description: Finds all tasks of a specific project
@@ -85,8 +102,10 @@ const { authMiddleware, isAdmin } = require("../middleware/authMiddleware");
  *              type: array
  *              items: 
  *                $ref: '#/components/schemas/Tasks'
- * 
-*/
+ *      401:
+ *        description: You are not authorized to see the tasks of this project.
+ */
+
 
 /* This is a route that is being created. The first parameter is the path, the second is the function
 that will be called when the route is hit. */
