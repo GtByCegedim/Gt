@@ -9,7 +9,7 @@
         >
           To Do
         </h3>
-        
+
         <div class="space-y-2">
           <div
             v-for="task in toDo"
@@ -27,6 +27,14 @@
                 >{{ task.timeEstimate }}h</span
               >
             </div>
+          </div>
+          <div class="p-4">
+            <button
+              class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-400"
+              @click="addTask()"
+            >
+              Add Task
+            </button>
           </div>
           <div
             v-if="toDo.length === 0"
@@ -166,6 +174,19 @@ export default {
       ],
     };
   },
+  methods: {
+    addTask() {
+      this.tasks.push({
+        id: this.tasks.length + 1,
+        name: "Finalize budget report",
+          description: "Review and finalize the quarterly budget report",
+          priority: "low",
+          assignedTo: "David Kim",
+          timeEstimate: "5 hours",
+          status: "to-do",
+      });
+    },
+  },
   computed: {
     toDo() {
       return this.tasks.filter((task) => task.status === "to-do");
@@ -249,7 +270,6 @@ export default {
 .cursor-move {
   cursor: move;
   margin-bottom: 8px;
-
 }
 
 .dragging {
