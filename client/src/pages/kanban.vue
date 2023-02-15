@@ -248,6 +248,8 @@ export default {
 }
 .cursor-move {
   cursor: move;
+  margin-bottom: 8px;
+
 }
 
 .dragging {
