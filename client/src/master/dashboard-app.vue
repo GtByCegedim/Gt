@@ -21,17 +21,16 @@
                     aria-hidden="true"
                     class="mr-2 w-[25px] h-[25px] fill-current"
                     fill="currentColor"
-                    viewBox="0 0 20 20"
+                    viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      fill-rule="evenodd"
-                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-                      clip-rule="evenodd"
-                    ></path>
+                      d="M22 7H2C0.897 7 0 7.897 0 9V18C0 19.103 0.897 20 2 20H22C23.103 20 24 19.103 24 18V9C24 7.897 23.103 7 22 7ZM22 18H2V9H22V18ZM8 12H14V14H8V12ZM8 15H14V17H8V15Z"
+                    />
                   </svg>
                   Project manager
                 </router-link>
+
                 <router-link
                   to="/kanban"
                   class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-200 hover:text-gray-800 transition duration-400 ease-in-out"
@@ -52,21 +51,22 @@
 
                 <router-link
                   to="/profile"
-                  class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
+                  class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-200 hover:text-gray-800 transition duration-400 ease-in-out"
                 >
                   <svg
                     aria-hidden="true"
                     class="mr-2 w-[25px] h-[25px] fill-current"
                     fill="currentColor"
-                    viewBox="0 0 20 20"
+                    viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z"
-                    ></path>
+                      d="M12 12.75C14.07 12.75 15.75 11.07 15.75 9C15.75 6.93 14.07 5.25 12 5.25C9.93 5.25 8.25 6.93 8.25 9C8.25 11.07 9.93 12.75 12 12.75ZM12 14.25C8.55 14.25 3 15.3 3 18.75V21H21V18.75C21 15.3 15.45 14.25 12 14.25Z"
+                    />
                   </svg>
-                  My profil
+                  Profile
                 </router-link>
+
                 <router-link
                   to="/download"
                   class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
