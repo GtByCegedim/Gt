@@ -72,6 +72,7 @@
             v-if="doing.length === 0"
             class="p-2 bg-white shadow-md rounded-lg text-center text-gray-500"
           >
+          
             No tasks yet.
           </div>
         </div>
