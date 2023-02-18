@@ -8,6 +8,7 @@ import home from '../admin/pages/home'
 import profileAdmin from '../admin/pages/profile'
 import AllProjects from '../admin/pages/project'
 import Profile from '../pages/profile'
+import newProject from '../pages/newProject'
 
 
 
@@ -33,6 +34,11 @@ const routes = [
         component: kanban, 
         path: "/kanban",
       },
+      {
+        name: "newProject",
+        component: newProject, 
+        path: "/newProject",
+      },
     ]
   },
   {
@@ -45,7 +51,7 @@ const routes = [
         component: home, 
         path: "home",
       },
-                 {
+      {
         name: "profile",
         component: profileAdmin, 
         path: "profile",
@@ -60,6 +66,7 @@ const routes = [
         component: AllProjects, 
         path: "projects",
       },
+      
     ]
   }
 ];

@@ -12,6 +12,7 @@ const subTaskRouter = require("./routes/subTaskRoute");
 const statutouter = require("./routes/statutRoute");
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+const ProjectRouter = require("./routes/projectRoute");
 
 // Import database connection
 const {
@@ -74,6 +75,7 @@ app.use("/api/teams", teamRouter);
 app.use("/api/task", taskRouter);
 app.use("/api/subtask", subTaskRouter);
 app.use("/api/status", statutouter);
+app.use("/api/project", ProjectRouter);
 
 // Set up routes, middleware, etc.
 app.use(globalError);
