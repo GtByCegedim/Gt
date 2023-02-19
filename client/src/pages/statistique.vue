@@ -13,19 +13,24 @@
    
   </div>
 
-  <RadarChart />
+  <chartExemple />
 </template>
 
 <script>
+import { defineAsyncComponent } from "vue";
 import CardsStatistique from "@/components/CardsStatistique.vue";
 import LineChart from "@/components/LineChart.vue";
-import RadarChart from "@/components/RadarChart.vue";
+
+
+const chartExemple = defineAsyncComponent(() => import("@/components/RadarChart.vue"));
+
 
 export default {
   components: {
     CardsStatistique,
     LineChart,
-    RadarChart,
+    chartExemple
+    
   },
   data() {
     return {
