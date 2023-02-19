@@ -82,10 +82,10 @@
                 dark:text-white
               "
             >
-              Apple MacBook Pro 17"
+              Projet 1
             </th>
-            <td class="py-4 px-6">Sliver</td>
-            <td class="py-4 px-6">Laptop</td>
+            <td class="py-4 px-6">Badreddine Abourial</td>
+            <td class="py-4 px-6">14/02/2023</td>
             <td class="py-4 px-6">
               <div class="flex items-center justify-start">
                 <div
@@ -157,10 +157,10 @@
                 dark:text-white
               "
             >
-              Microsoft Surface Pro
+              Projet test 2
             </th>
-            <td class="py-4 px-6">White</td>
-            <td class="py-4 px-6">Laptop PC</td>
+            <td class="py-4 px-6">Safia Maani</td>
+            <td class="py-4 px-6">30/01/2023</td>
             <td class="py-4 px-6">
               <div class="flex items-center justify-start">
                 <div
@@ -232,10 +232,10 @@
                 dark:text-white
               "
             >
-              Magic Mouse 2
+            Projet test 3
             </th>
-            <td class="py-4 px-6">Black</td>
-            <td class="py-4 px-6">Accessories</td>
+            <td class="py-4 px-6">Wassim Lahlali</td>
+            <td class="py-4 px-6">12/12/2022</td>
             <td class="py-4 px-6">
               <div class="flex items-center justify-start">
                 <div

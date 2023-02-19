@@ -34,15 +34,18 @@
 <script>
 export default {
   name: 'Profile',
-  props: {
-    name: String,
-    email: String,
-    role: String,
-    department: String,
-    address: String,
-    phone: String,
-    birthDate: String,
-    profileImage: String
+ props: {
+  name: String,
+  email: String,
+  role: String,
+  department: String,
+  address: String,
+  phone: String,
+  birthDate: String,
+  profileImage: {
+    type: String,
+    default: 'https://example.com/avatar.png' // add the URL or file path of the image
   }
+}
 }
 </script>
