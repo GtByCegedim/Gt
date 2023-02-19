@@ -10,14 +10,21 @@ import profileAdmin from '../admin/pages/profile'
 import AllProjects from '../admin/pages/project'
 import Profile from '../pages/profile'
 import newProject from '../pages/newProject'
+import homePage from '../master/homePage'
+
 
 
 
 const routes = [
   {
+    name : 'homePage',
+    component: homePage,
+    path : '/'
+  },
+  {
     name: 'dashboard-app',
     component: dashboardApp,
-    path: '/',
+    path: '/employe',
     children: [
       
       {
