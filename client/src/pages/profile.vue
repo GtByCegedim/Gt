@@ -1,11 +1,15 @@
 <template>
   <div class="flex flex-col items-center mt-10">
-    <img :src="profileImage" class="w-24 h-24 rounded-full object-cover mb-4">
+    <img :src="profileImage" class="w-24 h-24 rounded-full object-cover mb-4" />
     <h2 class="text-xl font-medium text-gray-800 mb-2">Lahlali Wassim</h2>
     <p class="text-gray-500 text-sm mb-2">wlahlali343@gmail.com</p>
     <div class="flex items-center mb-4">
-      <span class="bg-green-500 text-white py-1 px-2 rounded-full text-xs mr-2">Developpeur</span>
-      <span class="bg-blue-500 text-white py-1 px-2 rounded-full text-xs">CEGEDIM SRH</span>
+      <span class="bg-green-500 text-white py-1 px-2 rounded-full text-xs mr-2"
+        >Developpeur</span
+      >
+      <span class="bg-blue-500 text-white py-1 px-2 rounded-full text-xs"
+        >CEGEDIM SRH</span
+      >
     </div>
     <div class="w-full">
       <div class="bg-white shadow-md rounded-lg overflow-hidden">
@@ -33,19 +37,19 @@
 
 <script>
 export default {
-  name: 'Profile',
- props: {
-  name: String,
-  email: String,
-  role: String,
-  department: String,
-  address: String,
-  phone: String,
-  birthDate: String,
-  profileImage: {
-    type: String,
-    default: 'https://example.com/avatar.png' // add the URL or file path of the image
-  }
-}
-}
+  name: "Profile",
+  props: {
+    name: String,
+    email: String,
+    role: String,
+    department: String,
+    address: String,
+    phone: String,
+    birthDate: String,
+    profileImage: {
+      type: String,
+      default: "https://example.com/avatar.png", // add the URL or file path of the image
+    },
+  },
+};
 </script>

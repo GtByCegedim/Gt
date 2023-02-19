@@ -3,6 +3,7 @@ import dashboardApp from '../master/dashboard-app'
 import dashboardAdmin from '../admin/master/dashboardAdmin'
 import Myprojects from '../pages/project'
 import kanban from '../pages/kanban'
+import Statistique from "../pages/statistique"
 import employee from '../admin/pages/employee'
 import home from '../admin/pages/home'
 import profileAdmin from '../admin/pages/profile'
@@ -38,6 +39,11 @@ const routes = [
         name: "newProject",
         component: newProject, 
         path: "/newProject",
+      },
+      {
+        name: "statistique",
+        component: Statistique, 
+        path: "/statistique",
       },
     ]
   },
