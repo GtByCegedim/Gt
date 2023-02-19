@@ -10,6 +10,7 @@ import AllProjects from '../admin/pages/project'
 import Profile from '../pages/profile'
 import newProject from '../pages/newProject'
 import homePage from '../master/homePage'
+import newEmploye from '../admin/pages/newEmploye'
 
 
 
@@ -29,22 +30,22 @@ const routes = [
       {
         name: "Myprojects",
         component: Myprojects, 
-        path: "/Myprojects",
+        path: "Myprojects",
       },
       {
         name: "Profile",
         component: Profile, 
-        path: "/profile",
+        path: "profile",
       },
       {
         name: "kanban",
         component: kanban, 
-        path: "/kanban",
+        path: "kanban",
       },
       {
         name: "newProject",
         component: newProject, 
-        path: "/newProject",
+        path: "newProject",
       },
     ]
   },
@@ -72,6 +73,11 @@ const routes = [
         name: "allProjects",
         component: AllProjects, 
         path: "projects",
+      },
+      {
+        name: "newEmploye",
+        component: newEmploye, 
+        path: "newEmploye",
       },
       
     ]

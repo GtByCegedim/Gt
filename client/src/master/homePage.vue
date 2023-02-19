@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-gray-900 text-white">
+  <section class="bg-gray-800 text-white">
   <div
     class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center"
   >
@@ -11,7 +11,7 @@
 
         <span class="sm:block">communication en équipe </span>
       </h1>
-g
+
       <p class="mx-auto mt-4 max-w-xl sm:text-xl sm:leading-relaxed">
         créer des projets, des tâches , des sous taches et des calendriers pour organiser votre travail
       </p>
