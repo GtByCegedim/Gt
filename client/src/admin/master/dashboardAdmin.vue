@@ -51,6 +51,7 @@
                   </svg>
                   Statistique
                 </router-link>
+                
 
               </div>
               <div class="h-[50px]">

@@ -66,22 +66,11 @@
                   </svg>
                   Profile
                 </router-link>
-
-                <router-link
-                  to="/statistique"
-                  class="inline-flex relative items-center py-2 px-4 w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-800 transition duration-400 ease-in-out"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 mr-2"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      d="M2 9.5a3.5 3.5 0 005.5 3.077V15h3v-2.423A3.5 3.5 0 0018 9.5a3.5 3.5 0 00-3.5-3.5h-11A3.5 3.5 0 002 9.5zm9 0h5.5a1.5 1.5 0 01-1.5 1.5h-2a1.5 1.5 0 01-1.5-1.5zm-3 0a1.5 1.5 0 013 0v5a1.5 1.5 0 01-3 0v-5z"
-                    />
+                <router-link to="/newProject" class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300  hover:text-gray-800 transition duration-400 ease-in-out">
+                  <svg aria-hidden="true" class="mr-2 w-[25px] h-[25px] fill-current" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2 9.5A3.5 3.5 0 005.5 13H9v2.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 15.586V13h2.5a4.5 4.5 0 10-.616-8.958 4.002 4.002 0 10-7.753 1.977A3.5 3.5 0 002 9.5zm9 3.5H9V8a1 1 0 012 0v5z" clip-rule="evenodd"></path>
                   </svg>
-                  Statistique
+                  New Project
                 </router-link>
               </div>
               <div class="h-[50px]">

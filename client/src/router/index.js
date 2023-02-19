@@ -9,6 +9,7 @@ import home from '../admin/pages/home'
 import profileAdmin from '../admin/pages/profile'
 import AllProjects from '../admin/pages/project'
 import Profile from '../pages/profile'
+import newProject from '../pages/newProject'
 
 
 
@@ -35,10 +36,15 @@ const routes = [
         path: "/kanban",
       },
       {
-        name: "Statistique",
+        name: "newProject",
+        component: newProject, 
+        path: "/newProject",
+      },
+      {
+        name: "statistique",
         component: Statistique, 
         path: "/statistique",
-      }
+      },
     ]
   },
   {
@@ -51,7 +57,7 @@ const routes = [
         component: home, 
         path: "home",
       },
-                 {
+      {
         name: "profile",
         component: profileAdmin, 
         path: "profile",
@@ -66,6 +72,7 @@ const routes = [
         component: AllProjects, 
         path: "projects",
       },
+      
     ]
   }
 ];
