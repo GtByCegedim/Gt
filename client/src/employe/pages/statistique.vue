@@ -18,11 +18,11 @@
 
 <script>
 import { defineAsyncComponent } from "vue";
-import CardsStatistique from "@/components/CardsStatistique.vue";
-import LineChart from "@/components/LineChart.vue";
+import CardsStatistique from "@/employe/components/CardsStatistique.vue";
+import LineChart from "@/employe/components/LineChart.vue";
 
 
-const chartExemple = defineAsyncComponent(() => import("@/components/RadarChart.vue"));
+const chartExemple = defineAsyncComponent(() => import("@/employe/components/RadarChart.vue"));
 
 
 export default {
