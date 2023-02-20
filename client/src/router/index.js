@@ -11,8 +11,8 @@ import AllProjects from '../admin/pages/project'
 import Profile from '../employe/pages/profile'
 import newProject from '../employe/pages/newProject'
 import homePage from '../user/master/homePage'
-
-
+import infoProject from '../employe/pages/infoProject'
+import myProject from '../employe/pages/myProjects'
 
 
 const routes = [
@@ -50,6 +50,16 @@ const routes = [
         name: "newProject",
         component: newProject,
         path: "newProject",
+      },
+      {
+        name: "infoProject",
+        component: infoProject,
+        path: "infoProject",
+      },
+      {
+        name: "myProject",
+        component: myProject,
+        path: "myProject",
       },
     ],
   },
