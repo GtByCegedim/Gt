@@ -7,20 +7,19 @@
       <h1
         class="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl"
       >
-        Understand User Flow.
+         gestion de projet
 
-        <span class="sm:block"> Increase Conversion. </span>
+        <span class="sm:block">communication en équipe </span>
       </h1>
-
+g
       <p class="mx-auto mt-4 max-w-xl sm:text-xl sm:leading-relaxed">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo
-        tenetur fuga ducimus numquam ea!
+        créer des projets, des tâches , des sous taches et des calendriers pour organiser votre travail
       </p>
 
       <div class="mt-8 flex flex-wrap justify-center gap-4">
         <a
           class="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
-          href="/get-started"
+          href="/profile"
         >
           Get Started
         </a>
