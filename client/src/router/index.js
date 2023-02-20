@@ -29,27 +29,27 @@ const routes = [
       {
         name: "Myprojects",
         component: Myprojects,
-        path: "/Myprojects",
+        path: "Myprojects",
       },
       {
         name: "Profile",
         component: Profile,
-        path: "/profile",
+        path: "profile",
       },
       {
         name: "kanban",
         component: kanban,
-        path: "/kanban",
+        path: "kanban",
       },
       {
         name: "Statistique",
         component: Statistique,
-        path: "/statistique",
+        path: "statistique",
       },
       {
         name: "newProject",
         component: newProject,
-        path: "/newProject",
+        path: "newProject",
       },
     ],
   },
