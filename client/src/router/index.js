@@ -11,8 +11,8 @@ import AllProjects from '../admin/pages/project'
 import Profile from '../employe/pages/profile'
 import newProject from '../employe/pages/newProject'
 import homePage from '../user/master/homePage'
-
-
+import infoProject from '../employe/pages/infoProject'
+import myProject from '../employe/pages/myProjects'
 
 
 const routes = [
@@ -29,27 +29,37 @@ const routes = [
       {
         name: "Myprojects",
         component: Myprojects,
-        path: "/Myprojects",
+        path: "Myprojects",
       },
       {
         name: "Profile",
         component: Profile,
-        path: "/profile",
+        path: "profile",
       },
       {
         name: "kanban",
         component: kanban,
-        path: "/kanban",
+        path: "kanban",
       },
       {
         name: "Statistique",
         component: Statistique,
-        path: "/statistique",
+        path: "statistique",
       },
       {
         name: "newProject",
         component: newProject,
-        path: "/newProject",
+        path: "newProject",
+      },
+      {
+        name: "infoProject",
+        component: infoProject,
+        path: "infoProject",
+      },
+      {
+        name: "myProject",
+        component: myProject,
+        path: "myProject",
       },
     ],
   },

@@ -48,7 +48,7 @@ export default {
     birthDate: String,
     profileImage: {
       type: String,
-      default: "https://example.com/avatar.png", // add the URL or file path of the image
+      default: "https://th.bing.com/th/id/OIP.8t1WtYLAPVB189hu7pCP3gHaHa?pid=ImgDet&rs=1", // add the URL or file path of the image
     },
   },
 };
