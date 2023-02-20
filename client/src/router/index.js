@@ -1,16 +1,16 @@
 import { createRouter, createWebHistory } from "vue-router";
-import dashboardApp from '../master/dashboard-app'
+import dashboardApp from '../employe/master/dashboard-app'
 import dashboardAdmin from '../admin/master/dashboardAdmin'
-import Myprojects from '../pages/project'
-import kanban from '../pages/kanban'
-import Statistique from "../pages/statistique"
+import Myprojects from '../employe/pages/project'
+import kanban from '../employe/pages/kanban'
+import Statistique from "../employe/pages/statistique"
 import employee from '../admin/pages/employee'
 import home from '../admin/pages/home'
 import profileAdmin from '../admin/pages/profile'
 import AllProjects from '../admin/pages/project'
-import Profile from '../pages/profile'
-import newProject from '../pages/newProject'
-import homePage from '../master/homePage'
+import Profile from '../employe/pages/profile'
+import newProject from '../employe/pages/newProject'
+import homePage from '../user/master/homePage'
 
 
 
