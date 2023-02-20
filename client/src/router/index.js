@@ -26,69 +26,67 @@ const routes = [
     component: dashboardApp,
     path: '/employe',
     children: [
-      
       {
         name: "Myprojects",
-        component: Myprojects, 
+        component: Myprojects,
         path: "/Myprojects",
       },
       {
         name: "Profile",
-        component: Profile, 
+        component: Profile,
         path: "/profile",
       },
       {
         name: "kanban",
-        component: kanban, 
+        component: kanban,
         path: "/kanban",
       },
       {
-        name: "newProject",
-        component: newProject, 
-        path: "/newProject",
-      },
-      {
-        name: "statistique",
-        component: Statistique, 
+        name: "Statistique",
+        component: Statistique,
         path: "/statistique",
       },
-    ]
+      {
+        name: "newProject",
+        component: newProject,
+        path: "/newProject",
+      },
+    ],
   },
   {
-    name: 'dashboardAdmin-app',
+    name: "dashboardAdmin-app",
     component: dashboardAdmin,
-    path: '/admin',
+    path: "/admin",
     children: [
-            {
+      {
         name: "statistique",
-        component: home, 
+        component: home,
         path: "home",
       },
       {
         name: "profile",
-        component: profileAdmin, 
+        component: profileAdmin,
         path: "profile",
       },
       {
         name: "employee",
-        component: employee, 
+        component: employee,
         path: "employee",
       },
       {
         name: "allProjects",
-        component: AllProjects, 
+        component: AllProjects,
         path: "projects",
       },
-      
-    ]
-  }
+    ],
+  },
 ];
 const router = Router();
 export default router;
 function Router() {
-    const router = new createRouter({
-        history: createWebHistory(),
-        routes,
-    });
-    return router;
+  const router = new createRouter({
+    history: createWebHistory(),
+    routes,
+  });
+  return router;
 }
