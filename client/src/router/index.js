@@ -8,14 +8,19 @@ import home from '../admin/pages/home'
 import profileAdmin from '../admin/pages/profile'
 import AllProjects from '../admin/pages/project'
 import Profile from '../pages/profile'
-
+import About from '../pages/about'
 
 
 const routes = [
   {
+    name: 'about',
+    component: About,
+    path: '/',
+  },
+  {
     name: 'dashboard-app',
     component: dashboardApp,
-    path: '/',
+    path: '/employee',
     children: [
       
       {
