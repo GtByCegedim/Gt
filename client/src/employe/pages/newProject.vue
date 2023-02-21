@@ -18,7 +18,7 @@
         <input v-model="createdAt" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="created-at" type="date" />
       </div>
       <div class="flex items-center justify-center pb-3">
-        <button type="submit" class="inline-flex w-full items-center justify-center rounded-lg bg-gray-800 px-5 py-3 text-white sm:w-auto">
+        <button type="submit" class="inline-flex w-full items-center justify-center rounded-lg bg-gray-700 px-5 py-3 text-white sm:w-auto">
           <span class="font-medium">Creer le projet</span>
           <svg xmlns="http://www.w3.org/2000/svg" class="ml-3 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />

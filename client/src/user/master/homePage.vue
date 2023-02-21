@@ -11,7 +11,6 @@
 
         <span class="sm:block">communication en équipe </span>
       </h1>
-g
       <p class="mx-auto mt-4 max-w-xl sm:text-xl sm:leading-relaxed">
         créer des projets, des tâches , des sous taches et des calendriers pour organiser votre travail
       </p>
@@ -19,7 +18,7 @@ g
       <div class="mt-8 flex flex-wrap justify-center gap-4">
         <a
           class="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
-          href="/profile"
+          href="/admin"
         >
           Get Started
         </a>
