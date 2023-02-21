@@ -10,8 +10,12 @@ const taskRouter = require("./routes/task");
 const authRouter = require("./routes/authRouter");
 const subTaskRouter = require("./routes/subTaskRoute");
 const statutouter = require("./routes/statutRoute");
-const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerAutogen = require("swagger-autogen");
 const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
+
+const outputFile = "./swagger.json";
+const endpointsFiles = ["./routes/*.js"];
 
 // Import database connection
 const {
@@ -45,7 +49,6 @@ app.use(
   })
 );
 /* A middleware that is used to route the request to the employeRouter. */
-
 const options = {
   definition: {
     openapi: "3.0.0",
@@ -61,11 +64,11 @@ const options = {
       },
     ],
   },
-  apis: ["./routes/*.js"],
+  // apis: endpointsFiles,
+  forceOpenAPI3: true,
 };
-const swaggerSpec = swaggerJsDoc(options);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
+swaggerAutogen(outputFile, endpointsFiles, options);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Route d'authentification:
 app.use("/api/auth", authRouter);

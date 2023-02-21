@@ -7,49 +7,6 @@ const { createTeam, findAllTeams, acceptInvitation } = require("../controllers/t
 const { sendTeamInvitation } = require('../middleware/mailer');
 const { authMiddleware } = require('../middleware/authMiddleware');
 
-/**
- * @swagger
- * components:
- *    schemas:
- *      findAllTeams:
- *        type: object
- *        properties:
- *          name:
- *            type: string
- *            description: the team's name
- *          teamLeaderId:
- *            type: integer
- *            description: the teamleader's is
- *        example:
- *            name: the winners
- *            teamLeaderId: 19
- *          
- */
-/**
- * @swagger
- * tags: 
- *  name: Teams
- *  description: Here we have Teams functions 
-*/
-/**
- * @swagger
- * /api/teams/all:
- *  get:
- *    summary: Returns an object of user's informations
- *    tags: [Teams]
- *    responses:
- *      200:
- *        description: Finds all teams
- *        content:
- *          application/json:
- *            schema:
- *              type: array
- *              items: 
- *                $ref: '#/components/schemas/findAllTeams'
- *      404:
- *        description: No team was found
-*/
-
 router.post('/create',authMiddleware, createTeam);
 router.post('/invitations', sendTeamInvitation);
 router.get('/all',findAllTeams)
