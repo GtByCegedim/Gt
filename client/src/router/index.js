@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router"
 import dashboardApp from '../employe/master/dashboard-app'
 import dashboardAdmin from '../admin/master/dashboardAdmin'
 import Myprojects from '../employe/pages/project'
@@ -13,6 +13,10 @@ import newProject from '../employe/pages/newProject'
 import homePage from '../user/master/homePage'
 import infoProject from '../employe/pages/infoProject'
 import myProject from '../employe/pages/myProjects'
+import newEmploye from '../admin/pages/newEmploye'
+import allTeams from '../admin/pages/allTeams.vue'
+import infoOneTeams from '../admin/pages/infoOneTeams'
+import login from '@/user/master/login'
 
 
 const routes = [
@@ -20,6 +24,11 @@ const routes = [
     name : 'homePage',
     component: homePage,
     path : '/'
+  },
+  {
+    name : 'login',
+    component: login,
+    path : '/login'
   },
   {
     name: 'dashboard-app',
@@ -61,6 +70,7 @@ const routes = [
         component: myProject,
         path: "myProject",
       },
+ 
     ],
   },
   {
@@ -87,6 +97,21 @@ const routes = [
         name: "allProjects",
         component: AllProjects,
         path: "projects",
+      },
+      {
+        name: "newEmploye",
+        component: newEmploye,
+        path: "newEmploye",
+      },
+      {
+        name: "allTeams",
+        component: allTeams,
+        path: "allTeams",
+      },
+      {
+        name: "infoOneTeams",
+        component: infoOneTeams,
+        path: "infoOneTeams",
       },
     ],
   },

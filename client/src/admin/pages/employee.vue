@@ -1,6 +1,26 @@
 <template>
   <div>
     <h3 class="text-2xl font-bold text-left py-2">All Users</h3>
+     <a
+      class="
+        button_style
+        inline-block
+        rounded
+        bg-gray-700
+        px-8
+        py-3
+        text-sm
+        font-medium
+        text-white
+        transition
+        hover:rotate-2 hover:scale-110
+        focus:outline-none focus:ring
+        active:bg-gray-500
+      "
+      href="/download"
+    >
+      Create
+    </a>
     <div class="overflow-x-auto relative  sm:rounded-lg">
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
