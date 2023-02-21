@@ -6,7 +6,6 @@ const Project = require('../models/project')
 const ErrorResponse = require('../utils/error');
 
 
-
 // This function adds a new status to a project
 const addNewStatut = async(req,res,next) => {
     // Retrieve the request body

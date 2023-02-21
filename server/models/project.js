@@ -17,7 +17,11 @@ const Project = sequelize.define("project", {
     manager : {
       type: Sequelize.INTEGER,
       allowNull: false
+    },bane: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false
     }
+
   });
   
   module.exports = Project;

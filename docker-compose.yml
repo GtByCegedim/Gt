@@ -1,17 +1,16 @@
-version: '3'
+version: "3"
 services:
   backend:
-    build:
-      ./server
+    build: ./server
     environment:
-      - PORT=9090
+      - PORT=5050
       - NODE_ENV=dev
       - DATABASE=GT
       - DB_USER=bader
       - password=2001
       - host=localhost
     ports:
-      - 9090:9090
+      - 5050:5050
     volumes:
       - ./server:/server/
   postgres:
@@ -35,11 +34,4 @@ services:
       - 8080:8080
     volumes:
       - ./client:/client/
-  keycloak:
-    image: jboss/keycloak
-    ports:
-      - 8180:8080
-    environment:
-      KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: admin
-    container_name: keycloak
+  
