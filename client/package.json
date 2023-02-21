@@ -14,6 +14,7 @@
     "chart.js": "^4.2.1",
     "core-js": "^3.8.3",
     "faker": "^5.5.3",
+    "pinia": "^2.0.32",
     "vue": "^3.2.13",
     "vue-apexcharts": "^1.6.2",
     "vue-chartjs": "^5.2.0",
