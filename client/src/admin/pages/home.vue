@@ -40,16 +40,58 @@
         <tbody>
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              Apple MacBook Pro 17"
+              Projet test 1"
             </th>
             <td class="py-4 px-6">
-              Sliver
+             Wassim lahlali
             </td>
             <td class="py-4 px-6">
-              Laptop
-            </td>
-            <td class="py-4 px-6">
-              $2999
+              08/02/20123            </td>
+             <td class="py-4 px-6">
+              <div class="flex items-center justify-start">
+                <div
+                  class="
+                    bg-gray-300
+                    w-6
+                    h-6
+                    rounded-full
+                    flex
+                    items-center
+                    justify-center
+                    
+                  "
+                >
+                  <span class="text-gray-600 font-bold text-sm">AB</span>
+                </div>
+                <div
+                   class="
+                    bg-gray-300
+                    w-6
+                    h-6
+                    rounded-full
+                    flex
+                    items-center
+                    justify-center
+                    
+                  "
+                >
+                  <span class="text-gray-600 font-bold text-sm">CD</span>
+                </div>
+                <div
+                   class="
+                    bg-gray-300
+                    w-6
+                    h-6
+                    rounded-full
+                    flex
+                    items-center
+                    justify-center
+                    
+                  "
+                >
+                  <span class="text-gray-600 font-bold text-sm">...</span>
+                </div>
+              </div>
             </td>
             <td class="py-4 px-6 text-right">
               <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
@@ -57,16 +99,59 @@
           </tr>
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              Microsoft Surface Pro
+              Projet test 2
             </th>
             <td class="py-4 px-6">
-              White
+              Bader abouriel
             </td>
             <td class="py-4 px-6">
-              Laptop PC
+              06/02/2023
             </td>
-            <td class="py-4 px-6">
-              $1999
+             <td class="py-4 px-6">
+              <div class="flex items-center justify-start">
+                <div
+                  class="
+                    bg-gray-300
+                    w-6
+                    h-6
+                    rounded-full
+                    flex
+                    items-center
+                    justify-center
+                    
+                  "
+                >
+                  <span class="text-gray-600 font-bold text-sm">AB</span>
+                </div>
+                <div
+                   class="
+                    bg-gray-300
+                    w-6
+                    h-6
+                    rounded-full
+                    flex
+                    items-center
+                    justify-center
+                    
+                  "
+                >
+                  <span class="text-gray-600 font-bold text-sm">CD</span>
+                </div>
+                <div
+                   class="
+                    bg-gray-300
+                    w-6
+                    h-6
+                    rounded-full
+                    flex
+                    items-center
+                    justify-center
+                    
+                  "
+                >
+                  <span class="text-gray-600 font-bold text-sm">...</span>
+                </div>
+              </div>
             </td>
             <td class="py-4 px-6 text-right">
               <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
@@ -74,16 +159,59 @@
           </tr>
           <tr class="bg-white dark:bg-gray-800">
             <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              Magic Mouse 2
+              Projet test 3 
             </th>
             <td class="py-4 px-6">
-              Black
+              Safia elmaani
             </td>
             <td class="py-4 px-6">
-              Accessories
+              07/02/2023
             </td>
-            <td class="py-4 px-6">
-              $99
+             <td class="py-4 px-6">
+              <div class="flex items-center justify-start">
+                <div
+                  class="
+                    bg-gray-300
+                    w-6
+                    h-6
+                    rounded-full
+                    flex
+                    items-center
+                    justify-center
+                    
+                  "
+                >
+                  <span class="text-gray-600 font-bold text-sm">AB</span>
+                </div>
+                <div
+                   class="
+                    bg-gray-300
+                    w-6
+                    h-6
+                    rounded-full
+                    flex
+                    items-center
+                    justify-center
+                    
+                  "
+                >
+                  <span class="text-gray-600 font-bold text-sm">CD</span>
+                </div>
+                <div
+                   class="
+                    bg-gray-300
+                    w-6
+                    h-6
+                    rounded-full
+                    flex
+                    items-center
+                    justify-center
+                    
+                  "
+                >
+                  <span class="text-gray-600 font-bold text-sm">...</span>
+                </div>
+              </div>
             </td>
             <td class="py-4 px-6 text-right">
               <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>

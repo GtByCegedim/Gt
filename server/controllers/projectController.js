@@ -58,6 +58,7 @@ exports.UpdateProject = async (req, res, next) => {
             where: {
                 name: name
             }
+            
         })
         if (findProjectByName) {
             return next(new apiError("plez enter Name project again", 500))
