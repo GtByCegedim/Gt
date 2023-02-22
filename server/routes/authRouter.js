@@ -7,7 +7,19 @@ const {
   resetPassword,
 } = require("../controllers/userAuthController");
 
-authRouter.post("/login", login);
-authRouter.post("/forgetpassword", forgetPassword);
-authRouter.post("/resetpassword/:token", resetPassword);
+authRouter.post(
+  "/login",
+  login
+  // #swagger.tags = ['Authentification']
+);
+authRouter.post(
+  "/forgetpassword",
+  forgetPassword
+  // #swagger.tags = ['Authentification']
+);
+authRouter.post(
+  "/resetpassword/:token",
+  resetPassword
+  // #swagger.tags = ['Authentification']
+);
 module.exports = authRouter;

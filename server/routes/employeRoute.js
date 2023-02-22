@@ -8,11 +8,28 @@ const {
   findAllUsers,
 } = require("../controllers/employéesController");
 const { authMiddleware } = require("../middleware/authMiddleware");
- 
-router.post("/add", AddEmployee);
-router.put("/update/:id", updateUser);
-router.delete("/delete/:id", authMiddleware, deleteUser);
-router.get("/all", findAllUsers);
+
+router.post(
+  "/add",
+  AddEmployee
+  // #swagger.tags = ['Employe']
+);
+router.put(
+  "/update/:id",
+  updateUser
+  // #swagger.tags = ['Employe']
+);
+router.delete(
+  "/delete/:id",
+  authMiddleware,
+  deleteUser
+  // #swagger.tags = ['Employe']
+);
+router.get(
+  "/all",
+  findAllUsers
+  // #swagger.tags = ['Employe']
+);
 router.use(ErrorHandler);
 
 module.exports = router;

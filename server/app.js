@@ -10,13 +10,13 @@ const taskRouter = require("./routes/task");
 const authRouter = require("./routes/authRouter");
 const subTaskRouter = require("./routes/subTaskRoute");
 const statutouter = require("./routes/statutRoute");
-const swaggerAutogen = require("swagger-autogen");
+const swaggerAutogen = require("swagger-autogen")();
 const swaggerUi = require("swagger-ui-express");
-const swaggerDocument = require("swagger-jsdoc");
+const swaggerDocument = require("./swagger.json");
 const ProjectRouter = require("./routes/projectRoute");
 
 const outputFile = "./swagger.json";
-const endpointsFiles = ["./route/*.js"];
+const endpointsFiles = ["./route/*.js", "./app.js"];
 
 // Import database connection
 const {
@@ -52,7 +52,7 @@ app.use(
 /* A middleware that is used to route the request to the employeRouter. */
 const options = {
   definition: {
-    openapi: "3.0.0",
+    openapi: "3.0.3",
     info: {
       title: "GT by CEGEDIM",
       version: "1.0.0",
@@ -65,8 +65,15 @@ const options = {
       },
     ],
   },
-  // apis: endpointsFiles,
-  forceOpenAPI3: true,
+  tags: [
+    { name: "Authentification", description: "Operations related to authentification" },
+    { name: "Employe", description: "Operations related to employe" },
+    { name: "Team", description: "Operations related to team" },
+    { name: "Task", description: "Operations related to task" },
+    { name: "Subtask", description: "Operations related to subtask" },
+    { name: "Status", description: "Operations related to status" },
+    { name: "Project", description: "Operations related to project" },
+  ],
 };
 swaggerAutogen(outputFile, endpointsFiles, options);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
