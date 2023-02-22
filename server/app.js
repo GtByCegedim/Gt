@@ -59,14 +59,13 @@ const options = {
       description:
         "Une application web de gestion des projets et taches au sein de CEGEDIM",
     },
-    servers: [
-      {
-        url: `http://localhost:${process.env.PORT}`,
-      },
-    ],
+    servers: [`http://localhost:${process.env.PORT}`],
   },
   tags: [
-    { name: "Authentification", description: "Operations related to authentification" },
+    {
+      name: "Authentification",
+      description: "Operations related to authentification",
+    },
     { name: "Employe", description: "Operations related to employe" },
     { name: "Team", description: "Operations related to team" },
     { name: "Task", description: "Operations related to task" },

@@ -623,14 +623,11 @@
     },
     "servers": {
       "type": "array",
+      "example": [
+        "http://localhost:3000"
+      ],
       "items": {
-        "type": "object",
-        "properties": {
-          "url": {
-            "type": "string",
-            "example": "http://localhost:5050"
-          }
-        }
+        "type": "string"
       }
     }
   }
