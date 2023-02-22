@@ -84,7 +84,7 @@
           </div>
         </div>
 
-        <div class="flex items-center flex-center justify-between">
+        <div class="flex-center flex items-center justify-between">
           <button
             type="submit"
             class="inline-block rounded-lg bg-gray-500 px-5 py-3 text-sm font-medium text-white"
@@ -119,6 +119,7 @@ export default {
     const submitForm = async () => {
       try {
         await authStore.login({ email: email.value, password: password.value });
+
         // Redirect to home page or do something else on successful login
       } catch (error) {
         console.error(error);
