@@ -11,13 +11,12 @@ const authRouter = require("./routes/authRouter");
 const subTaskRouter = require("./routes/subTaskRoute");
 const statutouter = require("./routes/statutRoute");
 const swaggerAutogen = require("swagger-autogen")();
-const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
+const swaggerUi = require("swagger-ui-express");
 const ProjectRouter = require("./routes/projectRoute");
 
 const outputFile = "./swagger.json";
-const endpointsFiles = ["./route/*.js", "./app.js"];
-
+const endpointsFiles = ["./routes/*.js", "app.js"];
 // Import database connection
 const {
   DateType,
