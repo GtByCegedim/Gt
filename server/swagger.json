@@ -40,6 +40,14 @@
   "schemes": [
     "http"
   ],
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "scheme": "bearer"
+    }
+  },
   "paths": {
     "/api/auth/login": {
       "post": {
@@ -628,6 +636,19 @@
       ],
       "items": {
         "type": "string"
+      }
+    },
+    "security": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "bearerAuth": {
+            "type": "array",
+            "example": [],
+            "items": {}
+          }
+        }
       }
     }
   }

@@ -60,6 +60,19 @@ const options = {
         "Une application web de gestion des projets et taches au sein de CEGEDIM",
     },
     servers: [`http://localhost:${process.env.PORT}`],
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
+  },
+  securityDefinitions: {
+    bearerAuth: {
+      type: "apiKey",
+      name: "Authorization",
+      in: "header",
+      scheme: "bearer",
+    },
   },
   tags: [
     {

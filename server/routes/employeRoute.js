@@ -11,11 +11,13 @@ const { authMiddleware } = require("../middleware/authMiddleware");
 
 router.post(
   "/add",
+  authMiddleware,
   AddEmployee
   // #swagger.tags = ['Employe']
 );
 router.put(
   "/update/:id",
+  authMiddleware,
   updateUser
   // #swagger.tags = ['Employe']
 );
@@ -27,6 +29,7 @@ router.delete(
 );
 router.get(
   "/all",
+  authMiddleware,
   findAllUsers
   // #swagger.tags = ['Employe']
 );
