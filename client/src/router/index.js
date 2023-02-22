@@ -1,22 +1,24 @@
-import { createRouter, createWebHistory } from "vue-router";
-import dashboardApp from "../employe/master/dashboard-app";
-import dashboardAdmin from "../admin/master/dashboardAdmin";
-import Myprojects from "../employe/pages/project";
-import kanban from "../employe/pages/kanban";
-import Statistique from "../employe/pages/statistique";
-import employee from "../admin/pages/employee";
-import home from "../admin/pages/home";
-import profileAdmin from "../admin/pages/profile";
-import AllProjects from "../admin/pages/project";
-import Profile from "../employe/pages/profile";
-import newProject from "../employe/pages/newProject";
-import homePage from "../user/master/homePage";
-import infoProject from "../employe/pages/infoProject";
-import myProject from "../employe/pages/myProjects";
-import newEmploye from "../admin/pages/newEmploye";
-import allTeams from "../admin/pages/allTeams.vue";
-import infoOneTeams from "../admin/pages/infoOneTeams";
-import login from "../user/master/login.vue";
+import { createRouter, createWebHistory } from "vue-router"
+import dashboardApp from '../employe/master/dashboard-app'
+import dashboardAdmin from '../admin/master/dashboardAdmin'
+import Myprojects from '../employe/pages/project'
+import kanban from '../employe/pages/kanban'
+import Statistique from "../employe/pages/statistique"
+import employee from '../admin/pages/employee'
+import home from '../admin/pages/home'
+import profileAdmin from '../admin/pages/profile'
+import AllProjects from '../admin/pages/project'
+import Profile from '../employe/pages/profile'
+import newProject from '../employe/pages/newProject'
+import homePage from '../user/master/homePage'
+import infoProject from '../employe/pages/infoProject'
+import myProject from '../employe/pages/myProjects'
+import newEmploye from '../admin/pages/newEmploye'
+import allTeams from '../admin/pages/allTeams.vue'
+import infoOneTeams from '../admin/pages/infoOneTeams'
+import login from '@/user/master/login'
+import about from '@/user/master/about'
+
 
 const routes = [
   {
@@ -30,9 +32,19 @@ const routes = [
     path: "/login",
   },
   {
-    name: "dashboard-app",
+    name : 'about',
+    component: about,
+    path : '/about'
+  },
+  {
+    name : 'about',
+    component: about,
+    path : '/about'
+  },
+  {
+    name: 'dashboard-app',
     component: dashboardApp,
-    path: "/employe",
+    path: '/',
     children: [
       {
         name: "Myprojects",
