@@ -10,7 +10,7 @@
     <div class="relative lg:flex lg:items-center lg:gap-12">
       <div class="overflow-hidden w-full lg:w-7/12 lg:-mr-16">
         <img
-          src="../../assets/102f30e7-0382-463d-9f4d-fc78479be7dd.png"
+          src="../../assets/be5a18d9a3a5ee051938b1880f08d620.webp"
           alt="project illustration"
           height=""
           width="100%"
@@ -23,19 +23,18 @@
         <h1
           class="text-gray-900 font-bold text-4xl md:text-6xl lg:text-5xl xl:text-6xl dark:text-white"
         >
-          Un dashboard donnant le manager une visibilité sur ses projets, ses
-          taches, ses équipes ...
+          Un dashboard donnant le collaborateur une visibilité sur ses projets,
+          ses taches, ses équipes ...
         </h1>
         <p class="mt-8 text-gray-600 dark:text-gray-300">
-          Il s'agit d'un tableau de bord (ou dashboard) qui permet au manager de
-          visualiser les projets en cours, les tâches associées à ces projets,
-          ainsi que les équipes travaillant sur ces projets. Le but est de
-          fournir une vue d'ensemble claire et rapide de l'état d'avancement des
-          projets et des tâches, afin que le manager puisse prendre des
-          décisions éclairées et ajuster les priorités en fonction des besoins
-          de l'entreprise. Le dashboard peut également inclure des graphiques et
-          des tableaux pour aider le manager à comprendre les tendances et les
-          performances des projets et des équipes.
+          Un tableau de bord personnel pour les collaborateurs, leur permettant
+          de visualiser les projets et les tâches auxquels ils sont affectés,
+          ainsi que les équipes auxquelles ils appartiennent. Le tableau de bord
+          peut également fournir des informations sur les délais, les priorités,
+          l'état d'avancement et l'affectation des tâches. Cela peut aider les
+          collaborateurs à mieux gérer leur temps et leur charge de travail, à
+          suivre les tâches à accomplir et à communiquer avec leur équipe sur
+          les progrès.
         </p>
       </div>
     </div>

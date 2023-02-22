@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-32 md:py-12 xl:container m-auto px-6 md:px-12" >
+  <div class="pt-32 md:py-12 xl:container m-auto px-6 md:px-12">
     <div
       aria-hidden="true"
       class="absolute inset-0 my-auto w-96 h-32 rotate-45 bg-gradient-to-r from-primaryLight to-secondaryLight blur-3xl opacity-50 dark:opacity-20"
@@ -17,21 +17,20 @@
           >
         </h1>
         <p class="mt-8 text-gray-600 dark:text-gray-300">
-          Odio incidunt nam itaque sed eius modi error totam sit illum. Voluptas
-          doloribus asperiores quaerat aperiam. Quidem harum omnis beatae ipsum
-          soluta!<br />
-          Odio incidunt nam itaque sed eius modi error totam sit illum. Voluptas
-          doloribus asperiores quaerat aperiam. Quidem harum omnis beatae ipsum
-          soluta!<br />
-          Odio incidunt nam itaque sed eius modi error totam sit illum. Voluptas
-          doloribus asperiores quaerat aperiam. Quidem harum omnis beatae ipsum
-          soluta!<br />
-          Odio incidunt nam itaque sed eius modi error totam sit illum. Voluptas
-          doloribus asperiores quaerat aperiam. Quidem harum omnis beatae ipsum
-          soluta!<br />
-          Odio incidunt nam itaque sed eius modi error totam sit illum. Voluptas
-          doloribus asperiores quaerat aperiam. Quidem harum omnis beatae ipsum
-          soluta!
+          GT by Cegedim est une plateforme de gestion des tâches et des projets
+          conçue pour répondre aux besoins de l'entreprise Cegedim. Cette
+          solution permet aux différents acteurs de l'entreprise de suivre et de
+          gérer efficacement les projets, les tâches et les équipes en temps
+          réel. Le dashboard de GT by Cegedim offre une visibilité complète aux
+          managers et aux collaborateurs sur l'état de leurs projets, tâches et
+          équipes. Les managers peuvent ainsi surveiller et gérer les projets de
+          leur équipe, affecter des tâches à des groupes de collaborateurs ou à
+          un seul collaborateur, et suivre l'avancement des projets en temps
+          réel. Les collaborateurs, quant à eux, peuvent visualiser les tâches
+          qui leur ont été affectées, suivre l'avancement de celles-ci et
+          échanger avec leur manager et leurs collègues de travail. Le dashboard
+          de GT by Cegedim est facile à utiliser et fournit une vue d'ensemble
+          complète des activités en cours de l'entreprise.
         </p>
         <div class="mt-12 flex gap-6 lg:gap-12 justify-between">
           <img
