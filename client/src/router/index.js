@@ -17,6 +17,7 @@ import newEmploye from '../admin/pages/newEmploye'
 import allTeams from '../admin/pages/allTeams.vue'
 import infoOneTeams from '../admin/pages/infoOneTeams'
 import login from '@/user/master/login'
+import about from '@/user/master/about'
 
 
 const routes = [
@@ -31,9 +32,14 @@ const routes = [
     path : '/login'
   },
   {
+    name : 'about',
+    component: about,
+    path : '/about'
+  },
+  {
     name: 'dashboard-app',
     component: dashboardApp,
-    path: '/employe',
+    path: '/',
     children: [
       {
         name: "Myprojects",
