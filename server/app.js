@@ -39,7 +39,7 @@ const app = express();
 
 const cors = require("cors");
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: true, credentials: true }));
 app.use(
   express.urlencoded({
     extended: true,
@@ -66,7 +66,6 @@ const options = {
 };
 const swaggerSpec = swaggerJsDoc(options);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
 
 // Route d'authentification:
 app.use("/api/auth", authRouter);

@@ -1,39 +1,38 @@
-import { createRouter, createWebHistory } from "vue-router"
-import dashboardApp from '../employe/master/dashboard-app'
-import dashboardAdmin from '../admin/master/dashboardAdmin'
-import Myprojects from '../employe/pages/project'
-import kanban from '../employe/pages/kanban'
-import Statistique from "../employe/pages/statistique"
-import employee from '../admin/pages/employee'
-import home from '../admin/pages/home'
-import profileAdmin from '../admin/pages/profile'
-import AllProjects from '../admin/pages/project'
-import Profile from '../employe/pages/profile'
-import newProject from '../employe/pages/newProject'
-import homePage from '../user/master/homePage'
-import infoProject from '../employe/pages/infoProject'
-import myProject from '../employe/pages/myProjects'
-import newEmploye from '../admin/pages/newEmploye'
-import allTeams from '../admin/pages/allTeams.vue'
-import infoOneTeams from '../admin/pages/infoOneTeams'
-import login from '@/user/master/login'
-
+import { createRouter, createWebHistory } from "vue-router";
+import dashboardApp from "../employe/master/dashboard-app";
+import dashboardAdmin from "../admin/master/dashboardAdmin";
+import Myprojects from "../employe/pages/project";
+import kanban from "../employe/pages/kanban";
+import Statistique from "../employe/pages/statistique";
+import employee from "../admin/pages/employee";
+import home from "../admin/pages/home";
+import profileAdmin from "../admin/pages/profile";
+import AllProjects from "../admin/pages/project";
+import Profile from "../employe/pages/profile";
+import newProject from "../employe/pages/newProject";
+import homePage from "../user/master/homePage";
+import infoProject from "../employe/pages/infoProject";
+import myProject from "../employe/pages/myProjects";
+import newEmploye from "../admin/pages/newEmploye";
+import allTeams from "../admin/pages/allTeams.vue";
+import infoOneTeams from "../admin/pages/infoOneTeams";
+import login from "../user/master/login.vue";
 
 const routes = [
   {
-    name : 'homePage',
+    name: "homePage",
     component: homePage,
-    path : '/'
+    path: "/",
   },
   {
-    name : 'login',
+    name: "login",
     component: login,
-    path : '/login'
+    path: "/login",
   },
   {
-    name: 'dashboard-app',
+    name: "dashboard-app",
     component: dashboardApp,
-    path: '/employe',
+    path: "/employe",
     children: [
       {
         name: "Myprojects",
@@ -70,7 +69,6 @@ const routes = [
         component: myProject,
         path: "myProject",
       },
- 
     ],
   },
   {
