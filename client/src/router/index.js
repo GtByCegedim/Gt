@@ -22,14 +22,19 @@ import about from '@/user/master/about'
 
 const routes = [
   {
-    name : 'homePage',
+    name: "homePage",
     component: homePage,
-    path : '/'
+    path: "/",
   },
   {
-    name : 'login',
+    name: "login",
     component: login,
-    path : '/login'
+    path: "/login",
+  },
+  {
+    name : 'about',
+    component: about,
+    path : '/about'
   },
   {
     name : 'about',
@@ -76,7 +81,6 @@ const routes = [
         component: myProject,
         path: "myProject",
       },
- 
     ],
   },
   {
