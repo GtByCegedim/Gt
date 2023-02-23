@@ -24,8 +24,16 @@ import InvestmentIcon from "./icons/investment.svg";
 import FundIcon from "./icons/fund.svg";
 import DotsCircleIcon from "./icons/dots-circle.svg";
 import DoughnutChart from "./charts/doughnut.svg";
-const menu = [{ name: "project", icon: HomeIcon, route: "project" },
-{ name: "stat", icon: BillIcon, route: "statAdmin" }
+const menu = [
+  { name: "statistiques", icon: BillIcon, route: "statistique" },
+  { name: "gestion de projet", icon: HomeIcon, route: "project" },
+  { name: "créer un projet", icon: HomeIcon, route: "creerProjet" },
+  { name: "kanban", icon: BillIcon, route: "kanban" },
+  { name: "profile", icon: HomeIcon, route: "profile" },
+  { name: "Groupes", icon: HomeIcon, route: "teams" },
+  
+
+  
 ];
 
 const recentTransactions = [
@@ -68,16 +76,12 @@ const invoices = [
 <template>
   <div class="flex min-h-screen w-full bg-gray-700 font-sans">
     <aside class="flex w-64 flex-col px-4 pt-10 pb-6">
-     
-     
-      <div class="w-1/3 h-10 ml-6">
-         <router-link to="/">
- <DashboardIcon class="  text-white  " />
-       
-      </router-link>
-
+      <div class="ml-6 h-10 w-1/3">
+        <router-link to="/">
+          <DashboardIcon class="text-white" />
+        </router-link>
       </div>
-       
+
       <ul class="flex flex-1 flex-col gap-y-10 px-8 pt-14">
         <li v-for="item in menu" :key="item.name">
           <component :is="item.icon" class="h-6 w-6 stroke-current" />
@@ -121,12 +125,15 @@ const invoices = [
                 placeholder="Search"
                 class="rounded-10 bg-gray-900 py-3 pr-4 pl-10 text-sm text-gray-400 focus:text-white focus:outline-none"
               />
-            </div>
-            <button
-              class="rounded-10 bg-gray-900 py-3 px-4 text-sm text-gray-400 hover:text-white"
+            </div><button  class="rounded-10 bg-gray-900 py-3 px-4 text-sm text-gray-400 hover:text-white"
             >
-              Add Account
-            </button>
+          <router-link to="creerProjet">
+              
+            
+              Créer un projet
+          
+          </router-link>  
+          </button>
           </div>
         </div>
         <div class="flex w-2/5 items-center justify-between">
