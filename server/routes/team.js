@@ -8,11 +8,12 @@ const {
   acceptInvitation,
 } = require("../controllers/team");
 const { sendTeamInvitation } = require("../middleware/mailer");
-const { authMiddleware } = require("../middleware/authMiddleware");
+const { authMiddleware, isAdmin } = require("../middleware/authMiddleware");
 
 router.get(
   "/all",
   authMiddleware,
+  isAdmin,
   findAllTeams
   // #swagger.tags = ['Team']
   // #swagger.security = [{ "bearerAuth": [] }]
