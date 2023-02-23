@@ -8,19 +8,16 @@
           class="ml-4 w-36"
           alt="tailus logo"
         />
-        <div
-          class="rounded-3xl border border-gray-400 bg-white shadow-2xl"
-        >
+        <div class="rounded-3xl border border-gray-400 bg-white shadow-2xl">
           <div class="p-8 py-12 sm:p-16">
             <h2 class="mb-8 text-2xl font-bold text-gray-800">
               Sign in to your account
             </h2>
-            <form action="" class="space-y-8">
+            <form @submit.prevent="submitLogin" class="space-y-8">
               <div class="space-y-2 text-left">
-                <label for="email" class="text-gray-900"
-                  >Email</label
-                >
+                <label for="email" class="text-gray-900">Email</label>
                 <input
+                  v-model="email"
                   type="email"
                   name="email"
                   id="email"
@@ -31,9 +28,7 @@
 
               <div>
                 <div class="flex items-center justify-between">
-                  <label for="pwd" class="text-gray-900"
-                    >Password</label
-                  >
+                  <label for="pwd" class="text-gray-900">Password</label>
                   <button class="-mr-2 p-2" type="reset">
                     <span class="text-primary text-sm"
                       >Forgot your password ?</span
@@ -41,6 +36,7 @@
                   </button>
                 </div>
                 <input
+                  v-model="password"
                   type="password"
                   name="pwd"
                   id="pwd"
@@ -53,8 +49,7 @@
                 type="submit"
                 class="before:bg-primary relative flex h-11 w-full items-center justify-center bg-gray-300 px-6 before:absolute before:inset-0 before:rounded-full before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95"
               >
-                <span
-                  class="dark:text-dark relative text-base font-semibold"
+                <span class="dark:text-dark relative text-base font-semibold"
                   >Connect</span
                 >
               </button>
@@ -71,5 +66,27 @@
   </div>
 </template>
 <script>
-export default {};
+import store  from "../store/store.js";
+
+export default {
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    async submitLogin() {
+      try {
+        const token = await store.dispatch("login", {
+          email: this.email,
+          password: this.password,
+        });
+        console.log(token); // The token returned from the login action
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
+};
 </script>
