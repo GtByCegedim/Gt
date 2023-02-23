@@ -4,15 +4,17 @@ import router from "../router";
 
 const store = createStore({
   state: {
-    token: null,
+    token: localStorage.getItem('token'),
     isAuthenticated: false, 
   },
   mutations: {
     setToken(state, token) {
       state.token = token;
+      localStorage.setItem('token', token);
     },
     clearToken(state) {
       state.token = null;
+      localStorage.removeItem('token');
     },
     setIsAuthenticated(state, isAuthenticated) {
       state.isAuthenticated = isAuthenticated;
