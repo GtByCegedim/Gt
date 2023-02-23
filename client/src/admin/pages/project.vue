@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex flex-1 flex-col gap-x-6 py-8">
     <h3 class="text-2xl font-bold text-left py-2">All Projects</h3>
     <div class="overflow-x-auto relative  sm:rounded-lg">
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
