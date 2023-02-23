@@ -8,7 +8,7 @@ import newEmploye from "../admin/pages/newEmploye.vue";
 import Login from "../master/Login.vue";
 import allteams from "../admin/pages/allTeams.vue";
 import dashEmploye from "../employe/master/dashEmploye.vue";
-import  store  from "../store/store";
+import store from "../store/store";
 
 const routes = [
   {
@@ -19,12 +19,14 @@ const routes = [
   {
     name: "Login",
     component: Login,
+    meta: { requiresUnauth: true },
     path: "/Login",
   },
   {
     name: "dashAdmin",
     component: dashAdmin,
     path: "/dashAdmin",
+    meta: { requiresAuth: true },
     children: [
       {
         name: "statAdmin",
@@ -67,11 +69,15 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && !store.state.token) {
-    next({ name: "Login" });
-  } else {
-    next();
-  }
-});
+    if (to.meta.requiresAuth && !store.state.token) {
+      next({ name: "Login" });
+    } else if (to.meta.requiresUnauth && store.state.token) {
+      next({ name: "dashAdmin" });
+    } else if (to.name === "Login" && store.state.token) {
+      next({ name: "dashAdmin" });
+    } else {
+      next();
+    }
+  });
 
 export default router;
