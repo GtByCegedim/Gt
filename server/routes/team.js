@@ -10,26 +10,26 @@ const {
 const { sendTeamInvitation } = require("../middleware/mailer");
 const { authMiddleware } = require("../middleware/authMiddleware");
 
+router.get(
+  "/all",
+  authMiddleware,
+  findAllTeams
+  // #swagger.tags = ['Team']
+  // #swagger.security = [{ "bearerAuth": [] }]
+);
 router.post(
   "/create",
   authMiddleware,
   createTeam
   // #swagger.tags = ['Team']
-);
-router.post(
-  "/invitations",
-  sendTeamInvitation
-  // #swagger.tags = ['Team']
-);
-router.get(
-  "/all",
-  findAllTeams
-  // #swagger.tags = ['Team']
+  // #swagger.security = [{ "bearerAuth": [] }]
 );
 router.post(
   "/accept-invitation/:userId/:teamName",
+  authMiddleware,
   acceptInvitation
   // #swagger.tags = ['Team']
+  // #swagger.security = [{ "bearerAuth": [] }]
 );
 router.use(ErrorHandler);
 

@@ -12,18 +12,21 @@ router.post(
   authMiddleware,
   addSubTask
   // #swagger.tags = ['Subtask']
+  // #swagger.security = [{ "bearerAuth": [] }]
 );
 router.get(
   "/mysubtasks",
   authMiddleware,
   getMySubTasks
   // #swagger.tags = ['Subtask']
+  // #swagger.security = [{ "bearerAuth": [] }]
 );
 router.get(
   "/allsubtasks/:id",
   authMiddleware,
   getSubTaskOfTask
   // #swagger.tags = ['Subtask']
+  // #swagger.security = [{ "bearerAuth": [] }]
 );
 
 module.exports = router;

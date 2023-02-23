@@ -139,8 +139,8 @@
         }
       }
     },
-    "/api/employe/add": {
-      "post": {
+    "/api/employe/all": {
+      "get": {
         "tags": [
           "Employe"
         ],
@@ -150,7 +150,50 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/employe/add": {
+      "post": {
+        "tags": [
+          "Employe"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "lastName": {
+                  "example": "any"
+                },
+                "firstName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/employe/update/{id}": {
@@ -165,13 +208,36 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "lastName": {
+                  "example": "any"
+                },
+                "firstName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/employe/delete/{id}": {
@@ -192,13 +258,18 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
-    "/api/employe/all": {
+    "/api/teams/all": {
       "get": {
         "tags": [
-          "Employe"
+          "Team"
         ],
         "description": "",
         "parameters": [],
@@ -206,7 +277,12 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/teams/create": {
@@ -239,31 +315,12 @@
           "201": {
             "description": "Created"
           }
-        }
-      }
-    },
-    "/api/teams/invitations": {
-      "post": {
-        "tags": [
-          "Team"
-        ],
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      }
-    },
-    "/api/teams/all": {
-      "get": {
-        "tags": [
-          "Team"
-        ],
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
+        },
+        "security": [
+          {
+            "bearerAuth": []
           }
-        }
+        ]
       }
     },
     "/api/teams/accept-invitation/{userId}/{teamName}": {
@@ -290,28 +347,12 @@
           "200": {
             "description": "OK"
           }
-        }
-      }
-    },
-    "/api/task/add/{id}": {
-      "post": {
-        "tags": [
-          "Task"
-        ],
-        "description": "",
-        "parameters": [
+        },
+        "security": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
+            "bearerAuth": []
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        ]
       }
     },
     "/api/task/my": {
@@ -325,7 +366,12 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/task/ofuser": {
@@ -339,7 +385,12 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/task/{id}": {
@@ -360,7 +411,38 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/task/add/{id}": {
+      "post": {
+        "tags": [
+          "Task"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/subtask/{id}": {
@@ -381,7 +463,12 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/subtask/mysubtasks": {
@@ -395,7 +482,12 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/subtask/allsubtasks/{id}": {
@@ -416,7 +508,12 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/status/add/{id}": {
@@ -449,7 +546,44 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/status/delete/{idProject}/{idStatut}": {
+      "delete": {
+        "tags": [
+          "Status"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "idProject",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "idStatut",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/status/update/{id}": {
@@ -482,7 +616,57 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/status/add/{id{id:idStatut}": {
+      "delete": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/project/all": {
+      "get": {
+        "tags": [
+          "Project"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/project/all/my": {
+      "get": {
+        "tags": [
+          "Project"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/project/add": {
@@ -515,7 +699,12 @@
           "201": {
             "description": "Created"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/project/update/{id}": {
@@ -554,35 +743,12 @@
           "200": {
             "description": "OK"
           }
-        }
-      }
-    },
-    "/api/project/all": {
-      "get": {
-        "tags": [
-          "Project"
-        ],
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
+        },
+        "security": [
+          {
+            "bearerAuth": []
           }
-        }
-      }
-    },
-    "/api/project/all/my": {
-      "get": {
-        "tags": [
-          "Project"
-        ],
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        ]
       }
     },
     "/api/project/bane/{id}": {
@@ -603,7 +769,12 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     }
   },

@@ -7,31 +7,39 @@ const {
   deleteUser,
   findAllUsers,
 } = require("../controllers/employéesController");
-const { authMiddleware } = require("../middleware/authMiddleware");
+const { authMiddleware, isAdmin } = require("../middleware/authMiddleware");
 
+router.get(
+  "/all",
+  authMiddleware,
+  isAdmin,
+  findAllUsers
+  // #swagger.tags = ['Employe']
+  // #swagger.security = [{ "bearerAuth": [] }]
+);
 router.post(
   "/add",
   authMiddleware,
+  isAdmin,
   AddEmployee
   // #swagger.tags = ['Employe']
+  // #swagger.security = [{ "bearerAuth": [] }]
 );
 router.put(
   "/update/:id",
   authMiddleware,
+  isAdmin,
   updateUser
   // #swagger.tags = ['Employe']
+  // #swagger.security = [{ "bearerAuth": [] }]
 );
 router.delete(
   "/delete/:id",
   authMiddleware,
+  isAdmin,
   deleteUser
   // #swagger.tags = ['Employe']
-);
-router.get(
-  "/all",
-  authMiddleware,
-  findAllUsers
-  // #swagger.tags = ['Employe']
+  // #swagger.security = [{ "bearerAuth": [] }]
 );
 router.use(ErrorHandler);
 
