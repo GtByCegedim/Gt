@@ -109,7 +109,9 @@ export default {
           <tr
             v-for="invoice in invoices"
             class="border-b border-gray-700 last:border-none"
+            v-bind:key=invoice.no
           >
+          
             <td class="py-4">
               <span class="text-sm font-medium text-white">
                 {{ invoice.no }}
