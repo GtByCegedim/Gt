@@ -1,5 +1,4 @@
-<script >
-
+<script>
 export default {
   data() {
     return {
@@ -7,20 +6,17 @@ export default {
         {
           no: "groupe 1",
           date: "wassim lahali",
-          amount : "ws,sm,ba",
           status: "Successful",
         },
         {
           no: "groupe 2",
           date: "wassim lahalali",
-          amount : "sc,fsf",
           status: "Pending",
         },
-      ]
-    }
-  }
-}
-
+      ],
+    };
+  },
+};
 </script>
 <template>
   <div class="flex w-3/5 flex-col gap-y-8">
@@ -42,7 +38,10 @@ export default {
         <div class="pt-1 text-white">01/03/2023</div>
       </div>
       <div class="h-full w-px bg-gray-700" />
-
+      <div>
+        <div class="text-sm text-gray-400">HEURE</div>
+        <div class="pt-1 text-white">01:36</div>
+      </div>
       <div class="h-full w-px bg-gray-700" />
       <div>
         <div class="text-sm text-gray-400">POSTE</div>
@@ -85,7 +84,7 @@ export default {
         </div>
       </div>
     </div>
-   
+
     <div class="flex flex-col justify-between rounded-10 bg-gray-900 p-7">
       <div class="flex items-center justify-between">
         <h2 class="text-[20px] font-medium text-white">Groupes</h2>
@@ -101,14 +100,14 @@ export default {
           <tr>
             <td class="py-1 text-sm text-gray-400">label</td>
             <td class="py-1 text-sm text-gray-400">manager</td>
-            <td class="py-1 text-sm text-gray-400">membres</td>
-             <td class="py-1 text-sm text-gray-400">statut</td>
+            <td class="py-1 text-sm text-gray-400">statut</td>
           </tr>
         </thead>
         <tbody>
           <tr
             v-for="invoice in invoices"
             class="border-b border-gray-700 last:border-none"
+            :key="invoice.no"
           >
             <td class="py-4">
               <span class="text-sm font-medium text-white">
@@ -120,12 +119,7 @@ export default {
                 {{ invoice.date }}
               </span>
             </td>
-           
-            <td class="py-4">
-              <span class="text-sm text-white">
-                {{ invoice.amount }}
-              </span>
-            </td>
+
             <td class="py-4">
               <div
                 class="flex items-center justify-center gap-x-2 rounded-10 border py-2 px-1"
@@ -156,7 +150,7 @@ export default {
   <div class="flex w-2/5 flex-col gap-y-8">
     <div class="flex flex-col justify-between rounded-10 bg-gray-900 p-7">
       <div class="flex items-center justify-between">
-        <h2 class="text-[20px] font-medium text-white">MISSION</h2>
+        <h2 class="text-[20px] font-medium text-white">PROJETS</h2>
         <button
           class="inline-flex items-center gap-x-1 rounded-10 bg-gray-700 py-2 px-4 text-sm text-gray-400 hover:text-white"
         >
@@ -232,22 +226,20 @@ export default {
     </div>
     <div class="flex flex-col justify-between rounded-10 bg-gray-900 p-7">
       <div class="flex items-center justify-between">
-        <h2 class="text-[20px] font-medium text-white">Revenue statistic</h2>
+        <h2 class="text-[20px] font-medium text-white">Mission</h2>
         <button class="p-2 text-gray-400 hover:text-white">
           <DotsCircleIcon class="h-6 w-6 fill-current" />
         </button>
       </div>
       <div class="flex items-center gap-x-4 pt-4">
-        <div class="rounded-10 bg-gray-700 p-4">
-          <DoughnutChart />
-        </div>
         <div class="flex flex-1 flex-col gap-4">
           <div class="flex items-center gap-x-3 rounded-10 bg-indigo-400 p-4">
             <div class="rounded-full bg-gray-900 p-2 text-indigo-700">
               <InvestmentIcon class="h-6 w-6 fill-current" />
             </div>
             <div>
-              <div class="text-sm text-indigo-700">Investment</div>
+              <div class="text-sm text-indigo-700">tache exemple 1</div>
+              <div class="font-normal">projet 1</div>
             </div>
           </div>
           <div class="flex items-center gap-x-3 rounded-10 bg-green-400 p-4">
@@ -255,8 +247,8 @@ export default {
               <FundIcon class="h-6 w-6 fill-current" />
             </div>
             <div>
-              <div class="text-sm text-green-700">Mutual Fund</div>
-              <div class="font-normal">$8.576</div>
+              <div class="text-sm text-green-700">tache exemple 2</div>
+              <div class="font-normal">Projet 2</div>
             </div>
           </div>
         </div>
