@@ -10,6 +10,14 @@ import allteams from "../admin/pages/allTeams.vue";
 import dashEmploye from "../employe/master/dashEmploye.vue";
 import store from "../store/store";
 
+import projectEmploye from "../employe/pages/project.vue";
+import infoProjet from "../employe/pages/infoProject.vue";
+import statEmploye from "../employe/pages/statEmploye.vue";
+import kanban from "../employe/pages/kanban.vue";
+import profile from "../employe/pages/profile.vue";
+import newProjet from "../employe/pages/newProject.vue";
+import teams from "../employe/pages/Teams.vue";
+
 const routes = [
   {
     name: "home",
@@ -59,7 +67,43 @@ const routes = [
     name: "dashEmploye",
     component: dashEmploye,
     path: "/dashEmploye",
-    meta: { requiresAuth: true },
+    children: [
+      {
+        name: "projectEmploye",
+        component: projectEmploye,
+        path: "project",
+      },
+      {
+        name: "infoProjet",
+        component: infoProjet,
+        path: "infoProjet",
+      },
+      {
+        name: "statEmploye",
+        component: statEmploye,
+        path: "statistique",
+      },
+      {
+        name: "kanban",
+        component: kanban,
+        path: "kanban",
+      },
+      {
+        name: "profile",
+        component: profile,
+        path: "profile",
+      },
+      {
+        name: "newProjet",
+        component: newProjet,
+        path: "creerProjet",
+      },
+      {
+        name: "teams",
+        component: teams,
+        path: "teams",
+      },
+    ],
   },
 ];
 
@@ -69,15 +113,15 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    if (to.meta.requiresAuth && !store.state.token) {
-      next({ name: "Login" });
-    } else if (to.meta.requiresUnauth && store.state.token) {
-      next({ name: "dashAdmin" });
-    } else if (to.name === "Login" && store.state.token) {
-      next({ name: "dashAdmin" });
-    } else {
-      next();
-    }
-  });
+  if (to.meta.requiresAuth && !store.state.token) {
+    next({ name: "Login" });
+  } else if (to.meta.requiresUnauth && store.state.token) {
+    next({ name: "dashAdmin" });
+  } else if (to.name === "Login" && store.state.token) {
+    next({ name: "dashAdmin" });
+  } else {
+    next();
+  }
+});
 
 export default router;
