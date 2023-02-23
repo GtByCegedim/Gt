@@ -1,5 +1,5 @@
 <template>
-  <div class="py-8">
+  <div class="py-8 flex-1">
     <h3 class="text-2xl font-bold text-left mb-8">Kanban Board</h3>
 
     <div class="flex flex-row  justify-center space-x-4">
