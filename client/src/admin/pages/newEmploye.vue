@@ -116,7 +116,7 @@ export default {
     async submitForm() {
       try {
         const response = await axios.post(
-          "http://localhost:5050/api/employe/add",
+          "http://localhost:3000/api/employe/add",
           {
             firstName: this.firstName,
             lastName: this.lastName,
