@@ -106,27 +106,23 @@
 </template>
 
 <script>
-import { useAuthStore } from "../../stores/Auth";
+import store from "../../store/store";
 import { ref } from "vue";
 
 export default {
   setup() {
-    const authStore = useAuthStore();
-
+    const authStore = store();
     const email = ref("");
     const password = ref("");
-
     const submitForm = async () => {
       try {
         await authStore.login({ email: email.value, password: password.value });
-
         // Redirect to home page or do something else on successful login
       } catch (error) {
         console.error(error);
         // Display error message to user
       }
     };
-
     return {
       email,
       password,

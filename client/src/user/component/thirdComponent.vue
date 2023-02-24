@@ -17,18 +17,24 @@
           Création de nouveaux projets:
         </h1>
         <p class="mt-8 text-gray-600 dark:text-gray-300">
-          <strong>le manager d'équipe peux créer des
-          projets, des taches et les assigner à un groupe de collaborateur ou à
-          un seul collaborateur.</strong> <br />
-          Odio incidunt nam itaque sed eius modi error totam sit illum. Voluptas
-          doloribus asperiores quaerat aperiam. Quidem harum omnis beatae ipsum
-          soluta!<br />
-          Odio incidunt nam itaque sed eius modi error totam sit illum. Voluptas
-          doloribus asperiores quaerat aperiam. Quidem harum omnis beatae ipsum
-          soluta!<br />
-          Odio incidunt nam itaque sed eius modi error totam sit illum. Voluptas
-          doloribus asperiores quaerat aperiam. Quidem harum omnis beatae ipsum
-          soluta!
+          <strong
+            >le manager d'équipe peux créer des projets, des taches et les
+            assigner à un groupe de collaborateur ou à un seul
+            collaborateur.</strong
+          >
+          <br />
+          Cette fonctionnalité permet à un manager d'équipe de créer de nouveaux
+          projets et tâches pour son équipe en utilisant une interface dédiée.
+          Le manager peut spécifier le nom et la description du projet, ainsi
+          que les détails de la tâche, tels que le titre, la description, les
+          dates d'échéance et le statut. Le manager peut également attribuer des
+          tâches à un groupe de collaborateurs ou à un collaborateur individuel
+          en utilisant l'interface de création de tâches. Une fois que les
+          tâches ont été créées et attribuées, les membres de l'équipe peuvent
+          accéder à leurs tâches via leur propre interface et suivre leur
+          progression. Cette fonctionnalité permet au manager d'organiser
+          efficacement le travail de son équipe et de s'assurer que les tâches
+          sont correctement attribuées et suivies.
         </p>
       </div>
       <div class="overflow-hidden w-full lg:w-7/12 lg:-mr-16">

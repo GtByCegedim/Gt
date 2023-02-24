@@ -12,7 +12,8 @@
     "nodemailer": "^6.9.0",
     "pg": "^8.9.0",
     "secure-random-password": "^0.2.3",
-    "sequelize": "^6.29.0",
+    "sequelize": "^6.28.0",
+    "swagger-autogen": "^2.23.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^4.6.0"
   },
@@ -22,6 +23,6 @@
   "scripts": {
     "test": "jest",
     "start:prod": "NODE_ENV=production node app.js",
-    "start:dev": "nodemon app.js"
+    "start:dev": "nodemon app.js --ignore swagger.json"
   }
 }
