@@ -17,9 +17,11 @@ const Project = sequelize.define("project", {
     manager : {
       type: Sequelize.INTEGER,
       allowNull: false
-    },bane: {
+    },
+    bane: {
       type: Sequelize.BOOLEAN,
-      allowNull: false
+      allowNull: false,
+      default: false
     }
 
   });

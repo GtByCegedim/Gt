@@ -16,13 +16,13 @@ const User_role = require("../models/user-role");
  * @returns The user object.
  */
 const AddEmployee = async (req, res, next) => {
-  const { body } = req;
-  if (!body.lastName || !body.email || !body.firstName) {
+  const { lastName, firstName, email } = req.body;
+  if (!lastName || !email || !firstName) {
     return next(new ErrorResponse("Fill all filled", 401));
   } else {
     const findUser = await User.findOne({
       where: {
-        email: body.email,
+        email: email,
       },
     });
     if (findUser) {
@@ -47,7 +47,7 @@ const AddEmployee = async (req, res, next) => {
         },
       });
       const creatUser = await User.create({
-        ...body,
+        ...req.body,
         password: generatePassword,
       });
       if (!creatUser) {
@@ -83,17 +83,17 @@ const AddEmployee = async (req, res, next) => {
  * @returns The user object
  */
 const updateUser = async (req, res, next) => {
-  const { body } = req;
+  const { lastName, firstName, email } = req.body;
   const user_id = req.params.id;
   try {
-    if (!body.lastName || !body.email || !body.firstName) {
+    if (!lastName || !email || !firstName) {
       return next(new ErrorResponse("all fields required", 400));
     }
     const update_User = await User.update(
       {
-        lastName: body.lastName,
-        firstName: body.firstName,
-        email: body.email,
+        lastName: lastName,
+        firstName: firstName,
+        email: email,
       },
       {
         where: {
