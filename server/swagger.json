@@ -921,7 +921,11 @@
     "servers": {
       "type": "array",
       "example": [
+<<<<<<< Updated upstream
         "http://localhost:5050"
+=======
+        "http://localhost:3000"
+>>>>>>> Stashed changes
       ],
       "items": {
         "type": "string"
