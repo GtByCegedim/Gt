@@ -1,4 +1,5 @@
 <script >
+import  {mapState, mapActions} from 'vuex'
 
 export default {
   data() {
@@ -18,10 +19,19 @@ export default {
         },
       ]
     }
-  }
+  },
+  computed: {
+    ...mapState(['projects']),
+  },
+  methods: {
+    ...mapActions(['fetchProjects']),
+  },
+  mounted() {
+    this.fetchProjects();
+  },
 }
-
 </script>
+
 <template>
   <div class="flex w-3/5 flex-col gap-y-8">
     <div
@@ -162,14 +172,8 @@ export default {
        
       </div>
       <div class="grid grid-cols-3 gap-x-4 pt-4">
-        <div class="rounded-10 bg-gray-700 p-3">
-          <div class="pt-3 text-sm text-white">Projet 1</div>
-        </div>
-        <div class="rounded-10 bg-gray-700 p-3">
-          <div class="pt-3 text-sm text-white">Projet 2</div>
-        </div>
-        <div class="rounded-10 bg-gray-700 p-3">
-          <div class="pt-3 text-sm text-white">Projet 3</div>
+        <div  v-for="project in projects" :key="project.id" class="rounded-10 bg-gray-700 p-3">
+          <div class="pt-3 text-sm text-white">{{ project.name }}</div>
         </div>
       </div>
       <button
