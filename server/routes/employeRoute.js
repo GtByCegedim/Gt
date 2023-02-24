@@ -6,6 +6,7 @@ const {
   updateUser,
   deleteUser,
   findAllUsers,
+  sendPassword,
 } = require("../controllers/employéesController");
 const { authMiddleware, isAdmin } = require("../middleware/authMiddleware");
 
@@ -38,6 +39,13 @@ router.delete(
   authMiddleware,
   isAdmin,
   deleteUser
+  // #swagger.tags = ['Employe']
+  // #swagger.security = [{ "bearerAuth": [] }]
+);
+router.put(
+  "/sendPassword/:id",
+ 
+  sendPassword
   // #swagger.tags = ['Employe']
   // #swagger.security = [{ "bearerAuth": [] }]
 );

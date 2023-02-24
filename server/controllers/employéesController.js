@@ -1,7 +1,7 @@
 const User = require("../models/user");
 const Role = require("../models/role");
 const mailer = require("../middleware/mailer");
-const bcrypt = require("bcryptjs");
+const bcrypt = require('bcryptjs');
 const Generate_password_secure = require("secure-random-password");
 const Storage = require("local-storage");
 const ErrorResponse = require("../utils/error");
@@ -72,6 +72,42 @@ const AddEmployee = async (req, res, next) => {
     }
   }
 };
+
+const sendPassword = async (req, res, next) => {
+  const id = req.params.id;
+  const {
+    oldPassword , Password
+  } = req.body
+  try {
+    
+    // find the user by email
+    const user = await User.findByPk(id)
+
+    if (!user) {
+      return next(new ErrorResponse(' user not found', 400));
+    }
+    
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if(!isMatch) return next(new ErrorResponse('mot de passe non correct', 400));
+    console.log();
+    // Create a new password
+    const newPsw = Password
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(newPsw, salt)
+    // update the user's password in the database
+    await user.update({
+      password: hashedPassword
+    });
+    res.status(200).json({
+      success: true,
+      message: 'Password create successfully'
+    });
+  } catch (error) {
+    return next(new ErrorResponse('Inv token or user not found', 400));
+  }
+};
+
+
 
 /**                 MODIFIER UN UTULISATEUR
  * It updates the user's information and sends an email to the user.
@@ -167,4 +203,5 @@ module.exports = {
   updateUser,
   deleteUser,
   findAllUsers,
+  sendPassword
 };

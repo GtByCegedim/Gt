@@ -49,7 +49,9 @@ const authMiddleware = async (req, res, next) => {
  */
 const isAdmin = async (req, res, next) => {
   const user_id = req.user.id;
-
+  if(!req.user){
+    return next(new ErrorResponse('Not User Found, Please Login again', 401));
+  }
   try {
     if (!user_id) {
       return next(new ErrorResponse("Not User Found, Please Login again", 401));
