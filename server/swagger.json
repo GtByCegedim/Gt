@@ -158,6 +158,25 @@
         ]
       }
     },
+    "/api/employe/me": {
+      "get": {
+        "tags": [
+          "Employe"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
     "/api/employe/add": {
       "post": {
         "tags": [
@@ -921,11 +940,7 @@
     "servers": {
       "type": "array",
       "example": [
-<<<<<<< Updated upstream
-        "http://localhost:5050"
-=======
-        "http://localhost:3000"
->>>>>>> Stashed changes
+        "http://localhost:5060"
       ],
       "items": {
         "type": "string"
