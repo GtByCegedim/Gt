@@ -266,6 +266,47 @@
         ]
       }
     },
+    "/api/employe/sendPassword/{id}": {
+      "put": {
+        "tags": [
+          "Employe"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "oldPassword": {
+                  "example": "any"
+                },
+                "Password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
     "/api/teams/all": {
       "get": {
         "tags": [
@@ -803,7 +844,7 @@
     "servers": {
       "type": "array",
       "example": [
-        "http://localhost:3000"
+        "http://localhost:9090"
       ],
       "items": {
         "type": "string"

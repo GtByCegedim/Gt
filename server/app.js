@@ -35,6 +35,7 @@ createAdmin();
 const createRole = require("./config/role");
 createRole();
 // Set up Express app
+
 const app = express();
 const cors = require("cors");
 app.use(express.json());
