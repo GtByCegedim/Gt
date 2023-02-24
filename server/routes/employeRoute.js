@@ -7,6 +7,7 @@ const {
   deleteUser,
   findAllUsers,
   sendPassword,
+  getCurrentUser,
 } = require("../controllers/employéesController");
 const { authMiddleware, isAdmin } = require("../middleware/authMiddleware");
 
@@ -15,6 +16,13 @@ router.get(
   authMiddleware,
   isAdmin,
   findAllUsers
+  // #swagger.tags = ['Employe']
+  // #swagger.security = [{ "bearerAuth": [] }]
+);
+router.get(
+  "/me",
+  authMiddleware,
+  getCurrentUser
   // #swagger.tags = ['Employe']
   // #swagger.security = [{ "bearerAuth": [] }]
 );
@@ -44,7 +52,7 @@ router.delete(
 );
 router.put(
   "/sendPassword/:id",
- 
+
   sendPassword
   // #swagger.tags = ['Employe']
   // #swagger.security = [{ "bearerAuth": [] }]
