@@ -10,7 +10,7 @@ const Team = require('./team')
 const Project = require('./project')
 const Task_User = require('./task_user')
 const Project_User = require('./project_user')
-const Team_User = require('./task_user');
+const team_user = require('./team_user');
 const user_notifications = require('./user_notifications');
 const task_statut = require('./task_statut')
 const Statut = require('./status')
@@ -66,13 +66,13 @@ Notification.belongsToMany(User, { through: user_notifications });
 
 /* This is a many-to-many relationship between Team and User. */
 Team.belongsToMany(User, {
-  through: Team_User,
+  through: team_user,
   as: 'User',
   foreignKey: 'teamId',
   otherKey: 'userId',
 });
 User.belongsToMany(Team, {
-  through: Team_User,
+  through: team_user,
   as: 'Team',
   foreignKey: 'userId',
   otherKey: 'teamId',
