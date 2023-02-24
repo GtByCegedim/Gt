@@ -844,7 +844,7 @@
     "servers": {
       "type": "array",
       "example": [
-        "http://localhost:9090"
+        "http://localhost:5050"
       ],
       "items": {
         "type": "string"
