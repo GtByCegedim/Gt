@@ -1,7 +1,9 @@
 const Sequelize = require('sequelize');
 
-
-const sequelize = new Sequelize('postgres://bader:2001@postgres:5432/GT');
+const sequelize = new Sequelize(process.env.DATABASE, process.env.DB_USER, process.env.password, {
+  dialect: 'postgres',
+  logging: false,
+});
 
 sequelize
   .authenticate()
@@ -9,7 +11,7 @@ sequelize
     console.log('Connection to the database has been established successfully.');
 
     // Create the tables for the models
-    return sequelize.sync();
+    return sequelize.sync({alter:true});
   })
   .then(async () => {
     console.log('Tables created successfully.');
