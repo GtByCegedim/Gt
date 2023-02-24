@@ -67,7 +67,12 @@ const AddEmployee = async (req, res, next) => {
           new ErrorResponse("unexpected issue while creating role", 401)
         );
       Storage("stockPassword", stockPassword);
-      mailer.main("AddEmployé", creatUser);
+      try {
+        mailer.main("AddEmployé", creatUser);
+      } catch (error) {
+        console.log(error)
+      }
+      
       await res.json(creatUser);
     }
   }

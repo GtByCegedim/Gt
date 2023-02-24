@@ -18,7 +18,7 @@
                     >firstname</label
                   >
                   <input
-                    v-model="firstname"
+                    v-model="firstName"
                     type="text"
                     name="firstname"
                     id="firstname"
@@ -30,7 +30,7 @@
                     >lastName</label
                   >
                   <input
-                    v-model="lastname"
+                    v-model="lastName"
                     type="text"
                     name="lastname"
                     id="lastname"
@@ -107,8 +107,8 @@ import axios from "axios";
 export default {
   data() {
     return {
-      firstname: "",
-      lastname: "",
+      firstName: "",
+      lastName: "",
       email: "",
     };
   },
@@ -118,16 +118,16 @@ export default {
         const response = await axios.post(
           "http://localhost:5050/api/employe/add",
           {
-            firstname: this.firstname,
-            lastname: this.lastname,
+            firstName: this.firstName,
+            lastName: this.lastName,
             email: this.email,
           },
           {withCredentials: true}
         );
         console.log(response.data);
         // Réinitialiser les valeurs des champs du formulaire
-        this.firstname = "";
-        this.lastname = "";
+        this.firstName = "";
+        this.lastName = "";
         this.email = "";
       } catch (error) {
         console.error(error);
