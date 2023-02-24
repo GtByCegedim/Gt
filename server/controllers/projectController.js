@@ -7,7 +7,7 @@ const User = require("../models/user.js");
 exports.createProject = async (req, res, next) => {
   const manager = req.user;
   if (!manager) {
-    return next(new apiError("no manager", 401));
+    return next(new apiError("no manager Found", 404));
   }
   try {
     const { name, description, deadline } = req.body;
