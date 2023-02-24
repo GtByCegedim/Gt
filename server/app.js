@@ -28,11 +28,11 @@ const {
 } = require("./models");
 const sequelize = require("./config/database");
 //Import admin's creation config
-const createAdmin = require("./config/admin");
-createAdmin();
-//Import creation Roles
-const createRole = require("./config/role");
-createRole();
+// const createAdmin = require("./config/admin");
+// createAdmin();
+// //Import creation Roles
+// const createRole = require("./config/role");
+// createRole();
 
 // Set up Express app
 const app = express();
