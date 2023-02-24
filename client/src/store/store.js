@@ -4,17 +4,17 @@ import router from "../router";
 
 const store = createStore({
   state: {
-    token: localStorage.getItem('token'),
-    isAuthenticated: false, 
+    token: localStorage.getItem("token"),
+    isAuthenticated: false,
   },
   mutations: {
     setToken(state, token) {
       state.token = token;
-      localStorage.setItem('token', token);
+      localStorage.setItem("token", token);
     },
     clearToken(state) {
       state.token = null;
-      localStorage.removeItem('token');
+      localStorage.removeItem("token");
     },
     setIsAuthenticated(state, isAuthenticated) {
       state.isAuthenticated = isAuthenticated;
@@ -24,7 +24,7 @@ const store = createStore({
     async login({ commit }, { email, password }) {
       try {
         const response = await axios.post(
-          "http://localhost:5050/api/auth/login",
+          "http://localhost:3000/api/auth/login",
           {
             email,
             password,

@@ -1,5 +1,8 @@
 <template>
-  <div class="pt-32 md:py-12 xl:container m-auto px-6 md:px-12" style="padding-top: 10%; background-color: #EEEDE7;">
+  <div
+    class="pt-32 md:py-12 xl:container m-auto px-6 md:px-12"
+    style="padding-top: 10%; background-color: #eeede7"
+  >
     <div
       aria-hidden="true"
       class="absolute inset-0 my-auto w-96 h-32 rotate-45 bg-gradient-to-r from-primaryLight to-secondaryLight blur-3xl opacity-50 dark:opacity-20"
@@ -20,24 +23,19 @@
         <h1
           class="text-gray-900 font-bold text-4xl md:text-6xl lg:text-5xl xl:text-6xl dark:text-white"
         >
-          Un dashboard donnant le collaborateur une visibilité sur ses projets, ses taches, ses équipes ...
+          Un dashboard donnant le manager une visibilité sur ses projets, ses
+          taches, ses équipes ...
         </h1>
         <p class="mt-8 text-gray-600 dark:text-gray-300">
-          Odio incidunt nam itaque sed eius modi error totam sit illum. Voluptas
-          doloribus asperiores quaerat aperiam. Quidem harum omnis beatae ipsum
-          soluta!<br />
-          Odio incidunt nam itaque sed eius modi error totam sit illum. Voluptas
-          doloribus asperiores quaerat aperiam. Quidem harum omnis beatae ipsum
-          soluta!<br />
-          Odio incidunt nam itaque sed eius modi error totam sit illum. Voluptas
-          doloribus asperiores quaerat aperiam. Quidem harum omnis beatae ipsum
-          soluta!<br />
-          Odio incidunt nam itaque sed eius modi error totam sit illum. Voluptas
-          doloribus asperiores quaerat aperiam. Quidem harum omnis beatae ipsum
-          soluta!<br />
-          Odio incidunt nam itaque sed eius modi error totam sit illum. Voluptas
-          doloribus asperiores quaerat aperiam. Quidem harum omnis beatae ipsum
-          soluta!
+          Il s'agit d'un tableau de bord (ou dashboard) qui permet au manager de
+          visualiser les projets en cours, les tâches associées à ces projets,
+          ainsi que les équipes travaillant sur ces projets. Le but est de
+          fournir une vue d'ensemble claire et rapide de l'état d'avancement des
+          projets et des tâches, afin que le manager puisse prendre des
+          décisions éclairées et ajuster les priorités en fonction des besoins
+          de l'entreprise. Le dashboard peut également inclure des graphiques et
+          des tableaux pour aider le manager à comprendre les tendances et les
+          performances des projets et des équipes.
         </p>
       </div>
     </div>
