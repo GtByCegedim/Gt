@@ -817,6 +817,77 @@
           }
         ]
       }
+    },
+    "/api/project/getProject/{id}": {
+      "get": {
+        "tags": [
+          "Project"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/project/getProjectsBanned": {
+      "get": {
+        "tags": [
+          "Project"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/project/delete/{id}": {
+      "get": {
+        "tags": [
+          "Project"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
     }
   },
   "definitions": {
@@ -844,7 +915,7 @@
     "servers": {
       "type": "array",
       "example": [
-        "http://localhost:5050"
+        "http://localhost:3000"
       ],
       "items": {
         "type": "string"

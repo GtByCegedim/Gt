@@ -6,6 +6,8 @@ const store = createStore({
   state: {
     token: localStorage.getItem("token"),
     isAuthenticated: false,
+    projects: [],
+    currentUser: null,
   },
   mutations: {
     setToken(state, token) {
@@ -18,6 +20,12 @@ const store = createStore({
     },
     setIsAuthenticated(state, isAuthenticated) {
       state.isAuthenticated = isAuthenticated;
+    },
+    setProjects(state, projects) {
+      state.projects = projects;
+    },
+    setCurrentUser(state, currentUser) {
+      state.currentUser = currentUser;
     },
   },
   actions: {
@@ -40,9 +48,43 @@ const store = createStore({
         throw error;
       }
     },
+    async fetchProjects({ commit, state }) {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/project/all",
+          {
+            headers: {
+              Authorization: `Bearer ${state.token}`,
+            },
+          }
+        );
+        const projects = response.data;
+        commit("setProjects", projects);
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
+    async fetchCurrentUser({ commit, state }) {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/employe/me",
+          {
+            headers: {
+              Authorization: `Bearer ${state.token}`,
+            },
+          }
+        );
+        const currentUser = response.data;
+        commit("setCurrentUser", currentUser);
+      } catch (error) {
+        console.error(error.response.data.message);
+      }
+    },
     logout({ commit }) {
       commit("setIsAuthenticated", false);
       commit("clearToken");
+      commit("setCurrentUser", null);
     },
   },
 });
