@@ -7,7 +7,7 @@ const User = require("../models/user.js");
 exports.createProject = async (req, res, next) => {
   const manager = req.user;
   if (!manager) {
-    return next(new apiError("no manager", 500));
+    return next(new apiError("no manager", 401));
   }
   try {
     const { name, description, deadline } = req.body;
@@ -28,7 +28,7 @@ exports.createProject = async (req, res, next) => {
       bane: false,
     });
     if (!project) {
-      return next(new apiError("Error creating project", 500));
+      return next(new apiError("Error creating project", 401));
     }
     res.status(201).json({
       message: "Project created successfully",
@@ -85,7 +85,7 @@ exports.UpdateProject = async (req, res, next) => {
       }
     );
     if (!UpdateProject) {
-      return next(new apiError("Error Updating project", 500));
+      return next(new apiError("Error Updating project", 404));
     }
     res.json({
       message: "Project was updated succesfully",
@@ -94,14 +94,14 @@ exports.UpdateProject = async (req, res, next) => {
     return next(new apiError(error, 500));
   }
 };
-/* This function is used to find all projects that are not banned. */
 
+/* This function is used to find all projects that are not banned. */
 exports.findALLprojects = async (req, res, next) => {
   try {
     const getProjects = await Project.findAll({
-      where: {
-        bane: false,
-      },
+      where : {
+        bane : false
+      }
     });
     if (getProjects.length == 0) {
       return next(new apiError("No project found", 404));
@@ -123,13 +123,53 @@ exports.OnlyMyProjects = async (req, res, next) => {
       },
     });
     if (getMyProjects.length == 0) {
-      return next(new apiError("No project found", 500));
+      return next(new apiError("No project found", 404));
     }
     res.json(getMyProjects);
   } catch (error) {
     return next(new apiError(error, 500));
   }
 };
+
+/* This function is used to get a project by its id. */
+exports.getOneProject = async (req, res, next) => {
+  const project_id = req.params.id;
+  try {
+    const getMyProject = await Project.findByPk(project_id)
+    if (!getMyProject) {
+      return next(new apiError("No project found", 404));
+    }
+    if(getMyProject.bane != false) {return next(new apiError("project bloqued", 400));}
+    res.json({
+      message: `project by id : ${project_id}`,
+      getMyProject
+    });
+  } catch (error) {
+    return next(new apiError(error, 500));
+  }
+};
+
+
+/* This function is used to get all the projects that are banned. */
+exports.getProjectsBanned = async (req,res,next) => {
+   try {
+    const findAllProjects = await Project.findAll({
+      where : {
+        bane : true
+      }
+    })
+    if(findAllProjects.length == 0 ) {
+      return next(new apiError("No project deleted", 400));
+    }
+    res.json({
+      message : `All Project deleted `,
+      findAllProjects
+    })
+   } catch (error) {
+    return next(new apiError(error, 500));
+   }
+}
+
 
 /* This function is used to ban a project. */
 exports.baneProject = async (req, res, next) => {
@@ -138,7 +178,7 @@ exports.baneProject = async (req, res, next) => {
   try {
     const findProject = await Project.findByPk(project_id);
     if (!findProject) {
-      return next(new apiError("No project have this Id ", 500));
+      return next(new apiError("No project have this Id ", 404));
     }
     if (manager_id != findProject.manager) {
       return next(new apiError("You are not manager ", 500));
@@ -154,7 +194,7 @@ exports.baneProject = async (req, res, next) => {
       }
     );
     if (!baneProject) {
-      return next(new apiError("Projet not banned", 500));
+      return next(new apiError("Projet not banned", 400));
     }
     res.json({
       message: "projet est banné",
@@ -163,3 +203,26 @@ exports.baneProject = async (req, res, next) => {
     return next(new apiError(error, 500));
   }
 };
+
+
+/* This function is used to delete a project. */
+exports.deleteProject = async (req, res ,next) => {
+  const project_id = req.params.id;
+  try {
+    const findProject = await Project.findOne({
+      where : {
+        id:project_id
+      }
+    })
+    if(!findProject) {
+      return next(new apiError("project not found", 400));
+    }
+    const deleted = await findProject.destroy();
+    console.log(deleted);
+    res.json({
+      message : `Project deleted`
+    })
+  } catch (error) {
+    return next(new apiError(error, 500));
+  }
+}
