@@ -103,8 +103,8 @@ exports.findALLprojects = async (req, res, next) => {
         bane: false,
       },
     });
-    if (getProjects.length) {
-      return next(new apiError("No project found", 500));
+    if (getProjects.length == 0) {
+      return next(new apiError("No project found", 404));
     }
     res.json(getProjects);
   } catch (error) {

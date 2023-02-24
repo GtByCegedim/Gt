@@ -6,6 +6,7 @@ const store = createStore({
   state: {
     token: localStorage.getItem("token"),
     isAuthenticated: false,
+    projects: [],
   },
   mutations: {
     setToken(state, token) {
@@ -18,6 +19,9 @@ const store = createStore({
     },
     setIsAuthenticated(state, isAuthenticated) {
       state.isAuthenticated = isAuthenticated;
+    },
+    setProjects(state, projects) {
+      state.projects = projects;
     },
   },
   actions: {
@@ -43,6 +47,20 @@ const store = createStore({
     logout({ commit }) {
       commit("setIsAuthenticated", false);
       commit("clearToken");
+    },
+    async fetchProjects({ commit, state }) {
+      try {
+        const response = await axios.get('http://localhost:3000/api/project/all', {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        });
+        const projects = response.data;
+        commit('setProjects', projects);
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
     },
   },
 });
