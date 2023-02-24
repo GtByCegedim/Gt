@@ -326,7 +326,7 @@
         ]
       }
     },
-    "/api/teams/create": {
+    "/api/teams/create/{id}": {
       "post": {
         "tags": [
           "Team"
@@ -334,18 +334,18 @@
         "description": "",
         "parameters": [
           {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "body",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "any"
-                },
-                "teamLeaderId": {
-                  "example": "any"
-                },
-                "invitedEmails": {
                   "example": "any"
                 }
               }
@@ -364,7 +364,7 @@
         ]
       }
     },
-    "/api/teams/accept-invitation/{userId}/{teamName}": {
+    "/api/teams/addUser/{id}": {
       "post": {
         "tags": [
           "Team"
@@ -372,16 +372,22 @@
         "description": "",
         "parameters": [
           {
-            "name": "userId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
-            "name": "teamName",
-            "in": "path",
-            "required": true,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -915,7 +921,7 @@
     "servers": {
       "type": "array",
       "example": [
-        "http://localhost:3000"
+        "http://localhost:5050"
       ],
       "items": {
         "type": "string"
