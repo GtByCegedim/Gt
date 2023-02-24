@@ -1,24 +1,23 @@
 # Base image
 FROM node:16.17.0-bullseye-slim
 
-# Set the working directory
+# Set working directory
 WORKDIR /client
 
-# Copy package.json and package-lock.json
-COPY package*.json /client/
+# Copy package.json and package-lock.json to working directory
+COPY package*.json ./
 
-# Install dependencies
+# Install app dependencies
 RUN npm install
 
-# Copy all files to the container
+# Copy all app files to working directory
 COPY . .
 
-# Build the application
+# Build the app
 RUN npm run build
 
+# Expose port 3000
+EXPOSE 3000
 
-# Expose the server port
-EXPOSE 8080
-
-# Start the server
-CMD [ "npm", "run", "serve" ]
+# Start the app
+CMD ["npm", "run", "dev"]
