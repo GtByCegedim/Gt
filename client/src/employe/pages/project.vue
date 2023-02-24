@@ -1,26 +1,7 @@
 <template>
-  <div>
-    <h3 class="text-2xl font-bold text-left py-2">All Projects</h3>
-    <a
-      class="
-        button_style
-        inline-block
-        rounded
-        bg-gray-700
-        px-8
-        py-3
-        text-sm
-        font-medium
-        text-white
-        transition
-        hover:rotate-2 hover:scale-110
-        focus:outline-none focus:ring
-        active:bg-gray-500
-      "
-      href="/download"
-    >
-      Create
-    </a>
+  <div class="flex-1">
+    <h3 class="text-2xl w font-bold text-left py-2">All Projects</h3>
+   
     <div class="overflow-x-auto relative sm:rounded-lg">
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead
@@ -90,7 +71,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+         
+           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <router-link to="infoProjet" >
             <th
               scope="row"
               class="
@@ -104,6 +87,7 @@
             >
               Apple MacBook Pro 17"
             </th>
+         </router-link>
             <td class="py-4 px-6">Sliver</td>
             <td class="py-4 px-6">Laptop</td>
             <td class="py-4 px-6">
@@ -317,11 +301,5 @@ export default {};
 </script>
 
 <style>
-.button_style{
-    position: absolute;
-    top: 12%;
-    right: 3%;
-    width: 8%;
-    height: 6%;
-}
+
 </style>

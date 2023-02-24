@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col items-center mt-10">
-    <img :src="profileImage" class="w-24 h-24 rounded-full object-cover mb-4" />
+  <div class="flex-1 items-center mt-10">
+    <img  :src="profileImage" class="w-24 image  h-24 rounded-full object-cover mb-4" />
     <h2 class="text-xl font-medium text-gray-800 mb-2">Lahlali Wassim</h2>
     <p class="text-gray-500 text-sm mb-2">wlahlali343@gmail.com</p>
     <div class="flex items-center mb-4">
@@ -53,3 +53,8 @@ export default {
   },
 };
 </script>
+<style>
+.image{
+  margin-left: 47%;
+}
+</style>

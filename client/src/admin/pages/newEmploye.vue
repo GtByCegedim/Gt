@@ -1,48 +1,105 @@
 <template>
-  <h1 class="text-2xl text-gray-800">Creer un nouveau employe</h1>
-  <section>
-    <div class="max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
- <div class="grid grid-cols-2 gap-y-8 lg:grid-cols-2 lg:items-center lg:gap-x-16">
-  <div class="mx-auto max-w-lg text-center lg:mx-0 lg:text-left">
-    <form class="shadow-md rounded px-8">
-      <div class="mb-4">
-        <label class="block text-gray-700 font-bold mb-2" for="name">fistname</label>
-        <input v-model="firsname" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Nom du projet" />
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 font-bold mb-2" for="name">lastname</label>
-        <input v-model="lastname" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Nom du projet" />
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 font-bold mb-2" for="description">email</label>
-        <textarea v-model="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="description" placeholder="Description"></textarea>
-      </div>
-      <div class="flex items-center justify-center pb-3">
-        <button type="submit" class="inline-flex w-full items-center justify-center rounded-lg bg-gray-800 px-5 py-3 text-white sm:w-auto">
-          <span class="font-medium">Create </span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="ml-3 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </button>
-      </div>
-    </form>
-  </div>
-  <div class="flex justify-between">
-    <a href="#" class="block">
-      <img alt="Signage" src="https://app.digitalrecruiters.com/generated_contents/images/career_picture/LRPvyza9-careers-0016-srh.jpg" class="h-56 w-full rounded-bl-3xl rounded-tr-3xl object-cover sm:h-72" />
-      <div class="mt-4 sm:flex sm:items-center sm:justify-center sm:gap-4">
-        <strong class="font-medium">Planification</strong>
-        <span class="hidden sm:block sm:h-px sm:w-8 sm:bg-yellow-500"></span>
-        <p class="mt-0.5 opacity-50 sm:mt-0">Succes/Production</p>
-      </div>
-    </a>
-  </div>
-</div>
+  <div class="flex w-3/5 flex-col">
+   <h1 class="text-[30px] font-bold text-indigo-400" >Ajouter un Employe</h1>
+    <div class="relative py-16">
+     
+      <div
+        class="container relative m-auto px-6 text-gray-200 md:px-12 xl:px-40"
+      >
+        <div class="widthFull  m-auto space-y-4">
+          <div
+            class="widthFull rounded-3xl border border-gray-100 bg-white shadow-2xl shadow-gray-600/10 backdrop-blur-2xl dark:border-gray-700 dark:bg-gray-800"
+          >
+            <div class="p-8 py-12 sm:p-16">
+              <form action="" class="space-y-4">
+                <div class="space-y-2">
+                  <label for="email" class="text-gray-600 dark:text-gray-300"
+                    >firstname</label
+                  >
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    autocomplete="username"
+                    class="block w-full rounded-md border border-gray-200 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:border-gray-600"
+                  />
+                </div>
+                <div class="space-y-2">
+                  <label for="email" class="text-gray-600 dark:text-gray-300"
+                    >lastName</label
+                  >
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    autocomplete="username"
+                    class="block w-full rounded-md border border-gray-200 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:border-gray-600"
+                  />
+                </div>
+                <div>
+                  <div class="flex items-center justify-between space-y-2">
+                    <label
+                      for="email"
+                      class="text-center text-gray-600 dark:text-gray-300"
+                      >email</label
+                    >
+                  </div>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    class="block w-full rounded-md border border-gray-200 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:border-gray-600"
+                  />
+                </div>
 
+                <button
+                  type="submit"
+                  class="before:bg-primary relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95"
+                >
+                  <span
+                    class="dark:text-dark relative text-base font-semibold text-white"
+                    >ajouter</span
+                  >
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
+  <div class="flex w-2/5 flex-col gap-y-8">
+    <div class="group space-y-6">
+      <img
+        src="https://images.pexels.com/photos/8866738/pexels-photo-8866738.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        alt="art cover"
+        loading="lazy"
+        width="1000"
+        height="667"
+        class="h-80 w-full rounded-3xl object-cover object-top transition-all duration-500 group-hover:rounded-xl"
+      />
+      <h3 class="text-3xl font-semibold text-gray-800 dark:text-white">
+        Enrechie votre entreprise par des nouveaux employes
+      </h3>
+    </div>
+    <div class="group space-y-6">
+      <img
+        src="https://images.pexels.com/photos/8867472/pexels-photo-8867472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        alt="art cover"
+        loading="lazy"
+        width="1000"
+        height="667"
+        class="h-80 w-full rounded-3xl object-cover object-top transition-all duration-500 group-hover:rounded-xl"
+      />
+      
+    </div>
+  </div>
 </template>
-
+<style>
+.widthFull {
+  width: 100%;
+}
+</style>
 <script>
 export default {
   data() {

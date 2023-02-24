@@ -1,133 +1,136 @@
-import { createRouter, createWebHistory } from "vue-router"
-import dashboardApp from '../employe/master/dashboard-app'
-import dashboardAdmin from '../admin/master/dashboardAdmin'
-import Myprojects from '../employe/pages/project'
-import kanban from '../employe/pages/kanban'
-import Statistique from "../employe/pages/statistique"
-import employee from '../admin/pages/employee'
-import home from '../admin/pages/home'
-import profileAdmin from '../admin/pages/profile'
-import AllProjects from '../admin/pages/project'
-import Profile from '../employe/pages/profile'
-import newProject from '../employe/pages/newProject'
-import homePage from '../user/master/homePage'
-import infoProject from '../employe/pages/infoProject'
-import myProject from '../employe/pages/myProjects'
-import newEmploye from '../admin/pages/newEmploye'
-import allTeams from '../admin/pages/allTeams.vue'
-import infoOneTeams from '../admin/pages/infoOneTeams'
-import login from '@/user/master/login'
-import about from '@/user/master/about'
+import {
+    createRouter,
+    createWebHistory
+} from "vue-router";
+import dashAdmin from '../admin/master/dashboard.vue'
+import statAdmin from '../admin/pages/statAdmin.vue'
+import project from '../admin/pages/project.vue'
+import home from '../user/master/homePage.vue'
+import employe from '../admin/pages/employee.vue'
+import newEmploye from '../admin/pages/newEmploye.vue'
+import Login from '../master/Login.vue'
+import allteams from '../admin/pages/allTeams.vue'
+
+import dashEmploye from '../employe/master/dashEmploye.vue'
+import projectEmploye from '../employe/pages/project.vue'
+import infoProjet from '../employe/pages/infoProject.vue'
+import statEmploye from '../employe/pages/statEmploye.vue'
+import kanban from '../employe/pages/kanban.vue'
+import profile from '../employe/pages/profile.vue'
+import newProjet from '../employe/pages/newProject.vue'
+import teams from '../employe/pages/Teams.vue'
 
 
-const routes = [
-  {
-    name : 'homePage',
-    component: homePage,
-    path : '/'
-  },
-  {
-    name : 'login',
-    component: login,
-    path : '/login'
-  },
-  {
-    name : 'about',
-    component: about,
-    path : '/about'
-  },
-  {
-    name: 'dashboard-app',
-    component: dashboardApp,
-    path: '/employe',
-    children: [
-      {
-        name: "Myprojects",
-        component: Myprojects,
-        path: "Myprojects",
-      },
-      {
-        name: "Profile",
-        component: Profile,
-        path: "profile",
-      },
-      {
-        name: "kanban",
-        component: kanban,
-        path: "kanban",
-      },
-      {
-        name: "Statistique",
-        component: Statistique,
-        path: "statistique",
-      },
-      {
-        name: "newProject",
-        component: newProject,
-        path: "newProject",
-      },
-      {
-        name: "infoProject",
-        component: infoProject,
-        path: "infoProject",
-      },
-      {
-        name: "myProject",
-        component: myProject,
-        path: "myProject",
-      },
- 
-    ],
-  },
-  {
-    name: "dashboardAdmin-app",
-    component: dashboardAdmin,
-    path: "/admin",
-    children: [
-      {
-        name: "statistique",
+const routes = [{
+        name: 'home',
         component: home,
-        path: "home",
-      },
-      {
-        name: "profile",
-        component: profileAdmin,
-        path: "profile",
-      },
-      {
-        name: "employee",
-        component: employee,
-        path: "employee",
-      },
-      {
-        name: "allProjects",
-        component: AllProjects,
-        path: "projects",
-      },
-      {
-        name: "newEmploye",
-        component: newEmploye,
-        path: "newEmploye",
-      },
-      {
-        name: "allTeams",
-        component: allTeams,
-        path: "allTeams",
-      },
-      {
-        name: "infoOneTeams",
-        component: infoOneTeams,
-        path: "infoOneTeams",
-      },
-    ],
-  },
-];
+        path: '/',
+
+    },
+    {
+        name: 'Login',
+        component: Login,
+        path: '/Login',
+
+    },
+    {
+        name: 'dashAdmin',
+        component: dashAdmin,
+        path: '/dashAdmin',
+        children: [{
+                name: 'statAdmin',
+                component: statAdmin,
+                path: 'statAdmin',
+
+            },
+            {
+                name: 'project',
+                component: project,
+                path: 'project',
+
+            },
+            {
+                name: 'employe',
+                component: employe,
+                path: 'employe',
+
+            },
+            {
+                name: 'newEmploye',
+                component: newEmploye,
+                path: 'newEmploye',
+
+            },
+            {
+                name: 'allteams',
+                component: allteams,
+                path: 'allteams',
+
+            },
+
+
+        ]
+
+    },
+    {
+        name: 'dashEmploye',
+        component: dashEmploye,
+        path: '/dashEmploye',   
+        children : [
+            {
+                name: 'projectEmploye',
+                component: projectEmploye,
+                path: 'project',
+
+            },
+            {
+                name: 'infoProjet',
+                component: infoProjet,
+                path: 'infoProjet',
+
+            },
+            {
+                name: 'statEmploye',
+                component: statEmploye,
+                path: 'statistique',
+
+            },
+            {
+                name: 'kanban',
+                component: kanban,
+                path: 'kanban',
+
+            },
+            {
+                name: 'profile',
+                component: profile,
+                path: 'profile',
+
+            },
+            {
+                name: 'newProjet',
+                component: newProjet,
+                path: 'creerProjet',
+
+            },
+            {
+                name: 'teams',
+                component: teams,
+                path: 'teams',
+
+            },
+
+        ]  
+    }
+]
+
 const router = Router();
 export default router;
+
 function Router() {
-  const router = new createRouter({
-    history: createWebHistory(),
-    routes,
-  });
-  return router;
+    const router = new createRouter({
+        history: createWebHistory(),
+        routes,
+    });
+    return router;
 }
