@@ -34,6 +34,9 @@ const store = createStore({
     setProjects(state, projects) {
       state.projects = projects;
     },
+    setMyProjects(state, myProjects) {
+      state.myProjects = myProjects;
+    },
     setCurrentUser(state, currentUser) {
       state.currentUser = currentUser;
     },
@@ -80,6 +83,23 @@ const store = createStore({
         );
         const projects = response.data;
         commit("setProjects", projects);
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
+    async fetchMyProjects({ commit, state }) {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/project/all/my",
+          {
+            headers: {
+              Authorization: `Bearer ${state.token}`,
+            },
+          }
+        );
+        const myProjects = response.data;
+        commit("setMyProjects", myProjects);
       } catch (error) {
         console.error(error);
         throw error;
