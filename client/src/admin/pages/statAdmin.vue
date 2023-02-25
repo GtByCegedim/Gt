@@ -17,7 +17,8 @@ export default {
           amount : "sc,fsf",
           status: "Pending",
         },
-      ]
+      ],
+      currentDate: new Date().toLocaleDateString(),
     }
   },
   computed: {
@@ -49,7 +50,7 @@ export default {
       <div class="h-full w-px bg-gray-700" />
       <div>
         <div class="text-sm text-gray-400">DATE</div>
-        <div class="pt-1 text-white">01/03/2023</div>
+        <div class="pt-1 text-white">{{ currentDate }}</div>
       </div>
       <div class="h-full w-px bg-gray-700" />
 

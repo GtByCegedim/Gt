@@ -71,11 +71,12 @@ const menu = [
                 class="rounded-10 bg-gray-900 py-3 pr-4 pl-10 text-sm text-gray-400 focus:text-white focus:outline-none"
               />
             </div>
-            <button
+            <router-link
+              to="/dashAdmin/newEmploye"
               class="rounded-10 bg-gray-900 py-3 px-4 text-sm text-gray-400 hover:text-white"
             >
               Ajouter un employe
-            </button>
+            </router-link>
           </div>
         </div>
         <div class="flex w-2/5 items-center justify-between">
