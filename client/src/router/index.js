@@ -28,7 +28,7 @@ const routes = [
   {
     name: "Login",
     component: Login,
-    meta: { requiresUnauth: true },
+    meta: { requiresUnauth: true, role: "admin" },
     path: "/Login",
   },
   {
@@ -73,6 +73,7 @@ const routes = [
     name: "dashEmploye",
     component: dashEmploye,
     path: "/dashEmploye",
+    meta: { requiresAuth: true, role: "employe" },
     children: [
       {
         name: "projectEmploye",
@@ -125,6 +126,9 @@ router.beforeEach((to, from, next) => {
     next({ name: "dashAdmin" });
   } else if (to.name === "Login" && store.state.token) {
     next({ name: "dashAdmin" });
+  } else if (to.meta.role && store.state.user.role !== to.meta.role) {
+    // <-- add role check
+    next({ name: "home" });
   } else {
     next();
   }
