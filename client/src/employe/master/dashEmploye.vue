@@ -26,7 +26,7 @@ import DotsCircleIcon from "./icons/dots-circle.svg";
 import DoughnutChart from "./charts/doughnut.svg";
 const menu = [
   { name: "statistiques", icon: BillIcon, route: "statistique" },
-  { name: "gestion de projet", icon: HomeIcon, route: "project" },
+  { name: "projets", icon: HomeIcon, route: "project" },
   { name: "créer un projet", icon: HomeIcon, route: "creerProjet" },
   { name: "kanban", icon: BillIcon, route: "kanban" },
   { name: "profile", icon: HomeIcon, route: "profile" },
