@@ -79,8 +79,8 @@ const sendTeamInvitation = (user, teamLeader, teamName) => {
   let subject = `Invitation to join team ${teamName} from ${teamLeader}`;
   let html = `<div style='height: 150px; width: 100%;'>
       <h3> 👋 Bonjour ${user.firstName} ${user.lastName}! </h3>
-      <p>You have been invited to join team ${teamName} from ${teamLeader}. Please click the link below to accept the invitation.</p>
-      <a href="http://localhost:${process.env.port}/accept-invitation/${user.id}/${teamName}">Accept Invitation</a>
+      <p>vous étes ajouter comme membre de groupe :   ${teamName} par ${teamLeader}.</p>
+      <p>Bonne chance pour tes prochainnes taches </p>
     </div>`;
 
   let transporter = nodemailer.createTransport({

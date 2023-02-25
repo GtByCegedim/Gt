@@ -5,9 +5,10 @@ const ErrorHandler = require("../middleware/errorMiddleware");
 const {
   createTeam,
   findAllTeams,
-  acceptInvitation,
+  addUserInTeam,
+  baneTeam,
+  findAllUserOfTeam,
 } = require("../controllers/team");
-const { sendTeamInvitation } = require("../middleware/mailer");
 const { authMiddleware, isAdmin } = require("../middleware/authMiddleware");
 
 router.get(
@@ -18,17 +19,35 @@ router.get(
   // #swagger.tags = ['Team']
   // #swagger.security = [{ "bearerAuth": [] }]
 );
+
 router.post(
-  "/create",
+  "/create/:id",
   authMiddleware,
   createTeam
   // #swagger.tags = ['Team']
   // #swagger.security = [{ "bearerAuth": [] }]
 );
+
 router.post(
-  "/accept-invitation/:userId/:teamName",
+  "/addUser/:id",
   authMiddleware,
-  acceptInvitation
+  addUserInTeam
+  // #swagger.tags = ['Team']
+  // #swagger.security = [{ "bearerAuth": [] }]
+);
+
+router.put(
+  "/bane/:id",
+  authMiddleware,
+  baneTeam
+  // #swagger.tags = ['Team']
+  // #swagger.security = [{ "bearerAuth": [] }]
+);
+
+router.get(
+  "/allUser/:id",
+  authMiddleware,
+  findAllUserOfTeam
   // #swagger.tags = ['Team']
   // #swagger.security = [{ "bearerAuth": [] }]
 );

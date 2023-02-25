@@ -10,6 +10,7 @@ import Login from "../master/Login.vue";
 import allteams from "../admin/pages/allTeams.vue";
 import dashEmploye from "../employe/master/dashEmploye.vue";
 import store from "../store/store";
+import employeOfTeam from '../admin/pages/employeeOfTeam.vue'
 
 import projectEmploye from "../employe/pages/project.vue";
 import infoProjet from "../employe/pages/infoProject.vue";
@@ -28,7 +29,7 @@ const routes = [
   {
     name: "Login",
     component: Login,
-    meta: { requiresUnauth: true },
+    meta: { requiresUnauth: true, role: "admin" },
     path: "/Login",
   },
   {
@@ -63,6 +64,11 @@ const routes = [
         path: "allteams",
       },
       {
+        name: "employeOfTeam",
+        component: employeOfTeam,
+        path: "employeOfTeam",
+      },
+      {
         name: "profileAdmin",
         component: profileAdmin,
         path: "profile",
@@ -73,6 +79,7 @@ const routes = [
     name: "dashEmploye",
     component: dashEmploye,
     path: "/dashEmploye",
+    meta: { requiresAuth: true, role: "employe" },
     children: [
       {
         name: "projectEmploye",
@@ -125,6 +132,9 @@ router.beforeEach((to, from, next) => {
     next({ name: "dashAdmin" });
   } else if (to.name === "Login" && store.state.token) {
     next({ name: "dashAdmin" });
+  } else if (to.meta.role && store.state.user.role !== to.meta.role) {
+    // <-- add role check
+    next({ name: "home" });
   } else {
     next();
   }
