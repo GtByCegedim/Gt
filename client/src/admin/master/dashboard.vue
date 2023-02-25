@@ -112,7 +112,9 @@ const menu = [
               @click="toggleDropdown"
             >
               <img src="" alt="" class="h-8 w-8 rounded-full object-cover" />
-              <span class="pl-2 text-sm">  {{ currentUser.firstName }}   {{ currentUser.lastName }}</span>
+              <span class="pl-2 text-sm">
+                {{ currentUser.firstName }} {{ currentUser.lastName }}</span
+              >
               <ChevronDownIcon class="h-6 w-6 stroke-current" />
             </button>
             <div
@@ -149,6 +151,7 @@ const menu = [
 </template>
 
 <script>
+import axios from "axios";
 import { mapState, mapActions } from "vuex";
 
 export default {
@@ -160,6 +163,39 @@ export default {
   },
   methods: {
     ...mapActions(["fetchCurrentUser"]),
+  },
+
+  data() {
+    return {
+      joke: "",
+    };
+  },
+  computed: {
+    ...mapState(["showDropdown"]),
+  },
+  methods: {
+    ...mapActions(["logout"]),
+    toggleDropdown() {
+      this.$store.state.showDropdown = !this.$store.state.showDropdown;
+    },
+    async fetchJoke() {
+      try {
+        const response = await axios.get(
+          "https://v2.jokeapi.dev/joke/Any?type=singlepart&lang=fr&safe=true"
+        );
+        const jokeData = response.data;
+        const joke =
+          jokeData.type === "twopart"
+            ? `${jokeData.setup} ${jokeData.delivery}`
+            : jokeData.joke;
+        this.joke = joke;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
+  mounted() {
+    this.fetchJoke();
   },
 };
 </script>
