@@ -36,9 +36,51 @@
               </span>
             </td>
 
-            <td class="py-4">
+            <td class="py">
               <span class="text-sm text-white">
-                {{ invoice.amount }}
+                <div class="flex items-center justify-center">
+                <div
+                  class="
+                    bg-gray-300
+                    w-6
+                    h-6
+                    rounded-full
+                    flex
+                    items-center
+                    justify-center
+                  "
+                >
+                  <span class="text-gray-600 font-bold text-sm">AB</span>
+                </div>
+                <div
+                  class="
+                    bg-gray-300
+                    w-6
+                    h-6
+                    rounded-full
+                    flex
+                    items-center
+                    justify-center
+                  "
+                >
+                  <span class="text-gray-600 font-bold text-sm">CD</span>
+                </div>
+               <router-link to="addMember">
+                 <div
+                  class="
+                    bg-gray-300
+                    w-6
+                    h-6
+                    rounded-full
+                    flex
+                    items-center
+                    justify-center
+                  "
+                >
+                  <span class="text-gray-600 font-bold text-sm">+</span>
+                </div>
+               </router-link>
+              </div>
               </span>
             </td>
             <td class="py-4">
@@ -74,16 +116,15 @@ export default {
   data() {
     return {
       invoices: [
-        {
-          no: "groupe 1",
-          date: "wassim lahali",
-          amount : "ws,sm,ba",
-          status: "active",
-        },
+      
         {
           no: "groupe 2",
           date: "wassim lahalali",
-          amount : "sc,fsf",
+          status: "Pending",
+        },
+          {
+          no: "groupe 2",
+          date: "wassim lahalali",
           status: "Pending",
         },
       ]
