@@ -40,15 +40,18 @@ const menu = [
       <div
         class="sticky bottom-4 rounded-10 bg-gray-900 bg-[url(/img/line-pattern.svg)] bg-top p-6"
       >
-        <div class="text-white">hahaha <span class="font-bold">$5</span></div>
-        <div class="mt-3 text-sm text-gray-400">
-          blague de moment c est une blague qui fait rire un peut pour enlenver
-          le stresse chez les employées
+        <div class="text-white">
+          <div>Rire au travail : Parce qu'un sourire peut tout changer.</div>
         </div>
+        <div v-if="joke" class="mt-3 text-sm text-gray-400">
+          {{ joke }}
+        </div>
+        <div v-else class="mt-3 text-sm text-gray-400">Loading joke...</div>
         <button
+          @click="fetchJoke"
           class="mt-4 w-full rounded-lg bg-gray-700 py-2 text-sm font-normal text-gray-400 hover:text-white"
         >
-          Invite
+          une autre
         </button>
       </div>
     </aside>
@@ -71,11 +74,12 @@ const menu = [
                 class="rounded-10 bg-gray-900 py-3 pr-4 pl-10 text-sm text-gray-400 focus:text-white focus:outline-none"
               />
             </div>
-            <button
+            <router-link
+              to="/dashAdmin/newEmploye"
               class="rounded-10 bg-gray-900 py-3 px-4 text-sm text-gray-400 hover:text-white"
             >
               Ajouter un employe
-            </button>
+            </router-link>
           </div>
         </div>
         <div class="flex w-2/5 items-center justify-between">
@@ -145,9 +149,15 @@ const menu = [
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import axios from "axios";
+import { mapState, mapActions } from "vuex";
 
 export default {
+  data() {
+    return {
+      joke: "",
+    };
+  },
   computed: {
     ...mapState(["showDropdown"]),
   },
@@ -156,6 +166,24 @@ export default {
     toggleDropdown() {
       this.$store.state.showDropdown = !this.$store.state.showDropdown;
     },
+    async fetchJoke() {
+      try {
+        const response = await axios.get(
+          "https://v2.jokeapi.dev/joke/Any?type=singlepart&lang=fr&safe=true"
+        );
+        const jokeData = response.data;
+        const joke =
+          jokeData.type === "twopart"
+            ? `${jokeData.setup} ${jokeData.delivery}`
+            : jokeData.joke;
+        this.joke = joke;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
+  mounted() {
+    this.fetchJoke();
   },
 };
 </script>

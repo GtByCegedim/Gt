@@ -83,7 +83,6 @@ export default {
           }
         );
         this.users = response.data;
-        console.log(response)
       } catch (error) {
         console.error(error);
       }
