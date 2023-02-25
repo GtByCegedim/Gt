@@ -120,18 +120,21 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && !store.state.token) {
+  const token = store.state.token;
+  const user = store.state.user;
+
+  if (to.meta.requiresAuth && !token) {
     next({ name: "Login" });
-  } else if (to.meta.requiresUnauth && store.state.token) {
+  } else if (to.meta.requiresUnauth && token) {
     next({ name: "dashAdmin" });
-  } else if (to.name === "Login" && store.state.token) {
+  } else if (to.name === "Login" && token) {
     next({ name: "dashAdmin" });
-  } else if (to.meta.role && store.state.user.role !== to.meta.role) {
-    // <-- add role check
-    next({ name: "home" });
+  } else if (to.meta.role && user && user.role !== to.meta.role) {
+    next({ name: user.role === "admin" ? "dashAdmin" : "dashEmploye" });
   } else {
     next();
   }
 });
+
 
 export default router;

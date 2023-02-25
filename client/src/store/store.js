@@ -34,7 +34,7 @@ const store = createStore({
     },
   },
   actions: {
-    async login({ commit }, { email, password }) {
+    async login({ commit, dispatch }, { email, password }) {
       try {
         const response = await axios.post(
           "http://localhost:3000/api/auth/login",
@@ -44,15 +44,9 @@ const store = createStore({
           }
         );
         const token = response.data.token;
-        const userRole = response.data.role;
         commit("setToken", token);
-        commit("setUserRole", userRole);
         commit("setIsAuthenticated", true);
-        if (userRole === "admin") {
-          router.push("/dashAdmin/statAdmin");
-        } else if (userRole === "employe") {
-          router.push("/dashEmploye/statEmploye");
-        }
+        dispatch("fetchCurrentUser");
         return token;
       } catch (error) {
         console.error(error);
@@ -76,7 +70,7 @@ const store = createStore({
         throw error;
       }
     },
-    async fetchCurrentUser({ commit, state }) {
+    async fetchCurrentUser({ commit, state, dispatch }) {
       try {
         const response = await axios.get(
           "http://localhost:3000/api/employe/me",
@@ -88,8 +82,15 @@ const store = createStore({
         );
         const currentUser = response.data;
         commit("setCurrentUser", currentUser);
+        commit("setUserRole", currentUser.role);
+        if (currentUser.role === "admin") {
+          router.push("/dashAdmin/statAdmin");
+        } else if (currentUser.role === "employe") {
+          router.push("/dashEmploye/statEmploye");
+        }
       } catch (error) {
         console.error(error.response.data.message);
+        dispatch("logout");
       }
     },
     logout({ commit }) {
