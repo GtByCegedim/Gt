@@ -4,8 +4,8 @@
     <h2 class="text-xl font-medium text-white mb-2">{{ currentUser.firstName }} {{ currentUser.lastName }}</h2>
     <p class="text-gray-500 text-sm mb-2">{{ currentUser.email }}</p>
     <div class="flex items-center mb-4">
-      <span class="bg-green-500 text-white py-1 px-2 rounded-full text-xs mr-2">{{ role }}</span>
-      <span class="bg-blue-500 text-white py-1 px-2 rounded-full text-xs">{{ department }}</span>
+      <!-- <span class="bg-green-500 text-white py-1 px-2 rounded-full text-xs mr-2">{{ role }}</span>
+      <span class="bg-blue-500 text-white py-1 px-2 rounded-full text-xs">{{ department }}</span> -->
     </div>
     <div class="w-full">
       <div class="bg-white shadow-md rounded-lg overflow-hidden">
