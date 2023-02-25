@@ -77,6 +77,7 @@ const addUserInTeam = async (req, res, next) => {
       teamId: findTeamById.id
     })
     if (!AddUserInTeam) return next(new apiError("error added user in team", 401));
+    mailer.sendTeamInvitation(findUserById , manager.lastName , findTeamById.name )
     res.json({
       message: `User as a name : ${findUserById.firstName} added secces in team ${findTeamById.name}`
     })
@@ -86,8 +87,64 @@ const addUserInTeam = async (req, res, next) => {
 
 }
 
+/**
+ * It takes a team id and a manager id, finds the team by id, checks if the manager is the manager of
+ * the team, and if so, bans the team
+ * @param req - id manager + id team
+ * @param res - The response object.
+ * @param next - This is a function that you call when you're done with your middleware.
+ */
+const baneTeam = async (req, res, next) => {
+  try {
+    const manager_id = req.user.id;
+    const team_id = req.params.id;
+    const findTeamById = await Team.findByPk(team_id)
+    if (!findTeamById) return next(new apiError("No team found", 404));
+    if (findTeamById.manager != manager_id) return next(new apiError("You are not manager of this Team", 401));
+    const baneTeam = await Team.update({
+      bane: true
+    }, {
+      where: {
+        id: team_id
+      }
+    })
+    if(!baneTeam) return next(new apiError(" team not baned", 404));
+    res.json({
+      message : `le groupe ${findTeamById.name} is banned`
+    })
+  } catch (error) {
+    return next(new apiError(error, 500));
+  }
+}
+
+const findAllUserOfTeam = async (req, res ,next) => {
+  let users = []
+  try {
+    const team_id = req.params.id;
+    const checkTeam = await Team.findByPk(team_id)
+    if(!checkTeam) return next(new apiError("No team found", 404));
+    const getAllUserTeamId = await Team_User.findAll({
+      where : {
+        teamId:team_id
+      }
+    })
+    if(getAllUserTeamId.length  == 0) return next(new apiError("No team found", 404));
+    const userIds = getAllUserTeamId.map(teamUser => teamUser.dataValues.userId); 
+    if(userIds.length == 0) return next(new apiError("No Users found", 404));
+    for(let i = 1 ; i<=userIds.length;i++) {
+      const findUser = await User.findByPk(i)
+      users.push(findUser)
+    }
+    res.json(users)
+  } catch (error) {
+    return next(new apiError(error, 500));
+  }
+}
+
 module.exports = {
   createTeam,
   findAllTeams,
-  addUserInTeam
+  addUserInTeam,
+  baneTeam,
+  findAllUserOfTeam
 };

@@ -6,6 +6,8 @@ const {
   createTeam,
   findAllTeams,
   addUserInTeam,
+  baneTeam,
+  findAllUserOfTeam,
 } = require("../controllers/team");
 const { authMiddleware, isAdmin } = require("../middleware/authMiddleware");
 
@@ -34,7 +36,21 @@ router.post(
   // #swagger.security = [{ "bearerAuth": [] }]
 );
 
+router.put(
+  "/bane/:id",
+  authMiddleware,
+  baneTeam
+  // #swagger.tags = ['Team']
+  // #swagger.security = [{ "bearerAuth": [] }]
+);
 
+router.get(
+  "/allUser/:id",
+  authMiddleware,
+  findAllUserOfTeam
+  // #swagger.tags = ['Team']
+  // #swagger.security = [{ "bearerAuth": [] }]
+);
 router.use(ErrorHandler);
 
 module.exports = router;
