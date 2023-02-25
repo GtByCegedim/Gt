@@ -6,8 +6,16 @@ const Team = sequelize.define("team", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  teamLeaderId: {
+  manager: {
     type: Sequelize.INTEGER,
+    allowNull: false,
+  },
+  project: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
+  bane: {
+    type: Sequelize.BOOLEAN,
     allowNull: false,
   },
 });

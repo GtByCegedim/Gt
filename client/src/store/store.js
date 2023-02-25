@@ -8,6 +8,8 @@ const store = createStore({
     isAuthenticated: false,
     projects: [],
     currentUser: null,
+    showDropdown: false,
+    userRole: null,
   },
   mutations: {
     setToken(state, token) {
@@ -27,6 +29,9 @@ const store = createStore({
     setCurrentUser(state, currentUser) {
       state.currentUser = currentUser;
     },
+    setUserRole(state, userRole) {
+      state.userRole = userRole;
+    },
   },
   actions: {
     async login({ commit }, { email, password }) {
@@ -39,9 +44,15 @@ const store = createStore({
           }
         );
         const token = response.data.token;
+        const userRole = response.data.role;
         commit("setToken", token);
+        commit("setUserRole", userRole);
         commit("setIsAuthenticated", true);
-        router.push("/dashAdmin/statAdmin");
+        if (userRole === "admin") {
+          router.push("/dashAdmin/statAdmin");
+        } else if (userRole === "employe") {
+          router.push("/dashEmploye/statEmploye");
+        }
         return token;
       } catch (error) {
         console.error(error);
@@ -83,8 +94,10 @@ const store = createStore({
     },
     logout({ commit }) {
       commit("setIsAuthenticated", false);
+      commit("setUserRole", null);
       commit("clearToken");
       commit("setCurrentUser", null);
+      location.reload();
     },
   },
 });
