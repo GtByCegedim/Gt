@@ -11,6 +11,8 @@ import allteams from "../admin/pages/allTeams.vue";
 import dashEmploye from "../employe/master/dashEmploye.vue";
 import store from "../store/store";
 import employeOfTeam from '../admin/pages/employeeOfTeam.vue'
+import newTeam from '../employe/pages/newTeam.vue'
+import addMember from '../employe/pages/addMember.vue'
 
 import projectEmploye from "../employe/pages/project.vue";
 import infoProjet from "../employe/pages/infoProject.vue";
@@ -114,6 +116,16 @@ const routes = [
         name: "teams",
         component: teams,
         path: "teams",
+      },
+      {
+        name: "newTeam",
+        component: newTeam,
+        path: "newTeam",
+      },
+      {
+        name: "addMember",
+        component: addMember,
+        path: "addMember",
       },
     ],
   },
