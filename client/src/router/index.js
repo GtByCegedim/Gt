@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import dashAdmin from "../admin/master/dashboard.vue";
+import profileAdmin from "../admin/pages/profile.vue"
 import statAdmin from "../admin/pages/statAdmin.vue";
 import project from "../admin/pages/project.vue";
 import home from "../user/master/homePage.vue";
@@ -30,14 +31,13 @@ const routes = [
   {
     name: "Login",
     component: Login,
-    meta: { requiresUnauth: true, role: "admin" },
     path: "/Login",
   },
   {
     name: "dashAdmin",
     component: dashAdmin,
     path: "/dashAdmin",
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, userRole: "admin" },
     children: [
       {
         name: "statAdmin",
@@ -69,13 +69,18 @@ const routes = [
         component: employeOfTeam,
         path: "employeOfTeam",
       },
+      {
+        name: "profileAdmin",
+        component: profileAdmin,
+        path: "profile",
+      },
     ],
   },
   {
     name: "dashEmploye",
     component: dashEmploye,
     path: "/dashEmploye",
-    meta: { requiresAuth: true, role: "employe" },
+    meta: { requiresAuth: true, userRole: "employe" },
     children: [
       {
         name: "projectEmploye",

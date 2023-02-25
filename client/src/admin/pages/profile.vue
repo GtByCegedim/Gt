@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-col items-center mt-10">
     <img :src="profileImage" class="w-24 h-24 rounded-full object-cover mb-4">
-    <h2 class="text-xl font-medium text-gray-800 mb-2">{{ name }}</h2>
-    <p class="text-gray-500 text-sm mb-2">{{ email }}</p>
+    <h2 class="text-xl font-medium text-white mb-2">{{ currentUser.firstName }} {{ currentUser.lastName }}</h2>
+    <p class="text-gray-500 text-sm mb-2">{{ currentUser.email }}</p>
     <div class="flex items-center mb-4">
-      <span class="bg-green-500 text-white py-1 px-2 rounded-full text-xs mr-2">{{ role }}</span>
-      <span class="bg-blue-500 text-white py-1 px-2 rounded-full text-xs">{{ department }}</span>
+      <!-- <span class="bg-green-500 text-white py-1 px-2 rounded-full text-xs mr-2">{{ role }}</span>
+      <span class="bg-blue-500 text-white py-1 px-2 rounded-full text-xs">{{ department }}</span> -->
     </div>
     <div class="w-full">
       <div class="bg-white shadow-md rounded-lg overflow-hidden">
@@ -32,17 +32,17 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
-  name: 'ProfileComponent',
-  props: {
-    name: String,
-    email: String,
-    role: String,
-    department: String,
-    address: String,
-    phone: String,
-    birthDate: String,
-    profileImage: String
-  }
+  mounted() {
+    this.fetchCurrentUser();
+  },
+  computed: {
+    ...mapState(["currentUser"]),
+  },
+  methods: {
+    ...mapActions(["fetchCurrentUser"]),
+  },
 }
 </script>

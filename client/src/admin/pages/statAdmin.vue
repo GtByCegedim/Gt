@@ -23,12 +23,15 @@ export default {
   },
   computed: {
     ...mapState(['projects']),
+    ...mapState(["currentUser"]),
   },
   methods: {
     ...mapActions(['fetchProjects']),
+    ...mapActions(["fetchCurrentUser"]),
   },
   mounted() {
     this.fetchProjects();
+    this.fetchCurrentUser();
   },
 }
 </script>
@@ -44,7 +47,7 @@ export default {
         </div>
         <div>
           <div class="text-sm text-gray-400">NOM COMPLET</div>
-          <div class="pt-1 text-white">Lahlali Wassim</div>
+          <div class="pt-1 text-white">  {{ currentUser.firstName }}   {{ currentUser.lastName }}</div>
         </div>
       </div>
       <div class="h-full w-px bg-gray-700" />
