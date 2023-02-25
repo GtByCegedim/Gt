@@ -65,21 +65,25 @@ const addUserInTeam = async (req, res, next) => {
     const manager = req.user;
     const team_id = req.params.id;
     const {
-      user_id
+      email
     } = req.body;
     const findTeamById = await Team.findByPk(team_id)
     if (!findTeamById) return next(new apiError("No team found", 404));
     if (findTeamById.manager != manager.id) return next(new apiError("You are not manager of this project", 401));
-    const findUserById = await User.findByPk(user_id)
-    if (!findTeamById) return next(new apiError("No user Found", 404));
+    const findUserByEmail = await User.findOne({
+      where : {
+        email : email
+      }
+    })
+    if (!findUserByEmail) return next(new apiError("No user Found", 404));
     const AddUserInTeam = await Team_User.create({
-      userId: findUserById.id,
+      userId: findUserByEmail.id,
       teamId: findTeamById.id
     })
     if (!AddUserInTeam) return next(new apiError("error added user in team", 401));
-    mailer.sendTeamInvitation(findUserById , manager.lastName , findTeamById.name )
+    mailer.sendTeamInvitation(findUserByEmail , manager.lastName , findTeamById.name )
     res.json({
-      message: `User as a name : ${findUserById.firstName} added secces in team ${findTeamById.name}`
+      message: `User as a name : ${findUserByEmail.firstName} added secces in team ${findTeamById.name}`
     })
   } catch (error) {
     return next(new apiError(error, 500));
