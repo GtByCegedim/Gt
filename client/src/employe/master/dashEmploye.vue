@@ -168,7 +168,7 @@ const invoices = [
               alt=""
               class="h-8 w-8 rounded-full object-cover"
             />
-            <span class="pl-2 text-sm">Alexander</span>
+            <span class="pl-2 text-sm">{{ currentUser.firstName }}  {{ currentUser.lastName }}</span>
             <ChevronDownIcon class="h-6 w-6 stroke-current" />
           </button>
         </div>
@@ -179,3 +179,19 @@ const invoices = [
     </main>
   </div>
 </template>
+
+<script>
+import { mapState, mapActions } from "vuex";
+
+export default {
+  mounted() {
+    this.fetchCurrentUser();
+  },
+  computed: {
+    ...mapState(["currentUser"]),
+  },
+  methods: {
+    ...mapActions(["fetchCurrentUser"]),
+  },
+};
+</script>

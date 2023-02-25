@@ -7,7 +7,15 @@ const store = createStore({
     token: localStorage.getItem("token"),
     isAuthenticated: false,
     projects: [],
-    currentUser: null,
+    currentUser: {
+      id: null,
+      email: null,
+      password: null,
+      firstName: null,
+      lastName: null,
+      createdAt: null,
+      updatedAt: null
+    }
   },
   mutations: {
     setToken(state, token) {
@@ -84,7 +92,6 @@ const store = createStore({
     logout({ commit }) {
       commit("setIsAuthenticated", false);
       commit("clearToken");
-      commit("setCurrentUser", null);
     },
   },
 });

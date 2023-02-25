@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import dashAdmin from "../admin/master/dashboard.vue";
+import profileAdmin from "../admin/pages/profile.vue"
 import statAdmin from "../admin/pages/statAdmin.vue";
 import project from "../admin/pages/project.vue";
 import home from "../user/master/homePage.vue";
@@ -60,6 +61,11 @@ const routes = [
         name: "allteams",
         component: allteams,
         path: "allteams",
+      },
+      {
+        name: "profileAdmin",
+        component: profileAdmin,
+        path: "profile",
       },
     ],
   },

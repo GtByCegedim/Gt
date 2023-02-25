@@ -1,5 +1,16 @@
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
+  mounted() {
+    this.fetchCurrentUser();
+  },
+  computed: {
+    ...mapState(["currentUser"]),
+  },
+  methods: {
+    ...mapActions(["fetchCurrentUser"]),
+  },
   data() {
     return {
       invoices: [
@@ -29,7 +40,7 @@ export default {
         </div>
         <div>
           <div class="text-sm text-gray-400">NOM COMPLET</div>
-          <div class="pt-1 text-white">Lahlali Wassim</div>
+          <div class="pt-1 text-white">{{ currentUser.firstName }} {{ currentUser.lastName }}</div>
         </div>
       </div>
       <div class="h-full w-px bg-gray-700" />
