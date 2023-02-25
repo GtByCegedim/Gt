@@ -97,14 +97,10 @@ const invoices = [
         class="sticky bottom-4 rounded-10 bg-gray-900 bg-[url(/img/line-pattern.svg)] bg-top p-6"
       >
         <div class="text-white">
-          Refer a friend and get <span class="font-bold">$5</span>
+         hahaha <span class="font-bold">$5</span>
         </div>
-        <div class="mt-3 text-sm text-gray-400">The reward of transfer.</div>
-        <button
-          class="mt-4 w-full rounded-lg bg-gray-700 py-2 text-sm font-normal text-gray-400 hover:text-white"
-        >
-          Invite
-        </button>
+        <div class="mt-3 text-sm text-gray-400">blague pour faire rire les employés un peut blague pour faire rire les employés un peu</div>
+       
       </div>
     </aside>
     <main
