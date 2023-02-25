@@ -9,13 +9,13 @@ export default {
           no: "groupe 1",
           date: "wassim lahali",
           amount : "ws,sm,ba",
-          status: "active",
+          bane: false,
         },
         {
           no: "groupe 2",
           date: "wassim lahalali",
           amount : "sc,fsf",
-          status: "Pending",
+          bane: true,
         },
       ],
       currentDate: new Date().toLocaleDateString(),
@@ -143,7 +143,7 @@ export default {
               <div
                 class="flex items-center justify-center gap-x-2 rounded-10 border py-2 px-1"
                 :class="
-                  invoice.status === 'active'
+                  invoice.bane === false
                     ? 'border-green-400/10 bg-green-700/20 text-green-400'
                     : 'border-indigo-400/10 bg-indigo-700/20 text-indigo-400'
                 "
@@ -151,13 +151,13 @@ export default {
                 <span
                   class="h-2 w-2 rounded-full"
                   :class="
-                    invoice.status === 'active'
+                    invoice.bane === false
                       ? 'bg-green-400'
                       : 'bg-indigo-400'
                   "
                 />
                 <span class="text-xs">
-                  {{ invoice.status }}
+                  {{!invoice.bane}}
                 </span>
               </div>
             </td>
