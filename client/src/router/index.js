@@ -9,6 +9,7 @@ import Login from "../master/Login.vue";
 import allteams from "../admin/pages/allTeams.vue";
 import dashEmploye from "../employe/master/dashEmploye.vue";
 import store from "../store/store";
+import employeOfTeam from '../admin/pages/employeeOfTeam.vue'
 
 import projectEmploye from "../employe/pages/project.vue";
 import infoProjet from "../employe/pages/infoProject.vue";
@@ -60,6 +61,11 @@ const routes = [
         name: "allteams",
         component: allteams,
         path: "allteams",
+      },
+      {
+        name: "employeOfTeam",
+        component: employeOfTeam,
+        path: "employeOfTeam",
       },
     ],
   },
