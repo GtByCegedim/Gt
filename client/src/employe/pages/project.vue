@@ -50,7 +50,7 @@
             </th>
             <th scope="col" class="py-3 px-6">
               <div class="flex items-center">
-                members
+                équipe
                 <a href="#"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -91,47 +91,7 @@
             <td class="py-4 px-6">Sliver</td>
             <td class="py-4 px-6">Laptop</td>
             <td class="py-4 px-6">
-              <div class="flex items-center justify-start">
-                <div
-                  class="
-                    bg-gray-300
-                    w-6
-                    h-6
-                    rounded-full
-                    flex
-                    items-center
-                    justify-center
-                  "
-                >
-                  <span class="text-gray-600 font-bold text-sm">AB</span>
-                </div>
-                <div
-                  class="
-                    bg-gray-300
-                    w-6
-                    h-6
-                    rounded-full
-                    flex
-                    items-center
-                    justify-center
-                  "
-                >
-                  <span class="text-gray-600 font-bold text-sm">CD</span>
-                </div>
-                <div
-                  class="
-                    bg-gray-300
-                    w-6
-                    h-6
-                    rounded-full
-                    flex
-                    items-center
-                    justify-center
-                  "
-                >
-                  <span class="text-gray-600 font-bold text-sm">+</span>
-                </div>
-              </div>
+              équipe
             </td>
             <td class="py-4 px-6 text-right">
               <a
@@ -163,47 +123,7 @@
             <td class="py-4 px-6">White</td>
             <td class="py-4 px-6">Laptop PC</td>
             <td class="py-4 px-6">
-              <div class="flex items-center justify-start">
-                <div
-                  class="
-                    bg-gray-300
-                    w-6
-                    h-6
-                    rounded-full
-                    flex
-                    items-center
-                    justify-center
-                  "
-                >
-                  <span class="text-gray-600 font-bold text-sm">AB</span>
-                </div>
-                <div
-                  class="
-                    bg-gray-300
-                    w-6
-                    h-6
-                    rounded-full
-                    flex
-                    items-center
-                    justify-center
-                  "
-                >
-                  <span class="text-gray-600 font-bold text-sm">CD</span>
-                </div>
-                <div
-                  class="
-                    bg-gray-300
-                    w-6
-                    h-6
-                    rounded-full
-                    flex
-                    items-center
-                    justify-center
-                  "
-                >
-                  <span class="text-gray-600 font-bold text-sm">+</span>
-                </div>
-              </div>
+           équipe
             </td>
             <td class="py-4 px-6 text-right">
               <a
@@ -235,47 +155,7 @@
             <td class="py-4 px-6">Black</td>
             <td class="py-4 px-6">Accessories</td>
             <td class="py-4 px-6">
-              <div class="flex items-center justify-start">
-                <div
-                  class="
-                    bg-gray-300
-                    w-6
-                    h-6
-                    rounded-full
-                    flex
-                    items-center
-                    justify-center
-                  "
-                >
-                  <span class="text-gray-600 font-bold text-sm">AB</span>
-                </div>
-                <div
-                  class="
-                    bg-gray-300
-                    w-6
-                    h-6
-                    rounded-full
-                    flex
-                    items-center
-                    justify-center
-                  "
-                >
-                  <span class="text-gray-600 font-bold text-sm">CD</span>
-                </div>
-                <div
-                  class="
-                    bg-gray-300
-                    w-6
-                    h-6
-                    rounded-full
-                    flex
-                    items-center
-                    justify-center
-                  "
-                >
-                  <span class="text-gray-600 font-bold text-sm">+</span>
-                </div>
-              </div>
+            équipe
             </td>
             <td class="py-4 px-6 text-right">
               <a

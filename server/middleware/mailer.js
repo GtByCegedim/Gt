@@ -76,12 +76,14 @@ const main = (method, user) => {
 };
 
 const sendTeamInvitation = (user, teamLeader, teamName) => {
-  let subject = `Invitation to join team ${teamName} from ${teamLeader}`;
-  let html = `<div style="background-color: #f2f2f2; padding: 20px; font-family: Arial, sans-serif; height: 150px; width: 100%;">
-                <h3 style="color: #005c9e;">👋 Bonjour ${user.firstName} ${user.lastName}!</h3>
-                <p style="font-size: 16px; color: #333; margin-top: 10px;">Vous êtes ajouté(e) comme membre du groupe ${teamName} par ${teamLeader}.</p>
-                <p style="font-size: 16px; color: #333;">Bonne chance pour tes prochainnes tâches.</p>
-              </div>`;
+    let subject = `Invitation to join team ${teamName} from ${teamLeader}`;
+    let html = `<div style="background-color: #f2f2f2; padding: 20px; font-family: Arial, sans-serif;">
+                    <img src="./gt.svg" alt="Logo" style="width: 100%; max-width: 600px; height: auto;">
+                    <h3 style="color: #005c9e;">👋 Bonjour ${user.firstName} ${user.lastName}!</h3>
+                    <p style="font-size: 16px; color: #333; margin-top: 10px;">Vous êtes ajouté(e) comme membre du groupe ${teamName} par ${teamLeader}.</p>
+                    <p style="font-size: 16px; color: #333;">Bonne chance pour tes prochainnes tâches.</p>
+                </div>`
+;
 
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -94,7 +96,12 @@ const sendTeamInvitation = (user, teamLeader, teamName) => {
   });
 
   let info = {
-    from: `"GT ✨" ${process.env.USER_MAILER}`,
+    from: `
+    "GT ✨"
+    $ {
+      process.env.USER_MAILER
+    }
+    `,
     to: user.email,
     subject: subject,
     html: html,
@@ -104,7 +111,11 @@ const sendTeamInvitation = (user, teamLeader, teamName) => {
     if (error) {
       console.log(error);
     } else {
-      console.log(`Invitation sent to ${user.email}`);
+      console.log(`
+    Invitation sent to $ {
+      user.email
+    }
+    `);
     }
   });
 };
