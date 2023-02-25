@@ -16,7 +16,6 @@ const store = createStore({
       createdAt: null,
       updatedAt: null
     },
-    // currentUser: null,
     showDropdown: false,
     userRole: null,
   },
@@ -40,6 +39,7 @@ const store = createStore({
     },
     setUserRole(state, userRole) {
       state.userRole = userRole;
+      localStorage.setItem("role", userRole)
     },
   },
   actions: {
@@ -60,7 +60,7 @@ const store = createStore({
         if (userRole === "admin") {
           router.push("/dashAdmin/statAdmin");
         } else if (userRole === "employe") {
-          router.push("/dashEmploye/statEmploye");
+          router.push("/dashEmploye/statistique");
         }
         return token;
       } catch (error) {
