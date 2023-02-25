@@ -112,7 +112,9 @@ const menu = [
               @click="toggleDropdown"
             >
               <img src="" alt="" class="h-8 w-8 rounded-full object-cover" />
-              <span class="pl-2 text-sm">Wassim</span>
+              <span class="pl-2 text-sm">
+                {{ currentUser.firstName }} {{ currentUser.lastName }}</span
+              >
               <ChevronDownIcon class="h-6 w-6 stroke-current" />
             </button>
             <div
@@ -159,9 +161,11 @@ export default {
     };
   },
   computed: {
+    ...mapState(["currentUser"]),
     ...mapState(["showDropdown"]),
   },
   methods: {
+    ...mapActions(["fetchCurrentUser"]),
     ...mapActions(["logout"]),
     toggleDropdown() {
       this.$store.state.showDropdown = !this.$store.state.showDropdown;
@@ -183,6 +187,7 @@ export default {
     },
   },
   mounted() {
+    this.fetchCurrentUser();
     this.fetchJoke();
   },
 };
