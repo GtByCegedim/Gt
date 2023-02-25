@@ -155,25 +155,17 @@ import axios from "axios";
 import { mapState, mapActions } from "vuex";
 
 export default {
-  mounted() {
-    this.fetchCurrentUser();
-  },
-  computed: {
-    ...mapState(["currentUser"]),
-  },
-  methods: {
-    ...mapActions(["fetchCurrentUser"]),
-  },
-
   data() {
     return {
       joke: "",
     };
   },
   computed: {
+    ...mapState(["currentUser"]),
     ...mapState(["showDropdown"]),
   },
   methods: {
+    ...mapActions(["fetchCurrentUser"]),
     ...mapActions(["logout"]),
     toggleDropdown() {
       this.$store.state.showDropdown = !this.$store.state.showDropdown;
@@ -195,6 +187,7 @@ export default {
     },
   },
   mounted() {
+    this.fetchCurrentUser();
     this.fetchJoke();
   },
 };
