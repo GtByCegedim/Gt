@@ -1,4 +1,5 @@
 <script setup>
+import axios from 'axios';
 import BillIcon from "./icons/bill.svg";
 
 import DashboardIcon from "./icons/gt.svg";
@@ -15,6 +16,11 @@ const menu = [
   { name: "Employes", icon: BillIcon, route: "employe" },
   { name: "ajouter un Employe", icon: BillIcon, route: "newEmploye" },
 ];
+
+const jokeAPI = 'https://v2.jokeapi.dev/joke/Any?lang=fr'
+const { data: jokeData } = await axios.get(jokeAPI);
+const joke = jokeData.type === 'twopart' ? `${jokeData.setup} ${jokeData.delivery}` : jokeData.joke;
+
 </script>
 
 <template>
@@ -40,7 +46,7 @@ const menu = [
       <div
         class="sticky bottom-4 rounded-10 bg-gray-900 bg-[url(/img/line-pattern.svg)] bg-top p-6"
       >
-        <div class="text-white">hahaha <span class="font-bold">$5</span></div>
+        <div class="text-white"> {{ joke }}<span class="font-bold">$5</span></div>
         <div class="mt-3 text-sm text-gray-400">
           blague de moment c est une blague qui fait rire un peut pour enlenver
           le stresse chez les employées
