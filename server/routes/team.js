@@ -1,59 +1,56 @@
-
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const ErrorHandler = require('../middleware/errorMiddleware')
+const ErrorHandler = require("../middleware/errorMiddleware");
 
-const { createTeam, findAllTeams, acceptInvitation } = require("../controllers/team");
-const { sendTeamInvitation } = require('../middleware/mailer');
-const { authMiddleware } = require('../middleware/authMiddleware');
+const {
+  createTeam,
+  findAllTeams,
+  addUserInTeam,
+  baneTeam,
+  findAllUserOfTeam,
+} = require("../controllers/team");
+const { authMiddleware, isAdmin } = require("../middleware/authMiddleware");
 
-/**
- * @swagger
- * components:
- *    schemas:
- *      findAllTeams:
- *        type: object
- *        properties:
- *          name:
- *            type: string
- *            description: the team's name
- *          teamLeaderId:
- *            type: integer
- *            description: the teamleader's is
- *        example:
- *            name: the winners
- *            teamLeaderId: 19
- *          
- */
-/**
- * @swagger
- * tags: 
- *  name: Teams
- *  description: Here we have Teams functions 
-*/
-/**
- * @swagger
- * /api/teams/all:
- *  get:
- *    summary: Returns an object of user's informations
- *    tags: [Teams]
- *    responses:
- *      200:
- *        description: Finds all teams
- *        content:
- *          application/json:
- *            schema:
- *              type: array
- *              items: 
- *                $ref: '#/components/schemas/findAllTeams'
- *      404:
- *        description: No team was found
-*/
+router.get(
+  "/all",
+  authMiddleware,
+  isAdmin,
+  findAllTeams
+  // #swagger.tags = ['Team']
+  // #swagger.security = [{ "bearerAuth": [] }]
+);
 
-router.post('/create',authMiddleware, createTeam);
-router.post('/invitations', sendTeamInvitation);
-router.get('/all',findAllTeams)
-router.post('/accept-invitation/:userId/:teamName', acceptInvitation);
-router.use(ErrorHandler)
+router.post(
+  "/create/:id",
+  authMiddleware,
+  createTeam
+  // #swagger.tags = ['Team']
+  // #swagger.security = [{ "bearerAuth": [] }]
+);
+
+router.post(
+  "/addUser/:id",
+  authMiddleware,
+  addUserInTeam
+  // #swagger.tags = ['Team']
+  // #swagger.security = [{ "bearerAuth": [] }]
+);
+
+router.put(
+  "/bane/:id",
+  authMiddleware,
+  baneTeam
+  // #swagger.tags = ['Team']
+  // #swagger.security = [{ "bearerAuth": [] }]
+);
+
+router.get(
+  "/allUser/:id",
+  authMiddleware,
+  findAllUserOfTeam
+  // #swagger.tags = ['Team']
+  // #swagger.security = [{ "bearerAuth": [] }]
+);
+router.use(ErrorHandler);
 
 module.exports = router;

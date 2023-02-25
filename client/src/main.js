@@ -1,11 +1,16 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-// router
-import router from './router'
-// css
-import './assets/main/style.css'
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./router";
+import store  from "./store/store"; // Import your Vuex store instance
+import "./index.css";
 
 const app = createApp(App);
-app.use(router)
-app.mount('#app')
 
+// Add the Vuex store to your Vue app
+app.use(store);
+
+// Add the Vue router to your Vue app
+app.use(router);
+
+// Mount your Vue app to the DOM
+app.mount("#app");

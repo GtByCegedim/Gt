@@ -3,14 +3,14 @@ services:
   backend:
     build: ./server
     environment:
-      - PORT=5050
+      - PORT=3000
       - NODE_ENV=dev
       - DATABASE=GT
       - DB_USER=bader
       - password=2001
       - host=localhost
     ports:
-      - 5050:5050
+      - 3000:3000
     volumes:
       - ./server:/server/
   postgres:
@@ -27,11 +27,5 @@ services:
     ports:
       - 7000:8080
     container_name: adminer
-  frontend:
-    build:
-      ./client
-    ports:
-      - 8080:8080
-    volumes:
-      - ./client:/client/
+
   

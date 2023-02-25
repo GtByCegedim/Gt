@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const apiError = require('../utils/error');
 const mailer = require('../middleware/mailer');
+const Role = require('../models/role');
 
 
 const login = async (req, res, next) => {
@@ -30,6 +31,16 @@ const login = async (req, res, next) => {
     return next(new apiError('Invalid credentials', 401));
   }
 
+  const id_role = await User_role.findOne({
+    where : {
+      userId : user.id
+    }
+  })
+  if(!id_role) return next(new apiError('Error Role ', 401));
+
+  const role_user = await Role.findByPk(id_role.roleId)
+  if(!role_user) return next(new apiError('Error Role ', 401));
+  const role = role_user.name
   // Create a JWT
   const token = jwt.sign({
     id: user.id,
@@ -40,6 +51,7 @@ const login = async (req, res, next) => {
   res.status(200).json({
     success: true,
     token,
+    role
   });
 };
 

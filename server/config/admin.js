@@ -37,7 +37,7 @@ const createAdmin = () => {
                 UserRole.create({
                   userId,
                   roleId
-                }).then(() => console.log('everything created successfully'))
+                }).then(() => console.log('admin cerated with success'))
               })
             })
 
