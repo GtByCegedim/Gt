@@ -42,7 +42,7 @@ const routes = [
       {
         name: "statAdmin",
         component: statAdmin,
-        path: "statAdmin",
+        path: "statistiques",
       },
       {
         name: "project",
