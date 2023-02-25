@@ -9,7 +9,7 @@ const taskRouter = require("./routes/task");
 const authRouter = require("./routes/authRouter");
 const subTaskRouter = require("./routes/subTaskRoute");
 const statutouter = require("./routes/statutRoute");
-const profileRoute = require("./routes/profileRoute")
+const profileRoute = require("./routes/profileRoute");
 const swaggerAutogen = require("swagger-autogen")();
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
@@ -83,6 +83,7 @@ const options = {
     { name: "Subtask", description: "Operations related to subtask" },
     { name: "Status", description: "Operations related to status" },
     { name: "Project", description: "Operations related to project" },
+    { name: "Profile", description: "Operations related to profil" },
   ],
 };
 swaggerAutogen(outputFile, endpointsFiles, options);

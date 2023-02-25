@@ -35,6 +35,10 @@
     {
       "name": "Project",
       "description": "Operations related to project"
+    },
+    {
+      "name": "Profile",
+      "description": "Operations related to profil"
     }
   ],
   "schemes": [
@@ -968,6 +972,9 @@
     },
     "/api/profile/add": {
       "post": {
+        "tags": [
+          "Profile"
+        ],
         "description": "",
         "parameters": [
           {
@@ -999,11 +1006,19 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/profile/update": {
       "put": {
+        "tags": [
+          "Profile"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1035,18 +1050,31 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/profile/my": {
       "get": {
+        "tags": [
+          "Profile"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     }
   },
