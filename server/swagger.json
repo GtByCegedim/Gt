@@ -965,6 +965,89 @@
           }
         ]
       }
+    },
+    "/api/profile/add": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "adresse": {
+                  "example": "any"
+                },
+                "telephone": {
+                  "example": "any"
+                },
+                "date_de_naissance": {
+                  "example": "any"
+                },
+                "bisness_unit": {
+                  "example": "any"
+                },
+                "poste": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/profile/update": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "adresse": {
+                  "example": "any"
+                },
+                "telephone": {
+                  "example": "any"
+                },
+                "date_de_naissance": {
+                  "example": "any"
+                },
+                "bisness_unit": {
+                  "example": "any"
+                },
+                "poste": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/profile/my": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "definitions": {
