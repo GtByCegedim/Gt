@@ -9,12 +9,14 @@ const taskRouter = require("./routes/task");
 const authRouter = require("./routes/authRouter");
 const subTaskRouter = require("./routes/subTaskRoute");
 const statutouter = require("./routes/statutRoute");
+const profileRoute = require("./routes/profileRoute")
 const swaggerAutogen = require("swagger-autogen")();
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 const ProjectRouter = require("./routes/projectRoute");
 const outputFile = "./swagger.json";
 const endpointsFiles = ["./route/*.js", "./app.js"];
+
 // Import database connection
 const {
   DateType,
@@ -93,6 +95,8 @@ app.use("/api/task", taskRouter);
 app.use("/api/subtask", subTaskRouter);
 app.use("/api/status", statutouter);
 app.use("/api/project", ProjectRouter);
+app.use("/api/profile", profileRoute);
+
 // Set up routes, middleware, etc.
 app.use(globalError);
 // Start the server
