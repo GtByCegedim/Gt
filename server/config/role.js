@@ -7,7 +7,7 @@ const createRole = async () => {
       name: 'admin'
     }
   });
-  if (!adminRole) {
+  if (!adminRole) { 
     await Role.create({
       name: 'admin'
     });

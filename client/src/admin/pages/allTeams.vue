@@ -39,9 +39,11 @@
         </thead>
         <tbody>
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-               test 1"
+           <router-link to="employeOfTeam">
+             <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+               test 1
             </th>
+           </router-link>
             <td class="py-4 px-6">
              Wassim lahlali
             </td>
@@ -94,7 +96,7 @@
               </div>
             </td>
             <td class="py-4 px-6 text-right">
-              <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">view</a>
+              <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">delete</a>
             </td>
           </tr>
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -154,7 +156,7 @@
               </div>
             </td>
             <td class="py-4 px-6 text-right">
-              <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">view</a>
+              <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">delete</a>
             </td>
           </tr>
           <tr class="bg-white dark:bg-gray-800">
@@ -214,7 +216,7 @@
               </div>
             </td>
             <td class="py-4 px-6 text-right">
-              <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">view</a>
+              <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">delete</a>
             </td>
           </tr>
         </tbody>
