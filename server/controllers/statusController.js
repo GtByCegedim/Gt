@@ -6,16 +6,11 @@ const ErrorResponse = require("../utils/error");
 
 // This function adds a new status to a project
 const addNewStatut = async (req, res, next) => {
-  // Retrieve the request body
   const name = req.body.name;
-  // Get the manager from the request user object
   const manager = req.user;
-  // Get the project ID from the request params
   const project_id = req.params.id;
   try {
-    // Check if the status field is present in the request body
     if (!name) {
-      // If not, throw an error
       return next(new ErrorResponse("fialled ad filled", 401));
     }
     // Get the manager ID
@@ -38,9 +33,16 @@ const addNewStatut = async (req, res, next) => {
         new ErrorResponse("Sory You Are Not Manager Of this Project", 401)
       );
     }
+    const chekIsExist = await Statut.findOne({
+      where: {
+        status: name
+      }
+    })
+    if(chekIsExist)  return next(new ErrorResponse("Statut exist", 401));
     // Create the new status
     const NewStatut = await Statut.create({
       status: name,
+      project:project_id
     });
     // Check if the status was created successfully
     if (!NewStatut) {
@@ -139,8 +141,28 @@ const updateStatusOfTask = async (req, res, next) => {
   }
 };
 
+const getStatutOfProject = async (req, res, next) => {
+  try {
+    const project_id = req.params.id;
+    const findProject = await Project.findByPk(project_id)
+    if(!findProject) return next(new apiError("no project found with this id", 404));
+    const findStatutOfProject = await Statut.findAll({
+      where : {
+        project : project_id
+      }
+    })
+    if(findStatutOfProject.length == 0) return next(new ErrorResponse("No statuts found", 404));
+    res.json({
+      message : `Statuts of project ${findProject.name}`,
+      findStatutOfProject
+    })
+  } catch (error) {
+    return next(new ErrorResponse(error, 500));
+  }
+}
 module.exports = {
   addNewStatut,
   deleteStatus,
   updateStatusOfTask,
+  getStatutOfProject
 };
