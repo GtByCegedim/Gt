@@ -1,14 +1,13 @@
 const Task = require("../models/task");
 const User = require("../models/user");
 const Project = require("../models/project");
-const Subtask = require("../models/subtask");
 const Task_statut = require("../models/task_statut");
 const DateType = require("../models/dateType");
 const TaskUser = require("../models/task_user");
 const mailer = require("../middleware/mailer");
 const Storage = require("local-storage");
 const ErrorResponse = require("../utils/error");
-const { Statut } = require("../models");
+const  Statut = require("../models/status");
 
 /**
  * It creates a task and adds it to the users
@@ -19,41 +18,33 @@ const { Statut } = require("../models");
  */
 const addTaskToUser = async (req, res, next) => {
   const manager = req.user;
+  const project_id = req.params.id;
   const { body } = req;
   try {
     if (
       !body.title ||
       !body.description ||
-      !body.deadline ||
       !body.duration ||
       !body.unit ||
-      !body.users
+      !body.email
     ) {
-      console.log(body.users);
       return next(new ErrorResponse("Fill all filled and users", 401));
     }
     /* Checking if the user exists in the database. */
-    body.users.map(async (user) => {
-      const findUserByName = await User.findOne({
-        where: {
-          lastName: user.lastname,
-        },
-      });
-      if (!findUserByName) {
-        return next(new ErrorResponse(`User  ${user.lastname} not found`, 401));
-      }
-    });
+   const sheckUser = await User.findOne({
+    where : {
+      email : body.email
+    }
+   })
+   if(!sheckUser) return next(new ErrorResponse("User not found", 404));
     const manager_id = manager.id;
-    const isManeger = await Project.findOne({
-      where: {
-        manager: manager_id,
-      },
-    });
-    if (!isManeger) {
+    const findProject = await Project.findByPk(project_id);
+    if (!findProject) {
       return next(
         new ErrorResponse("Sory You Are Not Manager Of this Project", 401)
       );
     }
+    if(findProject.manager != manager_id)  return next(new ErrorResponse("You are not manager ", 401));
     /* It creates a date type. */
     const addDateType = await DateType.create({
       duration: body.duration,
@@ -62,14 +53,11 @@ const addTaskToUser = async (req, res, next) => {
     if (!addDateType) {
       return next(new ErrorResponse("Date Type Not created ", 401));
     }
-
-    const project_id = req.params.id;
     const id_dateType = addDateType.id;
     /* It creates a task and adds it to the users */
     const creatTask = await Task.create({
       title: body.title,
       description: body.description,
-      deadline: body.deadline,
       dateTypeId: id_dateType,
       projectId: project_id,
       manager: manager_id,
@@ -78,49 +66,46 @@ const addTaskToUser = async (req, res, next) => {
       return next(new ErrorResponse("Task not created", 401));
     }
     /* A loop that iterates over the users and creates a relation between the task and the users. */
-    body.users.map(async (user) => {
-      const name_luser = user.lastname;
-      const findUserByName = await User.findOne({
-        where: {
-          lastName: name_luser,
-        },
-      });
-      if (!findUserByName) {
-        return next(
-          new ErrorResponse(`no user with this name  ${name_luser}`, 401)
-        );
-      }
-      const UserId = findUserByName.id;
+      const UserId = sheckUser.id;
       const taskId = creatTask.id;
+      
       const creatUserTask = await TaskUser.create({
-        userId: UserId,
-        taskId: taskId,
+        userId:UserId,
+        taskId: taskId
       });
       if (!creatUserTask) {
         return next(new ErrorResponse("no relation user with task", 401));
       }
-      const addStatus = await Statut.create({
-        status: "A faire",
+      const findDefaultStatut= await Statut.findOne({
+        where : {
+          status : 'A faire',
+          project: project_id
+        }
       });
-      if (!addStatus) {
+      if (findDefaultStatut == null) {
         return next(new ErrorResponse("statut not aded", 401));
       }
+      console.log(taskId);
+      console.log(findDefaultStatut.id);
+      const task_Id = creatTask.id
+      const statut_Id = findDefaultStatut.id
       const task_status = await Task_statut.create({
-        taskId: creatTask.id,
-        statusId: addStatus.id,
+        taskId: task_Id,
+        statusId: statut_Id,
+       
       });
-      if (!task_status) {
+      if (task_status == null) {
         return next(new ErrorResponse("relation of statut not aded", 401));
       }
       Storage("creatTask", creatTask.title);
       Storage("createdAt", creatTask.createdAt);
-      mailer.main("addTask", findUserByName);
-    });
+      mailer.main("addTask",sheckUser );
+    
     await res.json({
       msg: "task added to users",
     });
   } catch (error) {
-    return next(new ErrorResponse(error, 401));
+    return next(new ErrorResponse(error, 500));
   }
 };
 
