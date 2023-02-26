@@ -1,5 +1,5 @@
-<script >
-import  {mapState, mapActions} from 'vuex'
+<script>
+import { mapState, mapActions } from "vuex";
 
 export default {
   data() {
@@ -8,32 +8,30 @@ export default {
         {
           no: "groupe 1",
           date: "wassim lahali",
-          amount : "ws,sm,ba",
-          bane: false,
+          amount: "ws,sm,ba",
+          status: "active",
         },
         {
           no: "groupe 2",
           date: "wassim lahalali",
-          amount : "sc,fsf",
-          bane: true,
+          amount: "sc,fsf",
+          status: "Pending",
         },
       ],
       currentDate: new Date().toLocaleDateString(),
-    }
+      currentTime: new Date().toLocaleTimeString(),
+    };
   },
   computed: {
-    ...mapState(['projects']),
-    ...mapState(["currentUser"]),
+    ...mapState(["projects"]),
   },
   methods: {
-    ...mapActions(['fetchProjects']),
-    ...mapActions(["fetchCurrentUser"]),
+    ...mapActions(["fetchProjects"]),
   },
   mounted() {
     this.fetchProjects();
-    this.fetchCurrentUser();
   },
-}
+};
 </script>
 
 <template>
@@ -47,7 +45,7 @@ export default {
         </div>
         <div>
           <div class="text-sm text-gray-400">NOM COMPLET</div>
-          <div class="pt-1 text-white">  {{ currentUser.firstName }}   {{ currentUser.lastName }}</div>
+          <div class="pt-1 text-white">Lahlali Wassim</div>
         </div>
       </div>
       <div class="h-full w-px bg-gray-700" />
@@ -56,7 +54,10 @@ export default {
         <div class="pt-1 text-white">{{ currentDate }}</div>
       </div>
       <div class="h-full w-px bg-gray-700" />
-
+      <div>
+        <div class="text-sm text-gray-400">HEURE</div>
+        <div class="pt-1 text-white">{{ currentTime }}</div>
+      </div>
       <div class="h-full w-px bg-gray-700" />
       <div>
         <div class="text-sm text-gray-400">POSTE</div>
@@ -99,7 +100,7 @@ export default {
         </div>
       </div>
     </div>
-   
+
     <div class="flex flex-col justify-between rounded-10 bg-gray-900 p-7">
       <div class="flex items-center justify-between">
         <h2 class="text-[20px] font-medium text-white">Groupes</h2>
@@ -116,16 +117,15 @@ export default {
             <td class="py-1 text-sm text-gray-400">label</td>
             <td class="py-1 text-sm text-gray-400">manager</td>
             <td class="py-1 text-sm text-gray-400">membres</td>
-             <td class="py-1 text-sm text-gray-400">statut</td>
+            <td class="py-1 text-sm text-gray-400">statut</td>
           </tr>
         </thead>
         <tbody>
           <tr
             v-for="invoice in invoices"
             class="border-b border-gray-700 last:border-none"
-            v-bind:key=invoice.no
+            v-bind:key="invoice.no"
           >
-          
             <td class="py-4">
               <span class="text-sm font-medium text-white">
                 {{ invoice.no }}
@@ -136,7 +136,7 @@ export default {
                 {{ invoice.date }}
               </span>
             </td>
-           
+
             <td class="py-4">
               <span class="text-sm text-white">
                 {{ invoice.amount }}
@@ -146,7 +146,7 @@ export default {
               <div
                 class="flex items-center justify-center gap-x-2 rounded-10 border py-2 px-1"
                 :class="
-                  invoice.bane === false
+                  invoice.status === 'active'
                     ? 'border-green-400/10 bg-green-700/20 text-green-400'
                     : 'border-indigo-400/10 bg-indigo-700/20 text-indigo-400'
                 "
@@ -154,13 +154,13 @@ export default {
                 <span
                   class="h-2 w-2 rounded-full"
                   :class="
-                    invoice.bane === false
+                    invoice.status === 'active'
                       ? 'bg-green-400'
                       : 'bg-indigo-400'
                   "
                 />
                 <span class="text-xs">
-                  {{!invoice.bane}}
+                  {{ invoice.status }}
                 </span>
               </div>
             </td>
@@ -173,10 +173,13 @@ export default {
     <div class="flex flex-col justify-between rounded-10 bg-gray-900 p-7">
       <div class="flex items-center justify-between">
         <h2 class="text-[20px] font-medium text-white">Projets</h2>
-       
       </div>
       <div class="grid grid-cols-3 gap-x-4 pt-4">
-        <div  v-for="project in projects" :key="project.id" class="rounded-10 bg-gray-700 p-3">
+        <div
+          v-for="project in projects"
+          :key="project.id"
+          class="rounded-10 bg-gray-700 p-3"
+        >
           <div class="pt-3 text-sm text-white">{{ project.name }}</div>
         </div>
       </div>

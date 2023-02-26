@@ -31,9 +31,6 @@ const menu = [
   { name: "kanban", icon: BillIcon, route: "kanban" },
   { name: "profile", icon: HomeIcon, route: "profile" },
   { name: "Groupes", icon: HomeIcon, route: "teams" },
-  
-
-  
 ];
 
 const recentTransactions = [
@@ -97,10 +94,18 @@ const invoices = [
         class="sticky bottom-4 rounded-10 bg-gray-900 bg-[url(/img/line-pattern.svg)] bg-top p-6"
       >
         <div class="text-white">
-         hahaha <span class="font-bold">$5</span>
+          <div>Rire au travail : Parce qu'un sourire peut tout changer.</div>
         </div>
-        <div class="mt-3 text-sm text-gray-400">blague pour faire rire les employés un peut blague pour faire rire les employés un peu</div>
-       
+        <div v-if="joke" class="mt-3 text-sm text-gray-400">
+          {{ joke }}
+        </div>
+        <div v-else class="mt-3 text-sm text-gray-400">Loading joke...</div>
+        <button
+          @click="fetchJoke"
+          class="mt-4 w-full rounded-lg bg-gray-700 py-2 text-sm font-normal text-gray-400 hover:text-white"
+        >
+          une autre
+        </button>
       </div>
     </aside>
     <main
@@ -121,15 +126,12 @@ const invoices = [
                 placeholder="Search"
                 class="rounded-10 bg-gray-900 py-3 pr-4 pl-10 text-sm text-gray-400 focus:text-white focus:outline-none"
               />
-            </div><button  class="rounded-10 bg-gray-900 py-3 px-4 text-sm text-gray-400 hover:text-white"
+            </div>
+            <button
+              class="rounded-10 bg-gray-900 py-3 px-4 text-sm text-gray-400 hover:text-white"
             >
-          <router-link to="creerProjet">
-              
-            
-              Créer un projet
-          
-          </router-link>  
-          </button>
+              <router-link to="creerProjet"> Créer un projet </router-link>
+            </button>
           </div>
         </div>
         <div class="flex w-2/5 items-center justify-between">
@@ -164,7 +166,9 @@ const invoices = [
               alt=""
               class="h-8 w-8 rounded-full object-cover"
             />
-            <span class="pl-2 text-sm">{{ currentUser.firstName }}  {{ currentUser.lastName }}</span>
+            <span class="pl-2 text-sm"
+              >{{ currentUser.firstName }} {{ currentUser.lastName }}</span
+            >
             <ChevronDownIcon class="h-6 w-6 stroke-current" />
           </button>
         </div>
@@ -177,17 +181,40 @@ const invoices = [
 </template>
 
 <script>
+import axios from "axios";
 import { mapState, mapActions } from "vuex";
 
 export default {
+  data() {
+    return {
+      joke: "",
+    };
+  },
   mounted() {
     this.fetchCurrentUser();
+    this.fetchJoke();
   },
   computed: {
     ...mapState(["currentUser"]),
   },
   methods: {
     ...mapActions(["fetchCurrentUser"]),
+    async fetchJoke() {
+      try {
+        const response = await axios.get(
+          "https://v2.jokeapi.dev/joke/Any?type=singlepart&lang=fr&safe=true"
+        );
+        const jokeData = response.data;
+
+        const joke =
+          jokeData.type === "twopart"
+            ? `${jokeData.setup} ${jokeData.delivery}`
+            : jokeData.joke;
+        this.joke = joke;
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
 };
 </script>

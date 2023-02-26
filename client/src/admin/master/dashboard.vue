@@ -9,7 +9,7 @@ import InboxIcon from "./icons/inbox.svg";
 import ChevronDownIcon from "./icons/chevron-down.svg";
 
 const menu = [
-  { name: "Statistiques", icon: BillIcon, route: "statAdmin" },
+  { name: "Statistiques", icon: BillIcon, route: "statistiques" },
   { name: "Projets", icon: BillIcon, route: "project" },
   { name: "Groupes", icon: BillIcon, route: "allteams" },
   { name: "Employes", icon: BillIcon, route: "employe" },

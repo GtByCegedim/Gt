@@ -1,15 +1,22 @@
 <script>
 import { mapState, mapActions } from "vuex";
+import { RouterLink } from "vue-router";
 
 export default {
+  components: {
+    RouterLink,
+  },
   mounted() {
     this.fetchCurrentUser();
+    this.fetchMyProjects();
   },
   computed: {
     ...mapState(["currentUser"]),
+    ...mapState(["myProjects"]),
   },
   methods: {
     ...mapActions(["fetchCurrentUser"]),
+    ...mapActions(["fetchMyProjects"]),
   },
   data() {
     return {
@@ -25,6 +32,8 @@ export default {
           status: "Pending",
         },
       ],
+      currentDate: new Date().toLocaleDateString(),
+      currentTime : new Date().toLocaleTimeString()
     };
   },
 };
@@ -40,18 +49,20 @@ export default {
         </div>
         <div>
           <div class="text-sm text-gray-400">NOM COMPLET</div>
-          <div class="pt-1 text-white">{{ currentUser.firstName }} {{ currentUser.lastName }}</div>
+          <div class="pt-1 text-white">
+            {{ currentUser.firstName }} {{ currentUser.lastName }}
+          </div>
         </div>
       </div>
       <div class="h-full w-px bg-gray-700" />
       <div>
         <div class="text-sm text-gray-400">DATE</div>
-        <div class="pt-1 text-white">01/03/2023</div>
+        <div class="pt-1 text-white"> {{ currentDate }}</div>
       </div>
       <div class="h-full w-px bg-gray-700" />
       <div>
         <div class="text-sm text-gray-400">HEURE</div>
-        <div class="pt-1 text-white">01:36</div>
+        <div class="pt-1 text-white">{{ currentTime }}</div>
       </div>
       <div class="h-full w-px bg-gray-700" />
       <div>
@@ -162,29 +173,32 @@ export default {
     <div class="flex flex-col justify-between rounded-10 bg-gray-900 p-7">
       <div class="flex items-center justify-between">
         <h2 class="text-[20px] font-medium text-white">PROJETS</h2>
-        <button
-          class="inline-flex items-center gap-x-1 rounded-10 bg-gray-700 py-2 px-4 text-sm text-gray-400 hover:text-white"
-        >
-          <PlusIcon class="h-6 w-6 stroke-current" />
-          <span>ajouter un projet</span>
-        </button>
+        <router-link to="/dashEmploye/creerProjet">
+          <button
+            class="inline-flex items-center gap-x-1 rounded-10 bg-gray-700 py-2 px-4 text-sm text-gray-400 hover:text-white"
+          >
+            <PlusIcon class="h-6 w-6 stroke-current" />
+            <span>ajouter un projet</span>
+          </button>
+        </router-link>
       </div>
       <div class="grid grid-cols-3 gap-x-4 pt-4">
-        <div class="rounded-10 bg-gray-700 p-3">
-          <div class="pt-3 text-sm text-white">Projet 1</div>
-        </div>
-        <div class="rounded-10 bg-gray-700 p-3">
-          <div class="pt-3 text-sm text-white">Projet 2</div>
-        </div>
-        <div class="rounded-10 bg-gray-700 p-3">
-          <div class="pt-3 text-sm text-white">Projet 3</div>
+        <div
+          v-for="(myProject, index) in myProjects && myProjects.slice(0, 3)"
+          :key="index"
+          class="rounded-10 bg-gray-700 p-3"
+        >
+          <div class="pt-3 text-sm text-white">{{ myProject.name }}</div>
         </div>
       </div>
-      <button
-        class="mt-4 w-full rounded-10 bg-gray-700 py-3 text-gray-400 hover:text-white"
-      >
-        voir tous les projets
-      </button>
+
+      <router-link to="/dashEmploye/project">
+        <button
+          class="mt-4 w-full rounded-10 bg-gray-700 py-3 text-gray-400 hover:text-white"
+        >
+          voir tous les projets
+        </button>
+      </router-link>
     </div>
     <div class="flex flex-col justify-between rounded-10 bg-gray-900 p-7">
       <div class="flex items-center justify-between">
