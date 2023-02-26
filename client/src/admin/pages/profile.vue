@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-10 flex flex-col items-center">
+  <div class="mt-10 flex-1 flex-col items-center">
     <img :src="profileImage" class="mb-4 h-24 w-24 rounded-full object-cover" />
     <h2 class="mb-2 text-xl font-medium text-white">
       {{ currentUser.firstName }} {{ currentUser.lastName }}

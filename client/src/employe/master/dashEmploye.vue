@@ -137,6 +137,7 @@ const invoices = [
         <div class="flex w-2/5 items-center justify-between">
           <div class="flex items-center gap-x-2.5">
             <button
+              @click="openMail"
               class="flex h-11 w-11 items-center justify-center rounded-full bg-gray-900 text-gray-400 hover:text-white"
             >
               <MailIcon class="h-7 w-7 stroke-current" />
@@ -214,6 +215,9 @@ export default {
       } catch (error) {
         console.error(error);
       }
+    },
+    openMail() {
+      window.location.href = "mailto:user@example.com";
     },
   },
 };

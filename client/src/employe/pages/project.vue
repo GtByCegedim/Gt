@@ -69,19 +69,19 @@
             </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody v-for="project in projectWhereIamMember" :key="project.id">
           <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
             <router-link to="infoProjet">
               <th
                 scope="row"
                 class="whitespace-nowrap py-4 px-6 font-medium text-gray-900 dark:text-white"
               >
-                NOM DE PROJET
+                {{ project.name }}
               </th>
             </router-link>
-            <td class="py-4 px-6">NNNN</td>
-            <td class="py-4 px-6">10-20-2023</td>
-            <td class="py-4 px-6">équipe</td>
+            <td class="py-4 px-6">{{ project.Manager.firstName }} {{ project.Manager.lastName }}</td>
+            <td class="py-4 px-6">{{ project.createdAt }}</td>
+            <td class="py-4 px-6">{{ project.team.name}}</td>
             <td class="py-4 px-6 text-right">
               <a
                 href="#"
@@ -143,7 +143,7 @@
               </th>
             </router-link>
             <td class="py-4 px-6">{{ myProject.createdAt }}</td>
-            <td class="py-4 px-6">équipe</td>
+            <td class="py-4 px-6">{{ myProject.team.name }}</td>
             <td class="py-4 px-6 text-right">
               <a
                 href="#"
@@ -164,12 +164,15 @@ import { mapState, mapActions } from "vuex";
 export default {
   computed: {
     ...mapState(["myProjects"]),
+    ...mapState(["projectWhereIamMember"]),
   },
   methods: {
     ...mapActions(["fetchMyProjects"]),
+    ...mapActions(["fetchProjectWhereIamMember"]),
   },
   mounted() {
     this.fetchMyProjects();
+    this.fetchProjectWhereIamMember();
   },
 };
 </script>

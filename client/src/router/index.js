@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import dashAdmin from "../admin/master/dashboard.vue";
-import profileAdmin from "../admin/pages/profile.vue"
+import profileAdmin from "../admin/pages/profile.vue";
 import statAdmin from "../admin/pages/statAdmin.vue";
 import project from "../admin/pages/project.vue";
 import home from "../user/master/homePage.vue";
@@ -10,9 +10,11 @@ import Login from "../master/Login.vue";
 import allteams from "../admin/pages/allTeams.vue";
 import dashEmploye from "../employe/master/dashEmploye.vue";
 import store from "../store/store";
-import employeOfTeam from '../admin/pages/employeeOfTeam.vue'
-import newTeam from '../employe/pages/newTeam.vue'
-import addMember from '../employe/pages/addMember.vue'
+import employeOfTeam from "../admin/pages/employeeOfTeam.vue";
+import newTeam from "../employe/pages/newTeam.vue";
+import addMember from "../employe/pages/addMember.vue";
+import projetDetails from "../admin/pages/projectDetails.vue";
+import addProfile  from "../employe/pages/createProfile.vue"
 
 import projectEmploye from "../employe/pages/project.vue";
 import infoProjet from "../employe/pages/infoProject.vue";
@@ -49,6 +51,13 @@ const routes = [
         component: project,
         path: "project",
       },
+      {
+        name: "projetDetails",
+        component: projetDetails,
+        path: "projetDetails/:projectId",
+        props: true,
+      },
+
       {
         name: "employe",
         component: employe,
@@ -127,6 +136,11 @@ const routes = [
         component: addMember,
         path: "addMember",
       },
+      {
+        name: "addProfile",
+        component: addProfile,
+        path: "addProfile",
+      },
     ],
   },
 ];
@@ -152,6 +166,5 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
-
 
 export default router;

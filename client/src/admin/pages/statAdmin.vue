@@ -23,12 +23,15 @@ export default {
     };
   },
   computed: {
+    ...mapState(["currentUser"]),
     ...mapState(["projects"]),
   },
   methods: {
+    ...mapActions(["fetchCurrentUser"]),
     ...mapActions(["fetchProjects"]),
   },
   mounted() {
+    this.fetchCurrentUser();
     this.fetchProjects();
   },
 };
@@ -45,7 +48,9 @@ export default {
         </div>
         <div>
           <div class="text-sm text-gray-400">NOM COMPLET</div>
-          <div class="pt-1 text-white">Lahlali Wassim</div>
+          <div class="pt-1 text-white">
+            {{ currentUser.firstName }} {{ currentUser.lastName }}
+          </div>
         </div>
       </div>
       <div class="h-full w-px bg-gray-700" />
@@ -176,18 +181,21 @@ export default {
       </div>
       <div class="grid grid-cols-3 gap-x-4 pt-4">
         <div
-          v-for="project in projects"
-          :key="project.id"
+          v-for="(project, index) in projects.slice(0, 3)"
+          :key="index"
           class="rounded-10 bg-gray-700 p-3"
         >
           <div class="pt-3 text-sm text-white">{{ project.name }}</div>
         </div>
       </div>
-      <button
-        class="mt-4 w-full rounded-10 bg-gray-700 py-3 text-gray-400 hover:text-white"
-      >
-        voir tous les projets
-      </button>
+
+      <router-link to="/dashAdmin/project">
+        <button
+          class="mt-4 w-full rounded-10 bg-gray-700 py-3 text-gray-400 hover:text-white"
+        >
+          voir tous les projets
+        </button>
+      </router-link>
     </div>
     <div class="flex flex-col justify-between rounded-10 bg-gray-900 p-7">
       <div class="flex items-center justify-between">
