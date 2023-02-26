@@ -79,12 +79,12 @@
               >
             </td>
             <td class="py-4 px-6">
-              {{ project.description }}
+              {{ project.Manager.firstName }} {{ project.Manager.lastName }}
             </td>
             <td class="py-4 px-6">
               {{ project.createdAt }}
             </td>
-            <td class="py-4 px-6">équipe</td>
+            <td class="py-4 px-6">{{ project.team.name }}</td>
             <td class="py-4 px-6 text-right">
               <a
                 href="#"
