@@ -6,9 +6,9 @@
           class="grid grid-cols-1 gap-y-8 lg:grid-cols-2 lg:items-center lg:gap-x-16"
         >
           <div class="mx-auto max-w-lg text-center lg:mx-0 lg:text-left">
-            <h2 class="text-3xl font-bold sm:text-4xl">{{ project.name }}</h2>
+            <h2 class="text-3xl font-bold sm:text-4xl">{{ project.getMyProject.name }}</h2>
 
-            <p class="mt-4 text-gray-600">{{ project.description }}</p>
+            <p class="mt-4 text-gray-600">{{ project.getMyProject.description }}</p>
 
             <a
               href="#"
@@ -153,59 +153,23 @@
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody v-for="user in project.users" :key="user.id">
             <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
               <th
                 scope="row"
                 class="whitespace-nowrap py-4 px-6 font-medium text-gray-900 dark:text-white"
               >
-                Lahlali
+              {{ user.lastName }}
               </th>
-              <td class="py-4 px-6">Wassim</td>
-              <td class="py-4 px-6">wlahlali343@gmail.com</td>
-              <td class="py-4 px-6">developpeur</td>
+              <td class="py-4 px-6">{{ user.firstName }}</td>
+              <td class="py-4 px-6">{{ user.email }}</td>
+              <td class="py-4 px-6">Développeur</td>
               <td class="py-4 px-6 text-right">
                 <a
                   href="#"
                   class="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                  >Edit</a
-                >
-              </td>
-            </tr>
-            <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
-              <th
-                scope="row"
-                class="whitespace-nowrap py-4 px-6 font-medium text-gray-900 dark:text-white"
-              >
-                Safia
-              </th>
-              <td class="py-4 px-6">ElMaani</td>
-              <td class="py-4 px-6">safia@gmail.com</td>
-              <td class="py-4 px-6">developpeur</td>
-              <td class="py-4 px-6 text-right">
-                <a
-                  href="#"
-                  class="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                  >Edit</a
-                >
-              </td>
-            </tr>
-            <tr class="bg-white dark:bg-gray-800">
-              <th
-                scope="row"
-                class="whitespace-nowrap py-4 px-6 font-medium text-gray-900 dark:text-white"
-              >
-                Bader
-              </th>
-              <td class="py-4 px-6">Abouriel</td>
-              <td class="py-4 px-6">Accessories</td>
-              <td class="py-4 px-6">bAbouriel@gmail.com</td>
-              <td class="py-4 px-6 text-right">
-                <a
-                  href="#"
-                  class="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                  >Edit</a
-                >
+                  >Edit</a>
+                
               </td>
             </tr>
           </tbody>
@@ -235,7 +199,7 @@ export default {
           },
         }
       );
-      this.project = response.data.getMyProject;
+      this.project = response.data;
     } catch (error) {
       console.error(error);
     }

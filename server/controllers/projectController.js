@@ -200,6 +200,16 @@ exports.getOneProject = async (req, res, next) => {
         },
       ],
     });
+    const teamId = getMyProject.teamId;
+    const teamUsers = await Team_user.findAll({ where: { teamId } });
+
+    // Récupérer les informations utilisateur pour chaque userId
+    const userIds = teamUsers.map((teamUser) => teamUser.userId);
+    const users = await User.findAll({
+      where: {
+        id: userIds,
+      },
+    });
     if (!getMyProject) {
       return next(new apiError("No project found", 404));
     }
@@ -209,6 +219,7 @@ exports.getOneProject = async (req, res, next) => {
     res.json({
       message: `project by id : ${project_id}`,
       getMyProject,
+      users,
     });
   } catch (error) {
     return next(new apiError(error, 500));

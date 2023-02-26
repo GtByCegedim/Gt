@@ -100,7 +100,7 @@ const routes = [
       {
         name: "infoProjet",
         component: infoProjet,
-        path: "infoProjet",
+        path: "infoProjet/:projectId",
       },
       {
         name: "statEmploye",
