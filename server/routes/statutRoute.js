@@ -3,6 +3,7 @@ const {
   addNewStatut,
   updateStatusOfTask,
   deleteStatus,
+  getStatutOfProject,
 } = require("../controllers/statusController");
 const { authMiddleware } = require("../middleware/authMiddleware");
 const router = express.Router();
@@ -28,5 +29,11 @@ router.put(
   // #swagger.tags = ['Status']
   // #swagger.security = [{ "bearerAuth": [] }]
 );
-
+router.get(
+  "/allOfprojet/:id",
+  authMiddleware,
+  getStatutOfProject
+  // #swagger.tags = ['Status']
+  // #swagger.security = [{ "bearerAuth": [] }]
+);
 module.exports = router;
