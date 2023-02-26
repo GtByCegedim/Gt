@@ -71,21 +71,18 @@
         </thead>
         <tbody v-for="project in projectWhereIamMember" :key="project.id">
           <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
-            <router-link to="infoProjet">
-              <th
-                scope="row"
-                class="whitespace-nowrap py-4 px-6 font-medium text-gray-900 dark:text-white"
-              >
-                <router-link
-                  :to="{
-                    name: 'projetDetails',
-                    params: { projectId: project.id },
-                  }"
-                >
-                  {{ project.name }}
-                </router-link>
-              </th>
+            <th
+            scope="row"
+            class="whitespace-nowrap py-4 px-6 font-medium text-gray-900 dark:text-white"
+            >
+            <router-link 
+            :to="{
+            name:'infoProjet' ,
+            params: { projectId: project.id },}"
+            >
+                {{ project.name }}
             </router-link>
+              </th>
             <td class="py-4 px-6">
               {{ project.Manager.firstName }} {{ project.Manager.lastName }}
             </td>
@@ -143,8 +140,12 @@
         </thead>
         <tbody v-for="myProject in myProjects" :key="myProject.id">
           <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
-            <router-link to="infoProjet">
-              <th
+            <router-link 
+            :to="{
+            name:'infoProjet' ,
+            params: { projectId: myProject.id },}"
+            >
+            <th
                 scope="row"
                 class="whitespace-nowrap py-4 px-6 font-medium text-gray-900 dark:text-white"
               >
