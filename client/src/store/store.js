@@ -14,10 +14,19 @@ const store = createStore({
       firstName: null,
       lastName: null,
       createdAt: null,
-      updatedAt: null
+      updatedAt: null,
     },
-    showDropdown: false,
-    userRole: null,
+    profile: {
+      findMyProfile: {
+        adresse: null,
+        poste: null,
+        telephone: null,
+        date_de_naissance: null,
+        bisness_unit: null,
+      },
+      showDropdown: false,
+      userRole: null,
+    },
   },
   mutations: {
     setToken(state, token) {
@@ -40,9 +49,12 @@ const store = createStore({
     setCurrentUser(state, currentUser) {
       state.currentUser = currentUser;
     },
+    setProfile(state, profile) {
+      state.profile = profile;
+    },
     setUserRole(state, userRole) {
       state.userRole = userRole;
-      localStorage.setItem("role", userRole)
+      localStorage.setItem("role", userRole);
     },
   },
   actions: {
@@ -61,7 +73,7 @@ const store = createStore({
         commit("setUserRole", userRole);
         commit("setIsAuthenticated", true);
         if (userRole === "admin") {
-          router.push("/dashAdmin/statAdmin");
+          router.push("/dashAdmin/statistiques");
         } else if (userRole === "employe") {
           router.push("/dashEmploye/statistique");
         }
@@ -119,6 +131,23 @@ const store = createStore({
         commit("setCurrentUser", currentUser);
       } catch (error) {
         console.error(error.response.data.message);
+      }
+    },
+    async fetchProfile({ commit, state }) {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/profile/my",
+          {
+            headers: {
+              Authorization: `Bearer ${state.token}`,
+            },
+          }
+        );
+        const profile = response.data;
+        commit("setProfile", profile);
+      } catch (error) {
+        console.error(error);
+        throw error;
       }
     },
     logout({ commit }) {
