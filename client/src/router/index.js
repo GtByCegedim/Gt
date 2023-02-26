@@ -15,6 +15,7 @@ import newTeam from "../employe/pages/newTeam.vue";
 import addMember from "../employe/pages/addMember.vue";
 import projetDetails from "../admin/pages/projectDetails.vue";
 import addProfile  from "../employe/pages/createProfile.vue"
+import addTask from "../employe/pages/addTask.vue"
 
 import projectEmploye from "../employe/pages/project.vue";
 import infoProjet from "../employe/pages/infoProject.vue";
@@ -140,6 +141,11 @@ const routes = [
         name: "addProfile",
         component: addProfile,
         path: "addProfile",
+      },
+      {
+        name: "addTask",
+        component: addTask,
+        path: "addTask",
       },
     ],
   },
