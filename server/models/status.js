@@ -8,15 +8,13 @@ const statut = sequelize.define("statut", {
     primaryKey: true,
     autoIncrement: true,
   },
-  bane: {
-    type: Sequelize.BOOLEAN,
-    default: false
-  },
   status: {
     type: Sequelize.STRING,
     allowNull: false,
-    default: "A faire",
   },
+  project: {
+    type : Sequelize.INTEGER,
+  }
 });
 
 module.exports = statut;

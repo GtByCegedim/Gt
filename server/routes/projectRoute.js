@@ -8,6 +8,7 @@ const {
   getOneProject,
   getProjectsBanned,
   deleteProject,
+  getMyProjectsAsMember,
 } = require("../controllers/projectController");
 const { authMiddleware, isAdmin } = require("../middleware/authMiddleware");
 const router = express.Router();
@@ -24,6 +25,13 @@ router.get(
   "/all/my",
   authMiddleware,
   OnlyMyProjects
+  // #swagger.tags = ['Project']
+  // #swagger.security = [{ "bearerAuth": [] }]
+);
+router.get(
+  "/all/member",
+  authMiddleware,
+  getMyProjectsAsMember
   // #swagger.tags = ['Project']
   // #swagger.security = [{ "bearerAuth": [] }]
 );

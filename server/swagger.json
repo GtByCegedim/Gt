@@ -746,6 +746,32 @@
         ]
       }
     },
+    "/api/status/allOfprojet/{id}": {
+      "get": {
+        "tags": [
+          "Status"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
     "/api/status/add/{id{id:idStatut}": {
       "delete": {
         "description": "",
