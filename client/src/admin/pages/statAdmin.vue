@@ -9,29 +9,25 @@ export default {
           no: "groupe 1",
           date: "wassim lahali",
           amount : "ws,sm,ba",
-          bane: false,
+          status: "active",
         },
         {
           no: "groupe 2",
           date: "wassim lahalali",
           amount : "sc,fsf",
-          bane: true,
+          status: "Pending",
         },
-      ],
-      currentDate: new Date().toLocaleDateString(),
+      ]
     }
   },
   computed: {
     ...mapState(['projects']),
-    ...mapState(["currentUser"]),
   },
   methods: {
     ...mapActions(['fetchProjects']),
-    ...mapActions(["fetchCurrentUser"]),
   },
   mounted() {
     this.fetchProjects();
-    this.fetchCurrentUser();
   },
 }
 </script>
@@ -47,13 +43,13 @@ export default {
         </div>
         <div>
           <div class="text-sm text-gray-400">NOM COMPLET</div>
-          <div class="pt-1 text-white">  {{ currentUser.firstName }}   {{ currentUser.lastName }}</div>
+          <div class="pt-1 text-white">Lahlali Wassim</div>
         </div>
       </div>
       <div class="h-full w-px bg-gray-700" />
       <div>
         <div class="text-sm text-gray-400">DATE</div>
-        <div class="pt-1 text-white">{{ currentDate }}</div>
+        <div class="pt-1 text-white">01/03/2023</div>
       </div>
       <div class="h-full w-px bg-gray-700" />
 
@@ -146,7 +142,7 @@ export default {
               <div
                 class="flex items-center justify-center gap-x-2 rounded-10 border py-2 px-1"
                 :class="
-                  invoice.bane === false
+                  invoice.status === 'active'
                     ? 'border-green-400/10 bg-green-700/20 text-green-400'
                     : 'border-indigo-400/10 bg-indigo-700/20 text-indigo-400'
                 "
@@ -154,13 +150,13 @@ export default {
                 <span
                   class="h-2 w-2 rounded-full"
                   :class="
-                    invoice.bane === false
+                    invoice.status === 'active'
                       ? 'bg-green-400'
                       : 'bg-indigo-400'
                   "
                 />
                 <span class="text-xs">
-                  {{!invoice.bane}}
+                  {{ invoice.status }}
                 </span>
               </div>
             </td>
