@@ -76,12 +76,21 @@
                 scope="row"
                 class="whitespace-nowrap py-4 px-6 font-medium text-gray-900 dark:text-white"
               >
-                {{ project.name }}
+                <router-link
+                  :to="{
+                    name: 'projetDetails',
+                    params: { projectId: project.id },
+                  }"
+                >
+                  {{ project.name }}
+                </router-link>
               </th>
             </router-link>
-            <td class="py-4 px-6">{{ project.Manager.firstName }} {{ project.Manager.lastName }}</td>
+            <td class="py-4 px-6">
+              {{ project.Manager.firstName }} {{ project.Manager.lastName }}
+            </td>
             <td class="py-4 px-6">{{ project.createdAt }}</td>
-            <td class="py-4 px-6">{{ project.team.name}}</td>
+            <td class="py-4 px-6">{{ project.team.name }}</td>
             <td class="py-4 px-6 text-right">
               <a
                 href="#"
