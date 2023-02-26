@@ -113,6 +113,17 @@ exports.findALLprojects = async (req, res, next) => {
       where: {
         bane: false,
       },
+      include: [
+        {
+          model: Team,
+          attributes: ["name"], // Inclure seulement le nom de l'équipe
+        },
+        {
+          model: User,
+          attributes: ["firstName", "lastName"], // Inclure seulement le nom de manager
+          as: "Manager", // specify the alias for the association
+        },
+      ],
     });
     if (getProjects.length == 0) {
       return next(new apiError("No project found", 404));
