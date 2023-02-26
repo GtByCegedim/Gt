@@ -54,6 +54,7 @@ const routes = [
         name: "projetDetails",
         component: projetDetails,
         path: "projetDetails/:projectId",
+        props: true,
       },
 
       {
