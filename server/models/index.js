@@ -39,18 +39,8 @@ Task.hasMany(Subtask, { foreignKey: 'taskId' });
 Subtask.belongsTo(Task, { foreignKey: 'taskId' });
 
 // One-to-one relationship between Task and us
-Task.belongsToMany(Role, {
-  through: task_statut,
-  as: 'Statut',
-  foreignKey: 'taskId',
-  otherKey: 'statusId',
-});
-Statut.belongsToMany(User, {
-  through: task_statut,
-  as: 'Task',
-  foreignKey: 'statusId',
-  otherKey: 'taskId',
-});
+Task.hasMany(Statut, { foreignKey: 'status' });
+Statut.belongsTo(Task, { foreignKey: 'status' });
 
 // One-to-many relationship between Task and DateType
 Task.belongsTo(DateType, { foreignKey: 'dateTypeId' });
