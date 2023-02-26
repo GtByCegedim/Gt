@@ -7,6 +7,7 @@ const store = createStore({
     token: localStorage.getItem("token"),
     isAuthenticated: false,
     projects: [],
+    projectWhereIamMember: [],
     currentUser: {
       id: null,
       email: null,
@@ -45,6 +46,9 @@ const store = createStore({
     },
     setMyProjects(state, myProjects) {
       state.myProjects = myProjects;
+    },
+    setProjectWhereIamMember(state, projectWhereIamMember) {
+      state.projectWhereIamMember = projectWhereIamMember;
     },
     setCurrentUser(state, currentUser) {
       state.currentUser = currentUser;
@@ -112,6 +116,23 @@ const store = createStore({
         );
         const myProjects = response.data;
         commit("setMyProjects", myProjects);
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
+    async fetchProjectWhereIamMember({ commit, state }) {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/project/all/member",
+          {
+            headers: {
+              Authorization: `Bearer ${state.token}`,
+            },
+          }
+        );
+        const projectWhereIamMember = response.data;
+        commit("setProjectWhereIamMember", projectWhereIamMember);
       } catch (error) {
         console.error(error);
         throw error;
