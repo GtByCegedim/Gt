@@ -1,15 +1,17 @@
 const Task = require("../models/task");
 const User = require("../models/user");
 const Project = require("../models/project");
-const Subtask = require("../models/subtask");
 const Task_statut = require("../models/task_statut");
 const DateType = require("../models/dateType");
 const TaskUser = require("../models/task_user");
 const mailer = require("../middleware/mailer");
 const Storage = require("local-storage");
 const ErrorResponse = require("../utils/error");
-const { Statut } = require("../models");
-
+const Statut = require("../models/status");
+const Team = require("../models/team");
+const Team_User = require('../models/team_user')
+const Sequelize = require('sequelize')
+const status = require('../models/status')
 /**
  * It creates a task and adds it to the users
  * @param req - The request object.
@@ -19,41 +21,35 @@ const { Statut } = require("../models");
  */
 const addTaskToUser = async (req, res, next) => {
   const manager = req.user;
-  const { body } = req;
+  const project_id = req.params.id;
+  const {
+    body
+  } = req;
   try {
     if (
       !body.title ||
       !body.description ||
-      !body.deadline ||
       !body.duration ||
       !body.unit ||
-      !body.users
+      !body.email
     ) {
-      console.log(body.users);
       return next(new ErrorResponse("Fill all filled and users", 401));
     }
     /* Checking if the user exists in the database. */
-    body.users.map(async (user) => {
-      const findUserByName = await User.findOne({
-        where: {
-          lastName: user.lastname,
-        },
-      });
-      if (!findUserByName) {
-        return next(new ErrorResponse(`User  ${user.lastname} not found`, 401));
-      }
-    });
-    const manager_id = manager.id;
-    const isManeger = await Project.findOne({
+    const sheckUser = await User.findOne({
       where: {
-        manager: manager_id,
-      },
-    });
-    if (!isManeger) {
+        email: body.email
+      }
+    })
+    if (!sheckUser) return next(new ErrorResponse("User not found", 404));
+    const manager_id = manager.id;
+    const findProject = await Project.findByPk(project_id);
+    if (!findProject) {
       return next(
         new ErrorResponse("Sory You Are Not Manager Of this Project", 401)
       );
     }
+    if (findProject.manager != manager_id) return next(new ErrorResponse("You are not manager ", 401));
     /* It creates a date type. */
     const addDateType = await DateType.create({
       duration: body.duration,
@@ -62,65 +58,48 @@ const addTaskToUser = async (req, res, next) => {
     if (!addDateType) {
       return next(new ErrorResponse("Date Type Not created ", 401));
     }
-
-    const project_id = req.params.id;
     const id_dateType = addDateType.id;
+    const findDefaultStatut = await Statut.findOne({
+      where: {
+        status: "A faire",
+        project: project_id
+      }
+    })
+    if (!findDefaultStatut) return next(new ErrorResponse("statut not found", 404));
+    const statusId = findDefaultStatut.id
+    const userId = sheckUser.id
     /* It creates a task and adds it to the users */
+    const findTeam = await Team.findOne({
+      where : {
+        project:project_id
+      }
+    })
+    if(!findTeam)  return next(new ErrorResponse("team not found", 404));
+    const checkUserTeam = await Team_User.findOne({
+      where : {
+        teamId: findTeam.id,
+        userId:userId
+      }
+    })
+    if(!checkUserTeam)  return next(new ErrorResponse("user not a member", 401));
     const creatTask = await Task.create({
       title: body.title,
       description: body.description,
-      deadline: body.deadline,
       dateTypeId: id_dateType,
       projectId: project_id,
       manager: manager_id,
+      status: statusId,
+      assignedTo: userId
     });
     if (!creatTask) {
       return next(new ErrorResponse("Task not created", 401));
     }
     /* A loop that iterates over the users and creates a relation between the task and the users. */
-    body.users.map(async (user) => {
-      const name_luser = user.lastname;
-      const findUserByName = await User.findOne({
-        where: {
-          lastName: name_luser,
-        },
-      });
-      if (!findUserByName) {
-        return next(
-          new ErrorResponse(`no user with this name  ${name_luser}`, 401)
-        );
-      }
-      const UserId = findUserByName.id;
-      const taskId = creatTask.id;
-      const creatUserTask = await TaskUser.create({
-        userId: UserId,
-        taskId: taskId,
-      });
-      if (!creatUserTask) {
-        return next(new ErrorResponse("no relation user with task", 401));
-      }
-      const addStatus = await Statut.create({
-        status: "A faire",
-      });
-      if (!addStatus) {
-        return next(new ErrorResponse("statut not aded", 401));
-      }
-      const task_status = await Task_statut.create({
-        taskId: creatTask.id,
-        statusId: addStatus.id,
-      });
-      if (!task_status) {
-        return next(new ErrorResponse("relation of statut not aded", 401));
-      }
-      Storage("creatTask", creatTask.title);
-      Storage("createdAt", creatTask.createdAt);
-      mailer.main("addTask", findUserByName);
-    });
     await res.json({
       msg: "task added to users",
     });
   } catch (error) {
-    return next(new ErrorResponse(error, 401));
+    return next(new ErrorResponse(error, 500));
   }
 };
 
@@ -136,26 +115,40 @@ const addTaskToUser = async (req, res, next) => {
  */
 const AllTaskOfProject = async (req, res, next) => {
   try {
-    // Extract project ID from request parameters
-    const projectId = req.params.id;
-
-    // Query the database for tasks with a matching project ID
-    const tasks = await Task.findAll({ where: { projectId } });
-
-    // If no tasks are found, return a custom error response
-    if (!tasks.length) {
-      return next(new ErrorResponse("No tasks found for project", 404));
+    const project_id = req.params.id
+    const manager_id = req.user.id;
+    const findProject = await Project.findByPk(project_id);
+    if (!findProject) {
+      return next(
+        new ErrorResponse("Sorry, you are not the manager of this project", 401)
+      );
     }
-
-    // Return a JSON response with the found tasks
-    return res.status(200).json(tasks);
+    if (findProject.manager != manager_id) {
+      return next(new ErrorResponse("You are not the manager", 401));
+    }
+    const tasks = await Task.findAll({
+      where: {
+        projectId: project_id,
+        manager: manager_id
+      },
+      attributes: [
+        [Sequelize.col('status'), 'status'],
+        [Sequelize.fn('count', Sequelize.col('status')), 'total']
+      ],
+      group: ['status'],
+      type: Sequelize.STRING
+    })
+  
+    
+    if (!tasks) {
+      return next(new ErrorResponse("No tasks found", 404));
+    }
+    res.json(tasks)
   } catch (error) {
-    // Return a custom error response if an error occurs while querying the database
-    return next(
-      new ErrorResponse(`Error retrieving tasks: ${error.message}`, 500)
-    );
+    return next(new ErrorResponse(error, 500));
   }
 };
+
 
 /**
  * @function AllTaskOfUser
@@ -219,7 +212,11 @@ const AllMyTasks = async (req, res, next) => {
     const userId = req.user.id;
 
     // Find all task-user associations where the user ID matches the one from the request
-    const taskUsers = await TaskUser.findAll({ where: { userId } });
+    const taskUsers = await TaskUser.findAll({
+      where: {
+        userId
+      }
+    });
 
     // If there are no tasks assigned to this user, return a 404 error
     if (!taskUsers.length)
@@ -229,7 +226,11 @@ const AllMyTasks = async (req, res, next) => {
     const taskIds = taskUsers.map((taskUser) => taskUser.taskId);
 
     // Find all tasks where the ID is in the extracted task IDs
-    const allTasks = await Task.findAll({ where: { id: taskIds } });
+    const allTasks = await Task.findAll({
+      where: {
+        id: taskIds
+      }
+    });
 
     // Return the results in a JSON response
     return res.json({

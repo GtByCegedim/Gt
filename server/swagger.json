@@ -817,6 +817,25 @@
         ]
       }
     },
+    "/api/project/all/member": {
+      "get": {
+        "tags": [
+          "Project"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
     "/api/project/add": {
       "post": {
         "tags": [

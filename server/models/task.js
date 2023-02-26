@@ -12,16 +12,21 @@ const Task = sequelize.define('task', {
     type: Sequelize.TEXT,
     allowNull: false
   },
-  deadline: {
-    type: Sequelize.DATE,
-    allowNull: false
-  },
   completed: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
     allowNull: false,
   },
   manager : {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  status:{
+    type: Sequelize.INTEGER,
+    allowNull: false
+
+  },
+  assignedTo:{
     type: Sequelize.INTEGER,
     allowNull: false
   }
