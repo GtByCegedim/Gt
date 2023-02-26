@@ -1,8 +1,7 @@
 <template>
-  <div class="flex  w-2/5 flex-col mt-2 gap-y-16">
-     <div class="flex flex-col justify-between rounded-10 bg-gray-900 p-7">
-
-      <div class="grid grid-cols-3 gap-x-4 pt-">
+  <div class="mt-2 flex w-2/5 flex-col gap-y-16">
+    <div class="flex flex-col justify-between rounded-10 bg-gray-900 p-7">
+      <div class="pt- grid grid-cols-3 gap-x-4">
         <div class="rounded-10 bg-gray-700 p-3">
           <div class="pt-3 text-sm text-white">Gérer vos projets</div>
         </div>
@@ -41,24 +40,27 @@
             class="widthFull rounded-3xl border border-gray-100 bg-white shadow-2xl shadow-gray-600/10 backdrop-blur-2xl dark:border-gray-700 dark:bg-gray-800"
           >
             <div class="p-8 py-12 sm:p-16">
-              <form action="" class="space-y-4">
+              <form @submit.prevent="addProject" action="" class="space-y-4">
                 <div class="space-y-2">
-                  <label for="email" class="text-gray-400 dark:text-gray-300"
+                  <label for="name" class="text-gray-400 dark:text-gray-300"
                     >nom du projet</label
                   >
                   <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    autocomplete="username"
+                    v-model="name"
+                    type="name"
+                    name="name"
+                    id="name"
                     class="block w-full rounded-md border border-gray-200 bg-transparent px-4 py-3 text-gray-100 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:border-gray-600"
                   />
                 </div>
                 <div class="space-y-2">
-                  <label for="email" class="text-gray-600 dark:text-gray-300"
+                  <label
+                    for="description"
+                    class="text-gray-600 dark:text-gray-300"
                     >description</label
                   >
                   <input
+                    v-model="description"
                     type="text"
                     name="description"
                     id="description"
@@ -68,12 +70,13 @@
                 <div>
                   <div class="flex items-center justify-between space-y-2">
                     <label
-                      for="email"
+                      for="deadline"
                       class="text-center text-gray-100 dark:text-gray-100"
                       >deadline</label
                     >
                   </div>
                   <input
+                    v-model="deadline"
                     type="date"
                     name="deadline"
                     id="deadline"
@@ -102,30 +105,45 @@
 .widthFull {
   width: 100%;
 }
-.parent{
+.parent {
   margin-top: 65px;
 }
 </style>
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
-      firstname: "",
-      lasname: "",
-      email: "",
+      name: "",
+      description: "",
+      deadline: "",
     };
   },
   methods: {
-    submitForm() {
-      // Effectuer les actions nécessaires pour ajouter le projet
-      console.log("Nom du projet:", this.firstname);
-      console.log("Description:", this.lasname);
-      console.log("Date de création:", this.email);
-
-      // Réinitialiser les valeurs des champs du formulaire
-      this.firstname = "";
-      this.lasname = "";
-      this.email = "";
+    async addProject() {
+      const formData = {
+        name: this.name,
+        description: this.description,
+        deadline: this.deadline,
+      };
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.post(
+          "http://localhost:3000/api/project/add",
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(response);
+        // handle successful response
+      } catch (error) {
+        console.log(error.response.data);
+        // handle error response
+      }
     },
   },
 };
