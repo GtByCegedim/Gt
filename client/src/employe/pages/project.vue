@@ -1,7 +1,7 @@
 <template>
   <div class="flex-1">
     <h3 class="w py-2 text-left text-2xl font-bold">
-      All Projects for which I am a member
+      Tous les projets pour lesquels je suis membre.
     </h3>
     <div class="relative overflow-x-auto sm:rounded-lg">
       <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400">
@@ -94,7 +94,7 @@
       </table>
     </div>
     <h3 class="w mt-10 py-2 text-left text-2xl font-bold">
-      All projects for which I am the manager
+      Tous les projets pour lesquels je suis le manager.
     </h3>
     <div class="relative overflow-x-auto sm:rounded-lg">
       <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400">
