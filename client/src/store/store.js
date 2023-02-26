@@ -73,7 +73,7 @@ const store = createStore({
         commit("setUserRole", userRole);
         commit("setIsAuthenticated", true);
         if (userRole === "admin") {
-          router.push("/dashAdmin/statAdmin");
+          router.push("/dashAdmin/statistiques");
         } else if (userRole === "employe") {
           router.push("/dashEmploye/statistique");
         }

@@ -19,6 +19,7 @@ export default {
         },
       ],
       currentDate: new Date().toLocaleDateString(),
+      currentTime: new Date().toLocaleTimeString(),
     };
   },
   computed: {
@@ -53,7 +54,10 @@ export default {
         <div class="pt-1 text-white">{{ currentDate }}</div>
       </div>
       <div class="h-full w-px bg-gray-700" />
-
+      <div>
+        <div class="text-sm text-gray-400">HEURE</div>
+        <div class="pt-1 text-white">{{ currentTime }}</div>
+      </div>
       <div class="h-full w-px bg-gray-700" />
       <div>
         <div class="text-sm text-gray-400">POSTE</div>

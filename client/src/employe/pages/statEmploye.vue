@@ -33,6 +33,7 @@ export default {
         },
       ],
       currentDate: new Date().toLocaleDateString(),
+      currentTime : new Date().toLocaleTimeString()
     };
   },
 };
@@ -61,7 +62,7 @@ export default {
       <div class="h-full w-px bg-gray-700" />
       <div>
         <div class="text-sm text-gray-400">HEURE</div>
-        <div class="pt-1 text-white">01:36</div>
+        <div class="pt-1 text-white">{{ currentTime }}</div>
       </div>
       <div class="h-full w-px bg-gray-700" />
       <div>
