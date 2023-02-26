@@ -143,7 +143,7 @@
               </th>
             </router-link>
             <td class="py-4 px-6">{{ myProject.createdAt }}</td>
-            <td class="py-4 px-6">équipe</td>
+            <td class="py-4 px-6">{{ myProject.team.name }}</td>
             <td class="py-4 px-6 text-right">
               <a
                 href="#"
