@@ -8,7 +8,10 @@ const mailer = require("../middleware/mailer");
 const Storage = require("local-storage");
 const ErrorResponse = require("../utils/error");
 const Statut = require("../models/status");
-
+const Team = require("../models/team");
+const Team_User = require('../models/team_user')
+const Sequelize = require('sequelize')
+const status = require('../models/status')
 /**
  * It creates a task and adds it to the users
  * @param req - The request object.
@@ -66,6 +69,19 @@ const addTaskToUser = async (req, res, next) => {
     const statusId = findDefaultStatut.id
     const userId = sheckUser.id
     /* It creates a task and adds it to the users */
+    const findTeam = await Team.findOne({
+      where : {
+        project:project_id
+      }
+    })
+    if(!findTeam)  return next(new ErrorResponse("team not found", 404));
+    const checkUserTeam = await Team_User.findOne({
+      where : {
+        teamId: findTeam.id,
+        userId:userId
+      }
+    })
+    if(!checkUserTeam)  return next(new ErrorResponse("user not a member", 401));
     const creatTask = await Task.create({
       title: body.title,
       description: body.description,
@@ -99,25 +115,40 @@ const addTaskToUser = async (req, res, next) => {
  */
 const AllTaskOfProject = async (req, res, next) => {
   try {
-    const project_id=req.params.id
-    where: {
-      email: body.email
+    const project_id = req.params.id
+    const manager_id = req.user.id;
+    const findProject = await Project.findByPk(project_id);
+    if (!findProject) {
+      return next(
+        new ErrorResponse("Sorry, you are not the manager of this project", 401)
+      );
     }
-
-  if (!sheckUser) return next(new ErrorResponse("User not found", 404));
-  const manager_id = manager.id;
-  const findProject = await Project.findByPk(project_id);
-  if (!findProject) {
-    return next(
-      new ErrorResponse("Sory You Are Not Manager Of this Project", 401)
-    );
-  }
-  if (findProject.manager != manager_id) return next(new ErrorResponse("You are not manager ", 401));
-
-  } catch (error) {
+    if (findProject.manager != manager_id) {
+      return next(new ErrorResponse("You are not the manager", 401));
+    }
+    const tasks = await Task.findAll({
+      where: {
+        projectId: project_id,
+        manager: manager_id
+      },
+      attributes: [
+        [Sequelize.col('status'), 'status'],
+        [Sequelize.fn('count', Sequelize.col('status')), 'total']
+      ],
+      group: ['status'],
+      type: Sequelize.STRING
+    })
+  
     
+    if (!tasks) {
+      return next(new ErrorResponse("No tasks found", 404));
+    }
+    res.json(tasks)
+  } catch (error) {
+    return next(new ErrorResponse(error, 500));
   }
 };
+
 
 /**
  * @function AllTaskOfUser
