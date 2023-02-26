@@ -1,5 +1,6 @@
 const Project = require("../models/project.js");
 const Team = require("../models/team.js");
+const Team_user = require("../models/team_user.js");
 const apiError = require("../utils/error.js");
 const projctUsers = require("../models/project_user");
 const User = require("../models/user.js");
@@ -142,6 +143,24 @@ exports.OnlyMyProjects = async (req, res, next) => {
       return next(new apiError("No project found", 404));
     }
     res.json(getMyProjects);
+  } catch (error) {
+    return next(new apiError(error, 500));
+  }
+};
+exports.getMyProjectsAsMember = async (req, res, next) => {
+  const userId = req.user.id;
+  try {
+    const teamUsers = await Team_user.findAll({ where: { userId: userId } });
+    const teamIds = teamUsers.map((teamUser) => teamUser.teamId);
+    const projects = await Project.findAll({
+      where: {
+        teamId: teamIds,
+      },
+    });
+    if (projects.length == 0) {
+      return next(new apiError("No project found", 404));
+    }
+    res.json(projects);
   } catch (error) {
     return next(new apiError(error, 500));
   }
