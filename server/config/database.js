@@ -2,7 +2,6 @@ const Sequelize = require('sequelize');
 
 
 const sequelize = new Sequelize('postgres://bader:2001@postgres:5432/GT');
-const sequelize = new Sequelize('postgres://bader:2001@postgres:5432/GT');
 
 
 sequelize
