@@ -1,18 +1,15 @@
 <template>
   <div class="mt-10 flex-1 items-center">
-    <img
-      :src="profileImage"
-      class="image mb-4 h-24 w-24 rounded-full object-cover"
-    />
+     <img src="https://cdn-icons-png.flaticon.com/512/560/560216.png" class="mb-4 image h-24 w-24 rounded-full object-cover" />
     <h2 class="mb-2 text-xl font-medium text-white">
       {{ currentUser.firstName }} {{ currentUser.lastName }}
     </h2>
     <p class="mb-2 text-sm text-gray-500">{{ currentUser.email }}</p>
     <div class="mb-4 flex items-center">
-      <span class="mr-2 rounded-full bg-green-500 py-1 px-2 text-xs text-white"
+      <span class="mr-2 rounded-full bg-green-400 py-1 px-2 font-extrabold text-xs text-gray-800"
         >{{ profile.findMyProfile.poste }}</span
       >
-      <span class="rounded-full bg-blue-500 py-1 px-2 text-xs text-white"
+      <span class="rounded-full bg-indigo-400 py-1 px-2 font-bold text-xs text-gray-900"
         >{{ profile.findMyProfile.bisness_unit }}</span
       >
     </div>
@@ -52,6 +49,9 @@ export default {
     ...mapState(["currentUser", "profile"]),
   },
   methods: {
+    ...mapActions(["fetchCurrentUser", "fetchProfile"]),
+  },
+   methods: {
     ...mapActions(["fetchCurrentUser", "fetchProfile"]),
   },
 };
