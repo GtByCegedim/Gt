@@ -14,7 +14,7 @@
         </div>
       </div>
       <div
-        class="mt-4 w-full rounded-10 bg-gray-700 py-3 text-gray-400 hover:text-white"
+        class="mt-4 w-full rounded-10 bg-gray-700 py-3 text-gray-200 hover:text-white"
       >
        Créer des tache et demarer votre aventure avec autre employés 
       </div>
@@ -43,7 +43,7 @@
             <div class="p-8 py-12 sm:p-16">
               <form action="" class="space-y-4">
                 <div class="space-y-2">
-                  <label for="email" class="text-gray-400 dark:text-gray-300"
+                  <label for="email" class="text-gray-200 dark:text-gray-300"
                     >titre</label
                   >
                   <input
@@ -55,7 +55,7 @@
                   />
                 </div>
                 <div class="space-y-2">
-                  <label for="email" class="text-gray-400 dark:text-gray-300"
+                  <label for="email" class="text-gray-200 dark:text-gray-300"
                     >description</label
                   >
                   <input
@@ -68,7 +68,7 @@
                 </div>
                
                 <div class="space-y-2">
-                  <label for="email" class="text-gray-400 dark:text-gray-300"
+                  <label for="email" class="text-gray-200 dark:text-gray-300"
                     >Duration</label
                   >
                   <input
@@ -78,7 +78,7 @@
                     autocomplete="duration"
                     class="block w-full rounded-md border border-gray-200 bg-transparent px-4 py-3 text-gray-100 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:border-gray-600"
                   />
-                   <label for="email" class="text-gray-400 dark:text-gray-300"
+                   <label for="email" class="text-gray-200 dark:text-gray-300"
                     >Duration</label
                   >
                   <input
@@ -91,7 +91,7 @@
                 </div>
 
                  <div class="space-y-2">
-                  <label for="email" class="text-gray-400 dark:text-gray-300"
+                  <label for="email" class="text-gray-200 dark:text-gray-300"
                     >A qui </label
                   >
                   <input

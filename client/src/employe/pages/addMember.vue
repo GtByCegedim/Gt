@@ -22,7 +22,7 @@
           <div class="p-8 py-12 sm:p-16">
             <form @submit.prevent="addUserToTeam">
               <div class="space-y-2">
-                <label for="email" class="text-gray-400 dark:text-gray-300"
+                <label for="email" class="text-gray-200 dark:text-gray-300"
                   >Entrer l'email de l'employé que vous souhaitez ajouter à
                   cette équipe</label
                 >
@@ -49,10 +49,10 @@
       <div class="relative overflow-x-auto sm:rounded-lg">
         <h2 class="text-start text-3xl font-bold sm:text-3xl">Membres</h2>
         <table
-          class="w-full text-left text-sm text-gray-500 dark:text-gray-400"
+          class="w-full text-left text-sm text-gray-500 dark:text-gray-200"
         >
           <thead
-            class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400"
+            class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-200"
           >
             <tr>
               <th scope="col" class="py-3 px-6">lasName</th>

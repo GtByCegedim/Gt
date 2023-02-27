@@ -24,7 +24,7 @@
             <h4 class="text-xl font-semibold dark:text-gray-700 text-gray">Hentoni Doe</h4>
             <span class="block text-sm text-gray-500">CEO-Founder</span>
           </div>
-          <p class="mt-8 text-gray-300 dark:text-gray-400">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
+          <p class="mt-8 text-gray-300 dark:text-gray-200">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
         </div>
         
       </div>
@@ -42,7 +42,7 @@
             <h4 class="text-xl font-semibold dark:text-gray-700 text-gray">Hentoni Doe</h4>
             <span class="block text-sm text-gray-500">CEO-Founder</span>
           </div>
-          <p class="mt-8 text-gray-300 dark:text-gray-400">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
+          <p class="mt-8 text-gray-300 dark:text-gray-200">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
         </div>
         
       </div>
@@ -60,7 +60,7 @@
             <h4 class="text-xl font-semibold dark:text-gray-700 text-gray">Hentoni Doe</h4>
             <span class="block text-sm text-gray-500">CEO-Founder</span>
           </div>
-          <p class="mt-8 text-gray-300 dark:text-gray-400">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
+          <p class="mt-8 text-gray-300 dark:text-gray-200">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
         </div>
         
       </div>
@@ -78,7 +78,7 @@
             <h4 class="text-xl font-semibold dark:text-gray-700 text-gray">Hentoni Doe</h4>
             <span class="block text-sm text-gray-500">CEO-Founder</span>
           </div>
-          <p class="mt-8 text-gray-300 dark:text-gray-400">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
+          <p class="mt-8 text-gray-300 dark:text-gray-200">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
         </div>
         
       </div>
@@ -96,7 +96,7 @@
             <h4 class="text-xl font-semibold dark:text-gray-700 text-gray">Hentoni Doe</h4>
             <span class="block text-sm text-gray-500">CEO-Founder</span>
           </div>
-          <p class="mt-8 text-gray-300 dark:text-gray-400">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
+          <p class="mt-8 text-gray-300 dark:text-gray-200">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
         </div>
         
       </div>
@@ -114,7 +114,7 @@
             <h4 class="text-xl font-semibold dark:text-gray-700 text-gray">Hentoni Doe</h4>
             <span class="block text-sm text-gray-500">CEO-Founder</span>
           </div>
-          <p class="mt-8 text-gray-300 dark:text-gray-400">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
+          <p class="mt-8 text-gray-300 dark:text-gray-200">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
         </div>
         
       </div>
@@ -132,7 +132,7 @@
             <h4 class="text-xl font-semibold dark:text-gray-700 text-gray">Hentoni Doe</h4>
             <span class="block text-sm text-gray-500">CEO-Founder</span>
           </div>
-          <p class="mt-8 text-gray-300 dark:text-gray-400">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
+          <p class="mt-8 text-gray-300 dark:text-gray-200">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
         </div>
         
       </div>
@@ -150,7 +150,7 @@
             <h4 class="text-xl font-semibold dark:text-gray-700 text-gray">Hentoni Doe</h4>
             <span class="block text-sm text-gray-500">CEO-Founder</span>
           </div>
-          <p class="mt-8 text-gray-300 dark:text-gray-400">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
+          <p class="mt-8 text-gray-300 dark:text-gray-200">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
         </div>
         
       </div>
@@ -168,7 +168,7 @@
             <h4 class="text-xl font-semibold dark:text-gray-700 text-gray">Hentoni Doe</h4>
             <span class="block text-sm text-gray-500">CEO-Founder</span>
           </div>
-          <p class="mt-8 text-gray-300 dark:text-gray-400">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
+          <p class="mt-8 text-gray-300 dark:text-gray-200">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
         </div>
         
       </div>
@@ -186,7 +186,7 @@
             <h4 class="text-xl font-semibold dark:text-gray-700 text-gray">Hentoni Doe</h4>
             <span class="block text-sm text-gray-500">CEO-Founder</span>
           </div>
-          <p class="mt-8 text-gray-300 dark:text-gray-400">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
+          <p class="mt-8 text-gray-300 dark:text-gray-200">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
         </div>
         
       </div>
@@ -204,7 +204,7 @@
             <h4 class="text-xl font-semibold dark:text-gray-700 text-gray">Hentoni Doe</h4>
             <span class="block text-sm text-gray-500">CEO-Founder</span>
           </div>
-          <p class="mt-8 text-gray-300 dark:text-gray-400">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
+          <p class="mt-8 text-gray-300 dark:text-gray-200">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
         </div>
         
       </div>

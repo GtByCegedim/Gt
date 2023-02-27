@@ -4,7 +4,7 @@
       <div class="flex items-center justify-between">
         <h2 class="text-[20px] font-medium text-white">Groupes</h2>
         <button
-          class="inline-flex items-center gap-x-1 rounded-10 bg-gray-700 py-2 px-4 text-sm text-gray-400 hover:text-white"
+          class="inline-flex items-center gap-x-1 rounded-10 bg-gray-700 py-2 px-4 text-sm text-gray-200 hover:text-white"
         >
           <PlusIcon class="h-6 w-6 stroke-current" />
           <span>Créer un groupe</span>
@@ -13,10 +13,10 @@
       <table class="mt-4">
         <thead>
           <tr>
-            <td class="py-1 text-sm text-gray-400">label</td>
-            <td class="py-1 text-sm text-gray-400">manager</td>
-            <td class="py-1 text-sm text-gray-400">membres</td>
-            <td class="py-1 text-sm text-gray-400">statut</td>
+            <td class="py-1 text-sm text-gray-200">label</td>
+            <td class="py-1 text-sm text-gray-200">manager</td>
+            <td class="py-1 text-sm text-gray-200">membres</td>
+            <td class="py-1 text-sm text-gray-200">statut</td>
           </tr>
         </thead>
         <tbody>
@@ -31,7 +31,7 @@
               </span>
             </td>
             <td class="py-4">
-              <span class="text-sm text-gray-400">
+              <span class="text-sm text-gray-200">
                 {{ invoice.date }}
               </span>
             </td>
