@@ -12,7 +12,7 @@
 
             <a
               href="#"
-              class="mt-8 inline-block rounded bg-gray-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-gray-700 focus:outline-none focus:ring focus:ring-yellow-400"
+              class="mt-8 inline-block rounded text-gray-400 px-12 py-3 text-sm font-medium text-white transition hover:bg-gray-700 focus:outline-none focus:ring focus:ring-yellow-400"
             >
               Voir Kanban Board
             </a>
@@ -90,10 +90,10 @@
       <div class="relative overflow-x-auto sm:rounded-lg">
         <h2 class="text-start text-3xl font-bold sm:text-3xl">Membres</h2>
         <table
-          class="w-full text-left text-sm text-gray-500 dark:text-gray-400"
+          class="w-full text-left text-sm text-gray-500 dark:text-gray-200"
         >
           <thead
-            class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400"
+            class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-200"
           >
             <tr>
               <th scope="col" class="py-3 px-6">lasName</th>

@@ -24,7 +24,7 @@
           <div class="p-8 py-12 sm:p-16">
               <form action="" class="space-y-4">
                 <div class="space-y-2">
-                  <label for="email" class="text-gray-400 dark:text-gray-300"
+                  <label for="email" class="text-gray-200 dark:text-gray-300"
                     >entrer l'email de l'employé que vous souhait ajouter a cette equipe</label
                   >
                   <input
@@ -53,14 +53,14 @@
       <div class="overflow-x-auto relative  sm:rounded-lg">
         <h2 class="text-3xl text-start font-bold sm:text-3xl">Membres</h2>
         <table
-          class="w-full text-sm text-left text-gray-500 dark:text-gray-400"
+          class="w-full text-sm text-left text-gray-500 dark:text-gray-200"
         >
           <thead
             class="
               text-xs text-gray-700
               uppercase
               bg-gray-50
-              dark:bg-gray-700 dark:text-gray-400
+              dark:bg-gray-700 dark:text-gray-200
             "
           >
             <tr>

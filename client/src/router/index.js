@@ -16,6 +16,7 @@ import addMember from "../employe/pages/addMember.vue";
 import projetDetails from "../admin/pages/projectDetails.vue";
 import addProfile  from "../employe/pages/createProfile.vue"
 import addTask from "../employe/pages/addTask.vue"
+import infoUser from "../admin/pages/infoUser.vue"
 
 import projectEmploye from "../employe/pages/project.vue";
 import infoProjet from "../employe/pages/infoProject.vue";
@@ -83,6 +84,11 @@ const routes = [
         name: "profileAdmin",
         component: profileAdmin,
         path: "profile",
+      },
+      {
+        name: "infoUser",
+        component: infoUser,
+        path: "infoUser",
       },
     ],
   },

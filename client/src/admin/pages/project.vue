@@ -2,9 +2,9 @@
   <div class="flex flex-1 flex-col gap-x-6 py-8">
     <h3 class="py-2 text-left text-2xl font-bold">All Projects</h3>
     <div class="relative overflow-x-auto sm:rounded-lg">
-      <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400">
+      <table class="w-full text-left text-sm text-gray-500 dark:text-gray-200">
         <thead
-          class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400"
+          class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-200"
         >
           <tr>
             <th scope="col" class="py-3 px-6">Project</th>

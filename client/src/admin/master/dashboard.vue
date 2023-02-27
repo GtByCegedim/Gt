@@ -18,7 +18,7 @@ const menu = [
 </script>
 
 <template>
-  <div class="flex min-h-screen w-full bg-gray-700 font-sans">
+  <div class="flex min-h-screen w-full bg-gray-900 font-sans">
     <aside class="flex w-64 flex-col px-4 pt-10 pb-6">
       <div class="ml-6 h-10 w-1/3">
         <router-link to="/">
@@ -31,7 +31,7 @@ const menu = [
           <component :is="item.icon" class="h-6 w-6 stroke-current" />
           <router-link
             :to="item.route"
-            class="flex items-center gap-x-4 text-gray-400 hover:font-medium hover:text-white focus:font-medium focus:text-white focus:outline-none"
+            class="flex items-center gap-x-4 text-gray-100 hover:font-medium hover:text-white focus:font-medium focus:text-white focus:outline-none"
           >
             <span>{{ item.name }}</span>
           </router-link>
@@ -43,13 +43,13 @@ const menu = [
         <div class="text-white">
           <div>Rire au travail : Parce qu'un sourire peut tout changer.</div>
         </div>
-        <div v-if="joke" class="mt-3 text-sm text-gray-400">
+        <div v-if="joke" class="mt-3 text-sm text-gray-200">
           {{ joke }}
         </div>
-        <div v-else class="mt-3 text-sm text-gray-400">Loading joke...</div>
+        <div v-else class="mt-3 text-sm text-gray-200">Loading joke...</div>
         <button
           @click="fetchJoke"
-          class="mt-4 w-full rounded-lg bg-gray-700 py-2 text-sm font-normal text-gray-400 hover:text-white"
+          class="mt-4 w-full rounded-lg bg-gray-700 py-2 text-sm font-normal text-gray-200 hover:text-white"
         >
           une autre
         </button>
@@ -66,17 +66,17 @@ const menu = [
               <span
                 class="pointer-events-none absolute inset-y-0 flex items-center px-3"
               >
-                <SearchIcon class="h-6 w-6 stroke-current text-gray-400" />
+                <SearchIcon class="h-6 w-6 stroke-current text-gray-200" />
               </span>
               <input
                 type="text"
                 placeholder="Search"
-                class="rounded-10 bg-gray-900 py-3 pr-4 pl-10 text-sm text-gray-400 focus:text-white focus:outline-none"
+                class="rounded-10 bg-gray-900 py-3 pr-4 pl-10 text-sm text-gray-200 focus:text-white focus:outline-none"
               />
             </div>
             <router-link
               to="/dashAdmin/newEmploye"
-              class="rounded-10 bg-gray-900 py-3 px-4 text-sm text-gray-400 hover:text-white"
+              class="rounded-10 bg-gray-900 py-3 px-4 text-sm text-gray-200 hover:text-white"
             >
               Ajouter un employe
             </router-link>
@@ -86,12 +86,12 @@ const menu = [
           <div class="flex items-center gap-x-2.5">
             <button
               @click="openMail"
-              class="flex h-11 w-11 items-center justify-center rounded-full bg-gray-900 text-gray-400 hover:text-white"
+              class="flex h-11 w-11 items-center justify-center rounded-full bg-gray-900 text-gray-200 hover:text-white"
             >
               <MailIcon class="h-7 w-7 stroke-current" />
             </button>
             <button
-              class="relative flex h-11 w-11 items-center justify-center rounded-full bg-gray-900 text-gray-400 hover:text-white"
+              class="relative flex h-11 w-11 items-center justify-center rounded-full bg-gray-900 text-gray-200 hover:text-white"
             >
               <BellIcon class="h-7 w-7 stroke-current" />
               <div class="absolute top-3 right-3 flex h-2 w-2">
@@ -102,14 +102,14 @@ const menu = [
               </div>
             </button>
             <button
-              class="flex h-11 w-11 items-center justify-center rounded-full bg-gray-900 text-gray-400 hover:text-white"
+              class="flex h-11 w-11 items-center justify-center rounded-full bg-gray-900 text-gray-200 hover:text-white"
             >
               <InboxIcon class="h-7 w-7 stroke-current" />
             </button>
           </div>
           <div class="relative">
             <button
-              class="flex h-11 items-center justify-center rounded-full bg-gray-900 px-2 text-gray-400 hover:text-white"
+              class="flex h-11 items-center justify-center rounded-full bg-gray-900 px-2 text-gray-200 hover:text-white"
               @click="toggleDropdown"
             >
               <img src="" alt="" class="h-8 w-8 rounded-full object-cover" />
