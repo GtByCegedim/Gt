@@ -6,10 +6,8 @@
     </h2>
     <p class="mb-2 text-sm text-gray-500">{{ currentUser.email }}</p>
    <div class="mb-4 flex items-center">
-      <span class="mr-2 rounded-full bg-green-400 py-1 px-2 font-extrabold text-xs text-gray-800"
-        >{{ profile.findMyProfile.poste }}</span
-      >
-      <span class="rounded-full  bg-indigo-400 py-1 px-2 font-bold text-xs text-gray_900"
+      
+      <span class="rounded-full  bg-indigo-400 py-1 px-2 font-bold text-xs text-green-100"
         >{{ profile.findMyProfile.bisness_unit }}</span
       >
       <span class=" rounded-full admin bg-gray-400 py-1 px-2 font-extrabold text-xs text-gray-300"
