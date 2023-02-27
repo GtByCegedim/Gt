@@ -25,6 +25,8 @@ import profile from "../employe/pages/profile.vue";
 import newProjet from "../employe/pages/newProject.vue";
 import teams from "../employe/pages/Teams.vue";
 
+import NotFound from "../master/error404.vue"
+
 const routes = [
   {
     name: "home",
@@ -35,6 +37,11 @@ const routes = [
     name: "Login",
     component: Login,
     path: "/Login",
+  },
+  {
+    path: '/:catchAll(.*)', // ce chemin intercepte toutes les URL qui ne correspondent à aucune autre route
+    name: 'NotFound',
+    component: NotFound,
   },
   {
     name: "dashAdmin",
