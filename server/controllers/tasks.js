@@ -9,9 +9,9 @@ const Storage = require("local-storage");
 const ErrorResponse = require("../utils/error");
 const Statut = require("../models/status");
 const Team = require("../models/team");
-const Team_User = require('../models/team_user')
-const Sequelize = require('sequelize')
-const status = require('../models/status')
+const Team_User = require("../models/team_user");
+const Sequelize = require("sequelize");
+const status = require("../models/status");
 /**
  * It creates a task and adds it to the users
  * @param req - The request object.
@@ -22,9 +22,7 @@ const status = require('../models/status')
 const addTaskToUser = async (req, res, next) => {
   const manager = req.user;
   const project_id = req.params.id;
-  const {
-    body
-  } = req;
+  const { body } = req;
   try {
     if (
       !body.title ||
@@ -38,9 +36,9 @@ const addTaskToUser = async (req, res, next) => {
     /* Checking if the user exists in the database. */
     const sheckUser = await User.findOne({
       where: {
-        email: body.email
-      }
-    })
+        email: body.email,
+      },
+    });
     if (!sheckUser) return next(new ErrorResponse("User not found", 404));
     const manager_id = manager.id;
     const findProject = await Project.findByPk(project_id);
@@ -49,7 +47,8 @@ const addTaskToUser = async (req, res, next) => {
         new ErrorResponse("Sory You Are Not Manager Of this Project", 401)
       );
     }
-    if (findProject.manager != manager_id) return next(new ErrorResponse("You are not manager ", 401));
+    if (findProject.manager != manager_id)
+      return next(new ErrorResponse("You are not manager ", 401));
     /* It creates a date type. */
     const addDateType = await DateType.create({
       duration: body.duration,
@@ -62,26 +61,28 @@ const addTaskToUser = async (req, res, next) => {
     const findDefaultStatut = await Statut.findOne({
       where: {
         status: "A faire",
-        project: project_id
-      }
-    })
-    if (!findDefaultStatut) return next(new ErrorResponse("statut not found", 404));
-    const statusId = findDefaultStatut.id
-    const userId = sheckUser.id
+        project: project_id,
+      },
+    });
+    if (!findDefaultStatut)
+      return next(new ErrorResponse("statut not found", 404));
+    const statusId = findDefaultStatut.id;
+    const userId = sheckUser.id;
     /* It creates a task and adds it to the users */
     const findTeam = await Team.findOne({
-      where : {
-        project:project_id
-      }
-    })
-    if(!findTeam)  return next(new ErrorResponse("team not found", 404));
+      where: {
+        project: project_id,
+      },
+    });
+    if (!findTeam) return next(new ErrorResponse("team not found", 404));
     const checkUserTeam = await Team_User.findOne({
-      where : {
+      where: {
         teamId: findTeam.id,
-        userId:userId
-      }
-    })
-    if(!checkUserTeam)  return next(new ErrorResponse("user not a member", 401));
+        userId: userId,
+      },
+    });
+    if (!checkUserTeam)
+      return next(new ErrorResponse("user not a member", 401));
     const creatTask = await Task.create({
       title: body.title,
       description: body.description,
@@ -89,7 +90,7 @@ const addTaskToUser = async (req, res, next) => {
       projectId: project_id,
       manager: manager_id,
       status: statusId,
-      assignedTo: userId
+      assignedTo: userId,
     });
     if (!creatTask) {
       return next(new ErrorResponse("Task not created", 401));
@@ -115,7 +116,7 @@ const addTaskToUser = async (req, res, next) => {
  */
 const NumberAllTaskOfProject = async (req, res, next) => {
   try {
-    const project_id = req.params.id
+    const project_id = req.params.id;
     const manager_id = req.user.id;
     const findProject = await Project.findByPk(project_id);
     if (!findProject) {
@@ -129,30 +130,28 @@ const NumberAllTaskOfProject = async (req, res, next) => {
     const tasks = await Task.findAll({
       where: {
         projectId: project_id,
-        manager: manager_id
+        manager: manager_id,
       },
       attributes: [
-        [Sequelize.col('status'), 'status'],
-        [Sequelize.fn('count', Sequelize.col('status')), 'total']
+        [Sequelize.col("status"), "status"],
+        [Sequelize.fn("count", Sequelize.col("status")), "total"],
       ],
-      group: ['status'],
-      type: Sequelize.STRING
-    })
-  
-    
+      group: ["status"],
+      type: Sequelize.STRING,
+    });
+
     if (!tasks) {
       return next(new ErrorResponse("No tasks found", 404));
     }
-    res.json(tasks)
+    res.json(tasks);
   } catch (error) {
     return next(new ErrorResponse(error, 500));
   }
 };
 
-
 const AllTaskOfProject = async (req, res, next) => {
   try {
-    const project_id = req.params.id
+    const project_id = req.params.id;
     const manager_id = req.user.id;
     const findProject = await Project.findByPk(project_id);
     if (!findProject) {
@@ -166,35 +165,47 @@ const AllTaskOfProject = async (req, res, next) => {
     const tasks = await Task.findAll({
       where: {
         projectId: project_id,
-        manager: manager_id
+        manager: manager_id,
       },
       include: [
         {
           model: status,
-          attributes: ['status'],
-          as: 'Status'
+          attributes: ["status"],
+          as: "Status",
         },
         {
           model: User,
-          attributes: ['firstName', 'lastName'],
-          as: 'AssignationTo',
+          attributes: ["firstName", "lastName"],
+          as: "AssignationTo",
         },
-      ]
-    
-    })
-  
+      ],
+    });
+
     if (!tasks) {
       return next(new ErrorResponse("No tasks found", 404));
     }
+    // Créer un objet pour stocker les tâches par nom de status
+    const tasksByStatus = tasks.reduce((acc, task) => {
+      const statusName = task.Status.status;
+      if (!acc[statusName]) {
+        acc[statusName] = [];
+      }
+      acc[statusName].push(task);
+      return acc;
+    }, {});
+
     res.json({
       message: `All task of ${findProject.name}`,
-      tasks
-    })
+      tasks: tasksByStatus,
+    });
+    // res.json({
+    //   message: `All task of ${findProject.name}`,
+    //   tasks
+    // })
   } catch (error) {
     return next(new ErrorResponse(error, 500));
   }
 };
-
 
 /**
  * @function AllTaskOfUser
@@ -260,8 +271,8 @@ const AllMyTasks = async (req, res, next) => {
     // Find all task-user associations where the user ID matches the one from the request
     const taskUsers = await TaskUser.findAll({
       where: {
-        userId
-      }
+        userId,
+      },
     });
 
     // If there are no tasks assigned to this user, return a 404 error
@@ -274,8 +285,8 @@ const AllMyTasks = async (req, res, next) => {
     // Find all tasks where the ID is in the extracted task IDs
     const allTasks = await Task.findAll({
       where: {
-        id: taskIds
-      }
+        id: taskIds,
+      },
     });
 
     // Return the results in a JSON response
@@ -294,5 +305,5 @@ module.exports = {
   NumberAllTaskOfProject,
   AllTaskOfUser,
   AllMyTasks,
-  AllTaskOfProject
+  AllTaskOfProject,
 };
