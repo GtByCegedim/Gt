@@ -24,7 +24,7 @@ import kanban from "../employe/pages/kanban.vue";
 import profile from "../employe/pages/profile.vue";
 import newProjet from "../employe/pages/newProject.vue";
 import teams from "../employe/pages/Teams.vue";
-
+import resetPassword from "../master/resetPassword.vue"
 import NotFound from "../master/error404.vue"
 
 const routes = [
@@ -42,6 +42,11 @@ const routes = [
     path: '/:catchAll(.*)', // ce chemin intercepte toutes les URL qui ne correspondent à aucune autre route
     name: 'NotFound',
     component: NotFound,
+  },
+  {
+    name: "resetPassword",
+    component: resetPassword,
+    path: "/resetPassword",
   },
   {
     name: "dashAdmin",
