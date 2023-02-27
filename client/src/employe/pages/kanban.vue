@@ -1,8 +1,24 @@
 <template>
   <div class="flex-1 py-8">
-    <h3 class="mb-8 text-left text-2xl font-bold text-gray-300">
-      Kanban Board
-    </h3>
+    <div class="mb-8 flex items-center justify-between">
+      <h3 class="text-left text-2xl font-bold text-gray-300">Kanban Board</h3>
+      <h3 class="text-left text-2xl font-bold text-gray-300">{{ taskListTitle }}</h3>
+      <div class="flex space-x-4">
+        <router-link
+        :to="`/dashEmploye/addTask/` + id"
+        class="rounded bg-green-400 px-4 py-2 text-white hover:bg-gray-600"
+      >
+        Add Task
+      </router-link>
+      <router-link
+        :to="`/dashEmploye/addTask/` + id"
+        class="rounded bg-indigo-400 px-4 py-2 text-white hover:bg-indigo-600"
+      >
+        Add status
+      </router-link>
+      </div>
+     
+    </div>
     <div class="flex flex-row">
       <div
         v-for="(tasks, status) in taskList.tasksByStatus"
@@ -68,9 +84,16 @@ export default {
 
       this.taskList = response.data;
       this.taskListTitle = response.data.message;
+      
     } catch (error) {
       console.error(error);
     }
   },
+  computed:{
+    id() {
+        const ProjetId =this.$route.path.split('/')
+      return ProjetId[ProjetId.length-1] ;
+    },
+  }
 };
 </script>

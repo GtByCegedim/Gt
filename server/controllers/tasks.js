@@ -206,7 +206,7 @@ const AllTaskOfProject = async (req, res, next) => {
     });
 
     res.json({
-      message: `All task of ${findProject.name}`,
+      message: `${findProject.name}`,
       tasksByStatus,
     });
   } catch (error) {
