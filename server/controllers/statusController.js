@@ -137,7 +137,7 @@ const updateStatusOfTask = async (req, res, next) => {
     const manager_id = findTask.manager;
     const manager = await User.findByPk(manager_id)
     if(!manager)   return next(new ErrorResponse("no manaer exist in this task !!!!!!!!", 404));
-    Storage("taskName", findTask.name);
+    Storage("taskName", findTask.title);
     Storage("statut", findStatut.status);
     mailer.main("updateTask", manager);
     res.json({
