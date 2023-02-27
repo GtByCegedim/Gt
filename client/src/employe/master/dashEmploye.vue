@@ -24,13 +24,14 @@ import InvestmentIcon from "./icons/investment.svg";
 import FundIcon from "./icons/fund.svg";
 import DotsCircleIcon from "./icons/dots-circle.svg";
 import DoughnutChart from "./charts/doughnut.svg";
+
 const menu = [
   { name: "statistiques", icon: BillIcon, route: "statistique" },
   { name: "projets", icon: HomeIcon, route: "project" },
-  { name: "créer un projet", icon: HomeIcon, route: "creerProjet" },
-  { name: "kanban", icon: BillIcon, route: "kanban" },
-  { name: "profile", icon: HomeIcon, route: "profile" },
-  { name: "Groupes", icon: HomeIcon, route: "teams" },
+  { name: "créer un projet", icon: InvoiceIcon, route: "creerProjet" },
+  { name: "kanban", icon: BuildingIcon, route: "kanban" },
+  { name: "profile", icon: StatisticChart, route: "profile" },
+  { name: "Groupes", icon: CreditCardIcon, route: "teams" },
 ];
 
 const recentTransactions = [
