@@ -117,7 +117,7 @@ const routes = [
       {
         name: "kanban",
         component: kanban,
-        path: "kanban",
+        path: "kanban/:projectId",
       },
       {
         name: "profile",
@@ -152,7 +152,7 @@ const routes = [
       {
         name: "addTask",
         component: addTask,
-        path: "addTask",
+        path: "addTask/:id",
       },
     ],
   },

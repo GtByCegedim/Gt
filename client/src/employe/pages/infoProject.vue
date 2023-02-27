@@ -14,12 +14,13 @@
               {{ project.getMyProject ? project.getMyProject.description : "" }}
             </p>
             <div>
-              <a
-                href="#"
-                class="mt-8 inline-block rounded bg-gray-200 px-12 py-3 text-sm font-medium text-white transition hover:bg-gray-700 focus:outline-none focus:ring focus:ring-yellow-400"
+              <router-link
+              v-if="project.getMyProject"
+              :to="'/dashEmploye/kanban/' + project.getMyProject.id"
+                class="mt-8 inline-block rounded bg-gray-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-gray-700 focus:outline-none focus:ring focus:ring-yellow-400"
               >
                 Voir Kanban Board
-              </a>
+              </router-link>
               <router-link
                 v-if="project.users.length === 0 && project.getMyProject"
                 :to="'/dashEmploye/newTeam/' + project.getMyProject.id"
