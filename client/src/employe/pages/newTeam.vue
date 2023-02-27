@@ -101,9 +101,8 @@ export default {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log(response.data);
-        // redirect to project page
-        this.$router.push(`/dashEmploye/addMember/${projectId}`);
+        // redirect to add memeber page
+        this.$router.push(`/dashEmploye/addMember/${response.data.team_id}`);
       } catch (error) {
         console.log(error);
       }
