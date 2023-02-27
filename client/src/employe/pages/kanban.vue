@@ -2,51 +2,51 @@
   <div class="py-8 flex-1">
     <h3 class="text-2xl text-gray-300 font-bold text-left mb-8">Kanban Board</h3>
 
-    <div class="flex flex-row  justify-center space-x-4">
-      <div class="w-1/3 bg-gray-100 rounded-lg p-4">
+    <div class="flex flex-row justify-center space-x-4">
+      <div class="w-1/3 rounded-lg bg-gray-100 p-4">
         <h3
-          class="text-lg font-bold text-center mb-4 border-b-2 border-gray-300"
+          class="mb-4 border-b-2 border-gray-300 text-center text-lg font-bold"
         >
-          To Do
+          To Do 
         </h3>
 
         <div class="space-y-2">
           <div
             v-for="task in toDo"
             :key="task.id"
-            class="p-2 bg-white shadow-md rounded-lg cursor-move hover:shadow-lg transition-all duration-500 ease-in-out transform hover:-translate-y-1"
+            class="transform cursor-move rounded-lg bg-white p-2 shadow-md transition-all duration-500 ease-in-out hover:-translate-y-1 hover:shadow-lg"
             draggable="true"
           >
             <h4 class="text-md font-medium text-gray-900">{{ task.name }}</h4>
-            <p class="text-gray-500 text-sm leading-tight">
+            <p class="text-sm leading-tight text-gray-500">
               {{ task.description }}
             </p>
-            <div class="flex flex-row justify-between items-center mt-2">
-              <span class="text-gray-500 text-xs">{{ task.assignedTo }}</span>
-              <span class="text-gray-500 text-xs"
+            <div class="mt-2 flex flex-row items-center justify-between">
+              <span class="text-xs text-gray-500">{{ task.assignedTo }}</span>
+              <span class="text-xs text-gray-500"
                 >{{ task.timeEstimate }}h</span
               >
             </div>
           </div>
           <div class="p-4">
-            <button
-              class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-400"
-              @click="addTask()"
+            <router-link
+              :to="`/dashEmploye/addTask/`+  id "
+              class="rounded bg-gray-700 px-4 py-2 text-white hover:bg-gray-400"
             >
-              Add Task
-            </button>
+              Add Task 
+            </router-link>
           </div>
           <div
             v-if="toDo.length === 0"
-            class="p-2 bg-white shadow-md rounded-lg text-center text-gray-500"
+            class="rounded-lg bg-white p-2 text-center text-gray-500 shadow-md"
           >
             No tasks yet.
           </div>
         </div>
       </div>
-      <div class="w-1/3 bg-gray-100 rounded-lg p-4">
+      <div class="w-1/3 rounded-lg bg-gray-100 p-4">
         <h3
-          class="text-lg font-bold text-center mb-4 border-b-2 border-gray-300"
+          class="mb-4 border-b-2 border-gray-300 text-center text-lg font-bold"
         >
           Doing
         </h3>
@@ -54,32 +54,31 @@
           <div
             v-for="task in doing"
             :key="task.id"
-            class="p-2 bg-white shadow-md rounded-lg cursor-move hover:shadow-lg transition-all duration-500 ease-in-out transform hover:-translate-y-1"
+            class="transform cursor-move rounded-lg bg-white p-2 shadow-md transition-all duration-500 ease-in-out hover:-translate-y-1 hover:shadow-lg"
             draggable="true"
           >
             <h4 class="text-md font-medium text-gray-900">{{ task.name }}</h4>
-            <p class="text-gray-500 text-sm leading-tight">
+            <p class="text-sm leading-tight text-gray-500">
               {{ task.description }}
             </p>
-            <div class="flex flex-row justify-between items-center mt-2">
-              <span class="text-gray-500 text-xs">{{ task.assignedTo }}</span>
-              <span class="text-gray-500 text-xs"
+            <div class="mt-2 flex flex-row items-center justify-between">
+              <span class="text-xs text-gray-500">{{ task.assignedTo }}</span>
+              <span class="text-xs text-gray-500"
                 >{{ task.timeEstimate }}h</span
               >
             </div>
           </div>
           <div
             v-if="doing.length === 0"
-            class="p-2 bg-white shadow-md rounded-lg text-center text-gray-500"
+            class="rounded-lg bg-white p-2 text-center text-gray-500 shadow-md"
           >
-          
             No tasks yet.
           </div>
         </div>
       </div>
-      <div class="w-1/3 bg-gray-100 rounded-lg p-4">
+      <div class="w-1/3 rounded-lg bg-gray-100 p-4">
         <h3
-          class="text-lg font-bold text-center mb-4 border-b-2 border-gray-300"
+          class="mb-4 border-b-2 border-gray-300 text-center text-lg font-bold"
         >
           Doing
         </h3>
@@ -87,23 +86,23 @@
           <div
             v-for="task in done"
             :key="task.id"
-            class="p-2 bg-white shadow-md rounded-lg cursor-move hover:shadow-lg transition-all duration-500 ease-in-out transform hover:-translate-y-1"
+            class="transform cursor-move rounded-lg bg-white p-2 shadow-md transition-all duration-500 ease-in-out hover:-translate-y-1 hover:shadow-lg"
             draggable="true"
           >
             <h4 class="text-md font-medium text-gray-900">{{ task.name }}</h4>
-            <p class="text-gray-500 text-sm leading-tight">
+            <p class="text-sm leading-tight text-gray-500">
               {{ task.description }}
             </p>
-            <div class="flex flex-row justify-between items-center mt-2">
-              <span class="text-gray-500 text-xs">{{ task.assignedTo }}</span>
-              <span class="text-gray-500 text-xs"
+            <div class="mt-2 flex flex-row items-center justify-between">
+              <span class="text-xs text-gray-500">{{ task.assignedTo }}</span>
+              <span class="text-xs text-gray-500"
                 >{{ task.timeEstimate }}h</span
               >
             </div>
           </div>
           <div
             v-if="done.length === 0"
-            class="p-2 bg-white shadow-md rounded-lg text-center text-gray-500"
+            class="rounded-lg bg-white p-2 text-center text-gray-500 shadow-md"
           >
             No tasks yet.
           </div>
@@ -114,6 +113,7 @@
 </template>
 
 <script>
+import { RouterLink } from "vue-router";
 export default {
   data() {
     return {
@@ -123,17 +123,8 @@ export default {
           name: "Create website wireframes",
           description: "Design wireframes for the new company website",
           priority: "high",
-          assignedTo: "John Smith",
+          assignedTo: "John Smisplit('/')[$route.path.split("/").length-1]th",
           timeEstimate: "10 hours",
-          status: "to-do",
-        },
-        {
-          id: 2,
-          name: "Develop landing page",
-          description: "Build a landing page for the new product launch",
-          priority: "medium",
-          assignedTo: "Sarah Davis",
-          timeEstimate: "6 hours",
           status: "to-do",
         },
         {
@@ -154,41 +145,14 @@ export default {
           timeEstimate: "4 hours",
           status: "doing",
         },
-        {
-          id: 5,
-          name: "Schedule social media posts",
-          description: "Create and schedule social media posts for the week",
-          priority: "medium",
-          assignedTo: "Emily Liu",
-          timeEstimate: "2 hours",
-          status: "doing",
-        },
-        {
-          id: 6,
-          name: "Finalize budget report",
-          description: "Review and finalize the quarterly budget report",
-          priority: "low",
-          assignedTo: "David Kim",
-          timeEstimate: "5 hours",
-          status: "done",
-        },
       ],
     };
   },
-  methods: {
-    addTask() {
-      this.tasks.push({
-        id: this.tasks.length + 1,
-        name: "Finalize budget report",
-          description: "Review and finalize the quarterly budget report",
-          priority: "low",
-          assignedTo: "David Kim",
-          timeEstimate: "5 hours",
-          status: "to-do",
-      });
-    },
-  },
   computed: {
+      id() {
+        const ProjetId =this.$route.path.split('/')
+      return ProjetId[ProjetId.length-1] ;
+    },
     toDo() {
       return this.tasks.filter((task) => task.status === "to-do");
     },
