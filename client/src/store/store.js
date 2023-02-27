@@ -60,6 +60,9 @@ const store = createStore({
       state.userRole = userRole;
       localStorage.setItem("role", userRole);
     },
+    setStatusTasks(state, statusTasks) {
+      state.statusTasks = statusTasks;
+    },
   },
   actions: {
     async login({ commit }, { email, password }) {
@@ -166,6 +169,23 @@ const store = createStore({
         );
         const profile = response.data;
         commit("setProfile", profile);
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
+    async fetchStatusTasks({ commit, state }, projectId) {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/task/stat/${projectId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${state.token}`,
+            },
+          }
+        );
+        const statusTasks = response.data;
+        commit("setStatusTasks", statusTasks);
       } catch (error) {
         console.error(error);
         throw error;
