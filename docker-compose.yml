@@ -27,5 +27,9 @@ services:
     ports:
       - 7000:8080
     container_name: adminer
+  frontend:
+    build: ./client
+    ports:
+      - 2900:2900
 
   
