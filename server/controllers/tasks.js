@@ -11,7 +11,7 @@ const Statut = require("../models/status");
 const Team = require("../models/team");
 const Team_User = require("../models/team_user");
 const Sequelize = require("sequelize");
-const status = require("../models/status");
+const Status = require("../models/status");
 /**
  * It creates a task and adds it to the users
  * @param req - The request object.
@@ -132,18 +132,19 @@ const NumberAllTaskOfProject = async (req, res, next) => {
         projectId: project_id,
         manager: manager_id,
       },
-      attributes: [
-        [Sequelize.col("status"), "status"],
-        [Sequelize.fn("count", Sequelize.col("status")), "total"],
-      ],
-      group: ["status"],
-      type: Sequelize.STRING,
+      // attributes: [
+      //   [Sequelize.col("status"), "Status"],
+      //   [Sequelize.fn("count", Sequelize.col("status")), "total"],
+      // ],
+      include: [{ model: Status, as: "Status", attributes: ["status"] }],
+      // group: ["Status"],
+      // type: Sequelize.STRING,
     });
-
     if (!tasks) {
       return next(new ErrorResponse("No tasks found", 404));
     }
-    res.json(tasks);
+
+    res.json({ tasks });
   } catch (error) {
     return next(new ErrorResponse(error, 500));
   }
@@ -162,6 +163,11 @@ const AllTaskOfProject = async (req, res, next) => {
     if (findProject.manager != manager_id) {
       return next(new ErrorResponse("You are not the manager", 401));
     }
+
+    // Récupérer tous les statuts, même s'ils n'ont pas été utilisés dans le projet
+    const statuses = await Status.findAll({ where: { project: project_id } });
+
+    // Récupérer les tâches du projet en joignant la table Status pour récupérer le nom du statut
     const tasks = await Task.findAll({
       where: {
         projectId: project_id,
@@ -169,7 +175,7 @@ const AllTaskOfProject = async (req, res, next) => {
       },
       include: [
         {
-          model: status,
+          model: Status,
           attributes: ["status"],
           as: "Status",
         },
@@ -181,10 +187,7 @@ const AllTaskOfProject = async (req, res, next) => {
       ],
     });
 
-    if (!tasks) {
-      return next(new ErrorResponse("No tasks found", 404));
-    }
-    // Créer un objet pour stocker les tâches par nom de status
+    // Créer un objet pour stocker les tâches par nom de statut
     const tasksByStatus = tasks.reduce((acc, task) => {
       const statusName = task.Status.status;
       if (!acc[statusName]) {
@@ -194,14 +197,18 @@ const AllTaskOfProject = async (req, res, next) => {
       return acc;
     }, {});
 
+    // Ajouter tous les statuts qui n'ont pas été utilisés dans le projet
+    statuses.forEach((status) => {
+      const statusName = status.status;
+      if (!tasksByStatus[statusName]) {
+        tasksByStatus[statusName] = [];
+      }
+    });
+
     res.json({
       message: `All task of ${findProject.name}`,
-      tasks: tasksByStatus,
+      tasksByStatus,
     });
-    // res.json({
-    //   message: `All task of ${findProject.name}`,
-    //   tasks
-    // })
   } catch (error) {
     return next(new ErrorResponse(error, 500));
   }
