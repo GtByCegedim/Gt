@@ -13,7 +13,7 @@
         </div>
       </div>
       <div
-        class="mt-4 w-full rounded-10 bg-gray-700 py-3 text-gray-400 hover:text-white"
+        class="mt-4 w-full rounded-10 bg-gray-700 py-3 text-gray-200 hover:text-white"
       >
         Créer votre équipe et demarer votre aventure avec autre employés
       </div>
@@ -42,7 +42,7 @@
             <div class="p-8 py-12 sm:p-16">
               <form @submit.prevent="handleSubmit" action="" class="space-y-4">
                 <div class="space-y-2">
-                  <label for="email" class="text-gray-400 dark:text-gray-300"
+                  <label for="email" class="text-gray-200 dark:text-gray-300"
                     >nom d'équipe</label
                   >
                   <input

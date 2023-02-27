@@ -48,7 +48,7 @@ export default {
           <CreditCardIcon class="h-5 w-5 fill-current text-indigo-400" />
         </div>
         <div>
-          <div class="text-sm text-gray-400">NOM COMPLET</div>
+          <div class="text-sm text-gray-200">NOM COMPLET</div>
           <div class="pt-1 text-white">
             {{ currentUser.firstName }} {{ currentUser.lastName }}
           </div>
@@ -56,17 +56,17 @@ export default {
       </div>
       <div class="h-full w-px bg-gray-700" />
       <div>
-        <div class="text-sm text-gray-400">DATE</div>
+        <div class="text-sm text-gray-200">DATE</div>
         <div class="pt-1 text-white"> {{ currentDate }}</div>
       </div>
       <div class="h-full w-px bg-gray-700" />
       <div>
-        <div class="text-sm text-gray-400">HEURE</div>
+        <div class="text-sm text-gray-200">HEURE</div>
         <div class="pt-1 text-white">{{ currentTime }}</div>
       </div>
       <div class="h-full w-px bg-gray-700" />
       <div>
-        <div class="text-sm text-gray-400">POSTE</div>
+        <div class="text-sm text-gray-200">POSTE</div>
         <div class="pt-1 text-white">developeur</div>
       </div>
     </div>
@@ -76,9 +76,9 @@ export default {
           Statistiques des projets
         </h2>
         <button
-          class="inline-flex items-center gap-x-1 rounded-10 bg-gray-700 py-2 px-4 text-sm text-gray-400 hover:text-white"
+          class="inline-flex items-center gap-x-1 rounded-10 bg-gray-700 py-2 px-4 text-sm text-gray-200 hover:text-white"
         >
-          <span>Jan - Aug</span>
+          <span>PROJET</span>
           <ChevronDownIcon class="h-6 w-6 stroke-current" />
         </button>
       </div>
@@ -90,7 +90,7 @@ export default {
               <RevenueIcon class="h-6 w-6 fill-current" />
             </div>
             <div>
-              <div class="text-sm text-indigo-700">En cours</div>
+              <div class="text-sm font-bold text-gray-900">En cours</div>
               <div class="font-normal">10</div>
             </div>
           </div>
@@ -99,7 +99,7 @@ export default {
               <ExpenseIcon class="h-6 w-6 fill-current" />
             </div>
             <div>
-              <div class="text-sm text-green-700">Finis</div>
+              <div class="text-sm font-bold text-gray-900">Finis</div>
               <div class="font-normal">14</div>
             </div>
           </div>
@@ -111,7 +111,7 @@ export default {
       <div class="flex items-center justify-between">
         <h2 class="text-[20px] font-medium text-white">Groupes</h2>
         <button
-          class="inline-flex items-center gap-x-1 rounded-10 bg-gray-700 py-2 px-4 text-sm text-gray-400 hover:text-white"
+          class="inline-flex items-center gap-x-1 rounded-10 bg-gray-700 py-2 px-4 text-sm text-gray-200 hover:text-white"
         >
           <PlusIcon class="h-6 w-6 stroke-current" />
           <span>Voir tout</span>
@@ -120,9 +120,9 @@ export default {
       <table class="mt-4">
         <thead>
           <tr>
-            <td class="py-1 text-sm text-gray-400">label</td>
-            <td class="py-1 text-sm text-gray-400">manager</td>
-            <td class="py-1 text-sm text-gray-400">statut</td>
+            <td class="py-1 text-sm text-gray-200">label</td>
+            <td class="py-1 text-sm text-gray-200">manager</td>
+            <td class="py-1 text-sm text-gray-200">statut</td>
           </tr>
         </thead>
         <tbody>
@@ -137,7 +137,7 @@ export default {
               </span>
             </td>
             <td class="py-4">
-              <span class="text-sm text-gray-400">
+              <span class="text-sm text-gray-200">
                 {{ invoice.date }}
               </span>
             </td>
@@ -175,7 +175,7 @@ export default {
         <h2 class="text-[20px] font-medium text-white">PROJETS</h2>
         <router-link to="/dashEmploye/creerProjet">
           <button
-            class="inline-flex items-center gap-x-1 rounded-10 bg-gray-700 py-2 px-4 text-sm text-gray-400 hover:text-white"
+            class="inline-flex items-center gap-x-1 rounded-10 bg-gray-700 py-2 px-4 text-sm text-gray-200 hover:text-white"
           >
             <PlusIcon class="h-6 w-6 stroke-current" />
             <span>ajouter un projet</span>
@@ -194,7 +194,7 @@ export default {
 
       <router-link to="/dashEmploye/project">
         <button
-          class="mt-4 w-full rounded-10 bg-gray-700 py-3 text-gray-400 hover:text-white"
+          class="mt-4 w-full rounded-10 bg-gray-700 py-3 text-gray-200 hover:text-white"
         >
           voir tous les projets
         </button>
@@ -204,7 +204,7 @@ export default {
       <div class="flex items-center justify-between">
         <h2 class="text-[20px] font-medium text-white">taches</h2>
         <button
-          class="inline-flex items-center gap-x-1 rounded-10 bg-gray-700 py-2 px-4 text-sm text-gray-400 hover:text-white"
+          class="inline-flex items-center gap-x-1 rounded-10 bg-gray-700 py-2 px-4 text-sm text-gray-200 hover:text-white"
         >
           <span>Projet</span>
           <ChevronDownIcon class="h-6 w-6 stroke-current" />
@@ -221,7 +221,7 @@ export default {
             <div class="flex items-center justify-between leading-none">
               <span class="text-white">A faire</span>
             </div>
-            <span class="text-sm leading-3 text-gray-400">
+            <span class="text-sm leading-3 text-gray-200">
               2 months income 80%
             </span>
             <div class="mt-3 h-2 w-full rounded-full bg-gray-900">
@@ -239,7 +239,7 @@ export default {
             <div class="flex items-center justify-between leading-none">
               <span class="text-white">Complet</span>
             </div>
-            <span class="text-sm leading-3 text-gray-400">
+            <span class="text-sm leading-3 text-gray-200">
               3 months income 50%
             </span>
             <div class="mt-3 h-2 w-full rounded-full bg-gray-900">
@@ -252,7 +252,7 @@ export default {
     <div class="flex flex-col justify-between rounded-10 bg-gray-900 p-7">
       <div class="flex items-center justify-between">
         <h2 class="text-[20px] font-medium text-white">Mission</h2>
-        <button class="p-2 text-gray-400 hover:text-white">
+        <button class="p-2 text-gray-200 hover:text-white">
           <DotsCircleIcon class="h-6 w-6 fill-current" />
         </button>
       </div>
@@ -263,7 +263,7 @@ export default {
               <InvestmentIcon class="h-6 w-6 fill-current" />
             </div>
             <div>
-              <div class="text-sm text-indigo-700">tache exemple 1</div>
+              <div class="text-sm font-bold text-gray-900">tache exemple 1</div>
               <div class="font-normal">projet 1</div>
             </div>
           </div>
@@ -272,7 +272,7 @@ export default {
               <FundIcon class="h-6 w-6 fill-current" />
             </div>
             <div>
-              <div class="text-sm text-green-700">tache exemple 2</div>
+              <div class="text-sm font-bold text-gray-900">tache exemple 2</div>
               <div class="font-normal">Projet 2</div>
             </div>
           </div>

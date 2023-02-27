@@ -1,6 +1,6 @@
 <template>
-  <div class="flex-1 py-8">
-    <h3 class="mb-8 text-left text-2xl font-bold">Kanban Board</h3>
+  <div class="py-8 flex-1">
+    <h3 class="text-2xl text-gray-300 font-bold text-left mb-8">Kanban Board</h3>
 
     <div class="flex flex-row justify-center space-x-4">
       <div class="w-1/3 rounded-lg bg-gray-100 p-4">
