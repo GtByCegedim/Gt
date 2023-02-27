@@ -42,7 +42,7 @@ exports.createProject = async (req, res, next) => {
         return next(new apiError(`statut ${statuts[i]} not created `, 401));
     }
     res.status(201).json({
-      message: `Project ${project} created with status`,
+      message: `Project ${project.name} created with status`,
       project:project.id,
     });
   } catch (error) {
