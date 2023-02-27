@@ -60,6 +60,6 @@ export default {
     margin-left: 8%;
   }
   .admin{
-    margin-left: 37%;
+    margin-left: 43%;
   }
 </style>
