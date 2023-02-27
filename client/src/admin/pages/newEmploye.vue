@@ -115,6 +115,7 @@ export default {
   methods: {
     async submitForm() {
       try {
+        const token = localStorage.getItem("token");
         const response = await axios.post(
           "http://localhost:3000/api/employe/add",
           {
@@ -122,7 +123,11 @@ export default {
             lastName: this.lastName,
             email: this.email,
           },
-          {withCredentials: true}
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         console.log(response.data);
         // Réinitialiser les valeurs des champs du formulaire

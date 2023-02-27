@@ -130,12 +130,12 @@ const routes = [
       {
         name: "newTeam",
         component: newTeam,
-        path: "newTeam",
+        path: "newTeam/:id",
       },
       {
         name: "addMember",
         component: addMember,
-        path: "addMember",
+        path: "addMember/:id",
       },
       {
         name: "addProfile",

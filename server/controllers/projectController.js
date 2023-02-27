@@ -43,7 +43,7 @@ exports.createProject = async (req, res, next) => {
     }
     res.status(201).json({
       message: `Project ${project} created with status`,
-      project,
+      project:project.id,
     });
   } catch (error) {
     console.log(error);

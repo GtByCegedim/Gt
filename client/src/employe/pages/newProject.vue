@@ -138,7 +138,10 @@ export default {
             },
           }
         );
-        console.log(response);
+        const projectId = response.data.project;
+        
+        this.$router.push(`/dashEmploye/infoProjet/${projectId}`);
+
         // handle successful response
       } catch (error) {
         console.log(error.response.data);
