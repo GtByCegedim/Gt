@@ -54,6 +54,14 @@ const main = (method, user) => {
         <a href="http://localhost:${3000}/resetpassword/${token}">GO</a> 
                 </div>`
   }
+  if (method == 'updateTask') {
+    subject = "Mofier le statut de la tache "
+    html = `<div style='height: 150px; width: 100%;'>
+        <h3> 👋 Bonjour ${user.firstName +' '+ user.lastName} </h3>
+        // <p>La tache sous non de :  ${Storage('taskName')} a passé au statut : ${Storage('statut')}</p>
+        <a href="http://localhost:${3000}/resetpassword/${token}">GO</a> 
+                </div>`
+  }
 
   let transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',

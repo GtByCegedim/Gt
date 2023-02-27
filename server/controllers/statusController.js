@@ -3,6 +3,10 @@ const Task = require("../models/task");
 const Task_statut = require("../models/task_statut");
 const Project = require("../models/project");
 const ErrorResponse = require("../utils/error");
+const mailer = require("../middleware/mailer");
+const User = require("../models/user");
+const Storage = require("local-storage");
+
 
 // This function adds a new status to a project
 const addNewStatut = async (req, res, next) => {
@@ -38,11 +42,11 @@ const addNewStatut = async (req, res, next) => {
         status: name
       }
     })
-    if(chekIsExist)  return next(new ErrorResponse("Statut exist", 401));
+    if (chekIsExist) return next(new ErrorResponse("Statut exist", 401));
     // Create the new status
     const NewStatut = await Statut.create({
       status: name,
-      project:project_id
+      project: project_id
     });
     // Check if the status was created successfully
     if (!NewStatut) {
@@ -111,28 +115,31 @@ const updateStatusOfTask = async (req, res, next) => {
     if (!findTask) {
       return next(new ErrorResponse("No task Found", 401));
     }
-    const findStatut = await Statut.findOrCreate({
+    const project_id = findTask.projectId
+    const findStatut = await Statut.findOne({
       where: {
         status: statut,
+        project: project_id
       },
     });
-    console.log(findStatut[0].id);
     if (!findStatut) {
-      return next(new ErrorResponse("No task found or create", 401));
+      return next(new ErrorResponse(" Statut not  found in this Project", 401));
     }
-    const task_Status = await Task_statut.update(
-      {
-        statusId: findStatut[0].id,
-      },
-      {
-        where: {
-          taskId: task_id,
-        },
+    const statutId = findStatut.id
+    const update = await Task.update({
+      status: statutId
+    }, {
+      where: {
+        projectId:project_id
       }
-    );
-    if (!task_Status) {
-      return next(new ErrorResponse("No relation", 401));
-    }
+    })
+    if(!update)  return next(new ErrorResponse("Not updeted task", 401));
+    const manager_id = findTask.manager;
+    const manager = await User.findByPk(manager_id)
+    if(!manager)   return next(new ErrorResponse("no manaer exist in this task !!!!!!!!", 404));
+    Storage("taskName", findTask.name);
+    Storage("statut", findStatut.status);
+    mailer.main("updateTask", manager);
     res.json({
       message: `New Status of task ${findTask.title}  :  ${statut}`,
     });
@@ -145,15 +152,15 @@ const getStatutOfProject = async (req, res, next) => {
   try {
     const project_id = req.params.id;
     const findProject = await Project.findByPk(project_id)
-    if(!findProject) return next(new apiError("no project found with this id", 404));
+    if (!findProject) return next(new apiError("no project found with this id", 404));
     const findStatutOfProject = await Statut.findAll({
-      where : {
-        project : project_id
+      where: {
+        project: project_id
       }
     })
-    if(findStatutOfProject.length == 0) return next(new ErrorResponse("No statuts found", 404));
+    if (findStatutOfProject.length == 0) return next(new ErrorResponse("No statuts found", 404));
     res.json({
-      message : `Statuts of project ${findProject.name}`,
+      message: `Statuts of project ${findProject.name}`,
       findStatutOfProject
     })
   } catch (error) {
