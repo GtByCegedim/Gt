@@ -168,10 +168,21 @@ const AllTaskOfProject = async (req, res, next) => {
         projectId: project_id,
         manager: manager_id
       },
+      include: [
+        {
+          model: status,
+          attributes: ['status'],
+          as: 'Status'
+        },
+        {
+          model: User,
+          attributes: ['firstName', 'lastName'],
+          as: 'AssignationTo',
+        },
+      ]
     
     })
   
-    
     if (!tasks) {
       return next(new ErrorResponse("No tasks found", 404));
     }
