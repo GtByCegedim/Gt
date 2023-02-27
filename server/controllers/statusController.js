@@ -36,7 +36,7 @@ const addNewStatut = async (req, res, next) => {
       return next(
         new ErrorResponse("Sory You Are Not Manager Of this Project", 401)
       );
-    }
+    } 
     const chekIsExist = await Statut.findOne({
       where: {
         status: name
@@ -116,6 +116,7 @@ const updateStatusOfTask = async (req, res, next) => {
       return next(new ErrorResponse("No task Found", 401));
     }
     const project_id = findTask.projectId
+    console.log(project_id);
     const findStatut = await Statut.findOne({
       where: {
         status: statut,
@@ -126,11 +127,13 @@ const updateStatusOfTask = async (req, res, next) => {
       return next(new ErrorResponse(" Statut not  found in this Project", 401));
     }
     const statutId = findStatut.id
+    console.log(statutId);
     const update = await Task.update({
       status: statutId
     }, {
       where: {
-        projectId:project_id
+       
+        id:task_id
       }
     })
     if(!update)  return next(new ErrorResponse("Not updeted task", 401));

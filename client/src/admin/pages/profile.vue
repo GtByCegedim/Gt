@@ -1,13 +1,18 @@
 <template>
   <div class="mt-10 flex-1 flex-col items-center">
-    <img :src="profileImage" class="mb-4 h-24 w-24 rounded-full object-cover" />
+    <img src="https://cdn-icons-png.flaticon.com/512/560/560216.png" class="mb-4 image h-24 w-24 rounded-full object-cover" />
     <h2 class="mb-2 text-xl font-medium text-white">
       {{ currentUser.firstName }} {{ currentUser.lastName }}
     </h2>
     <p class="mb-2 text-sm text-gray-500">{{ currentUser.email }}</p>
-    <div class="mb-4 flex items-center">
-      <span class="bg-green-500 text-white py-1 px-2 rounded-full text-xs mr-2">{{ profile.findMyProfile.poste }}</span>
-      <span class="bg-blue-500 text-white py-1 px-2 rounded-full text-xs">{{ profile.findMyProfile.bisness_unit }}</span>
+   <div class="mb-4 flex items-center">
+      
+      <span class="rounded-full  bg-indigo-400 py-1 px-2 font-bold text-xs text-green-100"
+        >{{ profile.findMyProfile.bisness_unit }}</span
+      >
+      <span class=" rounded-full admin bg-gray-400 py-1 px-2 font-extrabold text-xs text-gray-300"
+        >ADMIN</span
+      >
     </div>
     <div class="w-full">
       <div class="overflow-hidden rounded-lg bg-white shadow-md">
@@ -47,5 +52,14 @@ export default {
   methods: {
     ...mapActions(["fetchCurrentUser", "fetchProfile"]),
   },
+  
 };
 </script>
+<style >
+  image{
+    margin-left: 8%;
+  }
+  .admin{
+    margin-left: 43%;
+  }
+</style>
