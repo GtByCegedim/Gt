@@ -12,6 +12,7 @@ const Team = require("../models/team");
 const Team_User = require("../models/team_user");
 const Sequelize = require("sequelize");
 const Status = require("../models/status");
+const { finished } = require("nodemailer/lib/xoauth2");
 /**
  * It creates a task and adds it to the users
  * @param req - The request object.
@@ -127,24 +128,22 @@ const NumberAllTaskOfProject = async (req, res, next) => {
     if (findProject.manager != manager_id) {
       return next(new ErrorResponse("You are not the manager", 401));
     }
-    const tasks = await Task.findAll({
-      where: {
-        projectId: project_id,
-        manager: manager_id,
-      },
-      // attributes: [
-      //   [Sequelize.col("status"), "Status"],
-      //   [Sequelize.fn("count", Sequelize.col("status")), "total"],
-      // ],
-      include: [{ model: Status, as: "Status", attributes: ["status"] }],
-      // group: ["Status"],
-      // type: Sequelize.STRING,
-    });
-    if (!tasks) {
-      return next(new ErrorResponse("No tasks found", 404));
-    }
-
-    res.json({ tasks });
+    const statuses = await Status.findAll({ where: { project: project_id } });
+    const ids = statuses.map((status) => status.dataValues.id);
+    const statusNames = statuses.map((status) => status.dataValues.status);
+    const taskCounts = await Promise.all(
+      ids.map(async (statusId, index) => {
+        const count = await Task.count({
+          where: {
+            projectId: project_id,
+            manager: manager_id,
+            status: statusId,
+          },
+        });
+        return { status: statusNames[index], count: count };
+      })
+    );
+    res.json(taskCounts);
   } catch (error) {
     return next(new ErrorResponse(error, 500));
   }
