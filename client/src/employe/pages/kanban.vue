@@ -1,34 +1,40 @@
 <template>
-  <div class="flex h-screen flex-col items-center justify-center">
-    <h1 class="mb-4 text-2xl font-medium">{{ taskListTitle }}</h1>
-    <div class="w-1/2">
+  <div class="flex-1 py-8">
+    <h3 class="mb-8 text-left text-2xl font-bold text-gray-300">
+      Kanban Board
+    </h3>
+    <div class="flex flex-row">
       <div
-        v-for="(tasks, status) in taskList"
+        v-for="(tasks, status) in taskList.tasksByStatus"
         :key="status"
-        class="mb-4 rounded-lg bg-gray-100 p-4 shadow-md"
+        class="mx-2 w-1/4"
       >
-        <h3 class="text-md font-medium text-gray-900">{{ status }}</h3>
-        <div v-if="tasks.length === 0" class="text-sm text-gray-500">
-          No tasks found.
-        </div>
-        <div v-else>
-          <div
-            v-for="task in tasks"
-            :key="task.id"
-            class="mb-2 rounded-lg bg-white p-2 shadow-md"
-          >
-            <h4 class="text-md font-medium text-gray-900">{{ task.title }}</h4>
-            <p class="text-sm leading-tight text-gray-500">
-              {{ task.description }}
-            </p>
-            <div class="mt-2 flex flex-row items-center justify-between">
-              <span class="text-xs text-gray-500"
-                >{{ task.AssignationTo.firstName }}
-                {{ task.AssignationTo.lastName }}</span
-              >
-              <span class="text-xs text-gray-500"
-                >{{ task.timeEstimate }}h</span
-              >
+        <div class="mb-4 rounded-lg bg-gray-50 p-4 shadow-md">
+          <h3 class="text-md font-medium text-gray-800">{{ status }}</h3>
+          <div v-if="tasks.length === 0" class="text-sm text-gray-500">
+            No tasks found.
+          </div>
+          <div v-else>
+            <div
+              v-for="task in tasks"
+              :key="task.id"
+              class="mb-2 rounded-lg bg-gray-200 p-2 shadow-md"
+            >
+              <h4 class="text-md font-medium text-gray-800">
+                {{ task.title }}
+              </h4>
+              <p class="text-sm leading-tight text-gray-500">
+                {{ task.description }}
+              </p>
+              <div class="mt-2 flex flex-row items-center justify-between">
+                <span class="text-xs text-gray-500"
+                  >{{ task.AssignationTo.firstName }}
+                  {{ task.AssignationTo.lastName }}</span
+                >
+                <span class="text-xs text-gray-500"
+                  >{{ task.timeEstimate }}h</span
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -60,9 +66,8 @@ export default {
         }
       );
 
-      this.taskList = response.data.tasks; // Changed to response.data.tasks
-      this.taskListTitle = response.data.message; // Changed to response.data.message
-      console.log(response.data); // Added ".data" to see the data object in console
+      this.taskList = response.data;
+      this.taskListTitle = response.data.message;
     } catch (error) {
       console.error(error);
     }
