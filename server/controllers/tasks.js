@@ -113,7 +113,7 @@ const addTaskToUser = async (req, res, next) => {
  * @returns {Array} Array of tasks associated with the project
  * @throws {ErrorResponse} If no tasks are found or an error occurs while querying the database
  */
-const AllTaskOfProject = async (req, res, next) => {
+const NumberAllTaskOfProject = async (req, res, next) => {
   try {
     const project_id = req.params.id
     const manager_id = req.user.id;
@@ -144,6 +144,41 @@ const AllTaskOfProject = async (req, res, next) => {
       return next(new ErrorResponse("No tasks found", 404));
     }
     res.json(tasks)
+  } catch (error) {
+    return next(new ErrorResponse(error, 500));
+  }
+};
+
+
+const AllTaskOfProject = async (req, res, next) => {
+  try {
+    const project_id = req.params.id
+    const manager_id = req.user.id;
+    const findProject = await Project.findByPk(project_id);
+    if (!findProject) {
+      return next(
+        new ErrorResponse("Sorry, you are not the manager of this project", 401)
+      );
+    }
+    if (findProject.manager != manager_id) {
+      return next(new ErrorResponse("You are not the manager", 401));
+    }
+    const tasks = await Task.findAll({
+      where: {
+        projectId: project_id,
+        manager: manager_id
+      },
+    
+    })
+  
+    
+    if (!tasks) {
+      return next(new ErrorResponse("No tasks found", 404));
+    }
+    res.json({
+      message: `All task of ${findProject.name}`,
+      tasks
+    })
   } catch (error) {
     return next(new ErrorResponse(error, 500));
   }
@@ -245,7 +280,8 @@ const AllMyTasks = async (req, res, next) => {
 
 module.exports = {
   addTaskToUser,
-  AllTaskOfProject,
+  NumberAllTaskOfProject,
   AllTaskOfUser,
   AllMyTasks,
+  AllTaskOfProject
 };
