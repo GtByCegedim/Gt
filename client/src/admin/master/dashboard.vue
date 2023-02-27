@@ -7,13 +7,19 @@ import MailIcon from "./icons/mail.svg";
 import BellIcon from "./icons/bell.svg";
 import InboxIcon from "./icons/inbox.svg";
 import ChevronDownIcon from "./icons/chevron-down.svg";
+import CalendarIcon from "./icons/calendar.svg";
+import PlusIcon from "./icons/plus.svg";
+import InvestmentIcon from "./icons/investment.svg";
+import FundIcon from "./icons/fund.svg";
+import DotsCircleIcon from "./icons/dots-circle.svg";
+import DoughnutChart from "./charts/doughnut.svg";
 
 const menu = [
   { name: "Statistiques", icon: BillIcon, route: "statistiques" },
-  { name: "Projets", icon: BillIcon, route: "project" },
-  { name: "Groupes", icon: BillIcon, route: "allteams" },
-  { name: "Employes", icon: BillIcon, route: "employe" },
-  { name: "ajouter un Employe", icon: BillIcon, route: "newEmploye" },
+  { name: "Projets", icon: CalendarIcon, route: "project" },
+  { name: "Groupes", icon: PlusIcon, route: "allteams" },
+  { name: "Employes", icon: InvestmentIcon, route: "employe" },
+  { name: "ajouter un Employe", icon: FundIcon, route: "newEmploye" },
 ];
 </script>
 
@@ -27,7 +33,7 @@ const menu = [
       </div>
 
       <ul class="flex flex-1 flex-col gap-y-10 px-8 pt-14">
-        <li v-for="item in menu" :key="item.name">
+        <li v-for="item in menu" :key="item.name" >
           <component :is="item.icon" class="h-6 w-6 stroke-current" />
           <router-link
             :to="item.route"
