@@ -2,8 +2,8 @@
   <div class="flex flex-1 flex-col gap-x-6 py-8">
     <h3 class="text-2xl font-bold text-left py-2">All Teams</h3>
     <div class="overflow-x-auto relative  sm:rounded-lg">
-      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-200">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-200">
           <tr>
             <th scope="col" class="py-3 px-6">
               Team  

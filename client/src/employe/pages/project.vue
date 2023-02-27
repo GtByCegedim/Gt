@@ -1,12 +1,12 @@
 <template>
   <div class="flex-1">
-    <h3 class="w py-2 text-left text-2xl font-bold">
+    <h3 class="w py-2 text-gray-400  text-left text-2xl font-bold">
       Tous les projets pour lesquels je suis membre.
     </h3>
     <div class="relative overflow-x-auto sm:rounded-lg">
-      <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400">
+      <table class="w-full text-left text-sm text-gray-500 dark:text-gray-200">
         <thead
-          class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400"
+          class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-200"
         >
           <tr>
             <th scope="col" class="py-3 px-6">Project</th>
@@ -99,13 +99,13 @@
         </tbody>
       </table>
     </div>
-    <h3 class="w mt-10 py-2 text-left text-2xl font-bold">
+    <h3 class="w mt-10 py-2 text-gray-400 text-left text-2xl font-bold">
       Tous les projets pour lesquels je suis le manager.
     </h3>
     <div class="relative overflow-x-auto sm:rounded-lg">
-      <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400">
+      <table class="w-full text-left text-sm text-gray-500 dark:text-gray-200">
         <thead
-          class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400"
+          class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-200"
         >
           <tr>
             <th scope="col" class="py-3 px-6">Project</th>
