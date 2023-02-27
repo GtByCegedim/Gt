@@ -7,5 +7,6 @@ export default defineConfig({
   plugins: [vue(), svgLoader()],
   server: {
     port: 2900, // Change this to the port number you want
+    host: true,
   },
 });
