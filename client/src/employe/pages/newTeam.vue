@@ -1,8 +1,7 @@
 <template>
-  <div class="flex  w-2/5 flex-col mt-2 gap-y-16">
-     <div class="flex flex-col justify-between rounded-10 bg-gray-900 p-7">
-
-      <div class="grid grid-cols-3 gap-x-4 pt-">
+  <div class="mt-2 flex w-2/5 flex-col gap-y-16">
+    <div class="flex flex-col justify-between rounded-10 bg-gray-900 p-7">
+      <div class="pt- grid grid-cols-3 gap-x-4">
         <div class="rounded-10 bg-gray-700 p-3">
           <div class="pt-3 text-sm text-white">Gérer votre équipe</div>
         </div>
@@ -16,7 +15,7 @@
       <div
         class="mt-4 w-full rounded-10 bg-gray-700 py-3 text-gray-400 hover:text-white"
       >
-       Créer votre équipe et demarer votre aventure avec autre employés 
+        Créer votre équipe et demarer votre aventure avec autre employés
       </div>
     </div>
     <div class="group space-y-2">
@@ -41,12 +40,13 @@
             class="widthFull rounded-3xl border border-gray-100 bg-white shadow-2xl shadow-gray-600/10 backdrop-blur-2xl dark:border-gray-700 dark:bg-gray-800"
           >
             <div class="p-8 py-12 sm:p-16">
-              <form action="" class="space-y-4">
+              <form @submit.prevent="handleSubmit" action="" class="space-y-4">
                 <div class="space-y-2">
                   <label for="email" class="text-gray-400 dark:text-gray-300"
                     >nom d'équipe</label
                   >
                   <input
+                    v-model="name"
                     type="name"
                     name="name"
                     id="name"
@@ -54,7 +54,6 @@
                     class="block w-full rounded-md border border-gray-200 bg-transparent px-4 py-3 text-gray-100 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:border-gray-600"
                   />
                 </div>
-               
 
                 <button
                   type="submit"
@@ -77,27 +76,37 @@
 .widthFull {
   width: 100%;
 }
-.parent{
+.parent {
   margin-top: 65px;
 }
 </style>
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
       name: "",
-      
     };
   },
   methods: {
-    submitForm() {
-      // Effectuer les actions nécessaires pour ajouter le projet
-      console.log("Nom du projet:", this.name);
-      
-
-      // Réinitialiser les valeurs des champs du formulaire
-      this.name = "";
-     
+    async handleSubmit() {
+      const projectId = this.$route.params.id;
+      const token = localStorage.getItem("token");
+      const url = `http://localhost:3000/api/teams/create/${projectId}`;
+      const data = { name: this.name };
+      try {
+        const response = await axios.post(url, data, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log(response.data);
+        // redirect to project page
+        this.$router.push(`/dashEmploye/addMember/${projectId}`);
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
