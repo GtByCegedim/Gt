@@ -26,6 +26,7 @@ import newProjet from "../employe/pages/newProject.vue";
 import teams from "../employe/pages/Teams.vue";
 import resetPassword from "../master/resetPassword.vue"
 import NotFound from "../master/error404.vue"
+import about from "../master/about.vue"
 
 const routes = [
   {
@@ -47,6 +48,11 @@ const routes = [
     name: "resetPassword",
     component: resetPassword,
     path: "/resetPassword",
+  },
+  {
+    name: "about",
+    component: about,
+    path: "/about",
   },
   {
     name: "dashAdmin",
