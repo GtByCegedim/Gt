@@ -16,7 +16,7 @@ import addMember from "../employe/pages/addMember.vue";
 import projetDetails from "../admin/pages/projectDetails.vue";
 import addProfile  from "../employe/pages/createProfile.vue"
 import addTask from "../employe/pages/addTask.vue"
-
+import infoOneTeam from "../admin/pages/infoOneTeams.vue"
 import projectEmploye from "../employe/pages/project.vue";
 import infoProjet from "../employe/pages/infoProject.vue";
 import statEmploye from "../employe/pages/statEmploye.vue";
@@ -85,6 +85,11 @@ const routes = [
         name: "allteams",
         component: allteams,
         path: "allteams",
+      },
+      {
+        name: "team",
+        component: infoOneTeam,
+        path: "team/:id",
       },
       {
         name: "employeOfTeam",

@@ -8,6 +8,7 @@ const store = createStore({
     isAuthenticated: false,
     projects: [],
     projectWhereIamMember: [],
+    teamMembers: [],
     currentUser: {
       id: null,
       email: null,
@@ -65,6 +66,9 @@ const store = createStore({
     },
     setTeams(state, teams) {
       state.teams = teams;
+    },
+    setTeamMembers(state, teamMembers) {
+      state.teamMembers = teamMembers;
     },
   },
   actions: {
@@ -206,6 +210,24 @@ const store = createStore({
         );
         const statusTasks = response.data;
         commit("setStatusTasks", statusTasks);
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
+    async fetchAllTeamMembers({ commit, state }, id) {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/teams/allUser/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${state.token}`,
+            },
+          }
+        );
+        const teamMembers = response.data;
+        console.log(teamMembers);
+        commit("setTeamMembers", teamMembers);
       } catch (error) {
         console.error(error);
         throw error;
