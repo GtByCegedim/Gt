@@ -157,8 +157,8 @@ const findAllUserOfTeam = async (req, res, next) => {
       (teamUser) => teamUser.dataValues.userId
     );
     if (userIds.length == 0) return next(new apiError("No Users found", 404));
-    for (let i = 1; i <= userIds.length; i++) {
-      const findUser = await User.findByPk(i);
+    for (const userId of userIds) {
+      const findUser = await User.findByPk(userId);
       users.push(findUser);
     }
     res.json(users);

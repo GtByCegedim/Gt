@@ -8,6 +8,7 @@ const {
   findAllUsers,
   sendPassword,
   getCurrentUser,
+  findUserById,
 } = require("../controllers/employéesController");
 const { authMiddleware, isAdmin } = require("../middleware/authMiddleware");
 
@@ -23,6 +24,14 @@ router.get(
   "/me",
   authMiddleware,
   getCurrentUser
+  // #swagger.tags = ['Employe']
+  // #swagger.security = [{ "bearerAuth": [] }]
+);
+router.get(
+  "/:id",
+  authMiddleware,
+  isAdmin,
+  findUserById
   // #swagger.tags = ['Employe']
   // #swagger.security = [{ "bearerAuth": [] }]
 );

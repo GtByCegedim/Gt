@@ -39,9 +39,11 @@
         </thead>
         <tbody v-for="team in teams" :key="team.id">
           <tr class="bg-white dark:bg-gray-800">
-            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              {{ team.name }}
-            </th>
+                <router-link :to="{name: 'team',params:{id: team.id}}">
+                  <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ team.name }}
+                  </th>
+                </router-link>
             <td class="py-4 px-6">
               {{ team.Manager ? team.Manager.firstName + ' ' + team.Manager.lastName : 'N/A' }}
 

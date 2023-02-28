@@ -16,7 +16,7 @@ import addMember from "../employe/pages/addMember.vue";
 import projetDetails from "../admin/pages/projectDetails.vue";
 import addProfile  from "../employe/pages/createProfile.vue"
 import addTask from "../employe/pages/addTask.vue"
-
+import infoOneTeam from "../admin/pages/infoOneTeams.vue"
 import projectEmploye from "../employe/pages/project.vue";
 import infoProjet from "../employe/pages/infoProject.vue";
 import statEmploye from "../employe/pages/statEmploye.vue";
@@ -27,6 +27,7 @@ import teams from "../employe/pages/Teams.vue";
 import resetPassword from "../master/resetPassword.vue"
 import NotFound from "../master/error404.vue"
 import about from "../master/about.vue"
+import infosEmploye from "../admin/pages/employeeOfTeam.vue"
 
 const routes = [
   {
@@ -93,6 +94,11 @@ const routes = [
         path: "allteams",
       },
       {
+        name: "team",
+        component: infoOneTeam,
+        path: "team/:id",
+      },
+      {
         name: "employeOfTeam",
         component: employeOfTeam,
         path: "employeOfTeam",
@@ -101,6 +107,11 @@ const routes = [
         name: "profileAdmin",
         component: profileAdmin,
         path: "profile",
+      },
+      {
+        name: "infosEmploye",
+        component: infosEmploye,
+        path: "infos/:id",
       },
     ],
   },
