@@ -106,6 +106,7 @@ Project.belongsTo(User, {
 });
 Task.belongsTo(Statut, { foreignKey: "status", as: "Status" });
 Task.belongsTo(User, {foreignKey: "assignedTo", as: "AssignationTo"})
+Team.belongsTo(User, {foreignKey: "manager", as: "Manager"})
 
 module.exports = {
   DateType,
