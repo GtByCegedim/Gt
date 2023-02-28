@@ -63,6 +63,9 @@ const store = createStore({
     setStatusTasks(state, statusTasks) {
       state.statusTasks = statusTasks;
     },
+    setTeams(state, teams) {
+      state.teams = teams;
+    },
   },
   actions: {
     async login({ commit }, { email, password }) {
@@ -102,6 +105,23 @@ const store = createStore({
         );
         const projects = response.data;
         commit("setProjects", projects);
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
+    async fetchAllTeams({ commit, state }) {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/teams/all",
+          {
+            headers: {
+              Authorization: `Bearer ${state.token}`,
+            },
+          }
+        );
+        const teams = response.data.findAllTeam;
+        commit("setTeams", teams);
       } catch (error) {
         console.error(error);
         throw error;
