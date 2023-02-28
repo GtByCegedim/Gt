@@ -33,30 +33,50 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="user in users" :key="user.id" class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
-            <th
-              scope="row"
-              class="whitespace-nowrap py-4 px-6 font-medium text-gray-900 dark:text-white"
+          <tr
+            v-for="user in users"
+            :key="user.id"
+            class="border-b bg-white dark:border-gray-700 dark:bg-gray-800"
+          >
+            <router-link
+              :to="{ name: 'infosEmploye', params: { id: user.id } }"
+             
             >
-              {{ user.lastName }}
-            </th>
-            <td class="py-4 px-6">{{ user.firstName }}</td>
-            <td class="py-4 px-6">{{ user.email }}</td>
-            <td class="py-4 px-6">Software Engineer</td>
-            <td class="py-4 px-6 text-right">
-              <a
-                href="#"
-                class="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                >Edit</a
+              <td
+                scope="row"
+                class="whitespace-nowrap py-4 px-6 font-medium text-gray-900 dark:text-white cursor-pointer"
               >
-            </td>
+                {{ user.lastName }}
+              </td>
+            </router-link>
+              <td
+                class="py-4 px-6 cursor-pointer"
+              >
+                {{ user.firstName }}
+              </td>
+              <td
+                class="py-4 px-6 cursor-pointer"
+              >
+                {{ user.email }}
+              </td>
+              <td
+                class="py-4 px-6 cursor-pointer"
+              >
+                Software Engineer
+              </td>
+              <td class="py-4 px-6 text-right">
+                <a
+                  href="#"
+                  class="font-medium text-blue-600 hover:underline dark:text-blue-500"
+                  >Edit</a
+                >
+              </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
 </template>
-
 
 <script>
 import axios from "axios";

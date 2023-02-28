@@ -198,7 +198,19 @@ const findAllUsers = async (req, res, next) => {
     next(new ErrorResponse(error, 401));
   }
 };
-
+const findUserById = async (req, res, next) => {
+  const userId = req.params.id;
+  try {
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+};
 const getCurrentUser = async (req, res, next) => {
   const user_id = req.user.id;
   try {
@@ -223,4 +235,5 @@ module.exports = {
   findAllUsers,
   sendPassword,
   getCurrentUser,
+  findUserById,
 };

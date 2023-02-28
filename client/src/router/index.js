@@ -26,7 +26,7 @@ import newProjet from "../employe/pages/newProject.vue";
 import teams from "../employe/pages/Teams.vue";
 import resetPassword from "../master/resetPassword.vue"
 import NotFound from "../master/error404.vue"
-
+import infosEmploye from "../admin/pages/employeeOfTeam.vue"
 const routes = [
   {
     name: "home",
@@ -100,6 +100,11 @@ const routes = [
         name: "profileAdmin",
         component: profileAdmin,
         path: "profile",
+      },
+      {
+        name: "infosEmploye",
+        component: infosEmploye,
+        path: "infos/:id",
       },
     ],
   },
