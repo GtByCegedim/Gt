@@ -29,6 +29,15 @@ const store = createStore({
       showDropdown: false,
       userRole: null,
     },
+    employe: {
+      id: null,
+      email: null,
+      password: null,
+      firstName: null,
+      lastName: null,
+      createdAt: null,
+      updatedAt: null,
+    },
   },
   mutations: {
     setToken(state, token) {
@@ -69,6 +78,9 @@ const store = createStore({
     },
     setTeamMembers(state, teamMembers) {
       state.teamMembers = teamMembers;
+    },
+    setEmploye(state, employe) {
+      state.employe = employe;
     },
   },
   actions: {
@@ -228,6 +240,24 @@ const store = createStore({
         const teamMembers = response.data;
         console.log(teamMembers);
         commit("setTeamMembers", teamMembers);
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
+    async fetchOneEmployeInfos({ commit, state }, id) {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/employe/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${state.token}`,
+            },
+          }
+        );
+        const employe = response.data;
+        console.log(employe);
+        commit("setEmploye", employe);
       } catch (error) {
         console.error(error);
         throw error;
