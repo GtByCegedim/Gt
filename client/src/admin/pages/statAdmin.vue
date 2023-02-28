@@ -24,15 +24,18 @@ export default {
   },
   computed: {
     ...mapState(["currentUser"]),
+    ...mapState(["profile"]),
     ...mapState(["projects"]),
   },
   methods: {
     ...mapActions(["fetchCurrentUser"]),
+    ...mapActions(["fetchProfile"]),
     ...mapActions(["fetchProjects"]),
   },
   mounted() {
     this.fetchCurrentUser();
     this.fetchProjects();
+    this.fetchProfile();
   },
 };
 </script>
@@ -66,7 +69,8 @@ export default {
       <div class="h-full w-px bg-gray-700" />
       <div>
         <div class="text-sm text-gray-200">POSTE</div>
-        <div class="pt-1 text-white">developeur</div>
+        <div class="pt-1 text-white">{{ profile.findMyProfile.poste }}</div>
+
       </div>
     </div>
     <div class="flex flex-col justify-between rounded-10 bg-gray-900 p-7">

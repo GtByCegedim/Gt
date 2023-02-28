@@ -8,14 +8,17 @@ export default {
   },
   mounted() {
     this.fetchCurrentUser();
+    this.fetchProfile();
     this.fetchMyProjects();
   },
   computed: {
     ...mapState(["currentUser"]),
+    ...mapState(["profile"]),
     ...mapState(["myProjects"]),
   },
   methods: {
     ...mapActions(["fetchCurrentUser"]),
+    ...mapActions(["fetchProfile"]),
     ...mapActions(["fetchMyProjects"]),
   },
   data() {
@@ -33,7 +36,7 @@ export default {
         },
       ],
       currentDate: new Date().toLocaleDateString(),
-      currentTime : new Date().toLocaleTimeString()
+      currentTime: new Date().toLocaleTimeString(),
     };
   },
 };
@@ -57,7 +60,7 @@ export default {
       <div class="h-full w-px bg-gray-700" />
       <div>
         <div class="text-sm text-gray-200">DATE</div>
-        <div class="pt-1 text-white"> {{ currentDate }}</div>
+        <div class="pt-1 text-white">{{ currentDate }}</div>
       </div>
       <div class="h-full w-px bg-gray-700" />
       <div>
@@ -67,7 +70,7 @@ export default {
       <div class="h-full w-px bg-gray-700" />
       <div>
         <div class="text-sm text-gray-200">POSTE</div>
-        <div class="pt-1 text-white">developeur</div>
+        <div class="pt-1 text-white">{{ profile.findMyProfile.poste }}</div>
       </div>
     </div>
     <div class="flex flex-col justify-between rounded-10 bg-gray-900 p-7">
