@@ -37,7 +37,15 @@ const createTeam = async (req, res, next) => {
 
 const findAllTeams = async (req, res, next) => {
   try {
-    const findAllTeam = await Team.findAll();
+    const findAllTeam = await Team.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ["firstName", "lastName"], // Inclure seulement le nom de manager
+          as: "Manager", // specify the alias for the association
+        },
+      ],
+    });
     if (findAllTeam.length == 0) {
       return next(new apiError("No team found", 401));
     }

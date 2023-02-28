@@ -118,15 +118,11 @@ const addTaskToUser = async (req, res, next) => {
 const NumberAllTaskOfProject = async (req, res, next) => {
   try {
     const project_id = req.params.id;
-    const manager_id = req.user.id;
     const findProject = await Project.findByPk(project_id);
     if (!findProject) {
       return next(
         new ErrorResponse("Sorry, you are not the manager of this project", 401)
       );
-    }
-    if (findProject.manager != manager_id) {
-      return next(new ErrorResponse("You are not the manager", 401));
     }
     const statuses = await Status.findAll({ where: { project: project_id } });
     const ids = statuses.map((status) => status.dataValues.id);
@@ -136,7 +132,6 @@ const NumberAllTaskOfProject = async (req, res, next) => {
         const count = await Task.count({
           where: {
             projectId: project_id,
-            manager: manager_id,
             status: statusId,
           },
         });

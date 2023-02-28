@@ -60,6 +60,12 @@ const store = createStore({
       state.userRole = userRole;
       localStorage.setItem("role", userRole);
     },
+    setStatusTasks(state, statusTasks) {
+      state.statusTasks = statusTasks;
+    },
+    setTeams(state, teams) {
+      state.teams = teams;
+    },
   },
   actions: {
     async login({ commit }, { email, password }) {
@@ -99,6 +105,23 @@ const store = createStore({
         );
         const projects = response.data;
         commit("setProjects", projects);
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
+    async fetchAllTeams({ commit, state }) {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/teams/all",
+          {
+            headers: {
+              Authorization: `Bearer ${state.token}`,
+            },
+          }
+        );
+        const teams = response.data.findAllTeam;
+        commit("setTeams", teams);
       } catch (error) {
         console.error(error);
         throw error;
@@ -166,6 +189,23 @@ const store = createStore({
         );
         const profile = response.data;
         commit("setProfile", profile);
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
+    async fetchStatusTasks({ commit, state }, projectId) {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/task/stat/${projectId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${state.token}`,
+            },
+          }
+        );
+        const statusTasks = response.data;
+        commit("setStatusTasks", statusTasks);
       } catch (error) {
         console.error(error);
         throw error;

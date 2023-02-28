@@ -6,9 +6,13 @@
           class="grid grid-cols-1 gap-y-8 lg:grid-cols-2 lg:items-center lg:gap-x-16"
         >
           <div class="mx-auto max-w-lg text-center lg:mx-0 lg:text-left">
-            <h2 class="text-3xl font-bold sm:text-4xl">{{ project.getMyProject.name }}</h2>
+            <h2 class="text-3xl font-bold sm:text-4xl">
+              {{ project.getMyProject.name }}
+            </h2>
 
-            <p class="mt-4 text-gray-600">{{ project.getMyProject.description }}</p>
+            <p class="mt-4 text-gray-600">
+              {{ project.getMyProject.description }}
+            </p>
 
             <a
               href="#"
@@ -18,71 +22,20 @@
             </a>
           </div>
 
-          <div class="grid grid-cols-2 gap-4 sm:grid-cols-3">
+          <div
+            class="grid grid-cols-2 gap-4 sm:grid-cols-3"
+            v-for="statusTask in statusTasks"
+            :key="statusTasks.status"
+          >
             <a
               class="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
               href="/accountant"
             >
               <span class="inline-block rounded-lg bg-gray-50 p-3">
-                <span class="text-sm font-bold text-gray-600">25</span>
+                <span class="text-sm font-bold text-gray-600">{{ statusTask.count}}</span>
               </span>
 
-              <h2 class="mt-2 font-bold">A FAIRE</h2>
-            </a>
-
-            <a
-              class="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
-              href="/accountant"
-            >
-              <span class="inline-block rounded-lg bg-gray-50 p-3">
-                <span class="text-sm font-bold text-gray-600">25</span>
-              </span>
-
-              <h2 class="mt-2 font-bold">BLOQUED</h2>
-            </a>
-
-            <a
-              class="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
-              href="/accountant"
-            >
-              <span class="inline-block rounded-lg bg-gray-50 p-3">
-                <span class="text-sm font-bold text-gray-600">17</span>
-              </span>
-
-              <h2 class="mt-2 font-bold">REVIEW</h2>
-            </a>
-
-            <a
-              class="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
-              href="/accountant"
-            >
-              <span class="inline-block rounded-lg bg-gray-50 p-3">
-                <span class="text-sm font-bold text-gray-600">17</span>
-              </span>
-
-              <h2 class="mt-2 font-bold">FINIT</h2>
-            </a>
-
-            <a
-              class="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
-              href="/accountant"
-            >
-              <span class="inline-block rounded-lg bg-gray-50 p-3">
-                <span class="text-sm font-bold text-gray-600">17</span>
-              </span>
-
-              <h2 class="mt-2 font-bold">TEST</h2>
-            </a>
-
-            <a
-              class="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
-              href="/accountant"
-            >
-              <span class="inline-block rounded-lg bg-gray-50 p-3">
-                <span class="text-sm font-bold text-gray-600">17</span>
-              </span>
-
-              <h2 class="mt-2 font-bold">AMELIORER</h2>
+              <h2 class="mt-2 font-bold">{{ statusTask.status }}</h2>
             </a>
           </div>
         </div>
@@ -110,7 +63,8 @@
                     >
                       <path
                         d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"
-                      ></path></svg>
+                      ></path>
+                    </svg>
                   </a>
                 </div>
               </th>
@@ -127,7 +81,8 @@
                     >
                       <path
                         d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"
-                      ></path></svg>
+                      ></path>
+                    </svg>
                   </a>
                 </div>
               </th>
@@ -144,7 +99,8 @@
                     >
                       <path
                         d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"
-                      ></path></svg>
+                      ></path>
+                    </svg>
                   </a>
                 </div>
               </th>
@@ -159,7 +115,7 @@
                 scope="row"
                 class="whitespace-nowrap py-4 px-6 font-medium text-gray-900 dark:text-white"
               >
-              {{ user.lastName }}
+                {{ user.lastName }}
               </th>
               <td class="py-4 px-6">{{ user.firstName }}</td>
               <td class="py-4 px-6">{{ user.email }}</td>
@@ -168,8 +124,8 @@
                 <a
                   href="#"
                   class="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                  >Edit</a>
-                
+                  >Edit</a
+                >
               </td>
             </tr>
           </tbody>
@@ -181,8 +137,19 @@
 
 <script>
 import axios from "axios";
+import { mapState, mapActions } from "vuex";
 
 export default {
+  computed: {
+    ...mapState(["statusTasks"]),
+  },
+  methods: {
+    ...mapActions(["fetchStatusTasks"]),
+  },
+  mounted() {
+    const projectId = this.$route.params.projectId;
+    this.fetchStatusTasks(projectId);
+  },
   data() {
     return {
       project: {},

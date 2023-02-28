@@ -37,137 +37,17 @@
             </th>
           </tr>
         </thead>
-        <tbody>
-          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-           <router-link to="employeOfTeam">
-             <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-               test 1
-            </th>
-           </router-link>
-            <td class="py-4 px-6">
-             Wassim lahlali
-            </td>
-            <td class="py-4 px-6">
-              08/02/20123            </td>
-             <td class="py-4 px-6">
-              <div class="flex items-center justify-start">
-                <div
-                  class="
-                    bg-gray-300
-                    w-6
-                    h-6
-                    rounded-full
-                    flex
-                    items-center
-                    justify-center
-                    
-                  "
-                >
-                  <span class="text-gray-600 font-bold text-sm">AB</span>
-                </div>
-                <div
-                   class="
-                    bg-gray-300
-                    w-6
-                    h-6
-                    rounded-full
-                    flex
-                    items-center
-                    justify-center
-                    
-                  "
-                >
-                  <span class="text-gray-600 font-bold text-sm">CD</span>
-                </div>
-                <div
-                   class="
-                    bg-gray-300
-                    w-6
-                    h-6
-                    rounded-full
-                    flex
-                    items-center
-                    justify-center
-                    
-                  "
-                >
-                  <span class="text-gray-600 font-bold text-sm">...</span>
-                </div>
-              </div>
-            </td>
-            <td class="py-4 px-6 text-right">
-              <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">delete</a>
-            </td>
-          </tr>
-          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-               test 2
-            </th>
-            <td class="py-4 px-6">
-              Bader abouriel
-            </td>
-            <td class="py-4 px-6">
-              06/02/2023
-            </td>
-             <td class="py-4 px-6">
-              <div class="flex items-center justify-start">
-                <div
-                  class="
-                    bg-gray-300
-                    w-6
-                    h-6
-                    rounded-full
-                    flex
-                    items-center
-                    justify-center
-                    
-                  "
-                >
-                  <span class="text-gray-600 font-bold text-sm">AB</span>
-                </div>
-                <div
-                   class="
-                    bg-gray-300
-                    w-6
-                    h-6
-                    rounded-full
-                    flex
-                    items-center
-                    justify-center
-                    
-                  "
-                >
-                  <span class="text-gray-600 font-bold text-sm">CD</span>
-                </div>
-                <div
-                   class="
-                    bg-gray-300
-                    w-6
-                    h-6
-                    rounded-full
-                    flex
-                    items-center
-                    justify-center
-                    
-                  "
-                >
-                  <span class="text-gray-600 font-bold text-sm">...</span>
-                </div>
-              </div>
-            </td>
-            <td class="py-4 px-6 text-right">
-              <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">delete</a>
-            </td>
-          </tr>
+        <tbody v-for="team in teams" :key="team.id">
           <tr class="bg-white dark:bg-gray-800">
             <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-               test 3 
+              {{ team.name }}
             </th>
             <td class="py-4 px-6">
-              Safia elmaani
+              {{ team.Manager ? team.Manager.firstName + ' ' + team.Manager.lastName : 'N/A' }}
+
             </td>
             <td class="py-4 px-6">
-              07/02/2023
+              {{ team.createdAt }}
             </td>
              <td class="py-4 px-6">
               <div class="flex items-center justify-start">
@@ -227,9 +107,19 @@
 </template>
 
 <script>
-export default {
+import { mapState, mapActions } from 'vuex';
 
-}
+export default {
+  computed: {
+    ...mapState(["teams"]),
+  },
+  methods: {
+    ...mapActions(["fetchAllTeams"]),
+  },
+  mounted() {
+    this.fetchAllTeams();
+  },
+};
 </script>
 
 <style>

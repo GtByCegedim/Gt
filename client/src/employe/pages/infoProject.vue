@@ -15,8 +15,8 @@
             </p>
             <div>
               <router-link
-              v-if="project.getMyProject"
-              :to="'/dashEmploye/kanban/' + project.getMyProject.id"
+                v-if="project.getMyProject"
+                :to="'/dashEmploye/kanban/' + project.getMyProject.id"
                 class="mt-8 inline-block rounded bg-gray-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-gray-700 focus:outline-none focus:ring focus:ring-yellow-400"
               >
                 Voir Kanban Board
@@ -31,71 +31,20 @@
             </div>
           </div>
 
-          <div class="grid grid-cols-2 gap-4 sm:grid-cols-3">
+          <div
+            class="grid grid-cols-2 gap-4 sm:grid-cols-3"
+            v-for="statusTask in statusTasks"
+            :key="statusTasks.status"
+          >
             <a
               class="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
               href="/accountant"
             >
               <span class="inline-block rounded-lg bg-gray-50 p-3">
-                <span class="text-sm font-bold text-gray-600">25</span>
+                <span class="text-sm font-bold text-gray-600">{{ statusTask.count }}</span>
               </span>
 
-              <h2 class="mt-2 font-bold">A FAIRE</h2>
-            </a>
-
-            <a
-              class="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
-              href="/accountant"
-            >
-              <span class="inline-block rounded-lg bg-gray-50 p-3">
-                <span class="text-sm font-bold text-gray-600">25</span>
-              </span>
-
-              <h2 class="mt-2 font-bold">BLOQUED</h2>
-            </a>
-
-            <a
-              class="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
-              href="/accountant"
-            >
-              <span class="inline-block rounded-lg bg-gray-50 p-3">
-                <span class="text-sm font-bold text-gray-600">17</span>
-              </span>
-
-              <h2 class="mt-2 font-bold">REVIEW</h2>
-            </a>
-
-            <a
-              class="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
-              href="/accountant"
-            >
-              <span class="inline-block rounded-lg bg-gray-50 p-3">
-                <span class="text-sm font-bold text-gray-600">17</span>
-              </span>
-
-              <h2 class="mt-2 font-bold">FINIT</h2>
-            </a>
-
-            <a
-              class="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
-              href="/accountant"
-            >
-              <span class="inline-block rounded-lg bg-gray-50 p-3">
-                <span class="text-sm font-bold text-gray-600">17</span>
-              </span>
-
-              <h2 class="mt-2 font-bold">TEST</h2>
-            </a>
-
-            <a
-              class="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
-              href="/accountant"
-            >
-              <span class="inline-block rounded-lg bg-gray-50 p-3">
-                <span class="text-sm font-bold text-gray-600">17</span>
-              </span>
-
-              <h2 class="mt-2 font-bold">AMELIORER</h2>
+              <h2 class="mt-2 font-bold">{{ statusTask.status }}</h2>
             </a>
           </div>
         </div>
@@ -197,8 +146,20 @@
 <script>
 import axios from "axios";
 import { RouterLink } from "vue-router";
+import { mapState, mapActions } from "vuex";
 
 export default {
+  computed: {
+    ...mapState(["statusTasks"]),
+  },
+  methods: {
+    ...mapActions(["fetchStatusTasks"]),
+  },
+  mounted() {
+    const projectId = this.$route.params.projectId;
+    this.fetchStatusTasks(projectId);
+    console.log(projectId)
+  },
   data() {
     return {
       project: {
