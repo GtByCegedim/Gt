@@ -28,6 +28,7 @@ const {
   Subtask,
   Project,
   Team,
+  statuts
 } = require("./models");
 const sequelize = require("./config/database");
 //Import admin's creation config

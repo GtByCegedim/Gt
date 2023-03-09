@@ -36,7 +36,7 @@
           </div>
           <div class="grid grid-cols-3">
             <div
-              class="m-2 grid grid-cols-2 gap-4 sm:grid-cols-1"
+              class="grid grid-cols-2 gap-4 m-2 sm:grid-cols-1"
               v-for="statusTask in statusTasks"
               :key="statusTasks.status"
             >
