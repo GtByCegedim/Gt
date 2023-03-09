@@ -10,6 +10,7 @@ export default {
     this.fetchCurrentUser();
     this.fetchProfile();
     this.fetchMyProjects();
+    setInterval(this.updateTime, 1000);
   },
   computed: {
     ...mapState(["currentUser"]),
@@ -20,6 +21,10 @@ export default {
     ...mapActions(["fetchCurrentUser"]),
     ...mapActions(["fetchProfile"]),
     ...mapActions(["fetchMyProjects"]),
+    updateTime() {
+      this.currentDate = new Date().toLocaleDateString();
+      this.currentTime = new Date().toLocaleTimeString();
+    }
   },
   data() {
     return {

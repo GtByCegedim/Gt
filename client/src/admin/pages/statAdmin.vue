@@ -18,8 +18,8 @@ export default {
           status: "Pending",
         },
       ],
-      currentDate: new Date().toLocaleDateString(),
-      currentTime: new Date().toLocaleTimeString(),
+      currentDate: "",
+      currentTime: "",
     };
   },
   computed: {
@@ -31,11 +31,16 @@ export default {
     ...mapActions(["fetchCurrentUser"]),
     ...mapActions(["fetchProfile"]),
     ...mapActions(["fetchProjects"]),
+    updateTime() {
+      this.currentDate = new Date().toLocaleDateString();
+      this.currentTime = new Date().toLocaleTimeString();
+    }
   },
   mounted() {
     this.fetchCurrentUser();
     this.fetchProjects();
     this.fetchProfile();
+    setInterval(this.updateTime, 1000);
   },
 };
 </script>
