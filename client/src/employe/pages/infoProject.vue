@@ -165,7 +165,7 @@ export default {
   mounted() {
     const projectId = this.$route.params.projectId;
     this.fetchStatusTasks(projectId);
-    console.log(projectId)
+    console.log(projectId);
   },
   data() {
     return {
