@@ -118,7 +118,7 @@ const menu = [
               class="flex h-11 items-center justify-center rounded-full bg-gray-900 px-2 text-gray-200 hover:text-white"
               @click="toggleDropdown"
             >
-              <img src="" alt="" class="h-8 w-8 rounded-full object-cover" />
+              <img src="https://cdn1.iconfinder.com/data/icons/avatar-97/32/avatar-08-512.png" alt="" class="h-8 w-8 rounded-full object-cover" />
               <span class="pl-2 text-sm">
                 {{ currentUser.firstName }} {{ currentUser.lastName }}</span
               >
