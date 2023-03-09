@@ -168,10 +168,12 @@ export default {
           },
         });
         console.log('ajout avec succée');
+        alert("La tache a été créée avec succès !");
 
         // handle successful response
       } catch (error) {
         console.log(error);
+        alert('erroooooooooooooooor')
         // handle error response
       }
     },

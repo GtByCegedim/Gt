@@ -103,6 +103,8 @@ export default {
         });
         // redirect to add memeber page
         this.$router.push(`/dashEmploye/addMember/${response.data.team_id}`);
+
+        alert("L'équipe a été créée avec succès !");
       } catch (error) {
         console.log(error);
       }

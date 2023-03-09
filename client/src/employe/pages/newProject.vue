@@ -142,6 +142,7 @@ export default {
         
         this.$router.push(`/dashEmploye/infoProjet/${projectId}`);
 
+        alert("Le projet a été créé avec succès !");
         // handle successful response
       } catch (error) {
         console.log(error.response.data);

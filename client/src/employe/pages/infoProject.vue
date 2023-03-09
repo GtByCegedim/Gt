@@ -5,47 +5,54 @@
         <div
           class="grid grid-cols-1 gap-y-8 lg:grid-cols-2 lg:items-center lg:gap-x-16"
         >
-          <div class="mx-auto max-w-lg text-center lg:mx-0 lg:text-left">
-            <h2 class="text-3xl font-bold sm:text-4xl">
-              {{ project.getMyProject ? project.getMyProject.name : "" }}
-            </h2>
+          <div>
+            <div class="mx-auto max-w-lg text-center lg:mx-0 lg:text-left">
+              <h2 class="text-3xl font-bold sm:text-4xl">
+                {{ project.getMyProject ? project.getMyProject.name : "" }}
+              </h2>
 
-            <p class="mt-4 text-gray-600">
-              {{ project.getMyProject ? project.getMyProject.description : "" }}
-            </p>
-            <div>
-              <router-link
-                v-if="project.getMyProject"
-                :to="'/dashEmploye/kanban/' + project.getMyProject.id"
-                class="mt-8 inline-block rounded bg-gray-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-gray-700 focus:outline-none focus:ring focus:ring-yellow-400"
-              >
-                Voir Kanban Board
-              </router-link>
-              <router-link
-                v-if="project.users.length === 0 && project.getMyProject"
-                :to="'/dashEmploye/newTeam/' + project.getMyProject.id"
-                class="mt-8 inline-block rounded bg-indigo-700 px-12 py-3 text-sm font-medium text-white transition hover:bg-indigo-800 focus:outline-none focus:ring focus:ring-yellow-400"
-              >
-                ajouter une team
-              </router-link>
+              <p class="mt-4 text-gray-600">
+                {{
+                  project.getMyProject ? project.getMyProject.description : ""
+                }}
+              </p>
+              <div>
+                <router-link
+                  v-if="project.getMyProject"
+                  :to="'/dashEmploye/kanban/' + project.getMyProject.id"
+                  class="mt-8 inline-block rounded bg-gray-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-gray-700 focus:outline-none focus:ring focus:ring-yellow-400"
+                >
+                  Voir Kanban Board
+                </router-link>
+                <router-link
+                  v-if="project.users.length === 0 && project.getMyProject"
+                  :to="'/dashEmploye/newTeam/' + project.getMyProject.id"
+                  class="mt-8 inline-block rounded bg-indigo-700 px-12 py-3 text-sm font-medium text-white transition hover:bg-indigo-800 focus:outline-none focus:ring focus:ring-yellow-400"
+                >
+                  ajouter une team
+                </router-link>
+              </div>
             </div>
           </div>
-
-          <div
-            class="grid grid-cols-2 gap-4 sm:grid-cols-3"
-            v-for="statusTask in statusTasks"
-            :key="statusTasks.status"
-          >
-            <a
-              class="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
-              href="/accountant"
+          <div class="grid grid-cols-3">
+            <div
+              class="grid grid-cols-2 gap-4 m-2 sm:grid-cols-1"
+              v-for="statusTask in statusTasks"
+              :key="statusTasks.status"
             >
-              <span class="inline-block rounded-lg bg-gray-50 p-3">
-                <span class="text-sm font-bold text-gray-600">{{ statusTask.count }}</span>
-              </span>
+              <a
+                class="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
+                href="/accountant"
+              >
+                <span class="inline-block rounded-lg bg-gray-50 p-3">
+                  <span class="text-sm font-bold text-gray-600">{{
+                    statusTask.count
+                  }}</span>
+                </span>
 
-              <h2 class="mt-2 font-bold">{{ statusTask.status }}</h2>
-            </a>
+                <h2 class="mt-2 font-bold">{{ statusTask.status }}</h2>
+              </a>
+            </div>
           </div>
         </div>
       </div>
