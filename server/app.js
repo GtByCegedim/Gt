@@ -1,5 +1,6 @@
 // Load environment variables from .env file
 require("dotenv").config();
+
 // Import other dependencies
 const express = require("express");
 const globalError = require("./middleware/errorMiddleware");
@@ -28,7 +29,7 @@ const {
   Subtask,
   Project,
   Team,
-  statuts
+  statuts,
 } = require("./models");
 const sequelize = require("./config/database");
 //Import admin's creation config

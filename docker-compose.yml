@@ -8,11 +8,13 @@ services:
       - DATABASE=GT
       - DB_USER=bader
       - password=2001
-      - host=localhost
+      - host=postgres
     ports:
       - 3000:3000
     volumes:
       - ./server:/server/
+    depends_on:
+      - keycloak
   postgres:
     image: postgres
     ports:
@@ -31,5 +33,18 @@ services:
     build: ./client
     ports:
       - 2900:2900
-
-  
+  keycloak:
+    image: jboss/keycloak
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - DB_VENDOR=POSTGRES
+      - DB_ADDR=postgres
+      - DB_DATABASE=GT
+      - DB_USER=bader
+      - DB_PASSWORD=2001
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+    container_name: keycloak
