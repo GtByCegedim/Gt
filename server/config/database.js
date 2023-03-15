@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 
-const sequelize = new Sequelize('postgres://bader:2001@postgres:5432/GT');
+const sequelize = new Sequelize(`postgres://${process.env.DB_USER}:${process.env.password}@postgres:5432/${process.env.DATABASE}`);
 
 
 sequelize
