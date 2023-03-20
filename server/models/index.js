@@ -12,7 +12,6 @@ const Task_User = require("./task_user");
 const Project_User = require("./project_user");
 const team_user = require("./team_user");
 const user_notifications = require("./user_notifications");
-const task_statut = require("./task_statut");
 const Statut = require("./status");
 
 // Many-to-many relationship between User and Role
@@ -104,7 +103,7 @@ Project.belongsTo(User, {
   foreignKey: "manager",
   as: "Manager",
 });
-Task.belongsTo(Statut, { foreignKey: "status", as: "Status" });
+Task.hasMany(Statut, { foreignKey: "status" });
 Task.belongsTo(User, { foreignKey: "assignedTo", as: "AssignationTo" });
 Team.belongsTo(User, { foreignKey: "manager", as: "Manager" });
 

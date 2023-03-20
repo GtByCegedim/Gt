@@ -12,7 +12,9 @@ const Team = require("../models/team");
 const Team_User = require("../models/team_user");
 const Sequelize = require("sequelize");
 const Status = require("../models/status");
-const { finished } = require("nodemailer/lib/xoauth2");
+const {
+  finished
+} = require("nodemailer/lib/xoauth2");
 /**
  * It creates a task and adds it to the users
  * @param req - The request object.
@@ -23,7 +25,9 @@ const { finished } = require("nodemailer/lib/xoauth2");
 const addTaskToUser = async (req, res, next) => {
   const manager = req.user;
   const project_id = req.params.id;
-  const { body } = req;
+  const {
+    body
+  } = req;
   try {
     if (
       !body.title ||
@@ -97,14 +101,77 @@ const addTaskToUser = async (req, res, next) => {
       return next(new ErrorResponse("Task not created", 401));
     }
     /* A loop that iterates over the users and creates a relation between the task and the users. */
+    Storage("task", creatTask.title);
+    Storage("createdAt", creatTask.createdAt);
+
+    mailer.main("addTask", sheckUser);
+
     await res.json({
       msg: "task added to users",
     });
+
   } catch (error) {
     return next(new ErrorResponse(error, 500));
   }
 };
 
+const UpdateUserTsak = async (req, res, next) => {
+  const manager = req.user;
+  const project_id = req.params.id;
+  const task_id = req.params.task
+  const {
+    body
+  } = req;
+  try {
+    if (
+      !body.email
+    ) {
+      return next(new ErrorResponse("Fill all filled and users", 401));
+    }
+    const sheckUser = await User.findOne({
+      where: {
+        email: body.email,
+      },
+    });
+    if (!sheckUser) return next(new ErrorResponse("User not found", 404));
+    const manager_id = manager.id;
+    const findProject = await Project.findByPk(project_id);
+    if (!findProject) {
+      return next(
+        new ErrorResponse("Sory You Are Not Manager Of this Project", 401)
+      );
+    }
+    if (findProject.manager != manager_id)
+      return next(new ErrorResponse("You are not manager ", 401));
+    const shekTask = await Task.findByPk(task_id)
+    if (!shekTask) return next(new ErrorResponse("No task found", 401));
+    const findTeam = await Team.findOne({
+      where: {
+        project: project_id,
+      },
+    });
+    if (!findTeam) return next(new ErrorResponse("team not found", 404));
+    const checkUserTeam = await Team_User.findOne({
+      where: {
+        teamId: findTeam.id,
+        userId: sheckUser.id,
+      },
+    });
+    if (!checkUserTeam) return next(new ErrorResponse("user not a member", 401))
+    const updateTaskUser = await Task.update({
+      assignedTo : sheckUser.id
+    },{
+      where : {
+        id: shekTask.id
+      }
+    })
+    res.json({
+      message: "mzyane hadchi"
+    })
+  } catch (error) {
+
+  }
+}
 /**
  * @function AllTaskOfProject
  * @description Retrieve all tasks associated with a given project
@@ -124,7 +191,11 @@ const NumberAllTaskOfProject = async (req, res, next) => {
         new ErrorResponse("Sorry, you are not the manager of this project", 401)
       );
     }
-    const statuses = await Status.findAll({ where: { project: project_id } });
+    const statuses = await Status.findAll({
+      where: {
+        project: project_id
+      }
+    });
     const ids = statuses.map((status) => status.dataValues.id);
     const statusNames = statuses.map((status) => status.dataValues.status);
     const taskCounts = await Promise.all(
@@ -135,7 +206,10 @@ const NumberAllTaskOfProject = async (req, res, next) => {
             status: statusId,
           },
         });
-        return { status: statusNames[index], count: count };
+        return {
+          status: statusNames[index],
+          count: count
+        };
       })
     );
     res.json(taskCounts);
@@ -159,7 +233,11 @@ const AllTaskOfProject = async (req, res, next) => {
     }
 
     // Récupérer tous les statuts, même s'ils n'ont pas été utilisés dans le projet
-    const statuses = await Status.findAll({ where: { project: project_id } });
+    const statuses = await Status.findAll({
+      where: {
+        project: project_id
+      }
+    });
 
     // Récupérer les tâches du projet en joignant la table Status pour récupérer le nom du statut
     const tasks = await Task.findAll({
@@ -167,8 +245,7 @@ const AllTaskOfProject = async (req, res, next) => {
         projectId: project_id,
         manager: manager_id,
       },
-      include: [
-        {
+      include: [{
           model: Status,
           attributes: ["status"],
           as: "Status",
@@ -307,4 +384,5 @@ module.exports = {
   AllTaskOfUser,
   AllMyTasks,
   AllTaskOfProject,
+  UpdateUserTsak,
 };
