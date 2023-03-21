@@ -154,11 +154,12 @@ const invoices = [
                 <span class="inline-flex h-2 w-2 rounded-full bg-indigo-400" />
               </div>
             </button>
-            <button
+            <router-link to="/dashemploye/addtask"
+
               class="flex h-11 w-11 items-center justify-center rounded-full bg-gray-900 text-gray-200 hover:text-white"
             >
               <InboxIcon class="h-7 w-7 stroke-current" />
-            </button>
+            </router-link>
           </div>
           <button
             class="flex h-11 items-center justify-center rounded-full bg-gray-900 px-2 text-gray-200 hover:text-white"
