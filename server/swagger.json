@@ -657,6 +657,25 @@
         ]
       }
     },
+    "/api/task/add": {
+      "post": {
+        "tags": [
+          "Task"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
     "/api/subtask/{id}": {
       "post": {
         "tags": [

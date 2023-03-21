@@ -6,6 +6,7 @@ const {
   AllMyTasks,
   NumberAllTaskOfProject,
   UpdateUserTsak,
+  addTaskFromHome,
 } = require("../controllers/tasks");
 const router = express.Router();
 const { authMiddleware, isAdmin } = require("../middleware/authMiddleware");
@@ -53,6 +54,14 @@ router.put(
   "/:id/:task",
   authMiddleware,
   UpdateUserTsak
+  // #swagger.tags = ['Task']
+  // #swagger.security = [{ "bearerAuth": [] }]
+);
+
+router.post(
+  "/add",
+  authMiddleware,
+  addTaskFromHome
   // #swagger.tags = ['Task']
   // #swagger.security = [{ "bearerAuth": [] }]
 );
