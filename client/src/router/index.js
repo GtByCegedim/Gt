@@ -28,7 +28,7 @@ import resetPassword from "../master/resetPassword.vue"
 import NotFound from "../master/error404.vue"
 import about from "../master/about.vue"
 import infosEmploye from "../admin/pages/employeeOfTeam.vue"
-
+import attTaskFromE from "../employe/pages/addTaskFromHome.vue"
 const routes = [
   {
     name: "home",
@@ -175,6 +175,11 @@ const routes = [
         name: "addTask",
         component: addTask,
         path: "addTask/:id",
+      },
+      {
+        name: "attTaskFromE",
+        component: attTaskFromE,
+        path: "addTask",
       },
     ],
   },
