@@ -159,9 +159,9 @@ const UpdateUserTsak = async (req, res, next) => {
     });
     if (!checkUserTeam) return next(new ErrorResponse("user not a member", 401))
     const updateTaskUser = await Task.update({
-      assignedTo : sheckUser.id
-    },{
-      where : {
+      assignedTo: sheckUser.id
+    }, {
+      where: {
         id: shekTask.id
       }
     })
@@ -378,6 +378,95 @@ const AllMyTasks = async (req, res, next) => {
   }
 };
 
+
+const addTaskFromHome = async (req, res, next) => {
+  const {
+    body
+  } = req;
+  try {
+    const manager = req.user
+    if (
+      !body.title ||
+      !body.description ||
+      !body.duration ||
+      !body.unit ||
+      !body.name ||
+      !body.email
+    ) {
+      return next(new ErrorResponse("Fill all filled and users", 401));
+    }
+    const name =  body.name
+    console.log(name)
+    const sheckProject = await Project.findOne({
+      where: {
+        name: name
+      }
+    })
+    if (!sheckProject) next(new ErrorResponse("No project found ", 404));
+    const project_id = sheckProject.id
+    if (sheckProject.manager != manager.id) next(new ErrorResponse("Sorry You are not manager of this project", 401));
+    const sheckUserByEmail = await User.findOne({
+      where: {
+        email: body.email
+      }
+    })
+    if (!sheckUserByEmail) next(new ErrorResponse("No User found", 404));
+    const userId = sheckUserByEmail.id
+    const findTeam = await Team.findOne({
+      where: {
+        project: project_id,
+      },
+    });
+    if (!findTeam) return next(new ErrorResponse("team not found", 404));
+    const checkUserTeam = await Team_User.findOne({
+      where: {
+        teamId: findTeam.id,
+        userId: userId,
+      },
+    });
+    if (!checkUserTeam) return next(new ErrorResponse("user not a member", 401));
+    const addDateType = await DateType.create({
+      duration: body.duration,
+      unit: body.unit,
+    });
+    if (!addDateType) {
+      return next(new ErrorResponse("Date Type Not created ", 401));
+    }
+    const id_dateType = addDateType.id;
+    const findDefaultStatut = await Statut.findOne({
+      where: {
+        status: "A faire",
+        project: project_id,
+      },
+    });
+    if (!findDefaultStatut) return next(new ErrorResponse("statut not found", 404));
+    const statusId = findDefaultStatut.id;
+    const creatTask = await Task.create({
+      title: body.title,
+      description: body.description,
+      dateTypeId: id_dateType,
+      projectId: project_id,
+      manager: manager.id,
+      status: statusId,
+      assignedTo: userId,
+    });
+    if (!creatTask) {
+      return next(new ErrorResponse("Task not created", 401));
+    }
+    /* A loop that iterates over the users and creates a relation between the task and the users. */
+    Storage("task", creatTask.title);
+    Storage("createdAt", creatTask.createdAt);
+
+    mailer.main("addTask", sheckUserByEmail);
+    await res.json({
+      msg: "task added to users",
+    });
+
+  } catch (error) {
+    return next(new ErrorResponse(error, 500));
+  }
+}
+
 module.exports = {
   addTaskToUser,
   NumberAllTaskOfProject,
@@ -385,4 +474,5 @@ module.exports = {
   AllMyTasks,
   AllTaskOfProject,
   UpdateUserTsak,
+  addTaskFromHome,
 };
