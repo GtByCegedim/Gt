@@ -1,6 +1,6 @@
 <template>
 	<section class="p-6 dark:bg-gray-800 h-full dark:text-gray-50">
-        <h1>add Task</h1>
+		<h1 class="text-[30px] font-bold text-indigo-400">Créer une Tache</h1>
 		<form  class="container flex flex-col mx-auto space-y-12 ng-untouched max-h-full">
 			<fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-900">
 				<div class="space-y-2 col-span-full lg:col-span-1">

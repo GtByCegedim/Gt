@@ -29,6 +29,8 @@ import NotFound from "../master/error404.vue"
 import about from "../master/about.vue"
 import infosEmploye from "../admin/pages/employeeOfTeam.vue"
 import attTaskFromE from "../employe/pages/addTaskFromHome.vue"
+import descriptionTask from "../employe/components/DescriptionTask.vue"
+
 const routes = [
   {
     name: "home",
@@ -180,6 +182,11 @@ const routes = [
         name: "attTaskFromE",
         component: attTaskFromE,
         path: "addTask",
+      },
+      {
+        name: "descriptionTask",
+        component: descriptionTask,
+        path: "infoTask",
       },
     ],
   },
