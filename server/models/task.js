@@ -29,6 +29,10 @@ const Task = sequelize.define('task', {
   assignedTo:{
     type: Sequelize.INTEGER,
     allowNull: false
+  },
+  reusable: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 });
 

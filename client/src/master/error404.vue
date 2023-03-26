@@ -1,7 +1,7 @@
 <template>
    <section>
   <div
-    class="mx-auto max-w-screen-xl px-4 marg py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8"
+    class="mx-auto max-w-screen-xl mt-9 px-4 marg py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8"
   >
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
       <div
