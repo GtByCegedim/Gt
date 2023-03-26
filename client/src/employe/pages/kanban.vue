@@ -25,7 +25,8 @@
         :key="status"
         class="mx-2 w-1/4"
       >
-        <div class="mb-4 rounded-lg bg-gray-50 p-4 shadow-md">
+        <router-link to="/dashemploye/infoTask">
+          <div class="mb-4 rounded-lg bg-gray-50 p-4 shadow-md">
           <h3 class="text-md font-medium text-gray-800">{{ status }}</h3>
           <div v-if="tasks.length === 0" class="text-sm text-gray-500">
             No tasks found.
@@ -54,6 +55,7 @@
             </div>
           </div>
         </div>
+        </router-link>
       </div>
     </div>
   </div>

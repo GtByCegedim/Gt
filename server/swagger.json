@@ -509,6 +509,25 @@
         ]
       }
     },
+    "/api/task/reusable": {
+      "get": {
+        "tags": [
+          "Task"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
     "/api/task/my": {
       "get": {
         "tags": [

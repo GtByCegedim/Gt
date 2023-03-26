@@ -7,12 +7,20 @@ const {
   NumberAllTaskOfProject,
   UpdateUserTsak,
   addTaskFromHome,
+  allTaskReusable,
 } = require("../controllers/tasks");
 const router = express.Router();
 const { authMiddleware, isAdmin } = require("../middleware/authMiddleware");
 
 /* This is a route that is being created. The first parameter is the path, the second is the function
 that will be called when the route is hit. */
+router.get(
+  "/reusable",
+  authMiddleware,
+  allTaskReusable
+  // #swagger.tags = ['Task']
+  // #swagger.security = [{ "bearerAuth": [] }]
+);
 router.get(
   "/my",
   authMiddleware,
@@ -65,5 +73,6 @@ router.post(
   // #swagger.tags = ['Task']
   // #swagger.security = [{ "bearerAuth": [] }]
 );
+
 
 module.exports = router;

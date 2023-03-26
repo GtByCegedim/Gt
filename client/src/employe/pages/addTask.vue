@@ -1,35 +1,25 @@
 <template>
   <div class="mt-2 flex w-2/5 flex-col gap-y-16">
-    <div class="flex flex-col justify-between rounded-10 bg-gray-900 p-7">
-      <div class="pt- grid grid-cols-3 gap-x-4">
-        <div class="rounded-10 bg-gray-700 p-3">
-          <div class="pt-3 text-sm text-white">creer une tache</div>
-        </div>
-        <div class="rounded-10 bg-gray-700 p-3">
-          <div class="pt-3 text-sm text-white">Assignées à membre</div>
-        </div>
-        <div class="rounded-10 bg-gray-700 p-3">
-          <div class="pt-3 text-sm text-white">
-            Envoyer un message par email
-          </div>
-        </div>
-      </div>
-      <div
-        class="mt-4 w-full rounded-10 bg-gray-700 py-3 text-gray-200 hover:text-white"
-      >
-        Créer des tache et demarer votre aventure avec autre employés
-      </div>
-    </div>
-    <div class="group space-y-2">
-      <img
-        src="./assets/kanban.png"
-        alt="art cover"
-        loading="lazy"
-        width="1000"
-        height="667"
-        class="h-80 w-full rounded-3xl object-cover object-top transition-all duration-500 group-hover:rounded-xl"
-      />
-    </div>
+   <h1 class="text-white">les taches réutulisable</h1>
+	<section class=" dark:bg-gray-400 m-1 dark:text-gray-50">
+		<div class="container mx-auto flex flex-col items-center justify-center p-4 space-y-8 md:p-10 lg:space-y-0 lg:flex-row lg:justify-between">
+			<h1 class="text-3xl font-semibold leading-tight text-white text-center lg:text-left">Tache réutlisable</h1>
+			<button class="px-8 py-3 text-lg font-semibold rounded dark:bg-violet-400 dark:text-gray-900">Utulisé</button>
+		</div>
+	</section>
+	<section class=" dark:bg-gray-400 m-1 dark:text-gray-50">
+		<div class="container mx-auto flex flex-col items-center justify-center p-4 space-y-8 md:p-10 lg:space-y-0 lg:flex-row lg:justify-between">
+			<h1 class="text-3xl font-semibold leading-tight text-white text-center lg:text-left">Tache réutlisable</h1>
+			<button class="px-8 py-3 text-lg font-semibold rounded dark:bg-violet-400 dark:text-gray-900">Utulisé</button>
+		</div>
+	</section>
+  <section class=" dark:bg-gray-400 m-1 dark:text-gray-50">
+		<div class="container mx-auto flex flex-col items-center justify-center p-4 space-y-8 md:p-10 lg:space-y-0 lg:flex-row lg:justify-between">
+			<h1 class="text-3xl font-semibold leading-tight text-white text-center lg:text-left">Tache réutlisable</h1>
+			<button class="px-8 py-3 text-lg font-semibold rounded dark:bg-violet-400 dark:text-gray-900">Utulisé</button>
+		</div>
+	</section>
+  <button class="bg-white">Voir plus +</button>
   </div>
   <div class="flex w-3/5 flex-col">
     <h1 class="text-[30px] font-bold text-indigo-400">Créer Une tache</h1>
@@ -117,12 +107,12 @@
                   class="before:bg-primary relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95"
                 >
                   <span
-                    class="dark:text-dark relative text-base font-semibold text-white"
+                    class=" relative  text-base font-semibold bg-inherit text-white"
                     >Créer</span
                   >
                 </button>
               </form>
-            </div>3
+            </div>
           </div>
         </div>
       </div>

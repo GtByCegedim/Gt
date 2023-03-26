@@ -12,9 +12,7 @@ const Team = require("../models/team");
 const Team_User = require("../models/team_user");
 const Sequelize = require("sequelize");
 const Status = require("../models/status");
-const {
-  finished
-} = require("nodemailer/lib/xoauth2");
+
 /**
  * It creates a task and adds it to the users
  * @param req - The request object.
@@ -25,6 +23,7 @@ const {
 const addTaskToUser = async (req, res, next) => {
   const manager = req.user;
   const project_id = req.params.id;
+  let reusable = false
   const {
     body
   } = req;
@@ -38,6 +37,10 @@ const addTaskToUser = async (req, res, next) => {
     ) {
       return next(new ErrorResponse("Fill all filled and users", 401));
     }
+    if(body.check === true) {
+      reusable = !reusable
+    }
+    console.log(reusable);
     /* Checking if the user exists in the database. */
     const sheckUser = await User.findOne({
       where: {
@@ -96,6 +99,7 @@ const addTaskToUser = async (req, res, next) => {
       manager: manager_id,
       status: statusId,
       assignedTo: userId,
+      reusable: reusable
     });
     if (!creatTask) {
       return next(new ErrorResponse("Task not created", 401));
@@ -467,6 +471,23 @@ const addTaskFromHome = async (req, res, next) => {
   }
 }
 
+const allTaskReusable = async (req, res, next) => {
+  try {
+    const findAllTask = await Task.findAll({
+      where : {
+        reusable:true
+      }
+    })
+    if(!findAllTask) return next(new ErrorResponse("No tasks reusable ", 404));
+    res.json({
+      message: 'all task reusable',
+      findAllTask
+    })
+  } catch (error) {
+    return next(new ErrorResponse(error,500));
+  }
+}
+
 module.exports = {
   addTaskToUser,
   NumberAllTaskOfProject,
@@ -475,4 +496,5 @@ module.exports = {
   AllTaskOfProject,
   UpdateUserTsak,
   addTaskFromHome,
+  allTaskReusable
 };
