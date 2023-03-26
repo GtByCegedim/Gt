@@ -387,6 +387,7 @@ const addTaskFromHome = async (req, res, next) => {
   const {
     body
   } = req;
+  let reusable = false
   try {
     const manager = req.user
     if (
@@ -399,6 +400,10 @@ const addTaskFromHome = async (req, res, next) => {
     ) {
       return next(new ErrorResponse("Fill all filled and users", 401));
     }
+    if(body.check === true) {
+      reusable = !reusable
+    }
+    console.log(reusable);
     const name =  body.name
     console.log(name)
     const sheckProject = await Project.findOne({
@@ -453,6 +458,7 @@ const addTaskFromHome = async (req, res, next) => {
       manager: manager.id,
       status: statusId,
       assignedTo: userId,
+      reusable:reusable
     });
     if (!creatTask) {
       return next(new ErrorResponse("Task not created", 401));
