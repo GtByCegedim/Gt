@@ -17,6 +17,9 @@ const swaggerDocument = require("./swagger.json");
 const ProjectRouter = require("./routes/projectRoute");
 const outputFile = "./swagger.json";
 const endpointsFiles = ["./route/*.js", "./app.js"];
+const morgan = require('morgan');
+const fs = require('fs');
+const path = require('path');
 
 // Import database connection
 const {
@@ -49,6 +52,10 @@ app.use(
     extended: true,
   })
 );
+
+const logs = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
+app.use(morgan('combined', { stream: logs }));
+
 /* A middleware that is used to route the request to the employeRouter. */
 const options = {
   definition: {

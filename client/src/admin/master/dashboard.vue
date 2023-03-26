@@ -176,6 +176,7 @@ export default {
     ...mapActions(["logout"]),
     toggleDropdown() {
       this.$store.state.showDropdown = !this.$store.state.showDropdown;
+     
     },
     async fetchJoke() {
       try {
