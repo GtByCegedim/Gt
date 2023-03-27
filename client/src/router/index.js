@@ -28,6 +28,9 @@ import resetPassword from "../master/resetPassword.vue"
 import NotFound from "../master/error404.vue"
 import about from "../master/about.vue"
 import infosEmploye from "../admin/pages/employeeOfTeam.vue"
+import attTaskFromE from "../employe/pages/addTaskFromHome.vue"
+import descriptionTask from "../employe/components/DescriptionTask.vue"
+import TacheReutulisable from "../employe/pages/TacheReutulisable.vue"
 
 const routes = [
   {
@@ -175,6 +178,21 @@ const routes = [
         name: "addTask",
         component: addTask,
         path: "addTask/:id",
+      },
+      {
+        name: "attTaskFromE",
+        component: attTaskFromE,
+        path: "addTask",
+      },
+      {
+        name: "descriptionTask",
+        component: descriptionTask,
+        path: "infoTask",
+      },
+      {
+        name: "TacheReutulisable",
+        component: TacheReutulisable,
+        path: "taches",
       },
     ],
   },

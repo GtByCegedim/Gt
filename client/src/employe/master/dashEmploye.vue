@@ -114,7 +114,10 @@ const invoices = [
     >
       <nav class="flex items-center gap-x-6">
         <div class="flex w-3/5 items-center justify-between">
-           <h1 class="text-[30px] font-bold "><span class="text-green-400">BRO</span><span class="text-indigo-400">GRAMMERS</span></h1>
+          <h1 class="text-[30px] font-bold">
+            <span class="text-green-400">BRO</span
+            ><span class="text-indigo-400">GRAMMERS</span>
+          </h1>
           <div class="flex items-center gap-x-2">
             <div class="relative">
               <span
@@ -154,25 +157,52 @@ const invoices = [
                 <span class="inline-flex h-2 w-2 rounded-full bg-indigo-400" />
               </div>
             </button>
-            <button
+            <router-link
+              to="/dashemploye/addtask"
               class="flex h-11 w-11 items-center justify-center rounded-full bg-gray-900 text-gray-200 hover:text-white"
             >
               <InboxIcon class="h-7 w-7 stroke-current" />
-            </button>
+            </router-link>
           </div>
-          <button
-            class="flex h-11 items-center justify-center rounded-full bg-gray-900 px-2 text-gray-200 hover:text-white"
-          >
-            <img
-              src="/img/avatar-1.jpeg"
-              alt=""
-              class="h-8 w-8 rounded-full object-cover"
-            />
-            <span class="pl-2 text-sm"
-              >{{ currentUser.firstName }} {{ currentUser.lastName }}</span
+          <div class="relative">
+            <button
+              class="flex h-11 items-center justify-center rounded-full bg-gray-900 px-2 text-gray-200 hover:text-white"
+              @click="toggleDropdown"
             >
-            <ChevronDownIcon class="h-6 w-6 stroke-current" />
-          </button>
+              <img
+                src="https://cdn1.iconfinder.com/data/icons/avatar-97/32/avatar-08-512.png"
+                alt=""
+                class="h-8 w-8 rounded-full object-cover"
+              />
+              <span class="pl-2 text-sm">
+                {{ currentUser.firstName }} {{ currentUser.lastName }}</span
+              >
+              <ChevronDownIcon class="h-6 w-6 stroke-current" />
+            </button>
+            <div
+              v-if="showDropdown"
+              class="absolute top-12 right-0 bg-white py-2 shadow-lg"
+            >
+              <button
+                class="flex items-center space-x-1 text-sm font-medium text-gray-600 hover:text-gray-900"
+                @click="logout"
+              >
+                <svg
+                  class="h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.707 4.293a1 1 0 0 0-1.414 0L10 5.586V2a1 1 0 1 0-2 0v3.586l-.293-.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l2-2a1 1 0 0 0 0-1.414zM6 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm6-7a7.001 7.001 0 0 0-6.062 10.391l1.472-1.473A5.002 5.002 0 0 1 15 10c0 2.757-2.243 5-5 5s-5-2.243-5-5 2.243-5 5-5a4.996 4.996 0 0 1 4.903 4.098l1.473-1.472A7 7 0 0 0 12 3z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span>Logout</span>
+              </button>
+            </div>
+          </div>
         </div>
       </nav>
       <div class="flex gap-x-6 py-8">
@@ -198,9 +228,14 @@ export default {
   },
   computed: {
     ...mapState(["currentUser"]),
+    ...mapState(["showDropdown"]),
   },
   methods: {
     ...mapActions(["fetchCurrentUser"]),
+    ...mapActions(["logout"]),
+    toggleDropdown() {
+      this.$store.state.showDropdown = !this.$store.state.showDropdown;
+    },
     async fetchJoke() {
       try {
         const response = await axios.get(

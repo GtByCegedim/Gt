@@ -38,6 +38,10 @@ const store = createStore({
       createdAt: null,
       updatedAt: null,
     },
+    projectStatistics: null,
+  },
+  getters: {
+    teamMembers: (state) => state.teamMembers,
   },
   mutations: {
     setToken(state, token) {
@@ -81,6 +85,9 @@ const store = createStore({
     },
     setEmploye(state, employe) {
       state.employe = employe;
+    },
+    setProjectStatistics(state, projectStatistics) {
+      state.projectStatistics = projectStatistics;
     },
   },
   actions: {
@@ -224,6 +231,23 @@ const store = createStore({
         commit("setStatusTasks", statusTasks);
       } catch (error) {
         console.error(error);
+        throw error;
+      }
+    },
+    async fetchProjectStatistics({ commit, state }, projectId) {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/project/getProject/${projectId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${state.token}`,
+            },
+          }
+        );
+        const projectStatistics = response.data;
+        commit("setProjectStatistics", projectStatistics);
+      } catch (error) {
+        console.error("Error fetching project statistics:", error);
         throw error;
       }
     },

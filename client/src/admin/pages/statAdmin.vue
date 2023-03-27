@@ -1,7 +1,11 @@
 <script>
 import { mapState, mapActions } from "vuex";
+import StatisticChart from "../../charts/StatisticChart.vue";
 
 export default {
+  components: {
+    StatisticChart,
+  },
   data() {
     return {
       invoices: [
@@ -18,6 +22,7 @@ export default {
           status: "Pending",
         },
       ],
+      selectedProject: "",
       currentDate: "",
       currentTime: "",
     };
@@ -26,20 +31,39 @@ export default {
     ...mapState(["currentUser"]),
     ...mapState(["profile"]),
     ...mapState(["projects"]),
+    ...mapState(["projectStatistics"]),
   },
   methods: {
     ...mapActions(["fetchCurrentUser"]),
     ...mapActions(["fetchProfile"]),
     ...mapActions(["fetchProjects"]),
+    ...mapActions(["fetchProjectStatistics"]),
+    onProjectChange() {
+    if (this.selectedProject) {
+      this.fetchProjectStatistics(this.selectedProject);
+    }
+  },
+
     updateTime() {
       this.currentDate = new Date().toLocaleDateString();
       this.currentTime = new Date().toLocaleTimeString();
-    }
+    },
+  },
+  watch: {
+    selectedProject: {
+      handler(projectId) {
+        if (projectId) {
+          this.fetchProjectStatistics(projectId);
+        }
+      },
+      immediate: true,
+    },
   },
   mounted() {
     this.fetchCurrentUser();
-    this.fetchProjects();
     this.fetchProfile();
+    this.fetchProjects();
+    this.updateTime();
     setInterval(this.updateTime, 1000);
   },
 };
@@ -52,7 +76,7 @@ export default {
     >
       <div class="flex items-center gap-x-4">
         <div class="rounded-full bg-gray-700 p-3">
-          <CreditCardIcon class="h-5 w-5 fill-current text-indigo-400" />
+          
         </div>
         <div>
           <div class="text-sm text-gray-200">NOM COMPLET</div>
@@ -75,7 +99,6 @@ export default {
       <div>
         <div class="text-sm text-gray-200">POSTE</div>
         <div class="pt-1 text-white">{{ profile.findMyProfile.poste }}</div>
-
       </div>
     </div>
     <div class="flex flex-col justify-between rounded-10 bg-gray-900 p-7">
@@ -83,19 +106,29 @@ export default {
         <h2 class="text-[20px] font-medium text-white">
           Statistiques des projets
         </h2>
-        <button
+        <select
           class="inline-flex items-center gap-x-1 rounded-10 bg-gray-700 py-2 px-4 text-sm text-gray-200 hover:text-white"
+          v-model="selectedProject"
+          @change="onProjectChange"
         >
-          <span>Jan - Aug</span>
-          <ChevronDownIcon class="h-6 w-6 stroke-current" />
-        </button>
+          <option value="" disabled>Select a project</option>
+          <option
+            v-for="project in projects"
+            :key="project.id"
+            :value="project.id"
+          >
+            {{ project.name }}
+          </option>
+        </select>
       </div>
       <div class="flex gap-x-8 pt-8">
-        <StatisticChart class="w-full" />
+        <StatisticChart class="w-full" :projectId="selectedProject" />
+
+
         <div class="flex flex-col gap-4">
           <div class="flex items-center gap-x-3 rounded-10 bg-indigo-400 p-4">
             <div class="rounded-full bg-gray-900 p-2 text-indigo-700">
-              <RevenueIcon class="h-6 w-6 fill-current" />
+              
             </div>
             <div>
               <div class="text-sm text-indigo-700">En cours</div>
@@ -104,7 +137,7 @@ export default {
           </div>
           <div class="flex items-center gap-x-3 rounded-10 bg-green-400 p-4">
             <div class="rounded-full bg-gray-900 p-2 text-green-700">
-              <ExpenseIcon class="h-6 w-6 fill-current" />
+              
             </div>
             <div>
               <div class="text-sm text-green-700">Finis</div>
@@ -121,7 +154,7 @@ export default {
         <button
           class="inline-flex items-center gap-x-1 rounded-10 bg-gray-700 py-2 px-4 text-sm text-gray-200 hover:text-white"
         >
-          <PlusIcon class="h-6 w-6 stroke-current" />
+          
           <span>Voir tout</span>
         </button>
       </div>
@@ -209,19 +242,27 @@ export default {
     <div class="flex flex-col justify-between rounded-10 bg-gray-900 p-7">
       <div class="flex items-center justify-between">
         <h2 class="text-[20px] font-medium text-white">taches</h2>
-        <button
+        <select
           class="inline-flex items-center gap-x-1 rounded-10 bg-gray-700 py-2 px-4 text-sm text-gray-200 hover:text-white"
+          v-model="selectedProject"
+          @change="onProjectChange"
         >
-          <span>Projet</span>
-          <ChevronDownIcon class="h-6 w-6 stroke-current" />
-        </button>
+          <option value="" disabled>Select a project</option>
+          <option
+            v-for="project in projects"
+            :key="project.id"
+            :value="project.id"
+          >
+            {{ project.name }}
+          </option>
+        </select>
       </div>
       <div class="flex flex-col gap-y-4 pt-4">
         <div class="flex w-full items-start gap-x-4 rounded-10 bg-gray-700 p-4">
           <div
             class="flex items-center justify-center rounded-full bg-indigo-800 p-2"
           >
-            <InvestmentIcon class="h-5 w-5 fill-current text-gray-900" />
+           
           </div>
           <div class="flex-1">
             <div class="flex items-center justify-between leading-none">
@@ -239,7 +280,7 @@ export default {
           <div
             class="flex items-center justify-center rounded-full bg-green-400 p-2"
           >
-            <FundIcon class="h-5 w-5 fill-current text-gray-900" />
+           
           </div>
           <div class="flex-1">
             <div class="flex items-center justify-between leading-none">
@@ -255,7 +296,6 @@ export default {
         </div>
       </div>
     </div>
-   
   </div>
 </template>
 
