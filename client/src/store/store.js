@@ -40,6 +40,9 @@ const store = createStore({
     },
     projectStatistics: null,
   },
+  getters: {
+    teamMembers: (state) => state.teamMembers,
+  },  
   mutations: {
     setToken(state, token) {
       state.token = token;
