@@ -2,6 +2,7 @@
   <section class="h-full p-6 dark:bg-gray-800 dark:text-gray-50">
     <h1 class="text-[30px] font-bold text-indigo-400">Créer une Tache</h1>
     <form
+      @submit.prevent="submitTask"
       class="ng-untouched container mx-auto flex max-h-full flex-col space-y-12"
     >
       <fieldset
@@ -103,7 +104,7 @@
                 :key="member.id"
                 :value="member.id"
               >
-                {{ member.firstName }} {{ member.lastName }}
+                {{ member.email }}
               </option>
             </select>
           </div>

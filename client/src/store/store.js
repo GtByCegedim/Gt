@@ -91,6 +91,29 @@ const store = createStore({
     },
   },
   actions: {
+    async addTask({ state }, { title, description, duration, unit, projectName, assigneeEmail }) {
+      try {
+        await axios.post(
+          "http://localhost:3000/api/task/add",
+          {
+            title,
+            description,
+            duration,
+            unit,
+            name: projectName,
+            email: assigneeEmail,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${state.token}`,
+            },
+          }
+        );
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
     async login({ commit }, { email, password }) {
       try {
         const response = await axios.post(
