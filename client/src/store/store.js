@@ -42,7 +42,7 @@ const store = createStore({
   },
   getters: {
     teamMembers: (state) => state.teamMembers,
-  },  
+  },
   mutations: {
     setToken(state, token) {
       state.token = token;
@@ -91,29 +91,6 @@ const store = createStore({
     },
   },
   actions: {
-    async addTask({ state }, { title, description, duration, unit, projectName, assigneeEmail }) {
-      try {
-        await axios.post(
-          "http://localhost:3000/api/task/add",
-          {
-            title,
-            description,
-            duration,
-            unit,
-            name: projectName,
-            email: assigneeEmail,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${state.token}`,
-            },
-          }
-        );
-      } catch (error) {
-        console.error(error);
-        throw error;
-      }
-    },
     async login({ commit }, { email, password }) {
       try {
         const response = await axios.post(
@@ -259,11 +236,14 @@ const store = createStore({
     },
     async fetchProjectStatistics({ commit, state }, projectId) {
       try {
-        const response = await axios.get(`http://localhost:3000/api/project/getProject/${projectId}`, {
-          headers: {
-            Authorization: `Bearer ${state.token}`,
-          },
-        });
+        const response = await axios.get(
+          `http://localhost:3000/api/project/getProject/${projectId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${state.token}`,
+            },
+          }
+        );
         const projectStatistics = response.data;
         commit("setProjectStatistics", projectStatistics);
       } catch (error) {
