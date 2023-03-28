@@ -26,6 +26,7 @@ const chartExemple = defineAsyncComponent(() => import("@/employe/components/Rad
 
 
 export default {
+  name:Statistisue,
   components: {
     CardsStatistique,
     LineChart,

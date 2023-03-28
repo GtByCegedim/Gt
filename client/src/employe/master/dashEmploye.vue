@@ -3,8 +3,6 @@ import HomeIcon from "./icons/home.svg";
 import BillIcon from "./icons/bill.svg";
 import InvoiceIcon from "./icons/invoice.svg";
 import BuildingIcon from "./icons/building.svg";
-import CardIcon from "./icons/card.svg";
-import SettingsIcon from "./icons/settings.svg";
 import DashboardIcon from "./icons/gt.svg";
 import SearchIcon from "./icons/search.svg";
 import MailIcon from "./icons/mail.svg";
@@ -12,26 +10,17 @@ import BellIcon from "./icons/bell.svg";
 import InboxIcon from "./icons/inbox.svg";
 import ChevronDownIcon from "./icons/chevron-down.svg";
 import CreditCardIcon from "./icons/credit-card.svg";
-import EyeIcon from "./icons/eye.svg";
 import StatisticChart from "./charts/statistic.svg";
-import RevenueIcon from "./icons/revenue.svg";
-import ExpenseIcon from "./icons/expense.svg";
 import SendIcon from "./icons/send.svg";
 import ReceiveIcon from "./icons/receive.svg";
-import CalendarIcon from "./icons/calendar.svg";
-import PlusIcon from "./icons/plus.svg";
-import InvestmentIcon from "./icons/investment.svg";
-import FundIcon from "./icons/fund.svg";
-import DotsCircleIcon from "./icons/dots-circle.svg";
-import DoughnutChart from "./charts/doughnut.svg";
+
 
 const menu = [
-  { name: "statistiques", icon: BillIcon, route: "statistique" },
-  { name: "projets", icon: HomeIcon, route: "project" },
-  { name: "créer un projet", icon: InvoiceIcon, route: "creerProjet" },
-  { name: "kanban", icon: BuildingIcon, route: "kanban" },
-  { name: "profile", icon: StatisticChart, route: "profile" },
-  { name: "Groupes", icon: CreditCardIcon, route: "teams" },
+  { name: "statistiques", icon: BillIcon, route: "/dashemploye/statistique" },
+  { name: "projets", icon: HomeIcon, route: "/dashemploye/project" },
+  { name: "créer un projet", icon: InvoiceIcon, route: "/dashemploye/creerProjet" },
+  { name: "profile", icon: StatisticChart, route: "/dashemploye/profile" },
+  { name: "Groupes", icon: CreditCardIcon, route: "/dashemploye/teams" },
 ];
 
 const recentTransactions = [
@@ -220,6 +209,7 @@ export default {
   data() {
     return {
       joke: "",
+      turn:0
     };
   },
   mounted() {
@@ -237,7 +227,9 @@ export default {
       this.$store.state.showDropdown = !this.$store.state.showDropdown;
     },
     async fetchJoke() {
+
       try {
+      if(this.turn <= 3) {
         const response = await axios.get(
           "https://v2.jokeapi.dev/joke/Any?type=singlepart&lang=fr&safe=true"
         );
@@ -248,6 +240,11 @@ export default {
             ? `${jokeData.setup} ${jokeData.delivery}`
             : jokeData.joke;
         this.joke = joke;
+        this.turn ++
+      }
+      else {
+        this.joke = "ser takhdam";
+      }
       } catch (error) {
         console.error(error);
       }
