@@ -167,10 +167,46 @@ const findAllUserOfTeam = async (req, res, next) => {
   }
 };
 
+const findAllUsersOfProject = async (req, res, next)=> {
+  try {
+    let users = [];
+    const projectId = req.body.project
+    const manager = req.user
+    if(!req.body.project) return next(new apiError("Add Project Id", 400));
+    const findTeam = await Team.findOne({
+      where : {
+        project:projectId,
+        manager:manager.id
+      }
+    })
+    if(!findTeam)  return next(new apiError("No team found", 404));
+    console.log(findTeam);
+    const team_id = findTeam.id
+    const getAllUserTeamId = await Team_User.findAll({
+      where: {
+        teamId: team_id,
+      },
+    });
+    if (getAllUserTeamId.length == 0)
+      return next(new apiError("No team found", 404));
+    const userIds = getAllUserTeamId.map(
+      (teamUser) => teamUser.dataValues.userId
+    );
+    if (userIds.length == 0) return next(new apiError("No Users found", 404));
+    for (const userId of userIds) {
+      const findUser = await User.findByPk(userId);
+      users.push(findUser);
+    }
+    res.json(users);
+  } catch (error) {
+    return next(new apiError(error, 500));
+  }
+}
 module.exports = {
   createTeam,
   findAllTeams,
   addUserInTeam,
   baneTeam,
   findAllUserOfTeam,
+  findAllUsersOfProject
 };

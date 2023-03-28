@@ -509,6 +509,25 @@
         ]
       }
     },
+    "/api/teams/allUser": {
+      "get": {
+        "tags": [
+          "Team"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
     "/api/task/reusable": {
       "get": {
         "tags": [
