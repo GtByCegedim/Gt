@@ -509,13 +509,20 @@
         ]
       }
     },
-    "/api/teams/allUser": {
+    "/api/teams/allUsersProject/{id}": {
       "get": {
         "tags": [
           "Team"
         ],
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

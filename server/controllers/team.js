@@ -170,9 +170,9 @@ const findAllUserOfTeam = async (req, res, next) => {
 const findAllUsersOfProject = async (req, res, next)=> {
   try {
     let users = [];
-    const projectId = req.body.project
+    const projectId = req.params.id
     const manager = req.user
-    if(!req.body.project) return next(new apiError("Add Project Id", 400));
+    if(!req.params.id) return next(new apiError("Add Project Id", 400));
     const findTeam = await Team.findOne({
       where : {
         project:projectId,

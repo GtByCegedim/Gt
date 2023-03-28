@@ -53,7 +53,7 @@ router.get(
   // #swagger.security = [{ "bearerAuth": [] }]
 );
 router.get(
-  "/allUser",
+  "/allUsersProject/:id",
   authMiddleware,
   findAllUsersOfProject
   // #swagger.tags = ['Team']
