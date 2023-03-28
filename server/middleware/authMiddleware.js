@@ -34,7 +34,8 @@ const authMiddleware = async (req, res, next) => {
     }
   } else {
     return next(
-      new ErrorResponse("il y a aucune token attacher au header", 401)
+
+      new ErrorResponse(error, 401)
     );
   }
 };
