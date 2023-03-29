@@ -172,6 +172,9 @@ const invoices = [
               v-if="showDropdown"
               class="absolute top-12 right-0 bg-white py-2 shadow-lg"
             >
+            <router-link to="/dashemploye/addprofile">
+                Profile
+           </router-link>
             <button
                 class="flex items-center space-x-1 text-sm font-medium text-gray-600 hover:text-gray-900"
                 @click="logout"
