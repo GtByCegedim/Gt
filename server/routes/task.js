@@ -8,6 +8,7 @@ const {
   UpdateUserTsak,
   addTaskFromHome,
   allTaskReusable,
+  fetchTask,
 } = require("../controllers/tasks");
 const router = express.Router();
 const { authMiddleware, isAdmin } = require("../middleware/authMiddleware");
@@ -21,6 +22,7 @@ router.get(
   // #swagger.tags = ['Task']
   // #swagger.security = [{ "bearerAuth": [] }]
 );
+
 router.get(
   "/my",
   authMiddleware,
@@ -35,6 +37,14 @@ router.get(
   // #swagger.tags = ['Task']
   // #swagger.security = [{ "bearerAuth": [] }]
 );
+
+router.get(
+  "/infoTask/:id",
+  authMiddleware,
+  fetchTask
+  // #swagger.tags = ['Task']
+  // #swagger.security = [{ "bearerAuth": [] }]
+);
 router.get(
   "/stat/:id",
   authMiddleware,
@@ -42,6 +52,7 @@ router.get(
   // #swagger.tags = ['Task']
   // #swagger.security = [{ "bearerAuth": [] }]
 );
+
 
 router.get(
   "/:id",
