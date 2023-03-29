@@ -181,7 +181,23 @@ export default {
         throw error;
       }
     },
-    ...mapActions(["fetchMyProjects", "fetchAllTeamMembers"]),
+    ...mapActions(["fetchMyProjects"]),
+    async fetchAllTeamMembers(projectId) {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          `http://localhost:3000/api/teams/allUsersProject/${projectId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        this.$store.commit("setTeamMembers", response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
     async submitTask() {
       const selectedProjectName = this.myProjects.find(
         (project) => project.id === this.selectedProject
