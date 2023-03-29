@@ -23,7 +23,7 @@ const login = async (req, res, next) => {
   if (!user) {
     return next(new apiError('Invalid credentials', 401));
   }
-
+  if(user.bane === true) return next(new apiError('User is Banned or Not verrified', 401));
   // Compare the provided password with the hashed password in the database
   const isMatch = await bcrypt.compare(password, user.password);
 

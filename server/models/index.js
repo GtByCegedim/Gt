@@ -104,10 +104,10 @@ Project.belongsTo(User, {
   as: "Manager",
 });
 // Task.hasMany(Statut, { foreignKey: "status" });
-Task.belongsTo(Statut, { foreignKey: "status", as: "Status" });
+Task.belongsTo(Statut, { foreignKey: "id", as: "Status" });
 
-Task.belongsTo(User, { foreignKey: "assignedTo", as: "AssignationTo" });
-Team.belongsTo(User, { foreignKey: "manager", as: "Manager" });
+Task.belongsTo(User, { foreignKey: "assignedTo", as: "AssignationTo" },{ onDelete: 'cascade' });
+Team.belongsTo(User, { foreignKey: "manager", as: "Manager" },{ onDelete: 'cascade' });
 
 module.exports = {
   DateType,

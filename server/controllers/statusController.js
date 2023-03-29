@@ -39,7 +39,8 @@ const addNewStatut = async (req, res, next) => {
     } 
     const chekIsExist = await Statut.findOne({
       where: {
-        status: name
+        status: name,
+        project:getProject.id
       }
     })
     if (chekIsExist) return next(new ErrorResponse("Statut exist", 401));

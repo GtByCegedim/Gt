@@ -19,6 +19,13 @@ const createTeam = async (req, res, next) => {
     const manager_id = req.user.id;
     const project_id = req.params.id;
     const { name } = req.body;
+    const ifExist = await Team.findOne({
+      where: {
+        name,
+        project:project_id
+      }
+    })
+    if(ifExist)  return next(new apiError("Project have a team", 400));
     const createTeam = await Team.create({
       name: name,
       manager: manager_id,
