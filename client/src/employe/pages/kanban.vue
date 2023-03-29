@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1 py-8">
+  <div class="relative flex-1 py-8">
     <div class="mb-8 flex items-center justify-between">
       <h3 class="text-left text-2xl font-bold text-gray-300">Kanban Board</h3>
       <h3 class="text-left text-2xl font-bold text-gray-300">
@@ -37,7 +37,7 @@
               :key="task.id"
               class="mb-2 rounded-lg bg-gray-200 p-2 shadow-md"
             >
-              <router-link :to="`/dashEmploye/infoTask/` + task.id">
+              <div @click="goToTaskInfo(task.id)">
                 <h4 class="text-md font-medium text-gray-800">
                   {{ task.title }}
                 </h4>
@@ -53,10 +53,37 @@
                     >{{ task.timeEstimate }}h</span
                   >
                 </div>
-              </router-link>
+              </div>
+              <button
+                @click.stop="openModal(task.id)"
+                class="text-xs text-blue-500"
+              >
+                Change Status
+              </button>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+  <div v-if="showModal" class="fixed inset-0 z-0 overflow-y-auto">
+    <div class="flex min-h-screen items-center justify-center">
+      <div
+        class="fixed inset-0 z-50 bg-gray-500 bg-opacity-75 transition-opacity"
+        @click="closeModal"
+      ></div>
+      <div class="z-[100] m-4 w-full max-w-lg rounded-lg bg-white p-4">
+        <h2 class="mb-4 text-xl font-bold">Select a new status</h2>
+        <ul>
+          <li
+            v-for="status in statuses"
+            :key="status.id"
+            class="mb-2 cursor-pointer rounded p-2 text-gray-900 hover:bg-gray-200"
+            @click.stop="changeStatus(selectedTaskId, status)"
+          >
+            {{ status.status }}
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -70,6 +97,9 @@ export default {
     return {
       taskListTitle: "My Task List",
       taskList: {},
+      statuses: [],
+      showModal: false,
+      selectedTaskId: null,
     };
   },
   async created() {
@@ -87,6 +117,7 @@ export default {
 
       this.taskList = response.data;
       this.taskListTitle = response.data.message;
+      await this.fetchStatuses(projectId, token);
     } catch (error) {
       console.error(error);
     }
@@ -95,6 +126,54 @@ export default {
     id() {
       const ProjetId = this.$route.path.split("/");
       return ProjetId[ProjetId.length - 1];
+    },
+  },
+  methods: {
+    goToTaskInfo(taskId) {
+      this.$router.push(`/dashEmploye/infoTask/${taskId}`);
+    },
+    openModal(taskId) {
+      this.selectedTaskId = taskId;
+      this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
+    },
+
+    async fetchStatuses(projectId, token) {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/status/allOfprojet/${projectId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        this.statuses = response.data.findStatutOfProject;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async changeStatus(taskId, status) {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.put(
+          `http://localhost:3000/api/status/update/${taskId}`,
+          { statut: status.status },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(response.data.message);
+        this.showModal = false;
+        this.$router.go()
+        // You can also update the taskList in the component to reflect the new status
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
 };
