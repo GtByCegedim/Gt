@@ -1,7 +1,13 @@
 const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize(
-  `postgres://${process.env.DB_USER}:${process.env.password}@postgres:5432/${process.env.DATABASE}`
+  process.env.DATABASE,
+  process.env.DB_USER,
+  process.env.password,
+  {
+    dialect: "postgres",
+    logging: false,
+  }
 );
 
 sequelize
@@ -14,7 +20,7 @@ sequelize
     // Create the tables for the models
     return sequelize.sync({ alert: true });
   })
-  .then(async () => { 
+  .then(async () => {
     console.log("Tables created successfully.");
   })
   .catch((error) => {

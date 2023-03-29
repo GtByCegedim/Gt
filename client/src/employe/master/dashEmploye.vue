@@ -172,6 +172,24 @@ const invoices = [
               v-if="showDropdown"
               class="absolute top-12 right-0 bg-white py-2 shadow-lg"
             >
+            <button
+                class="flex items-center space-x-1 text-sm font-medium text-gray-600 hover:text-gray-900"
+                @click="logout"
+              >
+                <svg
+                  class="h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.707 4.293a1 1 0 0 0-1.414 0L10 5.586V2a1 1 0 1 0-2 0v3.586l-.293-.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l2-2a1 1 0 0 0 0-1.414zM6 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm6-7a7.001 7.001 0 0 0-6.062 10.391l1.472-1.473A5.002 5.002 0 0 1 15 10c0 2.757-2.243 5-5 5s-5-2.243-5-5 2.243-5 5-5a4.996 4.996 0 0 1 4.903 4.098l1.473-1.472A7 7 0 0 0 12 3z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span>Logout</span>
+              </button>
               <button
                 class="flex items-center space-x-1 text-sm font-medium text-gray-600 hover:text-gray-900"
                 @click="logout"
