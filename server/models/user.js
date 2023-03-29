@@ -24,6 +24,10 @@ const User = sequelize.define("user", {
       type: Sequelize.STRING,
       allowNull: false,
     },
+    bane : {
+      type: Sequelize.BOOLEAN,
+      default:false
+    }
   });
   
   module.exports = User;

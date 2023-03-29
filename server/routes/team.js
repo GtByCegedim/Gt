@@ -8,6 +8,7 @@ const {
   addUserInTeam,
   baneTeam,
   findAllUserOfTeam,
+  findAllUsersOfProject,
 } = require("../controllers/team");
 const { authMiddleware, isAdmin } = require("../middleware/authMiddleware");
 
@@ -48,6 +49,13 @@ router.get(
   "/allUser/:id",
   authMiddleware,
   findAllUserOfTeam
+  // #swagger.tags = ['Team']
+  // #swagger.security = [{ "bearerAuth": [] }]
+);
+router.get(
+  "/allUsersProject/:id",
+  authMiddleware,
+  findAllUsersOfProject
   // #swagger.tags = ['Team']
   // #swagger.security = [{ "bearerAuth": [] }]
 );

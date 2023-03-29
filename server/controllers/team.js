@@ -19,6 +19,13 @@ const createTeam = async (req, res, next) => {
     const manager_id = req.user.id;
     const project_id = req.params.id;
     const { name } = req.body;
+    const ifExist = await Team.findOne({
+      where: {
+        name,
+        project:project_id
+      }
+    })
+    if(ifExist)  return next(new apiError("Project have a team", 400));
     const createTeam = await Team.create({
       name: name,
       manager: manager_id,
@@ -167,10 +174,46 @@ const findAllUserOfTeam = async (req, res, next) => {
   }
 };
 
+const findAllUsersOfProject = async (req, res, next)=> {
+  try {
+    let users = [];
+    const projectId = req.params.id
+    const manager = req.user
+    if(!req.params.id) return next(new apiError("Add Project Id", 400));
+    const findTeam = await Team.findOne({
+      where : {
+        project:projectId,
+        manager:manager.id
+      }
+    })
+    if(!findTeam)  return next(new apiError("No team found", 404));
+    console.log(findTeam);
+    const team_id = findTeam.id
+    const getAllUserTeamId = await Team_User.findAll({
+      where: {
+        teamId: team_id,
+      },
+    });
+    if (getAllUserTeamId.length == 0)
+      return next(new apiError("No team found", 404));
+    const userIds = getAllUserTeamId.map(
+      (teamUser) => teamUser.dataValues.userId
+    );
+    if (userIds.length == 0) return next(new apiError("No Users found", 404));
+    for (const userId of userIds) {
+      const findUser = await User.findByPk(userId);
+      users.push(findUser);
+    }
+    res.json(users);
+  } catch (error) {
+    return next(new apiError(error, 500));
+  }
+}
 module.exports = {
   createTeam,
   findAllTeams,
   addUserInTeam,
   baneTeam,
   findAllUserOfTeam,
+  findAllUsersOfProject
 };

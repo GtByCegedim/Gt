@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1 py-8">
+  <div class="relative flex-1 py-8">
     <div class="mb-8 flex items-center justify-between">
       <h3 class="text-left text-2xl font-bold text-gray-300">Kanban Board</h3>
       <h3 class="text-left text-2xl font-bold text-gray-300">
@@ -32,19 +32,12 @@
             No tasks found.
           </div>
           <div v-else>
-            <vue-draggable-next
-              class="dragArea list-group w-full"
-              :list="tasks"
-              @change="log"
-              @drag-end="onDragEnd"
+            <div
+              v-for="task in tasks"
+              :key="task.id"
+              class="mb-2 rounded-lg bg-gray-200 p-2 shadow-md"
             >
-              <div
-                class="list-group-item mb-2 rounded-md bg-gray-200 p-2 shadow-md"
-                v-for="task in tasks"
-                :key="task.id"
-                :id="task.id"
-                @click="$router.push('/dashemploye/infoTask')"
-              >
+              <div @click="goToTaskInfo(task.id)">
                 <h4 class="text-md font-medium text-gray-800">
                   {{ task.title }}
                 </h4>
@@ -52,18 +45,45 @@
                   {{ task.description }}
                 </p>
                 <div class="mt-2 flex flex-row items-center justify-between">
-                  <span class="text-xs text-gray-500">
-                    {{ task.AssignationTo.firstName }}
-                    {{ task.AssignationTo.lastName }}
-                  </span>
-                  <span class="text-xs text-gray-500">
-                    {{ task.timeEstimate }}h
-                  </span>
+                  <span class="text-xs text-gray-500"
+                    >{{ task.AssignationTo.firstName }}
+                    {{ task.AssignationTo.lastName }}</span
+                  >
+                  <span class="text-xs text-gray-500"
+                    >{{ task.timeEstimate }}h</span
+                  >
                 </div>
               </div>
-            </vue-draggable-next>
+              <button
+                @click.stop="openModal(task.id)"
+                class="text-xs text-blue-500"
+              >
+                Change Status
+              </button>
+            </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+  <div v-if="showModal" class="fixed inset-0 z-0 overflow-y-auto">
+    <div class="flex min-h-screen items-center justify-center">
+      <div
+        class="fixed inset-0 z-50 bg-gray-500 bg-opacity-75 transition-opacity"
+        @click="closeModal"
+      ></div>
+      <div class="z-[100] m-4 w-full max-w-lg rounded-lg bg-white p-4">
+        <h2 class="mb-4 text-xl font-bold">Select a new status</h2>
+        <ul>
+          <li
+            v-for="status in statuses"
+            :key="status.id"
+            class="mb-2 cursor-pointer rounded p-2 text-gray-900 hover:bg-gray-200"
+            @click.stop="changeStatus(selectedTaskId, status)"
+          >
+            {{ status.status }}
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -71,22 +91,37 @@
 
 <script>
 import axios from "axios";
-import { VueDraggableNext } from "vue-draggable-next";
 
 export default {
-  components: {
-    VueDraggableNext,
-  },
   data() {
     return {
       taskListTitle: "My Task List",
       taskList: {},
+      statuses: [],
+      showModal: false,
+      selectedTaskId: null,
     };
   },
   async created() {
-    await this.fetchTaskList();
-  },
+    try {
+      const projectId = this.$route.params.projectId;
+      const token = localStorage.getItem("token");
+      const response = await axios.get(
+        `http://localhost:3000/api/task/${projectId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
+      this.taskList = response.data;
+      this.taskListTitle = response.data.message;
+      await this.fetchStatuses(projectId, token);
+    } catch (error) {
+      console.error(error);
+    }
+  },
   computed: {
     id() {
       const ProjetId = this.$route.path.split("/");
@@ -94,60 +129,52 @@ export default {
     },
   },
   methods: {
-    async fetchTaskList() {
+    goToTaskInfo(taskId) {
+      this.$router.push(`/dashEmploye/infoTask/${taskId}`);
+    },
+    openModal(taskId) {
+      this.selectedTaskId = taskId;
+      this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
+    },
+
+    async fetchStatuses(projectId, token) {
       try {
-        const projectId = this.$route.params.projectId;
-        const token = localStorage.getItem("token");
         const response = await axios.get(
-          `http://localhost:3000/api/task/${projectId}`,
+          `http://localhost:3000/api/status/allOfprojet/${projectId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
-
-        this.taskList = response.data;
-        this.taskListTitle = response.data.message;
+        this.statuses = response.data.findStatutOfProject;
       } catch (error) {
         console.error(error);
       }
     },
-
-    async onDragEnd(event) {
-      console.log("Drag end:", event);
-      const taskId = event.item.id;
-      const newStatus =
-        event.to.parentElement.parentElement.firstElementChild.textContent.trim();
+    async changeStatus(taskId, status) {
       try {
-        await this.updateTaskStatus(taskId, newStatus);
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    async updateTaskStatus(taskId, newStatus) {
-      const token = localStorage.getItem("token");
-      try {
-        const response = await axios.patch(
+        const token = localStorage.getItem("token");
+        const response = await axios.put(
           `http://localhost:3000/api/status/update/${taskId}`,
-          { statut: newStatus },
+          { statut: status.status },
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
-        console.log(response.data);
-        await this.fetchTaskList();
+        console.log(response.data.message);
+        this.showModal = false;
+        this.$router.go()
+        // You can also update the taskList in the component to reflect the new status
       } catch (error) {
         console.error(error);
       }
     },
-
-    log(event) {
-      console.log(event);
-    },
-    // ...
   },
 };
 </script>

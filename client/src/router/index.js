@@ -14,7 +14,6 @@ import employeOfTeam from "../admin/pages/employeeOfTeam.vue";
 import newTeam from "../employe/pages/newTeam.vue";
 import addMember from "../employe/pages/addMember.vue";
 import projetDetails from "../admin/pages/projectDetails.vue";
-import addProfile  from "../employe/pages/createProfile.vue"
 import addTask from "../employe/pages/addTask.vue"
 import infoOneTeam from "../admin/pages/infoOneTeams.vue"
 import projectEmploye from "../employe/pages/project.vue";
@@ -31,7 +30,8 @@ import infosEmploye from "../admin/pages/employeeOfTeam.vue"
 import attTaskFromE from "../employe/pages/addTaskFromHome.vue"
 import descriptionTask from "../employe/components/DescriptionTask.vue"
 import TacheReutulisable from "../employe/pages/TacheReutulisable.vue"
-
+import addPassword from '../master/addPassword.vue'
+import addProfile from '../components/addProfile.vue'
 const routes = [
   {
     name: "home",
@@ -59,6 +59,11 @@ const routes = [
     path: "/about",
   },
   {
+    name: "addPassword",
+    component: addPassword,
+    path: "/addPassword/:id",
+  },
+  {
     name: "dashAdmin",
     component: dashAdmin,
     path: "/dashAdmin",
@@ -68,6 +73,11 @@ const routes = [
         name: "statAdmin",
         component: statAdmin,
         path: "statistiques",
+      },
+      {
+        name: "addProfile",
+        component: addProfile,
+        path: "addProfile",
       },
       {
         name: "project",
@@ -187,7 +197,7 @@ const routes = [
       {
         name: "descriptionTask",
         component: descriptionTask,
-        path: "infoTask",
+        path: "infoTask/:taskId",
       },
       {
         name: "TacheReutulisable",
