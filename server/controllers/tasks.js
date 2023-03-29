@@ -23,10 +23,8 @@ const Status = require("../models/status");
 const addTaskToUser = async (req, res, next) => {
   const manager = req.user;
   const project_id = req.params.id;
-  let reusable = false
-  const {
-    body
-  } = req;
+  let reusable = false;
+  const { body } = req;
   try {
     if (
       !body.title ||
@@ -37,8 +35,8 @@ const addTaskToUser = async (req, res, next) => {
     ) {
       return next(new ErrorResponse("Fill all filled and users", 401));
     }
-    if(body.check === true) {
-      reusable = !reusable
+    if (body.check === true) {
+      reusable = !reusable;
     }
     console.log(reusable);
     /* Checking if the user exists in the database. */
@@ -99,7 +97,7 @@ const addTaskToUser = async (req, res, next) => {
       manager: manager_id,
       status: statusId,
       assignedTo: userId,
-      reusable: reusable
+      reusable: reusable,
     });
     if (!creatTask) {
       return next(new ErrorResponse("Task not created", 401));
@@ -113,7 +111,6 @@ const addTaskToUser = async (req, res, next) => {
     await res.json({
       msg: "task added to users",
     });
-
   } catch (error) {
     return next(new ErrorResponse(error, 500));
   }
@@ -122,14 +119,10 @@ const addTaskToUser = async (req, res, next) => {
 const UpdateUserTsak = async (req, res, next) => {
   const manager = req.user;
   const project_id = req.params.id;
-  const task_id = req.params.task
-  const {
-    body
-  } = req;
+  const task_id = req.params.task;
+  const { body } = req;
   try {
-    if (
-      !body.email
-    ) {
+    if (!body.email) {
       return next(new ErrorResponse("Fill all filled and users", 401));
     }
     const sheckUser = await User.findOne({
@@ -147,7 +140,7 @@ const UpdateUserTsak = async (req, res, next) => {
     }
     if (findProject.manager != manager_id)
       return next(new ErrorResponse("You are not manager ", 401));
-    const shekTask = await Task.findByPk(task_id)
+    const shekTask = await Task.findByPk(task_id);
     if (!shekTask) return next(new ErrorResponse("No task found", 401));
     const findTeam = await Team.findOne({
       where: {
@@ -161,22 +154,23 @@ const UpdateUserTsak = async (req, res, next) => {
         userId: sheckUser.id,
       },
     });
-    if (!checkUserTeam) return next(new ErrorResponse("user not a member", 401))
-    const updateTaskUser = await Task.update({
-      assignedTo: sheckUser.id
-    }, {
-      where: {
-        id: shekTask.id
+    if (!checkUserTeam)
+      return next(new ErrorResponse("user not a member", 401));
+    const updateTaskUser = await Task.update(
+      {
+        assignedTo: sheckUser.id,
+      },
+      {
+        where: {
+          id: shekTask.id,
+        },
       }
-    })
+    );
     res.json({
-      message: "mzyane hadchi"
-    })
-  } catch (error) {
-
-  }
-}
-
+      message: "mzyane hadchi",
+    });
+  } catch (error) {}
+};
 /**
  * @function AllTaskOfProject
  * @description Retrieve all tasks associated with a given project
@@ -198,8 +192,8 @@ const NumberAllTaskOfProject = async (req, res, next) => {
     }
     const statuses = await Status.findAll({
       where: {
-        project: project_id
-      }
+        project: project_id,
+      },
     });
     const ids = statuses.map((status) => status.dataValues.id);
     const statusNames = statuses.map((status) => status.dataValues.status);
@@ -213,7 +207,7 @@ const NumberAllTaskOfProject = async (req, res, next) => {
         });
         return {
           status: statusNames[index],
-          count: count
+          count: count,
         };
       })
     );
@@ -240,8 +234,8 @@ const AllTaskOfProject = async (req, res, next) => {
     // Récupérer tous les statuts, même s'ils n'ont pas été utilisés dans le projet
     const statuses = await Status.findAll({
       where: {
-        project: project_id
-      }
+        project: project_id,
+      },
     });
 
     // Récupérer les tâches du projet en joignant la table Status pour récupérer le nom du statut
@@ -250,7 +244,8 @@ const AllTaskOfProject = async (req, res, next) => {
         projectId: project_id,
         manager: manager_id,
       },
-      include: [{
+      include: [
+        {
           model: Status,
           attributes: ["status"],
           as: "Status",
@@ -384,12 +379,10 @@ const AllMyTasks = async (req, res, next) => {
 };
 
 const addTaskFromHome = async (req, res, next) => {
-  const {
-    body
-  } = req;
-  let reusable = false
+  const { body } = req;
+  let reusable = false;
   try {
-    const manager = req.user
+    const manager = req.user;
     if (
       !body.title ||
       !body.description ||
@@ -400,27 +393,28 @@ const addTaskFromHome = async (req, res, next) => {
     ) {
       return next(new ErrorResponse("Fill all filled and users", 401));
     }
-    if(body.check === true) {
-      reusable = !reusable
+    if (body.check === true) {
+      reusable = !reusable;
     }
     console.log(reusable);
-    const name =  body.name
-    console.log(name)
+    const name = body.name;
+    console.log(name);
     const sheckProject = await Project.findOne({
       where: {
-        name: name
-      }
-    })
+        name: name,
+      },
+    });
     if (!sheckProject) next(new ErrorResponse("No project found ", 404));
-    const project_id = sheckProject.id
-    if (sheckProject.manager != manager.id) next(new ErrorResponse("Sorry You are not manager of this project", 401));
+    const project_id = sheckProject.id;
+    if (sheckProject.manager != manager.id)
+      next(new ErrorResponse("Sorry You are not manager of this project", 401));
     const sheckUserByEmail = await User.findOne({
       where: {
-        email: body.email
-      }
-    })
+        email: body.email,
+      },
+    });
     if (!sheckUserByEmail) next(new ErrorResponse("No User found", 404));
-    const userId = sheckUserByEmail.id
+    const userId = sheckUserByEmail.id;
     const findTeam = await Team.findOne({
       where: {
         project: project_id,
@@ -433,7 +427,8 @@ const addTaskFromHome = async (req, res, next) => {
         userId: userId,
       },
     });
-    if (!checkUserTeam) return next(new ErrorResponse("user not a member", 401));
+    if (!checkUserTeam)
+      return next(new ErrorResponse("user not a member", 401));
     const addDateType = await DateType.create({
       duration: body.duration,
       unit: body.unit,
@@ -448,7 +443,8 @@ const addTaskFromHome = async (req, res, next) => {
         project: project_id,
       },
     });
-    if (!findDefaultStatut) return next(new ErrorResponse("statut not found", 404));
+    if (!findDefaultStatut)
+      return next(new ErrorResponse("statut not found", 404));
     const statusId = findDefaultStatut.id;
     const creatTask = await Task.create({
       title: body.title,
@@ -458,7 +454,7 @@ const addTaskFromHome = async (req, res, next) => {
       manager: manager.id,
       status: statusId,
       assignedTo: userId,
-      reusable:reusable
+      reusable: reusable,
     });
     if (!creatTask) {
       return next(new ErrorResponse("Task not created", 401));
@@ -471,29 +467,39 @@ const addTaskFromHome = async (req, res, next) => {
     await res.json({
       msg: "task added to users",
     });
-
   } catch (error) {
     return next(new ErrorResponse(error, 500));
   }
-}
+};
 
 const allTaskReusable = async (req, res, next) => {
   try {
     const findAllTask = await Task.findAll({
-      where : {
-        reusable:true
-      }
-    })
-    if(!findAllTask) return next(new ErrorResponse("No tasks reusable ", 404));
+      where: {
+        reusable: true,
+      },
+    });
+    if (!findAllTask) return next(new ErrorResponse("No tasks reusable ", 404));
     res.json({
-      message: 'all task reusable',
-      findAllTask
-    })
+      message: "all task reusable",
+      findAllTask,
+    });
   } catch (error) {
-    return next(new ErrorResponse(error,500));
+    return next(new ErrorResponse(error, 500));
   }
-}
+};
+const fetchTask = async (req, res, next) => {
+  try {
+    const taskId = req.params.id;
+    console.log(taskId);
+    const findTask = await Task.findByPk(taskId);
 
+    if (!findTask) return next(new ErrorResponse("No tasks found", 404));
+    res.json(findTask);
+  } catch (error) {
+    return next(new ErrorResponse(error, 500));
+  }
+};
 module.exports = {
   addTaskToUser,
   NumberAllTaskOfProject,
@@ -502,5 +508,6 @@ module.exports = {
   AllTaskOfProject,
   UpdateUserTsak,
   addTaskFromHome,
-  allTaskReusable
+  allTaskReusable,
+  fetchTask,
 };

@@ -197,7 +197,7 @@ const routes = [
       {
         name: "descriptionTask",
         component: descriptionTask,
-        path: "infoTask",
+        path: "infoTask/:taskId",
       },
       {
         name: "TacheReutulisable",
