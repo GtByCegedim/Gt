@@ -15,11 +15,11 @@ import DotsCircleIcon from "./icons/dots-circle.svg";
 import DoughnutChart from "./charts/doughnut.svg";
 
 const menu = [
-  { name: "Statistiques", icon: BillIcon, route: "statistiques" },
-  { name: "Projets", icon: CalendarIcon, route: "project" },
-  { name: "Groupes", icon: PlusIcon, route: "allteams" },
-  { name: "Employes", icon: InvestmentIcon, route: "employe" },
-  { name: "ajouter un Employe", icon: FundIcon, route: "newEmploye" },
+  { name: "Statistiques", icon: BillIcon, route: "/dashadmin/statistiques" },
+  { name: "Projets", icon: CalendarIcon, route: "/dashadmin/project" },
+  { name: "Groupes", icon: PlusIcon, route: "/dashadmin/allteams" },
+  { name: "Employes", icon: InvestmentIcon, route: "/dashadmin/employe" },
+  { name: "ajouter un Employe", icon: FundIcon, route: "/dashadmin/newEmploye" },
 ];
 </script>
 

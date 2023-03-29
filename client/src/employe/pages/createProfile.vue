@@ -1,7 +1,6 @@
 <template>
   <div class="mt-2 flex w-2/5 flex-col gap-y-16">
     <div class="flex flex-col justify-between rounded-10 bg-gray-900 p-7">
-  
       <div
         class="mt-4 w-full rounded-10 bg-gray-700 py-3 text-gray-200 hover:text-white"
       >
@@ -30,7 +29,7 @@
             class="widthFull rounded-3xl border border-gray-100 bg-white shadow-2xl shadow-gray-600/10 backdrop-blur-2xl dark:border-gray-700 dark:bg-gray-800"
           >
             <div class="p-8 py-12 sm:p-16">
-              <form @submit.prevent="addProfile" action="" class="space-y-4">
+              <form @submit.prevent="submitProfile" action="" class="space-y-4">
                 <div class="space-y-2">
                   <label for="name" class="text-gray-200 dark:text-gray-300"
                     >Télephone</label
@@ -57,7 +56,7 @@
                     class="block w-full rounded-md border border-gray-200 bg-transparent px-4 py-3 text-gray-100 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:border-gray-600"
                   />
                 </div>
-                  <div class="space-y-2">
+                <div class="space-y-2">
                   <label
                     for="description"
                     class="text-gray-600 dark:text-gray-300"
@@ -71,7 +70,7 @@
                     class="block w-full rounded-md border border-gray-200 bg-transparent px-4 py-3 text-gray-100 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:border-gray-600"
                   />
                 </div>
-                   <div class="space-y-2">
+                <div class="space-y-2">
                   <label
                     for="description"
                     class="text-gray-600 dark:text-gray-300"
@@ -85,7 +84,20 @@
                     class="block w-full rounded-md border border-gray-200 bg-transparent px-4 py-3 text-gray-100 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:border-gray-600"
                   />
                 </div>
-
+                <div class="space-y-2">
+                  <label
+                    for="date_de_naissance"
+                    class="text-gray-600 dark:text-gray-300"
+                    >Date de naissance</label
+                  >
+                  <input
+                    v-model="date_de_naissance"
+                    type="date"
+                    name="date_de_naissance"
+                    id="date_de_naissance"
+                    class="block w-full rounded-md border border-gray-200 bg-transparent px-4 py-3 text-gray-100 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:border-gray-600"
+                  />
+                </div>
                 <button
                   type="submit"
                   class="before:bg-primary relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95"
@@ -112,5 +124,77 @@
 }
 </style>
 <script>
+// import { mapState, mapActions } from "vuex";
+import { ref, watch } from "vue";
+import axios from "axios";
 
+export default {
+  setup() {
+    const telephone = ref("");
+    const adresse = ref("");
+    const bisness_unit = ref("");
+    const poste = ref("");
+    const date_de_naissance = ref("");
+
+    return {
+      telephone,
+      adresse,
+      bisness_unit,
+      poste,
+      date_de_naissance,
+    };
+  },
+  methods: {
+    async addProfile({
+      telephone,
+      adresse,
+      bisness_unit,
+      poste,
+      date_de_naissance,
+    }) {
+      try {
+        const token = localStorage.getItem("token");
+        console.log("Token:", token);
+
+        const payload = {
+          telephone,
+          adresse,
+          bisness_unit,
+          poste,
+          date_de_naissance,
+        };
+        console.log("Payload:", payload); // Log the payload for debugging
+
+        const response = await axios.post(
+          "http://localhost:3000/api/profile/add",
+          payload,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
+    async submitProfile() {
+      try {
+        await this.addProfile({
+          telephone: this.telephone,
+          adresse: this.adresse,
+          bisness_unit: this.bisness_unit,
+          poste: this.poste,
+          date_de_naissance: this.date_de_naissance,
+        });
+        alert("Task profile successfully");
+      } catch (error) {
+        alert("Error adding profile: " + error.message);
+      }
+    },
+  },
+};
 </script>
