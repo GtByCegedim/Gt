@@ -69,21 +69,4 @@ router.post(
   // #swagger.security = [{ "bearerAuth": [] }]
 );
 
-router.put(
-  "/:id/:task",
-  authMiddleware,
-  UpdateUserTsak
-  // #swagger.tags = ['Task']
-  // #swagger.security = [{ "bearerAuth": [] }]
-);
-
-router.post(
-  "/add",
-  authMiddleware,
-  addTaskFromHome
-  // #swagger.tags = ['Task']
-  // #swagger.security = [{ "bearerAuth": [] }]
-);
-
-
 module.exports = router;
