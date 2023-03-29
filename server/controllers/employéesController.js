@@ -49,6 +49,7 @@ const AddEmployee = async (req, res, next) => {
       const creatUser = await User.create({
         ...req.body,
         password: generatePassword,
+        bane : true
       });
       if (!creatUser) {
         return next(
@@ -100,6 +101,7 @@ const sendPassword = async (req, res, next) => {
     // update the user's password in the database
     await user.update({
       password: hashedPassword,
+      bane:false
     });
     res.status(200).json({
       success: true,

@@ -176,6 +176,7 @@ const UpdateUserTsak = async (req, res, next) => {
 
   }
 }
+
 /**
  * @function AllTaskOfProject
  * @description Retrieve all tasks associated with a given project
@@ -381,7 +382,6 @@ const AllMyTasks = async (req, res, next) => {
     return next(new ErrorResponse(error, 404));
   }
 };
-
 
 const addTaskFromHome = async (req, res, next) => {
   const {

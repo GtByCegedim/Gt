@@ -19,7 +19,7 @@ const main = (method, user) => {
         <h5>votre email :${user.email}</h5>
         <h5>votre mot de passe :${Storage("stockPassword")}</h5>
         <p>Ce lien va vous deriger vers la page pour creer votre propre mot de passe:</p>
-        <a href="http://localhost:${3000}/resetpassword/${user.id}">GO</a>  
+        <a href="http://localhost:${3000}/addpassword/${user.id}">GO</a>  
         ${Storage.clear()}
       </div>`;
   }
