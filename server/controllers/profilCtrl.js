@@ -26,7 +26,7 @@ const AddProfile = async (req,res,next)=>{
         });
         if(!createProfile)  return next(new ErrorResponse("Profile no create ", 401));
         res.json({
-            message: "Profile of  create"
+            message: "Profile  create"
         })
     } catch (error) {
         return next(new ErrorResponse(error, 500));

@@ -492,8 +492,11 @@ const fetchTask = async (req, res, next) => {
   try {
     const taskId = req.params.id;
     console.log(taskId);
-    const findTask = await Task.findByPk(taskId);
-
+    const findTask = await Task.findOne({
+      where: {
+        id: taskId
+      },include: [{ model: User, as: 'AssignationTo' }]
+    })
     if (!findTask) return next(new ErrorResponse("No tasks found", 404));
     res.json(findTask);
   } catch (error) {
